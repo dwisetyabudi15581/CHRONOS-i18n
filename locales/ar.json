@@ -1767,8 +1767,8 @@
       "serverstats": "إحصائيات الخادم",
       "embed": "منشئ Embed",
       "poll": "الاستفتاءات",
-      "sendmessage": "إرسال رسالة",
-      "backup": "النسخ الاحتياطي"
+      "backup": "النسخ الاحتياطي",
+      "send-message": "إرسال رسالة"
     },
     "overview": {
       "members": "الأعضاء",

@@ -1767,8 +1767,8 @@
       "serverstats": "Statistik Server",
       "embed": "Embed Builder",
       "poll": "Poll",
-      "sendmessage": "Kirim Pesan",
-      "backup": "Backup"
+      "backup": "Backup",
+      "send-message": "Kirim Pesan"
     },
     "overview": {
       "members": "Anggota",

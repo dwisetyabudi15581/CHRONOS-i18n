@@ -1767,8 +1767,8 @@
       "serverstats": "Estadísticas del Servidor",
       "embed": "Creador de Embeds",
       "poll": "Encuestas",
-      "sendmessage": "Enviar Mensaje",
-      "backup": "Copias de Seguridad"
+      "backup": "Copias de Seguridad",
+      "send-message": "Enviar Mensaje"
     },
     "overview": {
       "members": "Miembros",

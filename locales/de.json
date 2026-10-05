@@ -1767,8 +1767,8 @@
       "serverstats": "Server-Statistiken",
       "embed": "Embed-Builder",
       "poll": "Umfragen",
-      "sendmessage": "Nachricht senden",
-      "backup": "Backup"
+      "backup": "Backup",
+      "send-message": "Nachricht senden"
     },
     "overview": {
       "members": "Mitglieder",

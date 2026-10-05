@@ -1767,8 +1767,8 @@
       "serverstats": "服务器统计",
       "embed": "嵌入构建器",
       "poll": "投票",
-      "sendmessage": "发送消息",
-      "backup": "备份"
+      "backup": "备份",
+      "send-message": "发送消息"
     },
     "overview": {
       "members": "成员数",

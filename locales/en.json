@@ -1795,8 +1795,8 @@
       "serverstats": "Server Stats",
       "embed": "Embed Builder",
       "poll": "Poll",
-      "sendmessage": "Send Message",
-      "backup": "Backup"
+      "backup": "Backup",
+      "send-message": "Send Message"
     },
     "overview": {
       "members": "Members",
