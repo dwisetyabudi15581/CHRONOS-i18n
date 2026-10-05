@@ -31,7 +31,8 @@
     "error_generic": "出现问题，请重试。",
     "error_discord_api": "Discord API 错误，请稍后重试。",
     "missing_permissions": "我缺少执行此操作所需的权限。请检查我的身份组位置和权限。",
-    "language_changed": "语言已切换为 {language}。"
+    "language_changed": "语言已切换为 {language}。",
+    "level_and_boosts": "等级 {level}（{count} 次加速）"
   },
   "bot_commands": {
     "help": {

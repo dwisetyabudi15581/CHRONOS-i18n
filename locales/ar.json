@@ -31,7 +31,8 @@
     "error_generic": "حدث خطأ ما. حاول مرة أخرى.",
     "error_discord_api": "خطأ في واجهة Discord. حاول مرة أخرى بعد قليل.",
     "missing_permissions": "لا أملك الصلاحيات اللازمة لهذا الإجراء. تحقق من ترتيب رتبتي وصلاحياتي.",
-    "language_changed": "تم تغيير اللغة إلى {language}."
+    "language_changed": "تم تغيير اللغة إلى {language}.",
+    "level_and_boosts": "المستوى {level} ({count} تعزيزًا)"
   },
   "bot_commands": {
     "help": {

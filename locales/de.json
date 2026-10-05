@@ -31,7 +31,8 @@
     "error_generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
     "error_discord_api": "Discord-API-Fehler. Bitte versuche es in einem Moment erneut.",
     "missing_permissions": "Mir fehlen die erforderlichen Berechtigungen für diese Aktion. Prüfe meine Rollenposition und Berechtigungen.",
-    "language_changed": "Sprache zu {language} geändert."
+    "language_changed": "Sprache zu {language} geändert.",
+    "level_and_boosts": "Level {level} ({count} Boosts)"
   },
   "bot_commands": {
     "help": {

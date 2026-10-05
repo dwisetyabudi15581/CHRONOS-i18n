@@ -31,7 +31,8 @@
     "error_generic": "Algo salió mal. Inténtalo de nuevo.",
     "error_discord_api": "Error de la API de Discord. Inténtalo de nuevo en un momento.",
     "missing_permissions": "Me faltan los permisos necesarios para esta acción. Revisa mi posición de rol y mis permisos.",
-    "language_changed": "Idioma cambiado a {language}."
+    "language_changed": "Idioma cambiado a {language}.",
+    "level_and_boosts": "Nivel {level} ({count} mejoras)"
   },
   "bot_commands": {
     "help": {

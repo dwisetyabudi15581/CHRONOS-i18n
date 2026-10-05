@@ -31,7 +31,8 @@
     "error_generic": "Something went wrong. Please try again.",
     "error_discord_api": "Discord API error. Please try again in a moment.",
     "missing_permissions": "I lack the required permissions for this action. Check my role position and permissions.",
-    "language_changed": "Language changed to {language}."
+    "language_changed": "Language changed to {language}.",
+    "level_and_boosts": "Level {level} ({count} boosts)"
   },
   "bot_commands": {
     "help": {

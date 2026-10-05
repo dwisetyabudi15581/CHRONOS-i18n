@@ -31,7 +31,8 @@
     "error_generic": "Terjadi kesalahan. Silakan coba lagi.",
     "error_discord_api": "Error API Discord. Silakan coba lagi sebentar lagi.",
     "missing_permissions": "Saya tidak punya izin yang dibutuhkan untuk aksi ini. Cek posisi role dan izin saya.",
-    "language_changed": "Bahasa diubah ke {language}."
+    "language_changed": "Bahasa diubah ke {language}.",
+    "level_and_boosts": "Level {level} ({count} boost)"
   },
   "bot_commands": {
     "help": {
