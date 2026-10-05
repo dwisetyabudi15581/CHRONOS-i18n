@@ -257,6 +257,13 @@
       "description": "View all keys (active & expired) owned by the user",
       "options": {
         "user": "The user whose keys to view"
+      },
+      "replies": {
+        "empty": "📭 {user} has no keys on this server.",
+        "active": "✅ Active Keys ({count})",
+        "expired": "⏰ Expired Keys ({count}) — will be auto-deleted",
+        "title": "🔑 Key List — {user}",
+        "desc": "Total: **{total}** key ({active} active, {expired} expired)"
       }
     },
     "clear-schedule": {
@@ -456,17 +463,55 @@
     },
     "stats": {
       "description": "View aggregate server stats (admin only)",
-      "options": {}
+      "options": {},
+      "replies": {
+        "title": "📊 SERVER STATS — {server}",
+        "desc": "Live server data from Discord + member activity tracked by the bot.",
+        "members": "👥 Members",
+        "open_tickets": "🎫 Open Tickets",
+        "boosts": "🚀 Server Boosts",
+        "messages_tracked": "💬 Messages Tracked",
+        "avg_messages": "📈 Avg Messages/Member",
+        "giveaways_won": "🎁 Giveaways Won",
+        "transactions": "🛒 Transactions",
+        "footer": "Members/boosts/tickets = live from Discord • messages & transactions tracked since v3.2"
+      }
     },
     "leaderboard": {
       "description": "View the top 10 members (public — regular members can use it)",
       "options": {
         "metric": "Leaderboard metric"
+      },
+      "replies": {
+        "empty": "📭 No leaderboard data for this metric yet.",
+        "metric_messages": "💬 Most Messages",
+        "metric_vipPurchases": "🛒 Top Buyer (transaction count)",
+        "metric_totalSpent": "💰 Top Spender (total spent)",
+        "metric_giveawaysWon": "🎉 Top Winner (giveaways)",
+        "fmt_messages": "{count} messages",
+        "fmt_vipPurchases": "{count} transactions",
+        "fmt_giveawaysWon": "{count} wins",
+        "title": "🏆 LEADERBOARD — {metric}",
+        "desc": "Top {count} members by **{metric}**.",
+        "footer": "Tracking since bot v3.2 | Updated on every activity"
       }
     },
     "my-stats": {
       "description": "View your personal stats (public — regular members can use it)",
-      "options": {}
+      "options": {},
+      "replies": {
+        "title": "📊 STATS — {user}",
+        "desc": "Your activity stats on this server.",
+        "messages": "💬 Messages",
+        "transactions": "🛒 Transactions",
+        "total_spent": "💰 Total Spent",
+        "giveaway_won": "🎉 Giveaway Won",
+        "joined": "📅 Joined This Server",
+        "unknown": "unknown",
+        "last_message": "🕐 Last Message",
+        "never": "never",
+        "footer": "Check your leaderboard position with /leaderboard"
+      }
     },
     "boosters": {
       "description": "List the current server boosters + recent boost history (public)",
@@ -599,15 +644,27 @@
       "description": "Set AFK status (bot auto-replies when you get mentioned)",
       "options": {
         "reason": "AFK reason (supports \\n, e.g. \"Eating, back in 30 minutes\")"
+      },
+      "replies": {
+        "set_title": "💤 AFK Status Set",
+        "set_desc": "Hello {user}, you are now **AFK**.\n\n📝 Reason: {reason}\n🕒 Since: {since}\n\n💡 When someone mentions you, the bot will auto-reply with your reason.\n💡 AFK clears automatically when you send a message again."
       }
     },
     "afk-clear": {
       "description": "Clear your AFK status",
-      "options": {}
+      "options": {},
+      "replies": {
+        "none": "ℹ️ You aren't AFK right now anyway.",
+        "done": "✅ Your AFK status has been cleared. Welcome back! 👋"
+      }
     },
     "afk-list": {
       "description": "View all members who are currently AFK",
-      "options": {}
+      "options": {},
+      "replies": {
+        "empty": "✅ No members are AFK right now.",
+        "title": "💤 AFK MEMBERS ({count})"
+      }
     },
     "setup-leveling": {
       "description": "Enable/disable leveling system + config XP",
@@ -639,11 +696,23 @@
       "description": "View your level & XP (or another user)",
       "options": {
         "user": "The user to check (default: you)"
+      },
+      "replies": {
+        "title": "📊 Rank — {user}",
+        "level": "Level",
+        "total_xp": "Total XP",
+        "xp_progress": "XP Progress",
+        "progress_bar": "Progress Bar",
+        "footer": "Leveling {state} | XP/msg: {xp}"
       }
     },
     "leaderboard-level": {
       "description": "Top 10 members with the highest level (public)",
-      "options": {}
+      "options": {},
+      "replies": {
+        "empty": "📭 No members have XP yet. Send some messages to earn XP!",
+        "title": "🏆 LEADERBOARD — TOP 10 (Level)"
+      }
     },
     "set-language": {
       "description": "Set the bot's reply language for this server (default: auto — follows each user's Discord language)",

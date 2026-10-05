@@ -247,6 +247,13 @@
       "description": "查看用户的所有 key（有效和已过期）",
       "options": {
         "user": "要查看 key 的用户"
+      },
+      "replies": {
+        "empty": "📭 {user} 在此服务器没有密钥。",
+        "active": "✅ 有效密钥（{count}）",
+        "expired": "⏰ 已过期密钥（{count}）— 将被自动删除",
+        "title": "🔑 密钥列表 — {user}",
+        "desc": "共计：**{total}** 个密钥（{active} 个有效，{expired} 个已过期）"
       }
     },
     "clear-schedule": {
@@ -432,16 +439,54 @@
       }
     },
     "stats": {
-      "description": "查看服务器汇总统计（仅管理员）"
+      "description": "查看服务器汇总统计（仅管理员）",
+      "replies": {
+        "title": "📊 服务器统计 — {server}",
+        "desc": "来自 Discord 的实时服务器数据 + 机器人记录的成员活动。",
+        "members": "👥 成员数",
+        "open_tickets": "🎫 未关闭工单",
+        "boosts": "🚀 服务器加速",
+        "messages_tracked": "💬 已记录消息",
+        "avg_messages": "📈 人均消息数",
+        "giveaways_won": "🎁 抽奖获胜",
+        "transactions": "🛒 交易次数",
+        "footer": "成员/加速/工单 = Discord 实时数据 • 消息与交易自 v3.2 起记录"
+      }
     },
     "leaderboard": {
       "description": "查看前 10 名成员（公开 — 普通成员也可使用）",
       "options": {
         "metric": "排行榜指标"
+      },
+      "replies": {
+        "empty": "📭 该指标暂无排行榜数据。",
+        "metric_messages": "💬 消息最多",
+        "metric_vipPurchases": "🛒 购买最多（交易次数）",
+        "metric_totalSpent": "💰 消费最多（总消费）",
+        "metric_giveawaysWon": "🎉 获胜最多（抽奖）",
+        "fmt_messages": "{count} 条消息",
+        "fmt_vipPurchases": "{count} 笔交易",
+        "fmt_giveawaysWon": "{count} 次获胜",
+        "title": "🏆 排行榜 — {metric}",
+        "desc": "按 **{metric}** 排名的前 {count} 名成员。",
+        "footer": "自机器人 v3.2 起统计 | 每次活动后更新"
       }
     },
     "my-stats": {
-      "description": "查看你的个人统计（公开 — 普通成员也可使用）"
+      "description": "查看你的个人统计（公开 — 普通成员也可使用）",
+      "replies": {
+        "title": "📊 统计 — {user}",
+        "desc": "你在此服务器的活动统计。",
+        "messages": "💬 消息数",
+        "transactions": "🛒 交易次数",
+        "total_spent": "💰 总消费",
+        "giveaway_won": "🎉 抽奖获胜",
+        "joined": "📅 加入本服务器",
+        "unknown": "未知",
+        "last_message": "🕐 最后消息",
+        "never": "从未",
+        "footer": "使用 /leaderboard 查看你的排行榜位置"
+      }
     },
     "boosters": {
       "description": "列出当前服务器 Boost 成员 + 最近的 Boost 历史（公开）"
@@ -559,13 +604,25 @@
       "description": "设置离开状态（被提及时机器人自动回复）",
       "options": {
         "reason": "离开原因（支持 \\n，如 \"吃饭，30 分钟后回来\"）"
+      },
+      "replies": {
+        "set_title": "💤 AFK 状态已设置",
+        "set_desc": "你好 {user}，你现在是 **AFK** 状态。\n\n📝 原因：{reason}\n🕒 自：{since}\n\n💡 当有人提及你时，机器人会自动回复你的原因。\n💡 当你再次发送消息时，AFK 状态会自动清除。"
       }
     },
     "afk-clear": {
-      "description": "清除你的离开状态"
+      "description": "清除你的离开状态",
+      "replies": {
+        "none": "ℹ️ 你本来就不在 AFK 状态。",
+        "done": "✅ 你的 AFK 状态已清除。欢迎回来！👋"
+      }
     },
     "afk-list": {
-      "description": "查看当前所有离开的成员"
+      "description": "查看当前所有离开的成员",
+      "replies": {
+        "empty": "✅ 目前没有处于 AFK 状态的成员。",
+        "title": "💤 AFK 成员（{count}）"
+      }
     },
     "setup-leveling": {
       "description": "启用/停用等级系统 + 配置 XP",
@@ -596,10 +653,22 @@
       "description": "查看你的等级和 XP（或其他用户）",
       "options": {
         "user": "要查询的用户（默认：你自己）"
+      },
+      "replies": {
+        "title": "📊 等级 — {user}",
+        "level": "等级",
+        "total_xp": "总经验",
+        "xp_progress": "经验进度",
+        "progress_bar": "进度条",
+        "footer": "等级系统{state} | 每条消息经验：{xp}"
       }
     },
     "leaderboard-level": {
-      "description": "等级最高的前 10 名成员（公开）"
+      "description": "等级最高的前 10 名成员（公开）",
+      "replies": {
+        "empty": "📭 还没有成员获得经验。发消息来赚取经验吧！",
+        "title": "🏆 排行榜 — 前 10 名（等级）"
+      }
     },
     "set-language": {
       "description": "设置本服务器的机器人回复语言（默认：auto — 跟随每位用户的 Discord 语言）",

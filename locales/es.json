@@ -247,6 +247,13 @@
       "description": "Ver todas las keys (activas y expiradas) del usuario",
       "options": {
         "user": "El usuario cuyas keys se quieren ver"
+      },
+      "replies": {
+        "empty": "📭 {user} no tiene llaves en este servidor.",
+        "active": "✅ Llaves Activas ({count})",
+        "expired": "⏰ Llaves Vencidas ({count}) — se eliminarán automáticamente",
+        "title": "🔑 Lista de Llaves — {user}",
+        "desc": "Total: **{total}** llave ({active} activa, {expired} vencida)"
       }
     },
     "clear-schedule": {
@@ -432,16 +439,54 @@
       }
     },
     "stats": {
-      "description": "Ver estadísticas agregadas del servidor (solo admin)"
+      "description": "Ver estadísticas agregadas del servidor (solo admin)",
+      "replies": {
+        "title": "📊 ESTADÍSTICAS DEL SERVIDOR — {server}",
+        "desc": "Datos en vivo del servidor desde Discord + actividad de miembros registrada por el bot.",
+        "members": "👥 Miembros",
+        "open_tickets": "🎫 Tickets Abiertos",
+        "boosts": "🚀 Mejoras del Servidor",
+        "messages_tracked": "💬 Mensajes Registrados",
+        "avg_messages": "📈 Promedio Mensajes/Miembro",
+        "giveaways_won": "🎁 Giveaways Ganados",
+        "transactions": "🛒 Transacciones",
+        "footer": "Miembros/mejoras/tickets = en vivo de Discord • mensajes y transacciones registrados desde v3.2"
+      }
     },
     "leaderboard": {
       "description": "Ver el top 10 de miembros (público — los miembros normales pueden usarlo)",
       "options": {
         "metric": "Métrica del ranking"
+      },
+      "replies": {
+        "empty": "📭 Aún no hay datos de clasificación para esta métrica.",
+        "metric_messages": "💬 Más Mensajes",
+        "metric_vipPurchases": "🛒 Mayor Comprador (número de transacciones)",
+        "metric_totalSpent": "💰 Mayor Gasto (total gastado)",
+        "metric_giveawaysWon": "🎉 Más Premios (giveaways)",
+        "fmt_messages": "{count} mensajes",
+        "fmt_vipPurchases": "{count} transacciones",
+        "fmt_giveawaysWon": "{count} victorias",
+        "title": "🏆 CLASIFICACIÓN — {metric}",
+        "desc": "Los {count} miembros principales por **{metric}**.",
+        "footer": "Registrado desde el bot v3.2 | Actualizado en cada actividad"
       }
     },
     "my-stats": {
-      "description": "Ver tus estadísticas personales (público — los miembros normales pueden usarlo)"
+      "description": "Ver tus estadísticas personales (público — los miembros normales pueden usarlo)",
+      "replies": {
+        "title": "📊 ESTADÍSTICAS — {user}",
+        "desc": "Tus estadísticas de actividad en este servidor.",
+        "messages": "💬 Mensajes",
+        "transactions": "🛒 Transacciones",
+        "total_spent": "💰 Total Gastado",
+        "giveaway_won": "🎉 Giveaways Ganados",
+        "joined": "📅 Se Unió a Este Servidor",
+        "unknown": "desconocido",
+        "last_message": "🕐 Último Mensaje",
+        "never": "nunca",
+        "footer": "Consulta tu posición en la clasificación con /leaderboard"
+      }
     },
     "boosters": {
       "description": "Lista de los boosters actuales del servidor + historial reciente de boosts (público)"
@@ -559,13 +604,25 @@
       "description": "Establece el estado AFK (el bot responde automáticamente cuando te mencionan)",
       "options": {
         "reason": "Motivo del AFK (admite \\n, p. ej. \"Comiendo, vuelvo en 30 minutos\")"
+      },
+      "replies": {
+        "set_title": "💤 Estado AFK Establecido",
+        "set_desc": "Hola {user}, ahora estás **AFK**.\n\n📝 Motivo: {reason}\n🕒 Desde: {since}\n\n💡 Cuando alguien te mencione, el bot responderá automáticamente con tu motivo.\n💡 El AFK se quita automáticamente cuando vuelvas a enviar un mensaje."
       }
     },
     "afk-clear": {
-      "description": "Borra tu estado AFK"
+      "description": "Borra tu estado AFK",
+      "replies": {
+        "none": "ℹ️ De todas formas no estás AFK en este momento.",
+        "done": "✅ Tu estado AFK ha sido eliminado. ¡Bienvenido de vuelta! 👋"
+      }
     },
     "afk-list": {
-      "description": "Ver todos los miembros que están AFK ahora mismo"
+      "description": "Ver todos los miembros que están AFK ahora mismo",
+      "replies": {
+        "empty": "✅ No hay miembros AFK en este momento.",
+        "title": "💤 MIEMBROS AFK ({count})"
+      }
     },
     "setup-leveling": {
       "description": "Activa/desactiva el sistema de niveles + configura el XP",
@@ -596,10 +653,22 @@
       "description": "Ver tu nivel y XP (o los de otro usuario)",
       "options": {
         "user": "El usuario a comprobar (predeterminado: tú)"
+      },
+      "replies": {
+        "title": "📊 Rango — {user}",
+        "level": "Nivel",
+        "total_xp": "XP Total",
+        "xp_progress": "Progreso de XP",
+        "progress_bar": "Barra de Progreso",
+        "footer": "Leveling {state} | XP/mensaje: {xp}"
       }
     },
     "leaderboard-level": {
-      "description": "Top 10 de miembros con el nivel más alto (público)"
+      "description": "Top 10 de miembros con el nivel más alto (público)",
+      "replies": {
+        "empty": "📭 Ningún miembro tiene XP todavía. ¡Envía mensajes para ganar XP!",
+        "title": "🏆 CLASIFICACIÓN — TOP 10 (Nivel)"
+      }
     },
     "set-language": {
       "description": "Idioma de respuesta del bot en este servidor (auto = el idioma de Discord de cada usuario)",

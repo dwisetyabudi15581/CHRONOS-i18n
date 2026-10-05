@@ -247,6 +247,13 @@
       "description": "Lihat semua key (aktif & kedaluwarsa) milik user",
       "options": {
         "user": "User yang key-nya mau dilihat"
+      },
+      "replies": {
+        "empty": "📭 {user} tidak punya key di server ini.",
+        "active": "✅ Key Aktif ({count})",
+        "expired": "⏰ Key Kedaluwarsa ({count}) — akan dihapus otomatis",
+        "title": "🔑 Daftar Key — {user}",
+        "desc": "Total: **{total}** key ({active} aktif, {expired} kedaluwarsa)"
       }
     },
     "clear-schedule": {
@@ -432,16 +439,54 @@
       }
     },
     "stats": {
-      "description": "Lihat statistik server agregat (khusus admin)"
+      "description": "Lihat statistik server agregat (khusus admin)",
+      "replies": {
+        "title": "📊 STATISTIK SERVER — {server}",
+        "desc": "Data server live dari Discord + aktivitas member yang dilacak bot.",
+        "members": "👥 Member",
+        "open_tickets": "🎫 Tiket Terbuka",
+        "boosts": "🚀 Boost Server",
+        "messages_tracked": "💬 Pesan Terlacak",
+        "avg_messages": "📈 Rata-rata Pesan/Member",
+        "giveaways_won": "🎁 Giveaway Dimenangkan",
+        "transactions": "🛒 Transaksi",
+        "footer": "Member/boost/tiket = live dari Discord • pesan & transaksi terlacak sejak v3.2"
+      }
     },
     "leaderboard": {
       "description": "Lihat 10 member teratas (publik — member biasa bisa pakai)",
       "options": {
         "metric": "Metrik leaderboard"
+      },
+      "replies": {
+        "empty": "📭 Belum ada data leaderboard untuk metrik ini.",
+        "metric_messages": "💬 Pesan Terbanyak",
+        "metric_vipPurchases": "🛒 Pembeli Teratas (jumlah transaksi)",
+        "metric_totalSpent": "💰 Belanja Terbesar (total belanja)",
+        "metric_giveawaysWon": "🎉 Juara Terbanyak (giveaway)",
+        "fmt_messages": "{count} pesan",
+        "fmt_vipPurchases": "{count} transaksi",
+        "fmt_giveawaysWon": "{count} kemenangan",
+        "title": "🏆 LEADERBOARD — {metric}",
+        "desc": "{count} member teratas berdasarkan **{metric}**.",
+        "footer": "Terlacak sejak bot v3.2 | Diperbarui di setiap aktivitas"
       }
     },
     "my-stats": {
-      "description": "Lihat statistik pribadimu (publik — member biasa bisa pakai)"
+      "description": "Lihat statistik pribadimu (publik — member biasa bisa pakai)",
+      "replies": {
+        "title": "📊 STATISTIK — {user}",
+        "desc": "Statistik aktivitas Anda di server ini.",
+        "messages": "💬 Pesan",
+        "transactions": "🛒 Transaksi",
+        "total_spent": "💰 Total Belanja",
+        "giveaway_won": "🎉 Giveaway Dimenangkan",
+        "joined": "📅 Bergabung di Server Ini",
+        "unknown": "belum diketahui",
+        "last_message": "🕐 Pesan Terakhir",
+        "never": "belum pernah",
+        "footer": "Cek posisi Anda di leaderboard dengan /leaderboard"
+      }
     },
     "boosters": {
       "description": "Daftar booster server saat ini + riwayat boost terbaru (publik)"
@@ -559,13 +604,25 @@
       "description": "Set status AFK (bot balas otomatis saat kamu di-mention)",
       "options": {
         "reason": "Alasan AFK (mendukung \\n, mis. \"Makan, balik 30 menit\")"
+      },
+      "replies": {
+        "set_title": "💤 Status AFK Diatur",
+        "set_desc": "Halo {user}, sekarang Anda **AFK**.\n\n📝 Alasan: {reason}\n🕒 Sejak: {since}\n\n💡 Saat ada yang mention Anda, bot akan otomatis membalas dengan alasan Anda.\n💡 Status AFK hilang otomatis saat Anda mengirim pesan lagi."
       }
     },
     "afk-clear": {
-      "description": "Hapus status AFK-mu"
+      "description": "Hapus status AFK-mu",
+      "replies": {
+        "none": "ℹ️ Anda memang sedang tidak AFK.",
+        "done": "✅ Status AFK Anda telah dihapus. Selamat datang kembali! 👋"
+      }
     },
     "afk-list": {
-      "description": "Lihat semua member yang sedang AFK"
+      "description": "Lihat semua member yang sedang AFK",
+      "replies": {
+        "empty": "✅ Tidak ada member yang AFK saat ini.",
+        "title": "💤 MEMBER AFK ({count})"
+      }
     },
     "setup-leveling": {
       "description": "Aktifkan/nonaktifkan sistem leveling + konfigurasi XP",
@@ -596,10 +653,22 @@
       "description": "Lihat level & XP-mu (atau user lain)",
       "options": {
         "user": "User yang mau dicek (default: kamu)"
+      },
+      "replies": {
+        "title": "📊 Rank — {user}",
+        "level": "Level",
+        "total_xp": "Total XP",
+        "xp_progress": "Progres XP",
+        "progress_bar": "Bar Progres",
+        "footer": "Leveling {state} | XP/pesan: {xp}"
       }
     },
     "leaderboard-level": {
-      "description": "10 member dengan level tertinggi (publik)"
+      "description": "10 member dengan level tertinggi (publik)",
+      "replies": {
+        "empty": "📭 Belum ada member yang punya XP. Kirim beberapa pesan untuk mendapat XP!",
+        "title": "🏆 LEADERBOARD — TOP 10 (Level)"
+      }
     },
     "set-language": {
       "description": "Atur bahasa balasan bot untuk server ini (default: auto — mengikuti bahasa Discord tiap user)",
