@@ -71,7 +71,8 @@
       "kick_members": "踢出成员",
       "manage_messages": "管理消息",
       "timeout_members": "超时成员"
-    }
+    },
+    "cancel": "取消"
   },
   "bot_commands": {
     "help": {
@@ -310,6 +311,15 @@
         "description": "面板描述（支持 \\n 换行）",
         "type": "面板界面类型",
         "exclusive": "True = 一次只能持有 1 个身份组（如颜色身份组）。默认 false。"
+      },
+      "replies": {
+        "created": "✅ **自助身份组面板已创建！**\n\n🆔 面板 ID：`{id}`\n📍 频道：{channel}\n🎨 类型：**{type}**\n🔒 模式：**{mode}**\n\n💡 现在向面板添加身份组：\n```\n/selfrole-add panel_id:{panel_id} role:@role label:Notif emoji:🔔\n```",
+        "description_too_long": "❌ 面板描述过长——最多 **2000 个字符**（embed 有 4096 的总预算，需与身份组列表共享）。",
+        "mode_exclusive": "互斥（仅 1 个身份组）",
+        "mode_multi": "多选（可同时多个）",
+        "send_failed": "❌ 无法向 {channel} 发送面板。请检查机器人权限。条目已回滚。",
+        "send_failed_no_channel": "❌ 无法发送面板（未找到频道）。条目已回滚。",
+        "title_invalid": "❌ 面板标题为必填项，最多 **256 个字符**。"
       }
     },
     "selfrole-add": {
@@ -322,6 +332,17 @@
         "description": "描述（可选，下拉菜单用，支持 \\n 换行）",
         "style": "按钮颜色（默认：Secondary）",
         "requires_role": "用户领取此身份组前必须已拥有的身份组（可选）"
+      },
+      "replies": {
+        "added": "✅ 身份组 {role} 已添加到面板 `{id}`。\n{extras}",
+        "added_desc": " | 描述：{desc}",
+        "added_emoji": " | Emoji：{emoji}",
+        "added_label": "标签：**{label}**",
+        "description_too_long": "❌ 描述过长——最多 **100 个字符**（Discord 选择菜单选项上限；同时也会显示在 embed 中）。",
+        "emoji_invalid": "❌ “{emoji}”不是有效的 emoji。请使用单个标准 emoji（例如 🔔）或自定义 emoji，如 `:custom:123456789`。",
+        "label_invalid": "❌ 标签为必填项，最多 **80 个字符**（Discord 按钮标签上限）。",
+        "panel_not_found": "❌ 未找到面板 ID `{id}`。使用 `/selfrole-list` 查看列表。",
+        "wrong_guild": "❌ 此面板不属于本服务器。"
       }
     },
     "selfrole-remove": {
@@ -329,15 +350,35 @@
       "options": {
         "panel_id": "面板 ID",
         "role": "要从面板移除的身份组"
+      },
+      "replies": {
+        "panel_not_found": "❌ 未找到面板 ID `{id}`。",
+        "removed": "✅ 身份组 {role} 已从面板 `{id}` 移除。",
+        "wrong_guild": "❌ 此面板不属于本服务器。"
       }
     },
     "selfrole-list": {
-      "description": "查看本服务器的所有自助身份组面板"
+      "description": "查看本服务器的所有自助身份组面板",
+      "replies": {
+        "empty": "📭 本服务器还没有自助身份组面板。使用 `/setup-selfrole` 创建一个。",
+        "line": "• **{title}**\n  🆔 `{id}` | {type} | {mode} | {count} 个身份组\n  📍 <#{channel_id}> | [消息]({url})\n  身份组：{roles}",
+        "mode_exclusive": "🔒 互斥",
+        "mode_multi": "✅ 多选",
+        "roles_empty": "_空_",
+        "title": "🎭 自助身份组面板列表",
+        "type_button": "🔘 按钮",
+        "type_select": "📋 下拉选择"
+      }
     },
     "selfrole-delete": {
       "description": "删除自助身份组面板（删除消息 + 配置）",
       "options": {
         "panel_id": "要删除的面板 ID"
+      },
+      "replies": {
+        "deleted": "✅ 面板 `{id}`（{title}）已成功删除。",
+        "panel_not_found": "❌ 未找到面板 ID `{id}`。",
+        "wrong_guild": "❌ 此面板不属于本服务器。"
       }
     },
     "announce": {
@@ -359,15 +400,104 @@
       }
     },
     "embed-builder": {
-      "description": "带实时预览的交互式 embed 构建器（用于复杂 embed）"
+      "description": "带实时预览的交互式 embed 构建器（用于复杂 embed）",
+      "replies": {
+        "button_preview": "预览",
+        "button_send": "发送",
+        "draft_header": "🛠️ **Embed 构建器草稿** — 由 <@{user}> 开始\n下方为实时预览。点击下拉菜单编辑各部分，或使用按钮预览/发送/取消。\n💡 **提示：**在下拉菜单中选择 **💬 消息（纯文本）** 可在 embed 外部添加文本（适合 @everyone 提及或开场白）。\n🆔 会话：`{id}`",
+        "draft_send_failed": "❌ 无法向此频道发送草稿消息。请检查机器人权限（发送消息 + 嵌入链接）。",
+        "sections": {
+          "add_field": {
+            "desc": "添加一个字段（整行宽度）",
+            "label": "添加字段（普通）"
+          },
+          "add_field_inline": {
+            "desc": "添加一个字段（并排显示）",
+            "label": "添加字段（并排）"
+          },
+          "author": {
+            "desc": "Embed 上方的文本和图标",
+            "label": "作者"
+          },
+          "clear_fields": {
+            "desc": "移除全部字段",
+            "label": "清空所有字段"
+          },
+          "color": {
+            "desc": "十六进制颜色（例如 #FF0000）",
+            "label": "颜色"
+          },
+          "description": {
+            "desc": "Embed 主要内容（最多 4000 字符）",
+            "label": "描述"
+          },
+          "footer": {
+            "desc": "Embed 下方的文本和图标",
+            "label": "页脚"
+          },
+          "image": {
+            "desc": "大图 URL",
+            "label": "图片"
+          },
+          "message": {
+            "desc": "Embed 外部的文本（最多 2000 字符，支持 \\n）",
+            "label": "消息（纯文本）"
+          },
+          "remove_field": {
+            "desc": "移除最后一个添加的字段",
+            "label": "移除最后一个字段"
+          },
+          "thumbnail": {
+            "desc": "小图 URL（右上角）",
+            "label": "缩略图"
+          },
+          "title": {
+            "desc": "Embed 标题（最多 256 字符）",
+            "label": "标题"
+          },
+          "toggle_timestamp": {
+            "desc": "显示/隐藏时间戳",
+            "label": "切换时间戳"
+          }
+        },
+        "select_placeholder": "✏️ 选择要编辑的 embed 部分…",
+        "started": "✅ Embed 构建器已启动！\n📍 草稿：{draft}\n\n💡 点击草稿上的下拉菜单编辑 embed 各部分。完成后点击 **📤 发送** 将其发送到目标频道。"
+      }
     },
     "embed-list": {
-      "description": "查看你所有进行中的 embed 构建会话（+ 草稿消息链接）"
+      "description": "查看你所有进行中的 embed 构建会话（+ 草稿消息链接）",
+      "replies": {
+        "age_hours": "{h} 小时 {min} 分钟前",
+        "age_just_now": "刚刚",
+        "age_minutes": "{min} 分钟前",
+        "body_footer": "💡 **使用方法：**点击 **打开草稿** 链接跳转到该草稿消息，然后使用那里的下拉菜单进行编辑。每个草稿相互独立——互不干扰。",
+        "body_header": "你有 **{count}** 个活跃会话。",
+        "empty": "📭 **你没有活跃的 embed 构建器会话。**\n\n使用 `/embed-builder` 创建新草稿。",
+        "line": "• 🆔 `{id}`\n  📍 {channel} | {link}\n  ⏰ 创建于：{age} | 📝 {summary}",
+        "link_missing": "*（尚未创建草稿）*",
+        "link_open_draft": "🔗 打开草稿",
+        "summary_author": "作者",
+        "summary_desc": "描述",
+        "summary_empty": "*（空）*",
+        "summary_fields": "{count} 个字段",
+        "summary_footer": "页脚",
+        "summary_image": "图片",
+        "summary_msg": "消息（{len} 字符）",
+        "summary_thumb": "缩略图",
+        "summary_title": "标题",
+        "title": "🛠️ 活跃的 EMBED 构建器会话"
+      }
     },
     "embed-cancel": {
       "description": "按 ID 取消 embed 构建会话（如果草稿被删除/出问题）",
       "options": {
         "session_id": "会话 ID（见 /embed-list）"
+      },
+      "replies": {
+        "canceled": "🗑️ 会话 `{id}` 已取消。",
+        "canceled_draft_deleted": " 草稿消息也已一并删除。",
+        "canceled_draft_gone": "（已找不到草稿消息。）",
+        "not_found": "❌ 未找到会话 `{id}` 或其不属于你。\n\n使用 `/embed-list` 查看活跃会话。"
       }
     },
     "backup-now": {
@@ -389,6 +519,43 @@
         "list": "查看本服务器的所有抽奖",
         "end": "提前结束抽奖 + 抽出获奖者",
         "reroll": "重摇已结束抽奖的获奖者"
+      },
+      "replies": {
+        "create_success": "✅ 抽奖已在 {channel} 创建！\n🆔 `{id}`\n⏰ 截止 <t:{ts}:R>",
+        "duration_invalid": "❌ 时长为必填项，最短 1 分钟。",
+        "duration_max": "❌ 最长时长为 30 天（43200 分钟）。",
+        "embed_desc_foot": "\n👇 点击下方的 **🎉 Join** 按钮即可参与！",
+        "embed_desc_head": "🎁 **奖品：**{prize}\n\n👥 **获奖人数：**{winners}\n⏰ **截止：**<t:{ts_r}:R>（<t:{ts_f}:F>）\n🎟️ **参与者：**0\n",
+        "embed_footer": "发起人：{host} | ID：{id}",
+        "embed_requirement": "🔐 **要求：**必须拥有身份组 {role}\n",
+        "embed_title": "🎉 抽奖！",
+        "end_already_ended": "❌ 此抽奖已结束。",
+        "end_in_progress": "⏳ 抽奖正在结束中——请稍后再试。",
+        "end_not_found": "❌ 未找到抽奖 `{id}`。",
+        "end_scheduler_busy": "⏳ 此抽奖正由调度器自动处理（自然到期）。请几秒后重试。",
+        "end_success": "✅ 抽奖 **{prize}** 已结束！\n🏆 获奖者：{winners}\n\n📢 抽奖消息已更新 + 获奖者已收到私信 + 已在频道中公布。",
+        "end_wrong_guild": "❌ 此抽奖不属于本服务器。",
+        "join_button": "🎉 参加",
+        "leave_button": "🚪 退出",
+        "list_empty": "📭 本服务器还没有抽奖。",
+        "list_header": "共 **{total}** 个抽奖。",
+        "list_header_hidden": "共 **{total}** 个抽奖（显示最新 {shown} 个——隐藏了 {hidden} 个较旧的）。",
+        "list_line": "• **{prize}** — {status}\n  🆔 `{id}` | 👥 {participants} 名参与者 | 🏆 {winners}\n  📍 <#{channel_id}> | ⏰ <t:{ts}:R>",
+        "list_title": "🎉 抽奖列表",
+        "new_giveaway_ping": "🎉 **新抽奖！**",
+        "no_participants": "_（无参与者）_",
+        "prize_invalid": "❌ 奖品为必填项，最多 200 个字符（当前：{len}）。",
+        "reroll_no_participants": "❌ 没有参与者可重抽。",
+        "reroll_not_found": "❌ 未找到抽奖 `{id}` 或尚未结束。（或另一个重抽正在进行——请稍后再试。）",
+        "reroll_reused_note": "_（所有参与者都已中过奖，已回退为随机选取）_",
+        "reroll_success": "🎲 **重抽！**新获奖者：<@{winner}>{reuse_note}\n\n📢 获奖者已收到私信 + 已在抽奖频道公布。",
+        "send_failed": "❌ 无法向 {channel} 发送抽奖。请检查机器人权限。条目已回滚。",
+        "status_active": "🟢 进行中",
+        "status_done": "✅ 已结束",
+        "status_processing": "⏳ 处理中",
+        "use_subcommand": "❌ 请使用子命令：`/giveaway create`、`/giveaway list`、`/giveaway end` 或 `/giveaway reroll`。",
+        "winners_range": "❌ 获奖人数必须为 1-20。",
+        "reroll_not_ended": "❌ 此抽奖尚未结束。请先用 `/giveaway end` 结束它。"
       }
     },
     "announce-schedule": {
@@ -648,6 +815,35 @@
         "setup": "创建计数分类 + 实时计数频道",
         "remove": "删除计数频道 + 分类并清空配置",
         "refresh": "立即强制刷新所有计数器"
+      },
+      "replies": {
+        "all_counters": "—— 已启用全部计数器 ——",
+        "all_off": "⚠️ 你关闭了所有计数器（成员、机器人、助力、身份组和频道）。\n\n请至少保留一个——想启用的选项保持默认（True），只把不需要的设为 **False**。",
+        "already_setup": "⚠️ 服务器统计计数器已设置。\n\n• 立即刷新数字：`/serverstats refresh`\n• 删除后重新开始：先运行 `/serverstats remove`",
+        "counter": {
+          "boosts": "服务器助力",
+          "bots": "机器人",
+          "channels": "频道",
+          "members": "成员",
+          "roles": "身份组"
+        },
+        "missing_perms": "❌ 我需要 **管理频道** + **管理身份组** 权限才能创建计数频道（@everyone 覆写需要“管理身份组”）。\n\n解决方法：服务器设置 → 身份组 → **机器人的身份组** → 开启这两项，然后重新运行 `/serverstats setup`。",
+        "not_created": "🧩 未创建",
+        "not_setup": "⚠️ 服务器统计计数器尚未设置。请先运行 `/serverstats setup`。",
+        "refresh_deferred": "⏳ 因冷却延迟：**{count}**",
+        "refresh_errors": "❌ 错误：**{count}**",
+        "refresh_footer": "未变化的计数器不会调用 API • 成员/助力/身份组/频道变化时计数器也会自动更新",
+        "refresh_line": "{emoji} {label}：**{value}**",
+        "refresh_missing": "⚠️ 缺失频道：**{count}**",
+        "refresh_title": "📊 服务器统计——计数器已刷新",
+        "refresh_updated": "📤 已更新：**{count}**",
+        "removed": "✅ 服务器统计计数器已删除。\n\n配置已清除——随时可运行 `/serverstats setup` 重新创建。",
+        "removed_partial": "✅ 服务器统计计数器已删除（已删除 {deleted} 个，{failed} 个无法删除——请手动删除这些频道）。\n\n配置已清除——随时可运行 `/serverstats setup` 重新创建。",
+        "setup_failed": "❌ 设置失败：{error}\n\n已创建到一半的频道均已回滚。请检查机器人的 **管理频道** + **管理身份组** 权限后重试。",
+        "setup_footer": "计数器自动刷新（防频率限制） • /serverstats refresh 立即强制刷新 • /serverstats remove + setup 更改选择",
+        "setup_success_desc": "下方的频道名称是**实时计数器**——当成员加入/离开、助力或身份组/频道发生变化时会自动更新。",
+        "setup_success_title": "📊 服务器统计——实时计数器已创建！",
+        "use_hint": "⚡ **/serverstats** —— 实时计数频道。\n\n• `/serverstats setup` —— 创建计数分类 + 频道（通过选项选择要哪些计数器）\n• `/serverstats refresh` —— 强制立即刷新\n• `/serverstats remove` —— 删除计数器"
       }
     },
     "poll": {
@@ -656,13 +852,52 @@
         "create": "创建新投票（选项通过模态框输入）",
         "list": "查看本服务器的所有投票",
         "close": "关闭投票 + 显示最终结果"
+      },
+      "replies": {
+        "channel_text_only": "❌ 频道必须是文字频道（或公告频道）。",
+        "close_already_closed": "❌ 此投票已关闭。",
+        "close_in_progress": "⏳ 投票 `{id}` 正在关闭中——请稍后再试。",
+        "close_not_found": "❌ 未找到投票 `{id}`。",
+        "close_success": "✅ 投票 **{question}** 已关闭！请在频道中查看结果。",
+        "close_vanished": "❌ 投票 `{id}` 已不存在（刚被删除？）。",
+        "close_wrong_guild": "❌ 此投票不属于本服务器。",
+        "list_empty": "📭 本服务器还没有投票。",
+        "list_header": "共 **{total}** 个投票。",
+        "list_header_hidden": "共 **{total}** 个投票（显示最新 {shown} 个——隐藏了 {hidden} 个较旧的）。",
+        "list_line": "• ❓ **{question}** — {status}\n  🆔 `{id}` | 👥 {options} 个选项 | 🗳️ {votes} 票\n  📍 <#{channel_id}> | ⏰ <t:{ts}:R>",
+        "list_title": "📊 投票列表",
+        "modal_options_label": "选项（每行一个，最少 2 个，最多 10 个）",
+        "modal_options_placeholder": "上分\n自定义房间\n锦标赛\n休息",
+        "modal_title": "创建投票 — 输入选项",
+        "question_invalid": "❌ 投票问题为必填项，最多 250 个字符（当前：{len}）。",
+        "result_footer": "由 {creator} 创建的投票 | 已关闭",
+        "result_line": "{emoji} **{label}** — {votes} 票（{pct}%）\n`{bar}`",
+        "result_status_closed": "🔒 状态：**已关闭** <t:{ts}:R>",
+        "result_total": "🗳️ 总票数：**{total}**",
+        "status_active": "🟢 进行中",
+        "status_closed": "🔒 已关闭",
+        "use_subcommand": "❌ 请使用子命令：`/poll create`、`/poll list` 或 `/poll close`。"
       }
     },
     "setup-tempvoice": {
-      "description": "设置临时语音 — 自动创建分类 + 面板频道 + 触发频道"
+      "description": "设置临时语音 — 自动创建分类 + 面板频道 + 触发频道",
+      "replies": {
+        "old_control_channel_gone": "❌ 旧的控制频道（ID：`{id}`）已从服务器删除。\n\n请先运行 `/tempvoice-remove` 清理旧配置，然后再次运行 `/setup-tempvoice`。",
+        "panel_refresh_failed": "❌ 无法向 {channel} 刷新面板。请检查机器人权限（**发送消息** + **嵌入链接**）。\n\n现有配置未被更改。",
+        "panel_send_failed": "❌ 无法向 {channel} 发送面板。请检查机器人权限（发送消息 + 嵌入链接）。",
+        "ready": "✅ **临时语音已就绪！**\n\n📂 **分类：**{category}\n🎤 **触发频道：**{channel}（成员在此加入即可创建新的语音频道）\n🎛️ **控制面板：**{url}\n\n💡 成员只需点击控制面板上的 **🎤 Create Voice** 按钮，或直接加入触发频道。成为房主后，面板会自动更新显示其频道控制项。",
+        "refresh_success": "✅ **临时语音面板已刷新！**\n\n🎛️ {url}\n\n💡 复用现有配置（分类 + 触发频道 + 控制频道）。",
+        "setup_failed": "❌ 临时语音设置失败：{error}\n\n请确保机器人拥有 **管理频道** 和 **管理身份组** 权限。"
+      }
     },
     "tempvoice-remove": {
-      "description": "移除本服务器的临时语音设置（分类 + 所有相关频道一并删除）"
+      "description": "移除本服务器的临时语音设置（分类 + 所有相关频道一并删除）",
+      "replies": {
+        "confirm_button": "⚠️ 确认全部删除",
+        "confirm_message": "🚨 **临时语音删除确认**\n\n这将**永久**删除：\n• 临时语音分类及控制面板消息\n• “🔊 Create Voice” 触发频道\n• **{count}** 个活跃的临时语音频道——频道内的所有人都会被断开\n\n此操作不可撤销！\n\n请点击下方按钮：",
+        "not_setup": "ℹ️ 本服务器尚未设置临时语音。",
+        "removal_success": "✅ 临时语音配置已成功移除。分类 + 控制面板 + 触发频道 + 所有活跃的临时语音频道也已一并删除。"
+      }
     },
     "send-message": {
       "description": "向文字频道发送纯文本消息（支持 \\n 和提及）",
@@ -670,6 +905,18 @@
         "channel": "目标频道（必须是文字频道）",
         "message": "消息内容（支持 \\n 换行）。最多 2000 字符。",
         "mention": "提及：@everyone、@here 或 <@&role_id> / <@user_id>"
+      },
+      "replies": {
+        "channel_not_found": "❌ 在本服务器中未找到该频道。",
+        "channel_text_only": "❌ 频道必须是**文字频道**。\n\n提示：请从下拉菜单中选择普通文字频道——不要选语音、分类或论坛频道。",
+        "empty": "❌ 消息不能为空。",
+        "invalid_mention": "❌ 无效的提及格式：`{mention}`\n\n支持的格式：\n• `@everyone` 或 `everyone`\n• `@here` 或 `here`\n• `<@&ROLE_ID>`（身份组提及）\n• `<@USER_ID>`（用户提及）\n\n提示：要提及某个身份组，请在 Discord 中输入 `@身份组名` 然后复制结果。",
+        "no_send_permission": "❌ 机器人在 {channel} 缺少 **发送消息** 权限。\n\n请授予机器人该权限，或选择其他频道。",
+        "preview_truncated": "\n…*（消息已截断以便预览）*",
+        "send_failed": "❌ 无法向 {channel} 发送消息：{error}",
+        "sent": "✅ 消息已发送到 {channel}！\n\n📋 **预览：**\n```\n{preview}\n```",
+        "too_long": "❌ 消息过长（{len} 字符，最多 {max} 字符）。\n\n提示：拆分成 2 条消息，或使用支持 4096 字符描述的 `/announce`。",
+        "total_too_long": "❌ 总长度（提及 + 消息）超过 {max} 字符。请缩短消息或去掉提及。"
       }
     },
     "add-responder": {

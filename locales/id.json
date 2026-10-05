@@ -71,7 +71,8 @@
       "kick_members": "Kick Members",
       "manage_messages": "Kelola Pesan",
       "timeout_members": "Timeout Members"
-    }
+    },
+    "cancel": "Batal"
   },
   "bot_commands": {
     "help": {
@@ -310,6 +311,15 @@
         "description": "Deskripsi panel (mendukung \\n baris baru)",
         "type": "Tipe UI panel",
         "exclusive": "True = hanya 1 role boleh dalam satu waktu (mis. role warna). Default false."
+      },
+      "replies": {
+        "created": "✅ **Panel self-role dibuat!**\n\n🆔 ID Panel: `{id}`\n📍 Channel: {channel}\n🎨 Tipe: **{type}**\n🔒 Mode: **{mode}**\n\n💡 Sekarang tambahkan role ke panel dengan:\n```\n/selfrole-add panel_id:{panel_id} role:@role label:Notif emoji:🔔\n```",
+        "description_too_long": "❌ Deskripsi panel terlalu panjang — maksimal **2000 karakter** (embed memiliki anggaran 4096 yang dibagi dengan daftar role).",
+        "mode_exclusive": "Eksklusif (1 role)",
+        "mode_multi": "Multi (boleh lebih dari satu)",
+        "send_failed": "❌ Gagal mengirim panel ke {channel}. Periksa izin bot. Entri dibatalkan.",
+        "send_failed_no_channel": "❌ Gagal mengirim panel (channel tidak ditemukan). Entri dibatalkan.",
+        "title_invalid": "❌ Judul panel wajib diisi dan maksimal **256 karakter**."
       }
     },
     "selfrole-add": {
@@ -322,6 +332,17 @@
         "description": "Deskripsi (opsional, menu select, mendukung \\n baris baru)",
         "style": "Warna tombol (default: Secondary)",
         "requires_role": "Role yang harus dimiliki user sebelum mengambil role ini (opsional)"
+      },
+      "replies": {
+        "added": "✅ Role {role} ditambahkan ke panel `{id}`.\n{extras}",
+        "added_desc": " | Deskripsi: {desc}",
+        "added_emoji": " | Emoji: {emoji}",
+        "added_label": "Label: **{label}**",
+        "description_too_long": "❌ Deskripsi terlalu panjang — maksimal **100 karakter** (batas opsi menu pilihan Discord; juga tampil di dalam embed).",
+        "emoji_invalid": "❌ \"{emoji}\" bukan emoji yang valid. Gunakan satu emoji standar (mis. 🔔) atau emoji kustom seperti `:custom:123456789`.",
+        "label_invalid": "❌ Label wajib diisi dan maksimal **80 karakter** (batas label tombol Discord).",
+        "panel_not_found": "❌ ID panel `{id}` tidak ditemukan. Gunakan `/selfrole-list` untuk melihat daftarnya.",
+        "wrong_guild": "❌ Panel ini bukan milik server ini."
       }
     },
     "selfrole-remove": {
@@ -329,15 +350,35 @@
       "options": {
         "panel_id": "ID panel",
         "role": "Role yang akan dihapus dari panel"
+      },
+      "replies": {
+        "panel_not_found": "❌ ID panel `{id}` tidak ditemukan.",
+        "removed": "✅ Role {role} dihapus dari panel `{id}`.",
+        "wrong_guild": "❌ Panel ini bukan milik server ini."
       }
     },
     "selfrole-list": {
-      "description": "Lihat semua panel self-role di server ini"
+      "description": "Lihat semua panel self-role di server ini",
+      "replies": {
+        "empty": "📭 Belum ada panel self-role di server ini. Gunakan `/setup-selfrole` untuk membuatnya.",
+        "line": "• **{title}**\n  🆔 `{id}` | {type} | {mode} | {count} role\n  📍 <#{channel_id}> | [pesan]({url})\n  Role: {roles}",
+        "mode_exclusive": "🔒 Eksklusif",
+        "mode_multi": "✅ Multi",
+        "roles_empty": "_kosong_",
+        "title": "🎭 DAFTAR PANEL SELF-ROLE",
+        "type_button": "🔘 Button",
+        "type_select": "📋 Select"
+      }
     },
     "selfrole-delete": {
       "description": "Hapus panel self-role (menghapus pesan + konfigurasi)",
       "options": {
         "panel_id": "ID panel yang akan dihapus"
+      },
+      "replies": {
+        "deleted": "✅ Panel `{id}` ({title}) berhasil dihapus.",
+        "panel_not_found": "❌ ID panel `{id}` tidak ditemukan.",
+        "wrong_guild": "❌ Panel ini bukan milik server ini."
       }
     },
     "announce": {
@@ -359,15 +400,104 @@
       }
     },
     "embed-builder": {
-      "description": "Embed builder interaktif dengan pratinjau langsung (untuk embed kompleks)"
+      "description": "Embed builder interaktif dengan pratinjau langsung (untuk embed kompleks)",
+      "replies": {
+        "button_preview": "Pratinjau",
+        "button_send": "Kirim",
+        "draft_header": "🛠️ **Draft Embed Builder** — dimulai oleh <@{user}>\nPratinjau real-time di bawah. Klik dropdown untuk mengedit bagian, atau tombol untuk pratinjau/kirim/batal.\n💡 **Tips:** Pilih **💬 Pesan (teks biasa)** di dropdown untuk menambah teks di luar embed (cocok untuk ping @everyone atau baris pembuka).\n🆔 Sesi: `{id}`",
+        "draft_send_failed": "❌ Gagal mengirim pesan draft ke channel ini. Periksa izin bot (Send Messages + Embed Links).",
+        "sections": {
+          "add_field": {
+            "desc": "Tambahkan field (lebar penuh)",
+            "label": "Tambah Field (normal)"
+          },
+          "add_field_inline": {
+            "desc": "Tambahkan field (berdampingan)",
+            "label": "Tambah Field (inline)"
+          },
+          "author": {
+            "desc": "Teks & ikon di atas embed",
+            "label": "Author"
+          },
+          "clear_fields": {
+            "desc": "Hapus SEMUA field",
+            "label": "Hapus Semua Field"
+          },
+          "color": {
+            "desc": "Warna heksadesimal (mis. #FF0000)",
+            "label": "Warna"
+          },
+          "description": {
+            "desc": "Konten utama embed (maks 4000 karakter)",
+            "label": "Deskripsi"
+          },
+          "footer": {
+            "desc": "Teks & ikon di bawah embed",
+            "label": "Footer"
+          },
+          "image": {
+            "desc": "URL gambar besar",
+            "label": "Gambar"
+          },
+          "message": {
+            "desc": "Teks di luar embed (maks 2000 karakter, mendukung \\n)",
+            "label": "Pesan (teks biasa)"
+          },
+          "remove_field": {
+            "desc": "Hapus field yang terakhir",
+            "label": "Hapus Field Terakhir"
+          },
+          "thumbnail": {
+            "desc": "URL gambar kecil (pojok kanan atas)",
+            "label": "Thumbnail"
+          },
+          "title": {
+            "desc": "Judul embed (maks 256 karakter)",
+            "label": "Judul"
+          },
+          "toggle_timestamp": {
+            "desc": "Tampilkan/sembunyikan timestamp",
+            "label": "Toggle Timestamp"
+          }
+        },
+        "select_placeholder": "✏️ Pilih bagian embed yang ingin diedit...",
+        "started": "✅ Embed builder dimulai!\n📍 Draft: {draft}\n\n💡 Klik dropdown pada draft untuk mengedit bagian embed. Setelah selesai, klik **📤 Kirim** untuk mengirimkannya ke channel tujuan."
+      }
     },
     "embed-list": {
-      "description": "Lihat semua sesi embed builder aktif milikmu (+ link ke pesan draft)"
+      "description": "Lihat semua sesi embed builder aktif milikmu (+ link ke pesan draft)",
+      "replies": {
+        "age_hours": "{h} jam {min} mnt lalu",
+        "age_just_now": "baru saja",
+        "age_minutes": "{min} mnt lalu",
+        "body_footer": "💡 **Cara pakai:** Klik tautan **buka draft** untuk menuju ke pesan draft tersebut, lalu gunakan dropdown di sana untuk mengedit. Setiap draft independen — tidak akan saling mengganggu.",
+        "body_header": "Anda memiliki **{count}** sesi aktif.",
+        "empty": "📭 **Anda tidak memiliki sesi embed builder aktif.**\n\nGunakan `/embed-builder` untuk membuat draft baru.",
+        "line": "• 🆔 `{id}`\n  📍 {channel} | {link}\n  ⏰ Dibuat: {age} | 📝 {summary}",
+        "link_missing": "*(draft belum dibuat)*",
+        "link_open_draft": "🔗 buka draft",
+        "summary_author": "author",
+        "summary_desc": "deskripsi",
+        "summary_empty": "*(kosong)*",
+        "summary_fields": "{count} field",
+        "summary_footer": "footer",
+        "summary_image": "gambar",
+        "summary_msg": "pesan ({len} kar)",
+        "summary_thumb": "thumbnail",
+        "summary_title": "judul",
+        "title": "🛠️ SESI EMBED BUILDER AKTIF"
+      }
     },
     "embed-cancel": {
       "description": "Batalkan sesi embed builder berdasarkan ID (jika draftnya terhapus/bermasalah)",
       "options": {
         "session_id": "ID sesi (lihat /embed-list)"
+      },
+      "replies": {
+        "canceled": "🗑️ Sesi `{id}` dibatalkan.",
+        "canceled_draft_deleted": " Pesan draft juga ikut dihapus.",
+        "canceled_draft_gone": " (Pesan draft sudah tidak ditemukan.)",
+        "not_found": "❌ Sesi `{id}` tidak ditemukan atau bukan milik Anda.\n\nGunakan `/embed-list` untuk melihat sesi aktif."
       }
     },
     "backup-now": {
@@ -389,6 +519,43 @@
         "list": "Lihat semua giveaway di server ini",
         "end": "Akhiri giveaway lebih awal + pilih pemenang",
         "reroll": "Reroll pemenang giveaway yang sudah berakhir"
+      },
+      "replies": {
+        "create_success": "✅ Giveaway dibuat di {channel}!\n🆔 `{id}`\n⏰ Berakhir <t:{ts}:R>",
+        "duration_invalid": "❌ Durasi wajib diisi, minimal 1 menit.",
+        "duration_max": "❌ Durasi maksimal 30 hari (43200 menit).",
+        "embed_desc_foot": "\n👇 Klik tombol **🎉 Join** di bawah untuk ikut serta!",
+        "embed_desc_head": "🎁 **Hadiah:** {prize}\n\n👥 **Pemenang:** {winners}\n⏰ **Berakhir:** <t:{ts_r}:R> (<t:{ts_f}:F>)\n🎟️ **Peserta:** 0\n",
+        "embed_footer": "Host: {host} | ID: {id}",
+        "embed_requirement": "🔐 **Syarat:** Harus memiliki role {role}\n",
+        "embed_title": "🎉 GIVEAWAY!",
+        "end_already_ended": "❌ Giveaway ini sudah berakhir.",
+        "end_in_progress": "⏳ Pengakhiran giveaway sedang berlangsung — coba lagi sebentar.",
+        "end_not_found": "❌ Giveaway `{id}` tidak ditemukan.",
+        "end_scheduler_busy": "⏳ Giveaway ini sedang diproses otomatis oleh scheduler (berakhir alami). Coba lagi beberapa detik lagi.",
+        "end_success": "✅ Giveaway **{prize}** berakhir!\n🏆 Pemenang: {winners}\n\n📢 Pesan giveaway sudah diperbarui + pemenang telah menerima DM + diumumkan di channel.",
+        "end_wrong_guild": "❌ Giveaway ini bukan milik server ini.",
+        "join_button": "🎉 Ikut",
+        "leave_button": "🚪 Keluar",
+        "list_empty": "📭 Belum ada giveaway di server ini.",
+        "list_header": "Total **{total}** giveaway.",
+        "list_header_hidden": "Total **{total}** giveaway (menampilkan {shown} terbaru — {hidden} lebih lama disembunyikan).",
+        "list_line": "• **{prize}** — {status}\n  🆔 `{id}` | 👥 {participants} peserta | 🏆 {winners}\n  📍 <#{channel_id}> | ⏰ <t:{ts}:R>",
+        "list_title": "🎉 DAFTAR GIVEAWAY",
+        "new_giveaway_ping": "🎉 **GIVEAWAY BARU!**",
+        "no_participants": "_(tidak ada peserta)_",
+        "prize_invalid": "❌ Hadiah wajib diisi dan maksimal 200 karakter (diterima: {len}).",
+        "reroll_no_participants": "❌ Tidak ada peserta untuk di-reroll.",
+        "reroll_not_found": "❌ Giveaway `{id}` tidak ditemukan atau belum berakhir. (Atau reroll lain sedang berjalan — coba lagi sebentar.)",
+        "reroll_reused_note": " _(semua peserta sudah pernah menang, kembali ke pilihan acak)_",
+        "reroll_success": "🎲 **Reroll!** Pemenang baru: <@{winner}>{reuse_note}\n\n📢 Pemenang telah menerima DM + diumumkan di channel giveaway.",
+        "send_failed": "❌ Gagal mengirim giveaway ke {channel}. Periksa izin bot. Entri dibatalkan.",
+        "status_active": "🟢 Aktif",
+        "status_done": "✅ Selesai",
+        "status_processing": "⏳ Diproses",
+        "use_subcommand": "❌ Gunakan subperintah: `/giveaway create`, `/giveaway list`, `/giveaway end`, atau `/giveaway reroll`.",
+        "winners_range": "❌ Jumlah pemenang harus 1-20.",
+        "reroll_not_ended": "❌ Giveaway ini belum berakhir. Akhiri dulu dengan `/giveaway end`."
       }
     },
     "announce-schedule": {
@@ -648,6 +815,35 @@
         "setup": "Buat kategori counter + channel counter live",
         "remove": "Hapus channel counter + kategori dan bersihkan konfigurasinya",
         "refresh": "Paksa refresh semua counter sekarang"
+      },
+      "replies": {
+        "all_counters": "— semua penghitung aktif —",
+        "all_off": "⚠️ Anda mematikan semua penghitung (member, bot, boost, role DAN channel).\n\nPilih minimal satu — biarkan opsi yang Anda inginkan tetap **aktif** secara bawaan (True), hanya set yang TIDAK Anda inginkan ke **False**.",
+        "already_setup": "⚠️ Penghitung statistik server sudah disiapkan.\n\n• Untuk memperbarui angkanya sekarang: `/serverstats refresh`\n• Untuk menghapusnya dan mulai ulang: `/serverstats remove` dulu",
+        "counter": {
+          "boosts": "Boost",
+          "bots": "Bot",
+          "channels": "Channel",
+          "members": "Member",
+          "roles": "Role"
+        },
+        "missing_perms": "❌ Saya memerlukan izin **Manage Channels** + **Manage Roles** untuk membuat channel penghitung (Manage Roles diperlukan untuk overwrite @everyone).\n\nSolusi: Server Settings → Roles → **role bot** → aktifkan keduanya, lalu jalankan `/serverstats setup` lagi.",
+        "not_created": "🧩 Tidak dibuat",
+        "not_setup": "⚠️ Penghitung statistik server belum disiapkan. Jalankan `/serverstats setup` dulu.",
+        "refresh_deferred": "⏳ Ditunda oleh cooldown: **{count}**",
+        "refresh_errors": "❌ Error: **{count}**",
+        "refresh_footer": "Penghitung yang tidak berubah tidak melakukan panggilan API • penghitung juga diperbarui otomatis saat ada perubahan member/boost/role/channel",
+        "refresh_line": "{emoji} {label}: **{value}**",
+        "refresh_missing": "⚠️ Channel hilang: **{count}**",
+        "refresh_title": "📊 Statistik Server — penghitung diperbarui",
+        "refresh_updated": "📤 Diperbarui: **{count}**",
+        "removed": "✅ Penghitung statistik server dihapus.\n\nConfig telah dibersihkan — jalankan `/serverstats setup` untuk membuatnya kembali kapan saja.",
+        "removed_partial": "✅ Penghitung statistik server dihapus ({deleted} dihapus, {failed} tidak bisa dihapus — mohon hapus channel tersebut secara manual).\n\nConfig telah dibersihkan — jalankan `/serverstats setup` untuk membuatnya kembali kapan saja.",
+        "setup_failed": "❌ Setup gagal: {error}\n\nSemua channel yang setengah dibuat telah di-rollback. Periksa izin bot **Manage Channels** + **Manage Roles** lalu coba lagi.",
+        "setup_footer": "Penghitung diperbarui otomatis (aman rate-limit) • /serverstats refresh memaksa pembaruan sekarang • /serverstats remove + setup untuk mengubah pilihan",
+        "setup_success_desc": "Nama-nama channel di bawah adalah **penghitung langsung** — otomatis diperbarui saat member bergabung/keluar, boost, atau role/channel berubah.",
+        "setup_success_title": "📊 Statistik Server — penghitung langsung dibuat!",
+        "use_hint": "⚡ **/serverstats** — channel penghitung langsung (live).\n\n• `/serverstats setup` — buat kategori + channel penghitung (opsi menentukan penghitung mana saja)\n• `/serverstats refresh` — paksa pembaruan seketika\n• `/serverstats remove` — hapus penghitung"
       }
     },
     "poll": {
@@ -656,13 +852,52 @@
         "create": "Buat poll baru (input opsi lewat modal)",
         "list": "Lihat semua poll di server ini",
         "close": "Tutup poll + tampilkan hasil akhir"
+      },
+      "replies": {
+        "channel_text_only": "❌ Channel harus berupa channel teks (atau pengumuman).",
+        "close_already_closed": "❌ Poll ini sudah ditutup.",
+        "close_in_progress": "⏳ Poll `{id}` sedang ditutup — coba lagi sebentar.",
+        "close_not_found": "❌ Poll `{id}` tidak ditemukan.",
+        "close_success": "✅ Poll **{question}** ditutup! Lihat hasilnya di channel.",
+        "close_vanished": "❌ Poll `{id}` sudah tidak ada (baru saja dihapus?).",
+        "close_wrong_guild": "❌ Poll ini bukan milik server ini.",
+        "list_empty": "📭 Belum ada poll di server ini.",
+        "list_header": "Total **{total}** poll.",
+        "list_header_hidden": "Total **{total}** poll (menampilkan {shown} terbaru — {hidden} lebih lama disembunyikan).",
+        "list_line": "• ❓ **{question}** — {status}\n  🆔 `{id}` | 👥 {options} opsi | 🗳️ {votes} suara\n  📍 <#{channel_id}> | ⏰ <t:{ts}:R>",
+        "list_title": "📊 DAFTAR POLL",
+        "modal_options_label": "Opsi (1 per baris, min 2, maks 10)",
+        "modal_options_placeholder": "Rank Push\nCustom Room\nTurnamen\nOff",
+        "modal_title": "Buat Poll — Masukkan Opsi",
+        "question_invalid": "❌ Pertanyaan poll wajib diisi dan maksimal 250 karakter (diterima: {len}).",
+        "result_footer": "Poll oleh {creator} | Ditutup",
+        "result_line": "{emoji} **{label}** — {votes} suara ({pct}%)\n`{bar}`",
+        "result_status_closed": "🔒 Status: **Ditutup** <t:{ts}:R>",
+        "result_total": "🗳️ Total suara: **{total}**",
+        "status_active": "🟢 Aktif",
+        "status_closed": "🔒 Ditutup",
+        "use_subcommand": "❌ Gunakan subperintah: `/poll create`, `/poll list`, atau `/poll close`."
       }
     },
     "setup-tempvoice": {
-      "description": "Siapkan temp voice — otomatis membuat kategori + channel panel + channel trigger"
+      "description": "Siapkan temp voice — otomatis membuat kategori + channel panel + channel trigger",
+      "replies": {
+        "old_control_channel_gone": "❌ Channel kontrol lama (ID: `{id}`) sudah dihapus dari server.\n\nJalankan `/tempvoice-remove` dulu untuk membersihkan config lama, lalu `/setup-tempvoice` lagi.",
+        "panel_refresh_failed": "❌ Gagal memperbarui panel ke {channel}. Periksa izin bot (**Send Messages** + **Embed Links**).\n\nSetup yang ada tidak diubah.",
+        "panel_send_failed": "❌ Gagal mengirim panel ke {channel}. Periksa izin bot (Send Messages + Embed Links).",
+        "ready": "✅ **Temp Voice siap digunakan!**\n\n📂 **Kategori:** {category}\n🎤 **Channel trigger:** {channel} (member bergabung di sini untuk membuat channel voice baru)\n🎛️ **Panel kontrol:** {url}\n\n💡 Member cukup klik tombol **🎤 Create Voice** di panel kontrol, atau bergabung langsung ke channel trigger. Setelah menjadi owner, panel otomatis diperbarui untuk menampilkan kontrol channel mereka.",
+        "refresh_success": "✅ **Panel temp voice diperbarui!**\n\n🎛️ {url}\n\n💡 Setup yang ada digunakan kembali (kategori + trigger + channel kontrol).",
+        "setup_failed": "❌ Gagal menyiapkan temp voice: {error}\n\nPastikan bot memiliki izin **Manage Channels** dan **Manage Roles**."
+      }
     },
     "tempvoice-remove": {
-      "description": "Hapus setup temp voice dari server (kategori + semua channel terkait ikut dihapus)"
+      "description": "Hapus setup temp voice dari server (kategori + semua channel terkait ikut dihapus)",
+      "replies": {
+        "confirm_button": "⚠️ Ya, Hapus Semuanya",
+        "confirm_message": "🚨 **KONFIRMASI PENGHAPUSAN TEMP VOICE**\n\nIni akan menghapus **secara permanen**:\n• Kategori temp voice dan pesan panel kontrol\n• Channel trigger \"🔊 Create Voice\"\n• **{count}** channel temp voice aktif — semua yang berada di dalamnya akan diputus\n\nIni tidak bisa dibatalkan!\n\nKlik salah satu tombol di bawah:",
+        "not_setup": "ℹ️ Temp voice belum disiapkan di server ini.",
+        "removal_success": "✅ Setup Temp Voice berhasil dihapus. Kategori + panel kontrol + channel trigger + semua channel temp voice aktif juga ikut dihapus."
+      }
     },
     "send-message": {
       "description": "Kirim pesan teks biasa ke channel teks (mendukung \\n & mention)",
@@ -670,6 +905,18 @@
         "channel": "Channel tujuan (harus channel teks)",
         "message": "Isi pesan (mendukung \\n untuk baris baru). Maks 2000 karakter.",
         "mention": "Mention: @everyone, @here, atau <@&role_id> / <@user_id>"
+      },
+      "replies": {
+        "channel_not_found": "❌ Channel tidak ditemukan di server ini.",
+        "channel_text_only": "❌ Channel harus berupa **channel teks**.\n\nTips: pilih channel teks biasa dari dropdown — bukan voice, kategori, atau forum.",
+        "empty": "❌ Pesan tidak boleh kosong.",
+        "invalid_mention": "❌ Format mention tidak valid: `{mention}`\n\nFormat yang didukung:\n• `@everyone` atau `everyone`\n• `@here` atau `here`\n• `<@&ROLE_ID>` (mention role)\n• `<@USER_ID>` (mention user)\n\nTips: untuk mention sebuah role, ketik `@namarole` di Discord lalu salin hasilnya.",
+        "no_send_permission": "❌ Bot tidak memiliki izin **Send Messages** di {channel}.\n\nBeri izin tersebut kepada bot atau pilih channel lain.",
+        "preview_truncated": "\n...*(pesan dipotong untuk pratinjau)*",
+        "send_failed": "❌ Gagal mengirim pesan ke {channel}: {error}",
+        "sent": "✅ Pesan terkirim ke {channel}!\n\n📋 **Pratinjau:**\n```\n{preview}\n```",
+        "too_long": "❌ Pesan terlalu panjang ({len} karakter, maks {max} karakter).\n\nTips: pecah menjadi 2 pesan, atau gunakan `/announce` yang mendukung deskripsi 4096 karakter.",
+        "total_too_long": "❌ Total panjang (mention + pesan) melebihi {max} karakter. Persingkat pesannya atau hapus mentionnya."
       }
     },
     "add-responder": {

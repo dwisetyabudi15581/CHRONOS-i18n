@@ -71,7 +71,8 @@
       "kick_members": "Expulsar miembros",
       "manage_messages": "Gestionar mensajes",
       "timeout_members": "Aislar miembros"
-    }
+    },
+    "cancel": "Cancelar"
   },
   "bot_commands": {
     "help": {
@@ -310,6 +311,15 @@
         "description": "Descripción del panel (admite \\n salto de línea)",
         "type": "Tipo de UI del panel",
         "exclusive": "True = solo se permite 1 rol a la vez (p. ej. roles de color). Predeterminado false."
+      },
+      "replies": {
+        "created": "✅ **¡Panel de auto-roles creado!**\n\n🆔 ID del panel: `{id}`\n📍 Canal: {channel}\n🎨 Tipo: **{type}**\n🔒 Modo: **{mode}**\n\n💡 Ahora añade roles al panel con:\n```\n/selfrole-add panel_id:{panel_id} role:@role label:Notif emoji:🔔\n```",
+        "description_too_long": "❌ La descripción del panel es demasiado larga — máximo **2000 caracteres** (el embed tiene un presupuesto de 4096 compartido con la lista de roles).",
+        "mode_exclusive": "Exclusivo (1 rol)",
+        "mode_multi": "Múltiple (varios permitidos)",
+        "send_failed": "❌ No se pudo enviar el panel a {channel}. Revisa los permisos del bot. Entrada revertida.",
+        "send_failed_no_channel": "❌ No se pudo enviar el panel (canal no encontrado). Entrada revertida.",
+        "title_invalid": "❌ El título del panel es obligatorio y debe tener como máximo **256 caracteres**."
       }
     },
     "selfrole-add": {
@@ -322,6 +332,17 @@
         "description": "Descripción (opcional, menú select, admite \\n salto de línea)",
         "style": "Color del botón (predeterminado: Secondary)",
         "requires_role": "Un rol que el usuario debe tener antes de tomar este rol (opcional)"
+      },
+      "replies": {
+        "added": "✅ Rol {role} añadido al panel `{id}`.\n{extras}",
+        "added_desc": " | Desc.: {desc}",
+        "added_emoji": " | Emoji: {emoji}",
+        "added_label": "Etiqueta: **{label}**",
+        "description_too_long": "❌ La descripción es demasiado larga — máximo **100 caracteres** (límite de opción del menú de selección de Discord; también se muestra dentro del embed).",
+        "emoji_invalid": "❌ \"{emoji}\" no es un emoji válido. Usa un solo emoji estándar (p. ej. 🔔) o un emoji personalizado como `:custom:123456789`.",
+        "label_invalid": "❌ La etiqueta es obligatoria y debe tener como máximo **80 caracteres** (límite de etiqueta de botón de Discord).",
+        "panel_not_found": "❌ Panel con ID `{id}` no encontrado. Usa `/selfrole-list` para ver la lista.",
+        "wrong_guild": "❌ Este panel no pertenece a este servidor."
       }
     },
     "selfrole-remove": {
@@ -329,15 +350,35 @@
       "options": {
         "panel_id": "ID del panel",
         "role": "El rol a eliminar del panel"
+      },
+      "replies": {
+        "panel_not_found": "❌ Panel con ID `{id}` no encontrado.",
+        "removed": "✅ Rol {role} eliminado del panel `{id}`.",
+        "wrong_guild": "❌ Este panel no pertenece a este servidor."
       }
     },
     "selfrole-list": {
-      "description": "Ver todos los paneles de self-role en este servidor"
+      "description": "Ver todos los paneles de self-role en este servidor",
+      "replies": {
+        "empty": "📭 Aún no hay paneles de auto-roles en este servidor. Usa `/setup-selfrole` para crear uno.",
+        "line": "• **{title}**\n  🆔 `{id}` | {type} | {mode} | {count} rol(es)\n  📍 <#{channel_id}> | [mensaje]({url})\n  Roles: {roles}",
+        "mode_exclusive": "🔒 Exclusivo",
+        "mode_multi": "✅ Múltiple",
+        "roles_empty": "_vacío_",
+        "title": "🎭 LISTA DE PANELES DE AUTO-ROLES",
+        "type_button": "🔘 Botones",
+        "type_select": "📋 Selección"
+      }
     },
     "selfrole-delete": {
       "description": "Elimina un panel de self-role (borra el mensaje + la configuración)",
       "options": {
         "panel_id": "El ID del panel a eliminar"
+      },
+      "replies": {
+        "deleted": "✅ Panel `{id}` ({title}) eliminado con éxito.",
+        "panel_not_found": "❌ Panel con ID `{id}` no encontrado.",
+        "wrong_guild": "❌ Este panel no pertenece a este servidor."
       }
     },
     "announce": {
@@ -359,15 +400,104 @@
       }
     },
     "embed-builder": {
-      "description": "Constructor de embeds interactivo con vista previa en vivo (para embeds complejos)"
+      "description": "Constructor de embeds interactivo con vista previa en vivo (para embeds complejos)",
+      "replies": {
+        "button_preview": "Vista previa",
+        "button_send": "Enviar",
+        "draft_header": "🛠️ **Borrador del Embed Builder** — iniciado por <@{user}>\nVista previa en tiempo real abajo. Haz clic en el menú desplegable para editar secciones, o en los botones para previsualizar/enviar/cancelar.\n💡 **Consejo:** Selecciona **💬 Mensaje (texto plano)** en el menú desplegable para añadir texto fuera del embed (ideal para pings de @everyone o una línea de introducción).\n🆔 Sesión: `{id}`",
+        "draft_send_failed": "❌ No se pudo enviar el borrador a este canal. Revisa los permisos del bot (Enviar mensajes + Insertar enlaces).",
+        "sections": {
+          "add_field": {
+            "desc": "Añade un campo (ancho completo)",
+            "label": "Añadir campo (normal)"
+          },
+          "add_field_inline": {
+            "desc": "Añade un campo (lado a lado)",
+            "label": "Añadir campo (en línea)"
+          },
+          "author": {
+            "desc": "Texto e icono encima del embed",
+            "label": "Autor"
+          },
+          "clear_fields": {
+            "desc": "Elimina TODOS los campos",
+            "label": "Borrar todos los campos"
+          },
+          "color": {
+            "desc": "Color hexadecimal (p. ej. #FF0000)",
+            "label": "Color"
+          },
+          "description": {
+            "desc": "Contenido principal del embed (máx. 4000 caracteres)",
+            "label": "Descripción"
+          },
+          "footer": {
+            "desc": "Texto e icono debajo del embed",
+            "label": "Pie"
+          },
+          "image": {
+            "desc": "URL de imagen grande",
+            "label": "Imagen"
+          },
+          "message": {
+            "desc": "Texto fuera del embed (máx. 2000 caracteres, admite \\n)",
+            "label": "Mensaje (texto plano)"
+          },
+          "remove_field": {
+            "desc": "Elimina el último campo",
+            "label": "Eliminar último campo"
+          },
+          "thumbnail": {
+            "desc": "URL de imagen pequeña (esquina superior derecha)",
+            "label": "Miniatura"
+          },
+          "title": {
+            "desc": "Título del embed (máx. 256 caracteres)",
+            "label": "Título"
+          },
+          "toggle_timestamp": {
+            "desc": "Muestra/oculta la marca de tiempo",
+            "label": "Alternar marca de tiempo"
+          }
+        },
+        "select_placeholder": "✏️ Selecciona la sección del embed a editar...",
+        "started": "✅ ¡Embed builder iniciado!\n📍 Borrador: {draft}\n\n💡 Haz clic en el menú desplegable del borrador para editar las secciones del embed. Al terminar, haz clic en **📤 Enviar** para enviarlo al canal de destino."
+      }
     },
     "embed-list": {
-      "description": "Ver todas tus sesiones activas del constructor de embeds (+ enlace al mensaje borrador)"
+      "description": "Ver todas tus sesiones activas del constructor de embeds (+ enlace al mensaje borrador)",
+      "replies": {
+        "age_hours": "hace {h}h {min}m",
+        "age_just_now": "justo ahora",
+        "age_minutes": "hace {min}m",
+        "body_footer": "💡 **Cómo usarlo:** Haz clic en un enlace de **abrir borrador** para saltar a ese mensaje, luego usa el menú desplegable allí para editarlo. Cada borrador es independiente — no interfieren entre sí.",
+        "body_header": "Tienes **{count}** sesión(es) activa(s).",
+        "empty": "📭 **No tienes sesiones activas del embed builder.**\n\nUsa `/embed-builder` para crear un nuevo borrador.",
+        "line": "• 🆔 `{id}`\n  📍 {channel} | {link}\n  ⏰ Creado: {age} | 📝 {summary}",
+        "link_missing": "*(borrador aún no creado)*",
+        "link_open_draft": "🔗 abrir borrador",
+        "summary_author": "autor",
+        "summary_desc": "desc",
+        "summary_empty": "*(vacío)*",
+        "summary_fields": "{count} campo(s)",
+        "summary_footer": "pie",
+        "summary_image": "imagen",
+        "summary_msg": "msj ({len} car.)",
+        "summary_thumb": "miniatura",
+        "summary_title": "título",
+        "title": "🛠️ SESIONES ACTIVAS DEL EMBED BUILDER"
+      }
     },
     "embed-cancel": {
       "description": "Cancela una sesión del constructor de embeds por ID (si el borrador se borró/falló)",
       "options": {
         "session_id": "ID de sesión (ver /embed-list)"
+      },
+      "replies": {
+        "canceled": "🗑️ Sesión `{id}` cancelada.",
+        "canceled_draft_deleted": " El mensaje del borrador también fue eliminado.",
+        "canceled_draft_gone": " (El mensaje del borrador ya no se encontró.)",
+        "not_found": "❌ Sesión `{id}` no encontrada o no es tuya.\n\nUsa `/embed-list` para ver las sesiones activas."
       }
     },
     "backup-now": {
@@ -389,6 +519,43 @@
         "list": "Ver todos los sorteos en este servidor",
         "end": "Terminar un sorteo antes de tiempo + elegir ganadores",
         "reroll": "Reroll del ganador de un sorteo terminado"
+      },
+      "replies": {
+        "create_success": "✅ ¡Sorteo creado en {channel}!\n🆔 `{id}`\n⏰ Termina <t:{ts}:R>",
+        "duration_invalid": "❌ La duración es obligatoria, mínimo 1 minuto.",
+        "duration_max": "❌ La duración máxima es de 30 días (43200 minutos).",
+        "embed_desc_foot": "\n👇 ¡Haz clic en el botón **🎉 Join** de abajo para participar!",
+        "embed_desc_head": "🎁 **Premio:** {prize}\n\n👥 **Ganadores:** {winners}\n⏰ **Termina:** <t:{ts_r}:R> (<t:{ts_f}:F>)\n🎟️ **Participantes:** 0\n",
+        "embed_footer": "Anfitrión: {host} | ID: {id}",
+        "embed_requirement": "🔐 **Requisito:** Debe tener el rol {role}\n",
+        "embed_title": "🎉 ¡SORTEO!",
+        "end_already_ended": "❌ Este sorteo ya ha terminado.",
+        "end_in_progress": "⏳ El fin del sorteo está en curso — inténtalo de nuevo en breve.",
+        "end_not_found": "❌ Sorteo `{id}` no encontrado.",
+        "end_scheduler_busy": "⏳ Este sorteo está siendo procesado automáticamente por el planificador (fin natural). Inténtalo de nuevo en unos segundos.",
+        "end_success": "✅ ¡El sorteo **{prize}** ha terminado!\n🏆 Ganadores: {winners}\n\n📢 El mensaje del sorteo ha sido actualizado + los ganadores han recibido un MD y fueron anunciados en el canal.",
+        "end_wrong_guild": "❌ Este sorteo no pertenece a este servidor.",
+        "join_button": "🎉 Unirme",
+        "leave_button": "🚪 Salirme",
+        "list_empty": "📭 Aún no hay sorteos en este servidor.",
+        "list_header": "Total **{total}** sorteos.",
+        "list_header_hidden": "Total **{total}** sorteos (mostrando los {shown} más recientes — {hidden} más antiguos ocultos).",
+        "list_line": "• **{prize}** — {status}\n  🆔 `{id}` | 👥 {participants} participantes | 🏆 {winners}\n  📍 <#{channel_id}> | ⏰ <t:{ts}:R>",
+        "list_title": "🎉 LISTA DE SORTEOS",
+        "new_giveaway_ping": "🎉 **¡NUEVO SORTEO!**",
+        "no_participants": "_(sin participantes)_",
+        "prize_invalid": "❌ El premio es obligatorio y de máximo 200 caracteres (recibido: {len}).",
+        "reroll_no_participants": "❌ No hay participantes para repetir el sorteo.",
+        "reroll_not_found": "❌ Sorteo `{id}` no encontrado o aún no ha terminado. (O hay otro reroll en curso — inténtalo de nuevo en breve.)",
+        "reroll_reused_note": " _(todos los participantes ya han ganado, se recurrió a una elección aleatoria)_",
+        "reroll_success": "🎲 **¡Reroll!** Nuevo ganador: <@{winner}>{reuse_note}\n\n📢 El ganador ha recibido un MD y fue anunciado en el canal del sorteo.",
+        "send_failed": "❌ No se pudo enviar el sorteo a {channel}. Revisa los permisos del bot. Entrada revertida.",
+        "status_active": "🟢 Activo",
+        "status_done": "✅ Terminado",
+        "status_processing": "⏳ Procesando",
+        "use_subcommand": "❌ Usa un subcomando: `/giveaway create`, `/giveaway list`, `/giveaway end` o `/giveaway reroll`.",
+        "winners_range": "❌ El número de ganadores debe ser 1-20.",
+        "reroll_not_ended": "❌ Este sorteo aún no ha terminado. Termina primero con `/giveaway end`."
       }
     },
     "announce-schedule": {
@@ -648,6 +815,35 @@
         "setup": "Crear la categoría de contadores + canales contadores en vivo",
         "remove": "Eliminar los canales contadores + la categoría y limpiar la configuración",
         "refresh": "Forzar la actualización de todos los contadores ahora mismo"
+      },
+      "replies": {
+        "all_counters": "— todos los contadores activados —",
+        "all_off": "⚠️ Has desactivado todos los contadores (miembros, bots, mejoras, roles Y canales).\n\nElige al menos uno — deja las opciones que quieras **activadas** por defecto (True), y pon solo las que NO quieras en **False**.",
+        "already_setup": "⚠️ Los contadores de estadísticas del servidor ya están configurados.\n\n• Para actualizar los números ahora mismo: `/serverstats refresh`\n• Para eliminarlos y empezar de nuevo: primero `/serverstats remove`",
+        "counter": {
+          "boosts": "Mejoras",
+          "bots": "Bots",
+          "channels": "Canales",
+          "members": "Miembros",
+          "roles": "Roles"
+        },
+        "missing_perms": "❌ Necesito los permisos **Gestionar canales** + **Gestionar roles** para crear los canales del contador (Gestionar roles es necesario para las sobreescrituras de @everyone).\n\nSolución: Configuración del servidor → Roles → **el rol del bot** → activa ambos, luego ejecuta `/serverstats setup` de nuevo.",
+        "not_created": "🧩 No creado",
+        "not_setup": "⚠️ Los contadores de estadísticas del servidor no están configurados. Ejecuta `/serverstats setup` primero.",
+        "refresh_deferred": "⏳ Pospuestos por cooldown: **{count}**",
+        "refresh_errors": "❌ Errores: **{count}**",
+        "refresh_footer": "Los contadores sin cambios no hacen llamadas a la API • los contadores también se actualizan automáticamente al cambiar miembros/mejoras/roles/canales",
+        "refresh_line": "{emoji} {label}: **{value}**",
+        "refresh_missing": "⚠️ Canales faltantes: **{count}**",
+        "refresh_title": "📊 Estadísticas del servidor — contadores actualizados",
+        "refresh_updated": "📤 Actualizados: **{count}**",
+        "removed": "✅ Contadores de estadísticas del servidor eliminados.\n\nLa configuración fue borrada — ejecuta `/serverstats setup` para recrearlos cuando quieras.",
+        "removed_partial": "✅ Contadores de estadísticas del servidor eliminados ({deleted} eliminados, {failed} no pudieron eliminarse — elimina esos canales manualmente).\n\nLa configuración fue borrada — ejecuta `/serverstats setup` para recrearlos cuando quieras.",
+        "setup_failed": "❌ Error de configuración: {error}\n\nLos canales creados a medias fueron revertidos. Revisa los permisos del bot **Gestionar canales** + **Gestionar roles** e inténtalo de nuevo.",
+        "setup_footer": "Los contadores se actualizan automáticamente (seguro para el límite de peticiones) • /serverstats refresh fuerza una actualización ahora • /serverstats remove + setup para cambiar la selección",
+        "setup_success_desc": "Los nombres de los canales de abajo son **contadores en vivo** — se actualizan automáticamente cuando los miembros entran/salen, mejoran el servidor, o cambian los roles/canales.",
+        "setup_success_title": "📊 Estadísticas del servidor — ¡contadores en vivo creados!",
+        "use_hint": "⚡ **/serverstats** — canales de contador en vivo.\n\n• `/serverstats setup` — crea la categoría + canales del contador (las opciones eligen qué contadores)\n• `/serverstats refresh` — fuerza una actualización inmediata\n• `/serverstats remove` — elimina los contadores"
       }
     },
     "poll": {
@@ -656,13 +852,52 @@
         "create": "Crear una nueva encuesta (entrada de opciones vía modal)",
         "list": "Ver todas las encuestas en este servidor",
         "close": "Cerrar una encuesta + mostrar los resultados finales"
+      },
+      "replies": {
+        "channel_text_only": "❌ El canal debe ser un canal de texto (o de anuncios).",
+        "close_already_closed": "❌ Esta encuesta ya está cerrada.",
+        "close_in_progress": "⏳ La encuesta `{id}` ya se está cerrando — inténtalo de nuevo en un momento.",
+        "close_not_found": "❌ Encuesta `{id}` no encontrada.",
+        "close_success": "✅ ¡Encuesta **{question}** cerrada! Mira los resultados en el canal.",
+        "close_vanished": "❌ La encuesta `{id}` ya no existe (¿recién eliminada?).",
+        "close_wrong_guild": "❌ Esta encuesta no pertenece a este servidor.",
+        "list_empty": "📭 Aún no hay encuestas en este servidor.",
+        "list_header": "Total **{total}** encuestas.",
+        "list_header_hidden": "Total **{total}** encuestas (mostrando las {shown} más recientes — {hidden} más antiguas ocultas).",
+        "list_line": "• ❓ **{question}** — {status}\n  🆔 `{id}` | 👥 {options} opciones | 🗳️ {votes} votos\n  📍 <#{channel_id}> | ⏰ <t:{ts}:R>",
+        "list_title": "📊 LISTA DE ENCUESTAS",
+        "modal_options_label": "Opciones (1 por línea, mín. 2, máx. 10)",
+        "modal_options_placeholder": "Subir rango\nSala personalizada\nTorneo\nLibre",
+        "modal_title": "Crear encuesta — Introduce las opciones",
+        "question_invalid": "❌ La pregunta de la encuesta es obligatoria y de máximo 250 caracteres (recibido: {len}).",
+        "result_footer": "Encuesta de {creator} | Cerrada",
+        "result_line": "{emoji} **{label}** — {votes} votos ({pct}%)\n`{bar}`",
+        "result_status_closed": "🔒 Estado: **Cerrada** <t:{ts}:R>",
+        "result_total": "🗳️ Votos totales: **{total}**",
+        "status_active": "🟢 Activa",
+        "status_closed": "🔒 Cerrada",
+        "use_subcommand": "❌ Usa un subcomando: `/poll create`, `/poll list` o `/poll close`."
       }
     },
     "setup-tempvoice": {
-      "description": "Configura temp voice — crea automáticamente una categoría + canal de panel + canal de activación"
+      "description": "Configura temp voice — crea automáticamente una categoría + canal de panel + canal de activación",
+      "replies": {
+        "old_control_channel_gone": "❌ El canal de control antiguo (ID: `{id}`) ha sido eliminado del servidor.\n\nEjecuta primero `/tempvoice-remove` para limpiar la configuración antigua, luego `/setup-tempvoice` de nuevo.",
+        "panel_refresh_failed": "❌ No se pudo actualizar el panel en {channel}. Revisa los permisos del bot (**Enviar mensajes** + **Insertar enlaces**).\n\nLa configuración existente no fue modificada.",
+        "panel_send_failed": "❌ No se pudo enviar el panel a {channel}. Revisa los permisos del bot (Enviar mensajes + Insertar enlaces).",
+        "ready": "✅ **¡La Voz Temporal está lista!**\n\n📂 **Categoría:** {category}\n🎤 **Canal disparador:** {channel} (los miembros se unen aquí para crear un nuevo canal de voz)\n🎛️ **Panel de control:** {url}\n\n💡 Los miembros solo hacen clic en el botón **🎤 Create Voice** del panel de control, o se unen directamente al canal disparador. Cuando se convierten en propietarios, el panel se actualiza automáticamente para mostrar los controles de su canal.",
+        "refresh_success": "✅ **¡Panel de voz temporal actualizado!**\n\n🎛️ {url}\n\n💡 Se reutiliza la configuración existente (categoría + disparador + canal de control).",
+        "setup_failed": "❌ No se pudo configurar la voz temporal: {error}\n\nAsegúrate de que el bot tenga los permisos **Gestionar canales** y **Gestionar roles**."
+      }
     },
     "tempvoice-remove": {
-      "description": "Elimina el setup de temp voice (categoría + canales relacionados se borran)"
+      "description": "Elimina el setup de temp voice (categoría + canales relacionados se borran)",
+      "replies": {
+        "confirm_button": "⚠️ Sí, eliminar todo",
+        "confirm_message": "🚨 **CONFIRMACIÓN DE ELIMINACIÓN DE VOZ TEMPORAL**\n\nEsto eliminará **permanentemente**:\n• La categoría de voz temporal y el mensaje del panel de control\n• El canal disparador \"🔊 Create Voice\"\n• **{count}** canal(es) de voz temporal activo(s) — todos los que estén dentro serán desconectados\n\n¡Esto no se puede deshacer!\n\nHaz clic en un botón de abajo:",
+        "not_setup": "ℹ️ La voz temporal aún no está configurada en este servidor.",
+        "removal_success": "✅ La configuración de voz temporal fue eliminada con éxito. La categoría + el panel de control + el canal disparador + todos los canales de voz temporales activos también fueron eliminados."
+      }
     },
     "send-message": {
       "description": "Envía un mensaje de texto plano a un canal de texto (admite \\n y menciones)",
@@ -670,6 +905,18 @@
         "channel": "Canal destino (debe ser un canal de texto)",
         "message": "Contenido del mensaje (admite \\n para salto de línea). Máx. 2000 caracteres.",
         "mention": "Mención: @everyone, @here, o <@&role_id> / <@user_id>"
+      },
+      "replies": {
+        "channel_not_found": "❌ Canal no encontrado en este servidor.",
+        "channel_text_only": "❌ El canal debe ser un **canal de texto**.\n\nConsejo: elige un canal de texto normal del menú desplegable — no de voz, categoría ni foro.",
+        "empty": "❌ El mensaje no puede estar vacío.",
+        "invalid_mention": "❌ Formato de mención no válido: `{mention}`\n\nFormatos admitidos:\n• `@everyone` o `everyone`\n• `@here` o `here`\n• `<@&ROLE_ID>` (mención de rol)\n• `<@USER_ID>` (mención de usuario)\n\nConsejo: para mencionar un rol, escribe `@nombrerol` en Discord y copia el resultado.",
+        "no_send_permission": "❌ El bot no tiene el permiso **Enviar mensajes** en {channel}.\n\nConcede el permiso al bot o elige otro canal.",
+        "preview_truncated": "\n...*(mensaje truncado para la vista previa)*",
+        "send_failed": "❌ No se pudo enviar el mensaje a {channel}: {error}",
+        "sent": "✅ ¡Mensaje enviado a {channel}!\n\n📋 **Vista previa:**\n```\n{preview}\n```",
+        "too_long": "❌ El mensaje es demasiado largo ({len} caracteres, máx. {max}).\n\nConsejo: divídelo en 2 mensajes, o usa `/announce` que admite descripciones de 4096 caracteres.",
+        "total_too_long": "❌ La longitud total (mención + mensaje) supera los {max} caracteres. Acorta el mensaje o quita la mención."
       }
     },
     "add-responder": {

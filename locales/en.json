@@ -71,7 +71,8 @@
       "kick_members": "Kick Members",
       "manage_messages": "Manage Messages",
       "timeout_members": "Timeout Members"
-    }
+    },
+    "cancel": "Cancel"
   },
   "bot_commands": {
     "help": {
@@ -320,6 +321,15 @@
         "description": "Panel description (supports \\n newline)",
         "type": "Panel UI type",
         "exclusive": "True = only 1 role allowed at a time (e.g. color roles). Default false."
+      },
+      "replies": {
+        "created": "✅ **Self-role panel created!**\n\n🆔 Panel ID: `{id}`\n📍 Channel: {channel}\n🎨 Type: **{type}**\n🔒 Mode: **{mode}**\n\n💡 Now add roles to the panel with:\n```\n/selfrole-add panel_id:{panel_id} role:@role label:Notif emoji:🔔\n```",
+        "description_too_long": "❌ Panel description is too long — max **2000 characters** (the embed has a 4096 budget shared with the roles list).",
+        "mode_exclusive": "Exclusive (1 role)",
+        "mode_multi": "Multi (multiple allowed)",
+        "send_failed": "❌ Failed to send the panel to {channel}. Check bot permissions. Entry rolled back.",
+        "send_failed_no_channel": "❌ Failed to send the panel (channel not found). Entry rolled back.",
+        "title_invalid": "❌ Panel title is required and must be at most **256 characters**."
       }
     },
     "selfrole-add": {
@@ -332,6 +342,17 @@
         "description": "Description (optional, select menu, supports \\n newline)",
         "style": "Button color (default: Secondary)",
         "requires_role": "A role the user must have before taking this role (optional)"
+      },
+      "replies": {
+        "added": "✅ Role {role} added to panel `{id}`.\n{extras}",
+        "added_desc": " | Desc: {desc}",
+        "added_emoji": " | Emoji: {emoji}",
+        "added_label": "Label: **{label}**",
+        "description_too_long": "❌ Description is too long — max **100 characters** (Discord select-menu option limit; it also shows inside the embed).",
+        "emoji_invalid": "❌ \"{emoji}\" is not a valid emoji. Use a single standard emoji (e.g. 🔔) or a custom emoji like `:custom:123456789`.",
+        "label_invalid": "❌ Label is required and must be at most **80 characters** (Discord button label limit).",
+        "panel_not_found": "❌ Panel ID `{id}` not found. Use `/selfrole-list` to see the list.",
+        "wrong_guild": "❌ This panel doesn't belong to this guild."
       }
     },
     "selfrole-remove": {
@@ -339,16 +360,36 @@
       "options": {
         "panel_id": "Panel ID",
         "role": "The role to remove from the panel"
+      },
+      "replies": {
+        "panel_not_found": "❌ Panel ID `{id}` not found.",
+        "removed": "✅ Role {role} removed from panel `{id}`.",
+        "wrong_guild": "❌ This panel does not belong to this server."
       }
     },
     "selfrole-list": {
       "description": "View all self-role panels in this guild",
-      "options": {}
+      "options": {},
+      "replies": {
+        "empty": "📭 No self-role panels in this guild yet. Use `/setup-selfrole` to create one.",
+        "line": "• **{title}**\n  🆔 `{id}` | {type} | {mode} | {count} role\n  📍 <#{channel_id}> | [message]({url})\n  Role: {roles}",
+        "mode_exclusive": "🔒 Exclusive",
+        "mode_multi": "✅ Multi",
+        "roles_empty": "_empty_",
+        "title": "🎭 SELF-ROLE PANEL LIST",
+        "type_button": "🔘 Button",
+        "type_select": "📋 Select"
+      }
     },
     "selfrole-delete": {
       "description": "Delete a self-role panel (deletes the message + config)",
       "options": {
         "panel_id": "The Panel ID to delete"
+      },
+      "replies": {
+        "deleted": "✅ Panel `{id}` ({title}) successfully deleted.",
+        "panel_not_found": "❌ Panel ID `{id}` not found.",
+        "wrong_guild": "❌ This panel does not belong to this server."
       }
     },
     "announce": {
@@ -371,16 +412,105 @@
     },
     "embed-builder": {
       "description": "Interactive embed builder with live preview (for complex embeds)",
-      "options": {}
+      "options": {},
+      "replies": {
+        "button_preview": "Preview",
+        "button_send": "Send",
+        "draft_header": "🛠️ **Embed Builder Draft** — started by <@{user}>\nReal-time preview below. Click the dropdown to edit sections, or the buttons to preview/send/cancel.\n💡 **Tip:** Select **💬 Message (plain text)** in the dropdown to add text outside the embed (great for @everyone pings or an intro line).\n🆔 Session: `{id}`",
+        "draft_send_failed": "❌ Failed to send the draft message to this channel. Check bot permissions (Send Messages + Embed Links).",
+        "sections": {
+          "add_field": {
+            "desc": "Add a field (full width)",
+            "label": "Add Field (normal)"
+          },
+          "add_field_inline": {
+            "desc": "Add a field (side by side)",
+            "label": "Add Field (inline)"
+          },
+          "author": {
+            "desc": "Text & icon above the embed",
+            "label": "Author"
+          },
+          "clear_fields": {
+            "desc": "Remove ALL fields",
+            "label": "Clear All Fields"
+          },
+          "color": {
+            "desc": "Hex color (e.g. #FF0000)",
+            "label": "Color"
+          },
+          "description": {
+            "desc": "Embed main content (max 4000 chars)",
+            "label": "Description"
+          },
+          "footer": {
+            "desc": "Text & icon below the embed",
+            "label": "Footer"
+          },
+          "image": {
+            "desc": "Large image URL",
+            "label": "Image"
+          },
+          "message": {
+            "desc": "Text outside the embed (max 2000 chars, supports \\n)",
+            "label": "Message (plain text)"
+          },
+          "remove_field": {
+            "desc": "Remove the last field",
+            "label": "Remove Last Field"
+          },
+          "thumbnail": {
+            "desc": "Small image URL (top-right corner)",
+            "label": "Thumbnail"
+          },
+          "title": {
+            "desc": "Embed title (max 256 chars)",
+            "label": "Title"
+          },
+          "toggle_timestamp": {
+            "desc": "Show/hide timestamp",
+            "label": "Toggle Timestamp"
+          }
+        },
+        "select_placeholder": "✏️ Select the embed section to edit...",
+        "started": "✅ Embed builder started!\n📍 Draft: {draft}\n\n💡 Click the dropdown on the draft to edit embed sections. When done, click **📤 Send** to send it to the target channel."
+      }
     },
     "embed-list": {
       "description": "View all your active embed builder sessions (+ link to the draft message)",
-      "options": {}
+      "options": {},
+      "replies": {
+        "age_hours": "{h}h {min}m ago",
+        "age_just_now": "just now",
+        "age_minutes": "{min}m ago",
+        "body_footer": "💡 **How to use:** Click an **open draft** link to jump to that draft message, then use the dropdown there to edit. Each draft is independent — they won't interfere with each other.",
+        "body_header": "You have **{count}** active session(s).",
+        "empty": "📭 **You have no active embed builder sessions.**\n\nUse `/embed-builder` to create a new draft.",
+        "line": "• 🆔 `{id}`\n  📍 {channel} | {link}\n  ⏰ Created: {age} | 📝 {summary}",
+        "link_missing": "*(draft not created yet)*",
+        "link_open_draft": "🔗 open draft",
+        "summary_author": "author",
+        "summary_desc": "desc",
+        "summary_empty": "*(empty)*",
+        "summary_fields": "{count} field(s)",
+        "summary_footer": "footer",
+        "summary_image": "image",
+        "summary_msg": "msg ({len} char)",
+        "summary_thumb": "thumb",
+        "summary_title": "title",
+        "title": "🛠️ ACTIVE EMBED BUILDER SESSIONS"
+      }
     },
     "embed-cancel": {
       "description": "Cancel an embed builder session by ID (if the draft got deleted/bugged)",
       "options": {
         "session_id": "Session ID (see /embed-list)"
+      },
+      "replies": {
+        "canceled": "🗑️ Session `{id}` canceled.",
+        "canceled_draft_deleted": " The draft message was also deleted.",
+        "canceled_draft_gone": " (The draft message was no longer found.)",
+        "not_found": "❌ Session `{id}` not found or isn't yours.\n\nUse `/embed-list` to see active sessions."
       }
     },
     "backup-now": {
@@ -411,6 +541,43 @@
         "end.id": "Giveaway ID (see /giveaway list)",
         "reroll": "Reroll the winner of an ended giveaway",
         "reroll.id": "Giveaway ID (see /giveaway list)"
+      },
+      "replies": {
+        "create_success": "✅ Giveaway created in {channel}!\n🆔 `{id}`\n⏰ Ends <t:{ts}:R>",
+        "duration_invalid": "❌ Duration is required, minimum 1 minute.",
+        "duration_max": "❌ Maximum duration is 30 days (43200 minutes).",
+        "embed_desc_foot": "\n👇 Click the **🎉 Join** button below to enter!",
+        "embed_desc_head": "🎁 **Prize:** {prize}\n\n👥 **Winners:** {winners}\n⏰ **Ends:** <t:{ts_r}:R> (<t:{ts_f}:F>)\n🎟️ **Participants:** 0\n",
+        "embed_footer": "Host: {host} | ID: {id}",
+        "embed_requirement": "🔐 **Requirement:** Must have the role {role}\n",
+        "embed_title": "🎉 GIVEAWAY!",
+        "end_already_ended": "❌ This giveaway has already ended.",
+        "end_in_progress": "⏳ Giveaway end is in progress — try again shortly.",
+        "end_not_found": "❌ Giveaway `{id}` not found.",
+        "end_scheduler_busy": "⏳ This giveaway is currently being auto-processed by the scheduler (natural end). Try again in a few seconds.",
+        "end_success": "✅ Giveaway **{prize}** ended!\n🏆 Winners: {winners}\n\n📢 The giveaway message has been updated + winners have been DMed + announced in the channel.",
+        "end_wrong_guild": "❌ This giveaway doesn't belong to this guild.",
+        "join_button": "🎉 Join",
+        "leave_button": "🚪 Leave",
+        "list_empty": "📭 No giveaways in this guild yet.",
+        "list_header": "Total **{total}** giveaways.",
+        "list_header_hidden": "Total **{total}** giveaways (showing the {shown} latest — {hidden} older hidden).",
+        "list_line": "• **{prize}** — {status}\n  🆔 `{id}` | 👥 {participants} participants | 🏆 {winners}\n  📍 <#{channel_id}> | ⏰ <t:{ts}:R>",
+        "list_title": "🎉 GIVEAWAY LIST",
+        "new_giveaway_ping": "🎉 **NEW GIVEAWAY!**",
+        "no_participants": "_(no participants)_",
+        "prize_invalid": "❌ Prize is required and max 200 characters (got: {len}).",
+        "reroll_no_participants": "❌ No participants to reroll.",
+        "reroll_not_found": "❌ Giveaway `{id}` not found or has not ended yet. (Or another reroll is running — try again shortly.)",
+        "reroll_reused_note": " _(all participants have already won, fell back to a random pick)_",
+        "reroll_success": "🎲 **Reroll!** New winner: <@{winner}>{reuse_note}\n\n📢 The winner has been DMed + announced in the giveaway channel.",
+        "send_failed": "❌ Failed to send giveaway to {channel}. Check bot permissions. Entry rolled back.",
+        "status_active": "🟢 Active",
+        "status_done": "✅ Done",
+        "status_processing": "⏳ Processing",
+        "use_subcommand": "❌ Use a subcommand: `/giveaway create`, `/giveaway list`, `/giveaway end`, or `/giveaway reroll`.",
+        "winners_range": "❌ Number of winners must be 1-20.",
+        "reroll_not_ended": "❌ This giveaway hasn't ended yet. End it first with `/giveaway end`."
       }
     },
     "announce-schedule": {
@@ -679,6 +846,35 @@
         "setup.channels": "Show the 📺 Channels counter (default: yes)",
         "remove": "Delete the counter channels + category and clear the config",
         "refresh": "Force-refresh all counters right now"
+      },
+      "replies": {
+        "all_counters": "— all counters enabled —",
+        "all_off": "⚠️ You turned OFF every counter (members, bots, boosts, roles AND channels).\n\nPick at least one — leave the options you want **on** as default (True), set only the ones you do NOT want to **False**.",
+        "already_setup": "⚠️ The server stats counters are already set up.\n\n• To update the numbers right now: `/serverstats refresh`\n• To delete them and start over: `/serverstats remove` first",
+        "counter": {
+          "boosts": "Boosts",
+          "bots": "Bots",
+          "channels": "Channels",
+          "members": "Members",
+          "roles": "Roles"
+        },
+        "missing_perms": "❌ I need the **Manage Channels** + **Manage Roles** permissions to create the counter channels (Manage Roles is required for the @everyone overwrites).\n\nFix: Server Settings → Roles → **the bot's role** → enable both, then run `/serverstats setup` again.",
+        "not_created": "🧩 Not created",
+        "not_setup": "⚠️ The server stats counters are not set up. Run `/serverstats setup` first.",
+        "refresh_deferred": "⏳ Deferred by cooldown: **{count}**",
+        "refresh_errors": "❌ Errors: **{count}**",
+        "refresh_footer": "Unchanged counters make zero API calls • counters also update automatically on member/boost/role/channel changes",
+        "refresh_line": "{emoji} {label}: **{value}**",
+        "refresh_missing": "⚠️ Missing channels: **{count}**",
+        "refresh_title": "📊 Server Stats — counters refreshed",
+        "refresh_updated": "📤 Updated: **{count}**",
+        "removed": "✅ Server stats counters removed.\n\nThe config is cleared — run `/serverstats setup` to recreate them anytime.",
+        "removed_partial": "✅ Server stats counters removed ({deleted} deleted, {failed} could not be deleted — please delete those channels manually).\n\nThe config is cleared — run `/serverstats setup` to recreate them anytime.",
+        "setup_failed": "❌ Setup failed: {error}\n\nAny half-created channels were rolled back. Check the bot's **Manage Channels** + **Manage Roles** permissions and try again.",
+        "setup_footer": "Counters refresh automatically (rate-limit safe) • /serverstats refresh forces an update now • /serverstats remove + setup to change the selection",
+        "setup_success_desc": "The channel names below are **live counters** — they update automatically when members join/leave, boost, or roles/channels change.",
+        "setup_success_title": "📊 Server Stats — live counters created!",
+        "use_hint": "⚡ **/serverstats** — live counter channels.\n\n• `/serverstats setup` — create the counter category + channels (options pick which counters)\n• `/serverstats refresh` — force an immediate update\n• `/serverstats remove` — delete the counters"
       }
     },
     "poll": {
@@ -691,15 +887,54 @@
         "list": "View all polls in this guild",
         "close": "Close a poll + show the final results",
         "close.id": "Poll ID (see /poll list)"
+      },
+      "replies": {
+        "channel_text_only": "❌ Channel must be a text channel (or announcement).",
+        "close_already_closed": "❌ This poll is already closed.",
+        "close_in_progress": "⏳ Poll `{id}` is already being closed — try again in a moment.",
+        "close_not_found": "❌ Poll `{id}` not found.",
+        "close_success": "✅ Poll **{question}** closed! Check the results in the channel.",
+        "close_vanished": "❌ Poll `{id}` no longer exists (just deleted?).",
+        "close_wrong_guild": "❌ This poll doesn't belong to this guild.",
+        "list_empty": "📭 No polls in this guild yet.",
+        "list_header": "Total **{total}** polls.",
+        "list_header_hidden": "Total **{total}** polls (showing the {shown} latest — {hidden} older hidden).",
+        "list_line": "• ❓ **{question}** — {status}\n  🆔 `{id}` | 👥 {options} options | 🗳️ {votes} votes\n  📍 <#{channel_id}> | ⏰ <t:{ts}:R>",
+        "list_title": "📊 POLL LIST",
+        "modal_options_label": "Options (1 per line, min 2, max 10)",
+        "modal_options_placeholder": "Rank Push\nCustom Room\nTournament\nOff",
+        "modal_title": "Create Poll — Enter Options",
+        "question_invalid": "❌ The poll question is required and max 250 characters (got: {len}).",
+        "result_footer": "Poll by {creator} | Closed",
+        "result_line": "{emoji} **{label}** — {votes} votes ({pct}%)\n`{bar}`",
+        "result_status_closed": "🔒 Status: **Closed** <t:{ts}:R>",
+        "result_total": "🗳️ Total votes: **{total}**",
+        "status_active": "🟢 Active",
+        "status_closed": "🔒 Closed",
+        "use_subcommand": "❌ Use a subcommand: `/poll create`, `/poll list`, or `/poll close`."
       }
     },
     "setup-tempvoice": {
       "description": "Set up temp voice — auto-creates a category + panel channel + trigger channel",
-      "options": {}
+      "options": {},
+      "replies": {
+        "old_control_channel_gone": "❌ The old control channel (ID: `{id}`) has been deleted from the server.\n\nRun `/tempvoice-remove` first to clean up the old config, then `/setup-tempvoice` again.",
+        "panel_refresh_failed": "❌ Failed to refresh the panel to {channel}. Check bot permissions (**Send Messages** + **Embed Links**).\n\nThe existing setup was not changed.",
+        "panel_send_failed": "❌ Failed to send the panel to {channel}. Check bot permissions (Send Messages + Embed Links).",
+        "ready": "✅ **Temp Voice is ready!**\n\n📂 **Category:** {category}\n🎤 **Trigger channel:** {channel} (members join here to create a new voice channel)\n🎛️ **Control panel:** {url}\n\n💡 Members just click the **🎤 Create Voice** button on the control panel, or join the trigger channel directly. Once they become an owner, the panel updates automatically to show their channel controls.",
+        "refresh_success": "✅ **Temp voice panel refreshed!**\n\n🎛️ {url}\n\n💡 The existing setup is reused (category + trigger + control channel).",
+        "setup_failed": "❌ Failed to set up temp voice: {error}\n\nMake sure the bot has **Manage Channels** and **Manage Roles** permissions."
+      }
     },
     "tempvoice-remove": {
       "description": "Remove the temp voice setup from the guild (category + all related channels are deleted)",
-      "options": {}
+      "options": {},
+      "replies": {
+        "confirm_button": "⚠️ Yes, Remove Everything",
+        "confirm_message": "🚨 **TEMP VOICE REMOVAL CONFIRMATION**\n\nThis will delete **permanently**:\n• The temp voice category and the control panel message\n• The \"🔊 Create Voice\" trigger channel\n• **{count}** active temp voice channel(s) — everyone inside gets disconnected\n\nThis cannot be undone!\n\nClick a button below:",
+        "not_setup": "ℹ️ Temp voice isn't set up in this guild yet.",
+        "removal_success": "✅ Temp Voice setup successfully removed. The category + control panel + trigger channel + all active temp voice channels were also deleted."
+      }
     },
     "send-message": {
       "description": "Send a plain text message to a text channel (supports \\n & mentions)",
@@ -707,6 +942,18 @@
         "channel": "Target channel (must be a text channel)",
         "message": "Message content (supports \\n for newline). Max 2000 chars.",
         "mention": "Mention: @everyone, @here, or <@&role_id> / <@user_id>"
+      },
+      "replies": {
+        "channel_not_found": "❌ Channel not found in this guild.",
+        "channel_text_only": "❌ Channel must be a **text channel**.\n\nTip: pick a regular text channel from the dropdown — not voice, category, or forum.",
+        "empty": "❌ Message cannot be empty.",
+        "invalid_mention": "❌ Invalid mention format: `{mention}`\n\nSupported formats:\n• `@everyone` or `everyone`\n• `@here` or `here`\n• `<@&ROLE_ID>` (role mention)\n• `<@USER_ID>` (user mention)\n\nTip: to mention a role, type `@rolename` in Discord then copy the result.",
+        "no_send_permission": "❌ The bot lacks the **Send Messages** permission in {channel}.\n\nGrant the permission to the bot or pick another channel.",
+        "preview_truncated": "\n...*(message truncated for preview)*",
+        "send_failed": "❌ Failed to send the message to {channel}: {error}",
+        "sent": "✅ Message sent to {channel}!\n\n📋 **Preview:**\n```\n{preview}\n```",
+        "too_long": "❌ Message is too long ({len} chars, max {max} chars).\n\nTip: split it into 2 messages, or use `/announce` which supports 4096-char descriptions.",
+        "total_too_long": "❌ Total length (mention + message) exceeds {max} chars. Shorten the message or drop the mention."
       }
     },
     "add-responder": {
