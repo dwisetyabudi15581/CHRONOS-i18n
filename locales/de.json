@@ -114,6 +114,18 @@
       "price_header": "💰 PREISLISTE 💰",
       "select_placeholder": "Wähle eine Ticket-Kategorie...",
       "server_fallback": "Server"
+    },
+    "data_errors": {
+      "duplicate_trigger": "Trigger \"{trigger}\" existiert bereits. Nutze zuerst /remove-responder.",
+      "invalid_action": "Ungültige Aktion: {action}",
+      "invalid_trigger": "Ungültiger Trigger (1-50 Zeichen).",
+      "panel_limit_25": "Maximal 25 Rollen pro Panel (Discord-Limit).",
+      "panel_not_found": "Panel nicht gefunden.",
+      "responder_limit_50": "Maximal 50 Responder pro Server.",
+      "role_already_on_panel": "Diese Rolle ist bereits im Panel.",
+      "role_not_on_panel": "Diese Rolle ist nicht im Panel.",
+      "trigger_not_found": "Trigger \"{trigger}\" nicht gefunden.",
+      "word_is_empty": "Das Wort ist leer."
     }
   },
   "bot_commands": {
@@ -2315,5 +2327,24 @@
       "search_button": "🔍 Befehle suchen",
       "select_placeholder": "📂 Befehlskategorie wählen…"
     }
+  },
+  "scheduler": {
+    "announce": {
+      "scheduled_by": "Geplant von {author}"
+    },
+    "giveaway": {
+      "ended_congratulations": "🎊 Glückwunsch an die Gewinner! Der Veranstalter schickt dir eine DM, um den Preis abzuholen.",
+      "ended_desc_head": "🎁 **Preis:** {prize}\n\n🏆 **Gewinner:** {winners}\n👥 **Teilnehmer:** {participants}\n⏰ **Beendet:** <t:{ts_r}:R>\n\n",
+      "ended_no_joiners": "_(Niemand hat an diesem Giveaway teilgenommen)_",
+      "ended_title": "🎉 GIVEAWAY BEENDET!",
+      "join_ended_button": "🎉 Beitreten (Beendet)",
+      "leave_ended_button": "🚪 Verlassen (Beendet)",
+      "no_winners_announce": "📭 Das Giveaway **{prize}** endete ohne Gewinner (keine Teilnehmer).",
+      "reroll_announce": "🎲 **REROLL!** Neuer Gewinner des Giveaways **{prize}**: <@{winner}>!\n\nGlückwunsch! 🎉 Der Veranstalter schickt dir eine DM, um den Preis abzuholen.",
+      "reroll_dm": "🎊 **Glückwunsch! Du hast das Giveaway gewonnen (Reroll)!**\n\nPreis: **{prize}**\nVeranstalter: {host}\nServer: {server}\n\nKontaktiere den Veranstalter, um deinen Preis abzuholen.",
+      "winner_dm": "🎊 **Glückwunsch! Du hast ein Giveaway gewonnen!**\n\nPreis: **{prize}**\nVeranstalter: {host}\nServer: {server}\n\nKontaktiere den Veranstalter, um deinen Preis abzuholen.",
+      "winners_announce": "🎊 **GIVEAWAY-GEWINNER!** 🎊\n\nPreis: **{prize}**\nGewinner: {winners}\n\nGlückwunsch! 🎉"
+    },
+    "role_expired_dm": "⏰ Deine Rolle **{role}** auf dem Server **{server}** wurde entfernt, da alle zugehörigen Keys abgelaufen sind.\n\nWenn du das für einen Fehler hältst, kontaktiere einen Admin."
   }
 }

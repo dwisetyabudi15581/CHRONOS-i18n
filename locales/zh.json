@@ -114,6 +114,18 @@
       "price_header": "💰 价格表 💰",
       "select_placeholder": "请选择工单分类…",
       "server_fallback": "服务器"
+    },
+    "data_errors": {
+      "duplicate_trigger": "触发词“{trigger}”已存在。请先使用 /remove-responder。",
+      "invalid_action": "无效的操作：{action}",
+      "invalid_trigger": "触发词无效（1-50 个字符）。",
+      "panel_limit_25": "每个面板最多 25 个身份组（Discord 限制）。",
+      "panel_not_found": "未找到面板。",
+      "responder_limit_50": "每个服务器最多 50 个自动回复。",
+      "role_already_on_panel": "该身份组已在面板上。",
+      "role_not_on_panel": "该身份组不在面板上。",
+      "trigger_not_found": "未找到触发词“{trigger}”。",
+      "word_is_empty": "词为空。"
     }
   },
   "bot_commands": {
@@ -2315,5 +2327,24 @@
       "search_button": "🔍 搜索命令",
       "select_placeholder": "📂 选择命令分类…"
     }
+  },
+  "scheduler": {
+    "announce": {
+      "scheduled_by": "由 {author} 定时发送"
+    },
+    "giveaway": {
+      "ended_congratulations": "🎊 恭喜各位获胜者！发起人将通过私信与您联系以发放奖品。",
+      "ended_desc_head": "🎁 **奖品：**{prize}\n\n🏆 **获胜者：**{winners}\n👥 **参与者：**{participants}\n⏰ **结束时间：**<t:{ts_r}:R>\n\n",
+      "ended_no_joiners": "_（无人参加本次抽奖）_",
+      "ended_title": "🎉 抽奖已结束！",
+      "join_ended_button": "🎉 参加（已结束）",
+      "leave_ended_button": "🚪 退出（已结束）",
+      "no_winners_announce": "📭 抽奖 **{prize}** 已结束，无人获胜（无参与者）。",
+      "reroll_announce": "🎲 **重新抽取！** 抽奖 **{prize}** 的新获胜者：<@{winner}>！\n\n恭喜！ 🎉 发起人将通过私信与您联系以发放奖品。",
+      "reroll_dm": "🎊 **恭喜！您赢得了本次抽奖（重新抽取）！**\n\n奖品：**{prize}**\n发起人：{host}\n服务器：{server}\n\n请联系发起人领取您的奖品。",
+      "winner_dm": "🎊 **恭喜！您赢得了抽奖！**\n\n奖品：**{prize}**\n发起人：{host}\n服务器：{server}\n\n请联系发起人领取您的奖品。",
+      "winners_announce": "🎊 **抽奖获胜者！** 🎊\n\n奖品：**{prize}**\n获胜者：{winners}\n\n恭喜！ 🎉"
+    },
+    "role_expired_dm": "⏰ 您在服务器 **{server}** 上的身份组 **{role}** 已被移除，因为其所有密钥均已过期。\n\n如果您认为这是误操作，请联系管理员。"
   }
 }

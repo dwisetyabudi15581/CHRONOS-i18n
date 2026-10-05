@@ -114,6 +114,18 @@
       "price_header": "💰 PRICE LIST 💰",
       "select_placeholder": "Select a ticket category...",
       "server_fallback": "Server"
+    },
+    "data_errors": {
+      "duplicate_trigger": "Trigger \"{trigger}\" already exists. Use /remove-responder first.",
+      "invalid_action": "Invalid action: {action}",
+      "invalid_trigger": "Invalid trigger (1-50 chars).",
+      "panel_limit_25": "Maximum 25 roles per panel (Discord limit).",
+      "panel_not_found": "Panel not found.",
+      "responder_limit_50": "Maximum 50 responders per guild.",
+      "role_already_on_panel": "This role is already on the panel.",
+      "role_not_on_panel": "This role is not on the panel.",
+      "trigger_not_found": "Trigger \"{trigger}\" not found.",
+      "word_is_empty": "Word is empty."
     }
   },
   "bot_commands": {
@@ -2343,5 +2355,24 @@
       "search_button": "🔍 Search Commands",
       "select_placeholder": "📂 Pick a command category…"
     }
+  },
+  "scheduler": {
+    "announce": {
+      "scheduled_by": "Scheduled by {author}"
+    },
+    "giveaway": {
+      "ended_congratulations": "🎊 Congratulations to the winners! The host will DM you to claim the prize.",
+      "ended_desc_head": "🎁 **Prize:** {prize}\n\n🏆 **Winners:** {winners}\n👥 **Participants:** {participants}\n⏰ **Ended:** <t:{ts_r}:R>\n\n",
+      "ended_no_joiners": "_(No one joined this giveaway)_",
+      "ended_title": "🎉 GIVEAWAY ENDED!",
+      "join_ended_button": "🎉 Join (Ended)",
+      "leave_ended_button": "🚪 Leave (Ended)",
+      "no_winners_announce": "📭 Giveaway **{prize}** ended with no winners (no participants).",
+      "reroll_announce": "🎲 **REROLL!** New winner for giveaway **{prize}**: <@{winner}>!\n\nCongratulations! 🎉 The host will DM you to claim the prize.",
+      "reroll_dm": "🎊 **Congratulations! You won the giveaway (reroll)!**\n\nPrize: **{prize}**\nHost: {host}\nServer: {server}\n\nContact the host to claim your prize.",
+      "winner_dm": "🎊 **Congratulations! You won a giveaway!**\n\nPrize: **{prize}**\nHost: {host}\nServer: {server}\n\nContact the host to claim your prize.",
+      "winners_announce": "🎊 **GIVEAWAY WINNERS!** 🎊\n\nPrize: **{prize}**\nWinners: {winners}\n\nCongratulations! 🎉"
+    },
+    "role_expired_dm": "⏰ Your role **{role}** on server **{server}** has been removed because all of its keys have expired.\n\nIf you think this is a mistake, contact an admin."
   }
 }

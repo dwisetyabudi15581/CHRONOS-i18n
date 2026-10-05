@@ -114,6 +114,18 @@
       "price_header": "💰 قائمة الأسعار 💰",
       "select_placeholder": "اختر فئة التذكرة...",
       "server_fallback": "السيرفر"
+    },
+    "data_errors": {
+      "duplicate_trigger": "المُشغِّل \"{trigger}\" موجود بالفعل. استخدم /remove-responder أولاً.",
+      "invalid_action": "إجراء غير صالح: {action}",
+      "invalid_trigger": "مُشغِّل غير صالح (1-50 حرفًا).",
+      "panel_limit_25": "الحد الأقصى 25 رتبة لكل لوحة (حد Discord).",
+      "panel_not_found": "لم يتم العثور على اللوحة.",
+      "responder_limit_50": "الحد الأقصى 50 ردًا تلقائيًا لكل سيرفر.",
+      "role_already_on_panel": "هذه الرتبة موجودة بالفعل في اللوحة.",
+      "role_not_on_panel": "هذه الرتبة ليست في اللوحة.",
+      "trigger_not_found": "لم يتم العثور على المُشغِّل \"{trigger}\".",
+      "word_is_empty": "الكلمة فارغة."
     }
   },
   "bot_commands": {
@@ -2315,5 +2327,24 @@
       "search_button": "🔍 البحث عن الأوامر",
       "select_placeholder": "📂 اختر فئة أوامر…"
     }
+  },
+  "scheduler": {
+    "announce": {
+      "scheduled_by": "جدوله {author}"
+    },
+    "giveaway": {
+      "ended_congratulations": "🎊 تهانينا للفائزين! سيراسلك المضيف عبر رسالة خاصة لاستلام الجائزة.",
+      "ended_desc_head": "🎁 **الجائزة:** {prize}\n\n🏆 **الفائزون:** {winners}\n👥 **المشاركون:** {participants}\n⏰ **انتهى:** <t:{ts_r}:R>\n\n",
+      "ended_no_joiners": "_(لم يشارك أحد في هذا السحب)_",
+      "ended_title": "🎉 انتهى السحب!",
+      "join_ended_button": "🎉 انضم (انتهى)",
+      "leave_ended_button": "🚪 مغادرة (انتهى)",
+      "no_winners_announce": "📭 انتهى السحب **{prize}** دون فائزين (لا يوجد مشاركون).",
+      "reroll_announce": "🎲 **إعادة سحب!** الفائز الجديد في السحب **{prize}**: <@{winner}>!\n\nتهانينا! 🎉 سيراسلك المضيف عبر رسالة خاصة لاستلام الجائزة.",
+      "reroll_dm": "🎊 **تهانينا! لقد فزت بالسحب (إعادة سحب)!**\n\nالجائزة: **{prize}**\nالمضيف: {host}\nالسيرفر: {server}\n\nتواصل مع المضيف لاستلام جائزتك.",
+      "winner_dm": "🎊 **تهانينا! لقد فزت بالسحب!**\n\nالجائزة: **{prize}**\nالمضيف: {host}\nالسيرفر: {server}\n\nتواصل مع المضيف لاستلام جائزتك.",
+      "winners_announce": "🎊 **فائزو السحب!** 🎊\n\nالجائزة: **{prize}**\nالفائزون: {winners}\n\nتهانينا! 🎉"
+    },
+    "role_expired_dm": "⏰ تمت إزالة الرتبة **{role}** الخاصة بك في السيرفر **{server}** لأن جميع مفاتيحها قد انتهت صلاحيتها.\n\nإذا كنت تعتقد أن هذا خطأ، تواصل مع أحد المشرفين."
   }
 }

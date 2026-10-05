@@ -114,6 +114,18 @@
       "price_header": "💰 DAFTAR HARGA 💰",
       "select_placeholder": "Pilih kategori ticket...",
       "server_fallback": "Server"
+    },
+    "data_errors": {
+      "duplicate_trigger": "Trigger \"{trigger}\" sudah ada. Gunakan /remove-responder terlebih dahulu.",
+      "invalid_action": "Aksi tidak valid: {action}",
+      "invalid_trigger": "Trigger tidak valid (1-50 karakter).",
+      "panel_limit_25": "Maksimal 25 role per panel (batas Discord).",
+      "panel_not_found": "Panel tidak ditemukan.",
+      "responder_limit_50": "Maksimal 50 responder per server.",
+      "role_already_on_panel": "Role ini sudah ada di panel.",
+      "role_not_on_panel": "Role ini tidak ada di panel.",
+      "trigger_not_found": "Trigger \"{trigger}\" tidak ditemukan.",
+      "word_is_empty": "Kata kosong."
     }
   },
   "bot_commands": {
@@ -2315,5 +2327,24 @@
       "search_button": "🔍 Cari Perintah",
       "select_placeholder": "📂 Pilih kategori command…"
     }
+  },
+  "scheduler": {
+    "announce": {
+      "scheduled_by": "Dijadwalkan oleh {author}"
+    },
+    "giveaway": {
+      "ended_congratulations": "🎊 Selamat kepada para pemenang! Host akan DM Anda untuk mengklaim hadiah.",
+      "ended_desc_head": "🎁 **Hadiah:** {prize}\n\n🏆 **Pemenang:** {winners}\n👥 **Peserta:** {participants}\n⏰ **Berakhir:** <t:{ts_r}:R>\n\n",
+      "ended_no_joiners": "_(Tidak ada yang ikut giveaway ini)_",
+      "ended_title": "🎉 GIVEAWAY BERAKHIR!",
+      "join_ended_button": "🎉 Ikut (Berakhir)",
+      "leave_ended_button": "🚪 Keluar (Berakhir)",
+      "no_winners_announce": "📭 Giveaway **{prize}** berakhir tanpa pemenang (tidak ada peserta).",
+      "reroll_announce": "🎲 **REROLL!** Pemenang baru untuk giveaway **{prize}**: <@{winner}>!\n\nSelamat! 🎉 Host akan DM Anda untuk mengklaim hadiah.",
+      "reroll_dm": "🎊 **Selamat! Anda memenangkan giveaway (reroll)!**\n\nHadiah: **{prize}**\nHost: {host}\nServer: {server}\n\nHubungi host untuk mengklaim hadiah Anda.",
+      "winner_dm": "🎊 **Selamat! Anda memenangkan giveaway!**\n\nHadiah: **{prize}**\nHost: {host}\nServer: {server}\n\nHubungi host untuk mengklaim hadiah Anda.",
+      "winners_announce": "🎊 **PEMENANG GIVEAWAY!** 🎊\n\nHadiah: **{prize}**\nPemenang: {winners}\n\nSelamat! 🎉"
+    },
+    "role_expired_dm": "⏰ Role **{role}** Anda di server **{server}** telah dicabut karena semua key-nya sudah kedaluwarsa.\n\nJika menurut Anda ini keliru, hubungi admin."
   }
 }

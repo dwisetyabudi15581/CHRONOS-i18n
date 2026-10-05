@@ -114,6 +114,18 @@
       "price_header": "💰 LISTA DE PRECIOS 💰",
       "select_placeholder": "Selecciona una categoría de ticket...",
       "server_fallback": "Servidor"
+    },
+    "data_errors": {
+      "duplicate_trigger": "El trigger \"{trigger}\" ya existe. Usa /remove-responder primero.",
+      "invalid_action": "Acción no válida: {action}",
+      "invalid_trigger": "Trigger no válido (1-50 caracteres).",
+      "panel_limit_25": "Máximo 25 roles por panel (límite de Discord).",
+      "panel_not_found": "Panel no encontrado.",
+      "responder_limit_50": "Máximo 50 responders por servidor.",
+      "role_already_on_panel": "Este rol ya está en el panel.",
+      "role_not_on_panel": "Este rol no está en el panel.",
+      "trigger_not_found": "Trigger \"{trigger}\" no encontrado.",
+      "word_is_empty": "La palabra está vacía."
     }
   },
   "bot_commands": {
@@ -2315,5 +2327,24 @@
       "search_button": "🔍 Buscar comandos",
       "select_placeholder": "📂 Elige una categoría de comandos…"
     }
+  },
+  "scheduler": {
+    "announce": {
+      "scheduled_by": "Programado por {author}"
+    },
+    "giveaway": {
+      "ended_congratulations": "🎊 ¡Felicidades a los ganadores! El anfitrión te enviará un DM para reclamar el premio.",
+      "ended_desc_head": "🎁 **Premio:** {prize}\n\n🏆 **Ganadores:** {winners}\n👥 **Participantes:** {participants}\n⏰ **Terminó:** <t:{ts_r}:R>\n\n",
+      "ended_no_joiners": "_(Nadie participó en este sorteo)_",
+      "ended_title": "🎉 ¡SORTEO FINALIZADO!",
+      "join_ended_button": "🎉 Unirse (Finalizado)",
+      "leave_ended_button": "🚪 Salir (Finalizado)",
+      "no_winners_announce": "📭 El sorteo **{prize}** terminó sin ganadores (sin participantes).",
+      "reroll_announce": "🎲 **¡REROLL!** Nuevo ganador del sorteo **{prize}**: <@{winner}>!\n\n¡Felicidades! 🎉 El anfitrión te enviará un DM para reclamar el premio.",
+      "reroll_dm": "🎊 **¡Felicidades! ¡Ganaste el sorteo (reroll)!**\n\nPremio: **{prize}**\nAnfitrión: {host}\nServidor: {server}\n\nContacta al anfitrión para reclamar tu premio.",
+      "winner_dm": "🎊 **¡Felicidades! ¡Ganaste un sorteo!**\n\nPremio: **{prize}**\nAnfitrión: {host}\nServidor: {server}\n\nContacta al anfitrión para reclamar tu premio.",
+      "winners_announce": "🎊 **¡GANADORES DEL SORTEO!** 🎊\n\nPremio: **{prize}**\nGanadores: {winners}\n\n¡Felicidades! 🎉"
+    },
+    "role_expired_dm": "⏰ Tu rol **{role}** en el servidor **{server}** ha sido eliminado porque todas sus claves han caducado.\n\nSi crees que esto es un error, contacta a un administrador."
   }
 }
