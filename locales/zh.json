@@ -2329,7 +2329,12 @@
       "group_automation": "自动化",
       "group_economy": "经济",
       "group_insights": "洞察",
-      "group_tools": "工具"
+      "group_tools": "工具",
+      "open_menu": "打开功能菜单",
+      "search_placeholder": "搜索功能…",
+      "no_results": "没有匹配“{query}”的功能",
+      "close": "关闭",
+      "all_features": "所有功能"
     }
   },
   "interactions": {

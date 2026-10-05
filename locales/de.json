@@ -2329,7 +2329,12 @@
       "group_automation": "Automatisierung",
       "group_economy": "Wirtschaft",
       "group_insights": "Einblicke",
-      "group_tools": "Werkzeuge"
+      "group_tools": "Werkzeuge",
+      "open_menu": "Feature-Menü öffnen",
+      "search_placeholder": "Funktionen suchen…",
+      "no_results": "Keine Funktionen passen zu „{query}“",
+      "close": "Schließen",
+      "all_features": "Alle Funktionen"
     }
   },
   "interactions": {

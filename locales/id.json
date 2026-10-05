@@ -2329,7 +2329,12 @@
       "group_automation": "Otomasi",
       "group_economy": "Ekonomi",
       "group_insights": "Wawasan",
-      "group_tools": "Alat"
+      "group_tools": "Alat",
+      "open_menu": "Buka menu fitur",
+      "search_placeholder": "Cari fitur…",
+      "no_results": "Tidak ada fitur yang cocok dengan “{query}”",
+      "close": "Tutup",
+      "all_features": "Semua fitur"
     }
   },
   "interactions": {

@@ -2357,7 +2357,12 @@
       "group_automation": "Automation",
       "group_economy": "Economy",
       "group_insights": "Insights",
-      "group_tools": "Tools"
+      "group_tools": "Tools",
+      "open_menu": "Open feature menu",
+      "search_placeholder": "Search features…",
+      "no_results": "No features match “{query}”",
+      "close": "Close",
+      "all_features": "All features"
     }
   },
   "interactions": {

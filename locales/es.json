@@ -2329,7 +2329,12 @@
       "group_automation": "Automatización",
       "group_economy": "Economía",
       "group_insights": "Análisis",
-      "group_tools": "Herramientas"
+      "group_tools": "Herramientas",
+      "open_menu": "Abrir menú de funciones",
+      "search_placeholder": "Buscar funciones…",
+      "no_results": "Ninguna función coincide con “{query}”",
+      "close": "Cerrar",
+      "all_features": "Todas las funciones"
     }
   },
   "interactions": {
