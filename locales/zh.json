@@ -83,7 +83,38 @@
       "everyone_invalid": "❌ @everyone 不能用作自动角色。",
       "managed": "❌ **{name}** 是托管角色（机器人/集成/助力角色）——无法手动授予。"
     },
-    "style_invalid": "❌ `style` 无效。"
+    "style_invalid": "❌ `style` 无效。",
+    "automod": {
+      "more_suffix": "\n…还有 {count} 个",
+      "none_listed": "_（无）_"
+    },
+    "automod_action": {
+      "delete_only": "仅删除",
+      "global": "（全局）",
+      "kick": "踢出",
+      "mute_10m": "禁言 10 分钟",
+      "mute_1h": "禁言 1 小时",
+      "warn": "警告（私信）"
+    },
+    "ticket_panel": {
+      "desc_escrow": "三方担保交易",
+      "desc_support": "客服 / 直接开设工单",
+      "desc_transaction": "交易——{count} 个商品（{keyInfo}）",
+      "empty_hint_normal": "若本就打算作为快捷操作，则属正常。",
+      "empty_hint_sales": "如果这是销售分类，请先添加商品：`/add-product category:{id} requires_key:false`",
+      "empty_key_missing": "⚠️ **{label}**（`{id}`）——已设置为*使用密钥*但还没有商品。点击其按钮会开启**客服**工单（而非交易）。请添加商品：`/add-product category:{id} requires_key:true`",
+      "empty_no_products": "ℹ️ **{label}**（`{id}`）——没有商品，点击其按钮会直接开启**客服**工单。{hint}",
+      "empty_warn_header": "\n\n🔮 **没有商品的分类**（点击 = 立即开启客服工单）：\n{lines}",
+      "key_mixed": "{without} 个免密钥 / {with} 个含密钥",
+      "key_with": "含密钥",
+      "key_without": "免密钥",
+      "no_categories": "暂无分类",
+      "no_products": "_（暂无商品——使用 `/add-product`）_",
+      "no_products_cat": "_（该分类暂无商品）_",
+      "price_header": "💰 价格表 💰",
+      "select_placeholder": "请选择工单分类…",
+      "server_fallback": "服务器"
+    }
   },
   "bot_commands": {
     "help": {
@@ -93,16 +124,42 @@
       }
     },
     "setup-verify": {
-      "description": "设置验证面板"
+      "description": "设置验证面板",
+      "replies": {
+        "button_default": "验证我",
+        "installed": "✅ 验证面板已安装！",
+        "send_failed": "❌ 发送验证面板失败：{error}\n\n请确保机器人在此频道拥有**发送消息**和**嵌入链接**权限。",
+        "verified_missing": "❌ 尚未设置 Verified（已验证）身份组。请先使用 `/set-role verified @身份组`。"
+      }
     },
     "setup-ticket": {
-      "description": "设置工单面板和价目表"
+      "description": "设置工单面板和价目表",
+      "replies": {
+        "admin_missing": "❌ 尚未设置 Admin 身份组。安装工单面板前请先使用 `/set-role admin @身份组`。",
+        "body_too_long": "❌ 工单正文在展开 {price_list} 后过长：**{length}/{max}** 字符。\n\n💡 请缩短工单正文（`/set-message ticketBody`）、减少商品数量，或使用 `{price_list:<category>}` 只显示特定分类。",
+        "fallback_buy": "购买密钥 / 交易",
+        "fallback_help": "求助",
+        "fallback_report": "举报",
+        "installed": "✅ 工单面板已安装！（{count} 个活跃分类）",
+        "no_categories": "_（暂无分类）_",
+        "no_products": "_（暂无商品）_",
+        "no_products_hint": "_（暂无商品——使用 `/add-product`）_",
+        "price_header": "💰 价格表 💰",
+        "send_failed": "❌ 发送工单面板失败：{error}\n\n请确保机器人在此频道拥有**发送消息**和**嵌入链接**权限。",
+        "title_too_long": "❌ 工单标题过长（{length} 字符，上限 {max}）。请通过 `/set-message ticketTitle` 缩短。"
+      }
     },
     "set-role": {
       "description": "设置身份组（verified / unverified / admin / midman / booster）",
       "options": {
         "tipe": "选择身份组类型",
         "role": "要使用的身份组"
+      },
+      "replies": {
+        "booster_applied": "\n🚀 当前正在助推（boost）的 {count} 位成员已立即获得该身份组。从现在起全自动：开始助推时授予身份组，助推结束时移除。",
+        "booster_failed": "\n⚠️ 身份组已保存，但应用到现有助推者时失败：{error}",
+        "booster_none": "\nℹ️ 目前没有人正在助推——当有人开始助推时将自动授予该身份组，助推结束时移除。",
+        "success": "✅ **{tipe}** 身份组已设置为 {role}（`{id}`）"
       }
     },
     "set-channel": {
@@ -110,12 +167,28 @@
       "options": {
         "tipe": "选择频道类型",
         "channel": "要使用的文字频道"
+      },
+      "replies": {
+        "success": "✅ **{tipe}** 频道已设置为 {channel}（`{id}`）",
+        "text_only": "❌ 该频道必须是文字频道。",
+        "transcript_tip": "\n\n💡 每个被关闭的工单都会自动将其聊天记录保存到此频道作为交易凭证。"
       }
     },
     "test-welcome": {
       "description": "诊断并预览欢迎/欢送 embed（找出不显示的原因）",
       "options": {
         "tipe": "要测试哪一个"
+      },
+      "replies": {
+        "channel_not_found": "❌ **{tipe} 频道：未找到**（ID `{id}`）——已被删除，或该 ID 属于其他服务器 → 请用 `/set-channel {tipe} #频道` 重新设置",
+        "channel_not_set": "❌ **{tipe} 频道：未设置** → 请用 `/set-channel {tipe} #频道` 修复",
+        "channel_ok": "✅ **{tipe} 频道：**{channel}（`{id}`）",
+        "events_active": "ℹ️ 成员加入/离开事件：✅ 已启用（机器人凭借 GuildMembers intent 在线）",
+        "perms_fix": "→ 修复方法：服务器设置 → 该频道 → 添加机器人 → 开启**发送消息** + **嵌入链接**",
+        "perms_line": "{view} 查看频道 · {send} 发送消息 · {embed} 嵌入链接（机器人在该频道的权限）",
+        "preview_failed": "⚠️ 预览无法发送到此频道：{error}\n请也检查机器人在此处的“发送消息 + 嵌入链接”权限——{tipe} 频道很可能存在同样的问题。",
+        "preview_sent": "🧪 预览已发送到**本频道**——真正的 {tipe} 会发送到 {channel}。预览使用您自己的数据作为“新成员”。",
+        "channel_unset_fallback": "您设置的频道"
       }
     },
     "set-message": {
@@ -123,6 +196,13 @@
       "options": {
         "tipe": "选择要编辑的消息",
         "teks": "新文本（支持 \\n 换行）。可用变量 {user} {username} {server} {count} {action}"
+      },
+      "replies": {
+        "limit_body": "正文（上限 4096）",
+        "limit_title": "标题（上限 256）",
+        "preview_truncated": "\n… （预览已截断——共 {length} 字符）",
+        "success": "✅ **{tipe}** 消息已更新。\n\n预览：\n```\n{preview}\n```\n可用变量：`{user}` `{username}` `{server}` `{count}` `{action}`",
+        "too_long": "❌ **{tipe}** 的文本过长。\n\n📏 长度：**{length}** 字符\n🎯 上限：**{limit}** 字符（{label}）\n💡 还需再删减 {more} 字符。"
       }
     },
     "set-verify-button": {
@@ -131,6 +211,10 @@
         "label": "按钮文字（最多 80 字符）",
         "emoji": "按钮表情（unicode 或自定义 <:name:id>）",
         "style": "按钮颜色"
+      },
+      "replies": {
+        "style_invalid_choices": "❌ 无效的 `style`。可选：Primary、Secondary、Success、Danger。",
+        "updated": "✅ 验证按钮已更新！\n\n**预览：**"
       }
     },
     "add-category": {
@@ -197,21 +281,59 @@
         "footer": "页脚文字。留空 = 使用机器人名称",
         "channel": "目标频道（默认：当前频道）。必须是文字频道",
         "use_dropdown": "TRUE = 使用下拉选择菜单（默认：FALSE = 按钮）"
+      },
+      "replies": {
+        "build_failed": "❌ 构建面板失败：{error}",
+        "installed": "✅ 工单面板已安装到 {channel}！\n\n🆔 面板 ID：`{id}`（请保存，供 /update-panel、/delete-panel、/refresh-panel 使用）\n🎫 分类：{categories}（{count}）\n🎨 布局：{layout}",
+        "layout_buttons": "按钮",
+        "layout_dropdown": "下拉选择菜单",
+        "missing_ids": "\n\n⚠️ 未找到的分类 ID（已忽略）：`{ids}`",
+        "must_be_text": "❌ 目标频道必须是文字频道。",
+        "no_categories_cmd": "❌ 还没有分类。请先用 `/add-category` 添加，或使用 `/setup-ticket` 采用默认值。",
+        "no_match": "❌ 没有匹配的分类：`{filter}`。使用 /list-categories 查看列表。",
+        "send_failed": "❌ 向 {channel} 发送工单面板失败：{error}\n\n请确保机器人在该频道拥有**发送消息**和**嵌入链接**权限。"
       }
     },
     "list-panels": {
-      "description": "查看本服务器所有持久化工单面板"
+      "description": "查看本服务器所有持久化工单面板",
+      "replies": {
+        "channel_missing": "_（频道缺失）_",
+        "default_title": "_（默认标题）_",
+        "footer": "{count} 个活跃面板 • 使用 ID 配合 /delete-panel、/update-panel、/refresh-panel",
+        "line": "`{n}.` 🆔 `{id}`\n   {title} —— 位于 {channel}\n   🎫 {cats} 个分类 • 🎨 {layout} • 📅 {date}",
+        "more": "\n\n… 还有 {count} 个面板未显示",
+        "none": "📭 本服务器还没有持久化工单面板。\n\n💡 使用 `/setup-ticket-panel` 创建一个——它会自动列在这里。",
+        "title": "🎫 工单面板列表"
+      }
     },
     "delete-panel": {
       "description": "按 ID 删除工单面板（自动删除消息 + 元数据）",
       "options": {
         "id": "面板 ID（见 /list-panels）"
+      },
+      "replies": {
+        "deleted": "✅ 面板 `{id}` 已删除。\n\n{status}",
+        "meta_failed": "❌ 删除面板元数据 `{id}` 失败。它可能已被删除。",
+        "not_found": "❌ 未找到面板 `{id}`。使用 /list-panels 查看列表。",
+        "other_server": "❌ 此面板属于其他服务器。无法删除。",
+        "status_meta_only": "✅ 面板元数据已清理。",
+        "status_msg_deleted": "✅ 面板消息已从频道删除，元数据已清理。",
+        "status_msg_gone": "ℹ️ 面板消息已不在频道中（可能被手动删除）。元数据已清理。"
       }
     },
     "refresh-panel": {
       "description": "用最新的分类/商品重新渲染面板（无需重新设置）",
       "options": {
         "id": "面板 ID（见 /list-panels）"
+      },
+      "replies": {
+        "channel_gone": "❌ 频道 <#{id}> 已不存在。请删除面板后重新设置。",
+        "edit_failed": "❌ 编辑面板消息失败：{error}",
+        "message_gone": "❌ 面板消息已不在频道中。请删除面板后重新设置。",
+        "no_message_ref": "❌ 此面板没有消息引用（可能已损坏）。请删除后重新设置。",
+        "other_server": "❌ 此面板属于其他服务器。",
+        "rebuild_failed": "❌ 重新构建面板失败：{error}",
+        "refreshed": "✅ 面板 `{id}` 已刷新！\n\n📬 位置：{channel}\n🎨 布局：{layout}\n🎫 分类：{count} 个活跃"
       }
     },
     "update-panel": {
@@ -219,12 +341,55 @@
       "options": {
         "id": "面板 ID（见 /list-panels）",
         "field": "要编辑的字段"
+      },
+      "fields": {
+        "body": "面板正文（留空 = 全局；支持模板）",
+        "color": "十六进制颜色（如 #ff5733，留空 = 默认橙色）",
+        "footer": "页脚文本（留空 = 使用机器人名称）",
+        "image": "大图 URL（留空 = 无图片）",
+        "thumbnail": "小缩略图 URL（留空 = 无缩略图）",
+        "title": "面板标题（留空 = 使用全局）"
+      },
+      "modal": {
+        "admin_check_failed": "❌ 无法验证您的管理员权限（Discord 缓存错误）——请重试。",
+        "bad_customid": "❌ 无效的弹窗 customId 格式。",
+        "channel_not_found": "\n\n⚠️ 未找到面板频道。元数据仍已更新。",
+        "msg_not_found": "\n\n⚠️ 未找到面板消息（可能已被删除）。元数据仍已更新。",
+        "no_admin": "❌ 您没有编辑面板的管理员权限。",
+        "not_found": "❌ 未找到面板 `{id}`（可能已被删除）。",
+        "refresh_failed": "\n\n⚠️ 刷新消息失败：{error}（元数据仍已更新）。",
+        "refreshed": "\n\n✅ 面板消息已刷新。",
+        "text_too_long": "❌ 文本过长（{length} > {max} 字符）。",
+        "update_failed": "❌ 更新面板失败。",
+        "updated": "✅ 面板 `{id}` 的字段 `{field}` 已更新！{rendered}",
+        "url_invalid": "❌ 无效的 {field} URL。必须为 http(s)://…",
+        "url_too_long": "❌ {field} URL 过长（{length} 字符，上限 2048——Discord 嵌入限制）。请使用更短的链接。"
+      },
+      "replies": {
+        "invalid_field": "❌ 无效的字段 `{field}`。",
+        "modal_title": "编辑 {field} —— {id}…"
       }
     },
     "edit-message": {
       "description": "通过模态框编辑 embed 消息文本（多行，比 /set-message 更灵活）",
       "options": {
         "tipe": "选择要编辑的消息"
+      },
+      "modal": {
+        "admin_check_failed": "❌ 无法验证您的管理员权限（Discord 缓存错误）——请重试。",
+        "empty": "❌ 文本不能为空。",
+        "invalid_type": "❌ 无效的消息类型 `{tipe}`。",
+        "kind_body": "正文",
+        "kind_title": "标题",
+        "no_admin": "❌ 您没有编辑消息的管理员权限。",
+        "preview_truncated": "\n…（预览已截断）",
+        "save_failed": "❌ 保存更改失败：{error}",
+        "success": "✅ **{tipe}** 消息已通过弹窗编辑器更新。\n\n**预览：**\n```\n{preview}\n```",
+        "too_long": "❌ 文本过长（{length} 字符，{kind} 上限 {max} 字符）。"
+      },
+      "replies": {
+        "input_label": "{tipe} 文本（最多 {max} 字符）",
+        "modal_title": "编辑 {tipe}"
       }
     },
     "add-product": {
@@ -281,12 +446,72 @@
       }
     },
     "config-show": {
-      "description": "查看机器人当前的全部配置"
+      "description": "查看机器人当前的全部配置",
+      "replies": {
+        "channel_audit_log": "审计日志",
+        "channel_goodbye": "告别",
+        "channel_invoice": "订单",
+        "channel_server_booster": "服务器助推",
+        "channel_server_log": "服务器日志",
+        "channel_transcript": "工单记录",
+        "channel_welcome": "欢迎",
+        "days_count": "{count} 天",
+        "days_permanent": "♾️ 永久",
+        "escrow_fee_flat": "• 手续费：每笔交易固定 {value}",
+        "escrow_fee_percent": "• 手续费：成交价的 {value}%",
+        "escrow_view_deals": "• 查看进行中的交易：`/midman-deals`",
+        "field_channels": "📢 频道",
+        "field_escrow": "🤝 担保交易",
+        "field_keys": "🔑 VIP 密钥（密钥驱动模式）",
+        "field_panels": "🎭 自选身份组面板（{count}）",
+        "field_products": "📦 商品（{count}）",
+        "field_roles": "🎭 身份组",
+        "field_schedules": "⏰ 定时身份组移除",
+        "field_sessions": "🛠️ 嵌入构建器会话",
+        "keys_active": "• 活跃：**{count}**",
+        "keys_expired": "• ⚠️ 已过期（等待调度器清理）：**{count}**",
+        "keys_expired_zero": "• 已过期：**0** ✅",
+        "keys_incl_permanent": "（其中 {count} 个永久）",
+        "keys_total": "• 已存储密钥总数：**{count}**",
+        "more_panels": "\n… 还有 {count} 个面板",
+        "more_products": "\n\n… 还有 {count} 个商品——使用 /list-products",
+        "no_panels": "_（暂无面板——使用 `/setup-selfrole`）_",
+        "no_products": "_（暂无商品——使用 `/add-product`）_",
+        "no_session": "_（暂无活跃会话——使用 `/embed-builder` 开始）_",
+        "not_set": "❌ 尚未设置",
+        "panel_exclusive": "🔒 互斥",
+        "panel_line": "  • **{title}** — {type} | {mode} | {count} 个身份组",
+        "panel_multi": "✅ 多选",
+        "panel_type_button": "🔘 按钮",
+        "panel_type_select": "📋 选择菜单",
+        "panels_registered": "本服务器已注册 {count} 个面板：\n",
+        "product_line": "• **{label}**（`{value}`）— {price}\n  → 身份组：{role} | 时长：{days}",
+        "role_admin": "Admin",
+        "role_booster": "Booster（自动）",
+        "role_midman": "Midman（担保交易）",
+        "role_not_mapped": "❌ 尚未映射",
+        "role_unverified": "Unverified（未验证）",
+        "role_verified": "Verified（已验证）",
+        "sched_left_dh": "剩余 {days} 天 {hours} 小时",
+        "sched_left_h": "剩余 {hours} 小时",
+        "sched_loop": "• 调度器循环：每 60 秒",
+        "sched_next": "• 下次执行：**{value}**",
+        "sched_next_loop": "将在下一轮循环执行",
+        "sched_total": "• 活跃计划总数：**{count}**",
+        "session_active": "**{count} 个活跃会话**（属于您）——使用 `/embed-list` 查看详情",
+        "subtitle": "以下是机器人当前配置（v3.1 —— 密钥驱动的 VIP + 自选身份组 + 嵌入构建器）：",
+        "title": "⚙️ 机器人配置",
+        "truncated_note": "\n… （已截断——Discord 字段上限 1024 字符）"
+      }
     },
     "remove-role": {
       "description": "从配置中移除身份组（verified / unverified / admin / midman / booster）",
       "options": {
         "tipe": "选择要移除的身份组类型"
+      },
+      "replies": {
+        "not_set": "ℹ️ **{tipe}** 身份组本就未设置——无需移除。",
+        "removed": "✅ **{tipe}** 身份组已从配置中移除。\n\n💡 如需重新设置，请使用：`/set-role {tipe} @身份组`"
       }
     },
     "set-midman-fee": {
@@ -318,19 +543,45 @@
       "description": "从配置中移除频道（invoice / welcome / goodbye / audit-log / server-log / transcript）",
       "options": {
         "tipe": "选择要移除的频道类型"
+      },
+      "replies": {
+        "not_set": "ℹ️ **{tipe}** 频道本就未设置——无需移除。",
+        "removed": "✅ **{tipe}** 频道已从配置中移除。\n\n💡 如需重新设置，请使用：`/set-channel {tipe} #频道`"
       }
     },
     "list-messages": {
-      "description": "查看当前所有 embed 消息文本"
+      "description": "查看当前所有 embed 消息文本",
+      "replies": {
+        "empty": "（空）",
+        "label_goodbye_body": "👋 告别正文",
+        "label_goodbye_title": "👋 告别标题",
+        "label_ticket_body": "🎫 工单正文",
+        "label_ticket_price_header": "🎫 工单价格表头",
+        "label_ticket_title": "🎫 工单标题",
+        "label_verify_body": "✅ 验证正文",
+        "label_verify_title": "✅ 验证标题",
+        "label_welcome_body": "👋 欢迎正文",
+        "label_welcome_title": "👋 欢迎标题",
+        "subtitle": "以下是当前所有消息文本。使用 `/set-message` 进行修改，`/reset-message` 恢复默认。",
+        "title": "📝 嵌入消息列表"
+      }
     },
     "reset-message": {
       "description": "将 embed 消息文本重置为默认值",
       "options": {
         "tipe": "选择要重置的消息（或 ALL 全部重置）"
+      },
+      "replies": {
+        "all": "✅ **所有消息**已重置为默认值。",
+        "one": "✅ **{tipe}** 消息已重置为默认值。\n\n**之前：**\n```\n{before}\n```\n**现在：**\n```\n{after}\n```"
       }
     },
     "reset-config": {
-      "description": "⚠️ 删除所有设置（身份组、频道、消息）- 无法撤销！"
+      "description": "⚠️ 删除所有设置（身份组、频道、消息）- 无法撤销！",
+      "replies": {
+        "confirm_btn": "⚠️ 确认全部重置",
+        "confirm_msg": "🚨 **重置配置确认**\n\n警告：这将删除**所有**设置（身份组、频道、商品、消息）。\n此操作无法撤销！\n\n点击下方按钮确认："
+      }
     },
     "set-product-role": {
       "description": "为特定商品设置身份组和自动过期时长",
@@ -1176,15 +1427,54 @@
         "word_action": "词语过滤的处罚",
         "max_mentions": "每条消息的最大提及数（默认：5）",
         "mention_action": "大量提及的处罚"
+      },
+      "replies": {
+        "field_block_links": "🔗 屏蔽链接",
+        "field_match_mode": "🎯 匹配模式",
+        "field_max_mentions": "👥 最大提及数",
+        "field_mention_action": "🔨 提及处罚",
+        "field_spam_action": "🔨 刷屏处罚",
+        "field_spam_threshold": "⚡ 刷屏阈值",
+        "field_status": "✅ 状态",
+        "field_word_action": "🔨 词语处罚（后备）",
+        "field_word_filter": "📝 词语过滤",
+        "footer": "使用 /add-word /remove-word /list-words 管理词语。/automod-show 查看详情。",
+        "match_substring": "子串匹配",
+        "match_whole": "整词匹配",
+        "spam_value": "{count} 条消息 / {seconds} 秒",
+        "title": "🛡️ 自动管理配置已更新",
+        "word_filter_value": "{count} 个词（+{exempt} 个豁免）"
       }
     },
     "automod-show": {
-      "description": "查看当前的自动管理配置"
+      "description": "查看当前的自动管理配置",
+      "replies": {
+        "date_unknown": "未知",
+        "field_exempt": "🛡️ 豁免词（{count}）",
+        "field_link_blocking": "🔗 链接屏蔽",
+        "field_mention_limit": "👥 提及上限",
+        "field_spam_detection": "⚡ 刷屏检测",
+        "field_word_filter": "📝 词语过滤（{count} 个词）",
+        "footer": "管理词语：/add-word、/remove-word、/list-words • 更新于：{date}",
+        "link_whitelist": "是\n白名单频道：{channels}\n白名单身份组：{roles}",
+        "match_substring": "**子串匹配**——任意位置都会匹配（可能产生误判）",
+        "match_whole": "**整词匹配**——词语须独立出现（\"asu\" 不会匹配 \"asus\"）",
+        "mention_value": "最多 {count} 次提及 → {action}",
+        "not_configured": "ℹ️ 自动管理尚未配置。请先用 `/set-automod` 设置，再执行 `/automod-toggle enabled:true`。",
+        "spam_value": "{seconds} 秒内 {count} 条消息 → {action}",
+        "status_off": "已禁用 ❌",
+        "status_on": "已启用 ✅",
+        "title": "🛡️ 自动管理配置"
+      }
     },
     "automod-toggle": {
       "description": "启用/停用自动管理",
       "options": {
         "enabled": "启用还是停用？"
+      },
+      "replies": {
+        "disabled": "❌ 自动管理已禁用。\n\n💡 您的当前配置仍会保留。以后再次启用即可立即生效——无需重新设置。",
+        "enabled": "✅ 自动管理已启用。\n\n💡 您的当前配置仍会保留。以后再次启用即可立即生效——无需重新设置。"
       }
     },
     "add-link-whitelist": {
@@ -1192,6 +1482,10 @@
       "options": {
         "channel": "允许发送链接的频道",
         "role": "允许发送链接的身份组"
+      },
+      "replies": {
+        "added": "✅ 白名单已添加！\n\n📢 频道：{channels}\n🎭 身份组：{roles}",
+        "pick_one": "❌ 请选择要加入白名单的频道或身份组。"
       }
     },
     "add-word": {
@@ -1200,6 +1494,17 @@
         "words": "要添加的词语（逗号分隔，如 词1,词2）",
         "tipe": "添加到哪个列表？",
         "action": "这些词语的专属处罚（留空 = 使用全局 word_action）"
+      },
+      "replies": {
+        "action_label": "（处罚：**{action}**）",
+        "blocklist_added": "✅ 已添加到**屏蔽列表**：{words}{action}",
+        "blocklist_now": "\n📝 当前屏蔽列表：**{count} 个词** • 匹配：{match} • 豁免：{exempt} 个词",
+        "exempt_added": "✅ 已添加到**豁免列表**：{words}",
+        "exempt_now": "\n🛡️ 当前豁免：**{count} 个词**——包含这些词的消息不会被自动管理标记。",
+        "no_valid": "❌ 没有可添加的有效词语。",
+        "skipped": "⏭️ 已跳过（已存在）：{words}",
+        "skipped_hint": "⏭️ 已跳过（已存在——如需修改请先使用 /remove-word）：{words}",
+        "view_all": "💡 查看全部：`/list-words`"
       }
     },
     "remove-word": {
@@ -1207,16 +1512,38 @@
       "options": {
         "word": "要移除的词语",
         "tipe": "从哪个列表移除？"
+      },
+      "replies": {
+        "list_blocklist": "屏蔽列表",
+        "list_exempt": "豁免列表",
+        "not_in_list": "ℹ️ 词语 `{word}` 不在{list}中。请查看列表：`/list-words`。",
+        "removed": "✅ 词语 `{word}` 已从**{list}**移除。\n\n💡 如需重新添加：`/add-word words:{word}`"
       }
     },
     "list-words": {
-      "description": "查看屏蔽列表 + 豁免词语 + 每个词语的处罚"
+      "description": "查看屏蔽列表 + 豁免词语 + 每个词语的处罚",
+      "replies": {
+        "fallback_value": "{action}——用于没有专属处罚的词语",
+        "field_blocklist": "⛔ 屏蔽列表（{count}）",
+        "field_exempt": "🛡️ 豁免（{count}）",
+        "field_fallback": "🔨 后备处罚",
+        "footer": "添加：/add-word • 移除：/remove-word • 批量替换：/set-automod block_words",
+        "match_substring": "**子串匹配**——任意位置都会匹配",
+        "match_whole": "**整词匹配**——\"asu\" 不会匹配 \"asus\"",
+        "not_configured": "ℹ️ 自动管理尚未配置——没有屏蔽词。\n\n添加您的第一批词语：`/add-word words:word1,word2`",
+        "title": "📝 词语过滤 —— {count} 个词"
+      }
     },
     "remove-link-whitelist": {
       "description": "从链接白名单移除频道/身份组",
       "options": {
         "channel": "要从白名单移除的频道",
         "role": "要从白名单移除的身份组"
+      },
+      "replies": {
+        "not_in_list": "ℹ️ {target} 不在链接白名单中。",
+        "pick_one": "❌ 请选择要从白名单中移除的频道或身份组。",
+        "removed": "✅ 已从链接白名单移除：**{list}**\n\n📢 频道：{channels}\n🎭 身份组：{roles}"
       }
     },
     "afk": {

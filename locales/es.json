@@ -83,7 +83,38 @@
       "everyone_invalid": "❌ @everyone no se puede usar como auto-rol.",
       "managed": "❌ **{name}** es un rol gestionado (de bot/integración/boost) — no se puede asignar manualmente."
     },
-    "style_invalid": "❌ El `style` no es válido."
+    "style_invalid": "❌ El `style` no es válido.",
+    "automod": {
+      "more_suffix": "\n…+{count} más",
+      "none_listed": "_(ninguno)_"
+    },
+    "automod_action": {
+      "delete_only": "Solo eliminar",
+      "global": "(global)",
+      "kick": "Expulsar",
+      "mute_10m": "Silenciar 10m",
+      "mute_1h": "Silenciar 1h",
+      "warn": "Avisar (MD)"
+    },
+    "ticket_panel": {
+      "desc_escrow": "Trato con escrow de 3 partes",
+      "desc_support": "Soporte / abrir un ticket directamente",
+      "desc_transaction": "Transacción — {count} productos ({keyInfo})",
+      "empty_hint_normal": "Es normal si está pensada como acción rápida.",
+      "empty_hint_sales": "Si esta es una categoría de ventas, añade productos primero: `/add-product category:{id} requires_key:false`",
+      "empty_key_missing": "⚠️ **{label}** (`{id}`) — configurada para *usar llaves* pero sin productos aún. Pulsar su botón abre un ticket de **SOPORTE** (no una transacción). Añade productos: `/add-product category:{id} requires_key:true`",
+      "empty_no_products": "ℹ️ **{label}** (`{id}`) — sin productos, pulsar su botón abre un ticket de **SOPORTE** directamente. {hint}",
+      "empty_warn_header": "\n\n🔮 **Categorías sin productos** (clic = ticket de SOPORTE instantáneo):\n{lines}",
+      "key_mixed": "{without} sin llaves / {with} con llaves",
+      "key_with": "con llaves",
+      "key_without": "sin llaves",
+      "no_categories": "Sin categorías",
+      "no_products": "_(aún no hay productos — usa `/add-product`)_",
+      "no_products_cat": "_(aún no hay productos en esta categoría)_",
+      "price_header": "💰 LISTA DE PRECIOS 💰",
+      "select_placeholder": "Selecciona una categoría de ticket...",
+      "server_fallback": "Servidor"
+    }
   },
   "bot_commands": {
     "help": {
@@ -93,16 +124,42 @@
       }
     },
     "setup-verify": {
-      "description": "Configura el panel de verificación"
+      "description": "Configura el panel de verificación",
+      "replies": {
+        "button_default": "Verificarme",
+        "installed": "✅ ¡Panel de verificación instalado!",
+        "send_failed": "❌ No se pudo enviar el panel de verificación: {error}\n\nAsegúrate de que el bot tenga los permisos **Enviar mensajes** y **Insertar enlaces** en este canal.",
+        "verified_missing": "❌ El rol Verified (verificado) aún no está configurado. Usa `/set-role verified @rol` primero."
+      }
     },
     "setup-ticket": {
-      "description": "Configura el panel de tickets y la lista de precios"
+      "description": "Configura el panel de tickets y la lista de precios",
+      "replies": {
+        "admin_missing": "❌ El rol Admin aún no está configurado. Usa `/set-role admin @rol` primero antes de montar el panel de tickets.",
+        "body_too_long": "❌ El cuerpo del ticket es demasiado largo TRAS la expansión de {price_list}: **{length}/{max}** caracteres.\n\n💡 Acorta el cuerpo del ticket (`/set-message ticketBody`), reduce el número de productos o usa `{price_list:<category>}` para mostrar solo una categoría específica.",
+        "fallback_buy": "Comprar clave / Transacción",
+        "fallback_help": "Ayuda",
+        "fallback_report": "Reportar",
+        "installed": "✅ ¡Panel de tickets instalado! ({count} categorías activas)",
+        "no_categories": "_(aún no hay categorías)_",
+        "no_products": "_(aún no hay productos)_",
+        "no_products_hint": "_(aún no hay productos — usa `/add-product`)_",
+        "price_header": "💰 LISTA DE PRECIOS 💰",
+        "send_failed": "❌ No se pudo enviar el panel de tickets: {error}\n\nAsegúrate de que el bot tenga los permisos **Enviar mensajes** e **Insertar enlaces** en este canal.",
+        "title_too_long": "❌ El título del ticket es demasiado largo ({length} caracteres, máx {max}). Acórtalo con `/set-message ticketTitle`."
+      }
     },
     "set-role": {
       "description": "Configura roles (verified / unverified / admin / midman / booster)",
       "options": {
         "tipe": "Elige el tipo de rol",
         "role": "El rol a utilizar"
+      },
+      "replies": {
+        "booster_applied": "\n🚀 {count} miembro(s) que actualmente tienen boost recibieron el rol de inmediato. De ahora en adelante es automático: el rol se otorga al boostear y se quita cuando termina el boost.",
+        "booster_failed": "\n⚠️ Rol guardado, pero aplicarlo a los boosters existentes falló: {error}",
+        "booster_none": "\nℹ️ Nadie está boosteando ahora mismo — el rol se otorgará automáticamente cuando alguien boostee y se quitará cuando su boost termine.",
+        "success": "✅ Rol **{tipe}** establecido a {role} (`{id}`)"
       }
     },
     "set-channel": {
@@ -110,12 +167,28 @@
       "options": {
         "tipe": "Elige el tipo de canal",
         "channel": "El canal de texto a utilizar"
+      },
+      "replies": {
+        "success": "✅ Canal **{tipe}** establecido a {channel} (`{id}`)",
+        "text_only": "❌ El canal debe ser un canal de texto.",
+        "transcript_tip": "\n\n💡 Cada ticket que se cierre guardará automáticamente su historial de chat en este canal como comprobante de la transacción."
       }
     },
     "test-welcome": {
       "description": "Diagnostica y previsualiza el embed de bienvenida/despedida (averigua por qué no aparece)",
       "options": {
         "tipe": "Cuál probar"
+      },
+      "replies": {
+        "channel_not_found": "❌ **Canal de {tipe}: no encontrado** (ID `{id}`) — eliminado, o el ID pertenece a otro servidor → vuelve a configurarlo con `/set-channel {tipe} #canal`",
+        "channel_not_set": "❌ **Canal de {tipe}: sin configurar** → arréglalo con `/set-channel {tipe} #canal`",
+        "channel_ok": "✅ **Canal de {tipe}:** {channel} (`{id}`)",
+        "events_active": "ℹ️ Eventos de entrada/salida de miembros: ✅ activos (el bot está en línea con el intent GuildMembers)",
+        "perms_fix": "→ arreglo: Configuración del servidor → ese canal → agrega el bot → activa **Enviar mensajes** + **Insertar enlaces**",
+        "perms_line": "{view} Ver canal · {send} Enviar mensajes · {embed} Insertar enlaces (permisos del bot en ese canal)",
+        "preview_failed": "⚠️ La vista previa NO se pudo enviar a este canal: {error}\nRevisa también aquí los permisos de Enviar mensajes + Insertar enlaces del bot — el canal de {tipe} probablemente tiene el mismo problema.",
+        "preview_sent": "🧪 Vista previa enviada a **este canal** — el {tipe} real va a {channel}. Usa tus propios datos como \"nuevo miembro\".",
+        "channel_unset_fallback": "el canal que configuraste"
       }
     },
     "set-message": {
@@ -123,6 +196,13 @@
       "options": {
         "tipe": "Elige qué mensaje editar",
         "teks": "Texto nuevo (admite \\n salto de línea). Usa {user} {username} {server} {count} {action}"
+      },
+      "replies": {
+        "limit_body": "cuerpo (máx 4096)",
+        "limit_title": "título (máx 256)",
+        "preview_truncated": "\n… (vista previa recortada — {length} caracteres en total)",
+        "success": "✅ Mensaje **{tipe}** actualizado.\n\nVista previa:\n```\n{preview}\n```\nVariables disponibles: `{user}` `{username}` `{server}` `{count}` `{action}`",
+        "too_long": "❌ Texto demasiado largo para **{tipe}**.\n\n📏 Longitud: **{length}** caracteres\n🎯 Límite: **{limit}** caracteres ({label})\n💡 Recorta {more} caracteres más."
       }
     },
     "set-verify-button": {
@@ -131,6 +211,10 @@
         "label": "Texto del botón (máx. 80 caracteres)",
         "emoji": "Emoji del botón (unicode o personalizado <:name:id>)",
         "style": "Color del botón"
+      },
+      "replies": {
+        "style_invalid_choices": "❌ `style` no válido. Elige: Primary, Secondary, Success, Danger.",
+        "updated": "✅ ¡Botón de verificación actualizado!\n\n**Vista previa:**"
       }
     },
     "add-category": {
@@ -197,21 +281,59 @@
         "footer": "Texto del pie. Vacío = usar el nombre del bot",
         "channel": "Canal destino (predeterminado: canal actual). Debe ser un canal de texto",
         "use_dropdown": "TRUE = usar menú desplegable (predeterminado: FALSE = botones)"
+      },
+      "replies": {
+        "build_failed": "❌ No se pudo construir el panel: {error}",
+        "installed": "✅ ¡Panel de tickets instalado en {channel}!\n\n🆔 ID del panel: `{id}` (guárdalo para /update-panel, /delete-panel, /refresh-panel)\n🎫 Categorías: {categories} ({count})\n🎨 Diseño: {layout}",
+        "layout_buttons": "Botones",
+        "layout_dropdown": "Menú desplegable de selección",
+        "missing_ids": "\n\n⚠️ IDs de categorías no encontrados (ignorados): `{ids}`",
+        "must_be_text": "❌ El canal de destino debe ser un canal de texto.",
+        "no_categories_cmd": "❌ Aún no hay categorías. Añade una primero con `/add-category`, o usa `/setup-ticket` para las predeterminadas.",
+        "no_match": "❌ Ninguna categoría coincide con: `{filter}`. Usa /list-categories para ver la lista.",
+        "send_failed": "❌ No se pudo enviar el panel de tickets a {channel}: {error}\n\nAsegúrate de que el bot tenga los permisos **Enviar mensajes** e **Insertar enlaces** en ese canal."
       }
     },
     "list-panels": {
-      "description": "Ver todos los paneles de tickets persistentes en este servidor"
+      "description": "Ver todos los paneles de tickets persistentes en este servidor",
+      "replies": {
+        "channel_missing": "_(canal faltante)_",
+        "default_title": "_(título predeterminado)_",
+        "footer": "{count} paneles activos • Usa el ID para /delete-panel, /update-panel, /refresh-panel",
+        "line": "`{n}.` 🆔 `{id}`\n   {title} — en {channel}\n   🎫 {cats} categorías • 🎨 {layout} • 📅 {date}",
+        "more": "\n\n… +{count} panel(es) más no mostrados",
+        "none": "📭 Aún no hay paneles de tickets persistentes en este servidor.\n\n💡 Crea uno con `/setup-ticket-panel` — se listará automáticamente aquí.",
+        "title": "🎫 LISTA DE PANELES DE TICKETS"
+      }
     },
     "delete-panel": {
       "description": "Elimina un panel de tickets por ID (borra automáticamente el mensaje + metadatos)",
       "options": {
         "id": "ID del panel (ver /list-panels)"
+      },
+      "replies": {
+        "deleted": "✅ Panel `{id}` eliminado.\n\n{status}",
+        "meta_failed": "❌ No se pudo eliminar los metadatos del panel `{id}`. Puede que ya esté eliminado.",
+        "not_found": "❌ Panel `{id}` no encontrado. Usa /list-panels para ver la lista.",
+        "other_server": "❌ Este panel pertenece a otro servidor. No se puede eliminar.",
+        "status_meta_only": "✅ Metadatos del panel limpiados.",
+        "status_msg_deleted": "✅ Mensaje del panel eliminado del canal + metadatos limpiados.",
+        "status_msg_gone": "ℹ️ El mensaje del panel ya no está en el canal (posiblemente eliminado manualmente). Metadatos limpiados."
       }
     },
     "refresh-panel": {
       "description": "Vuelve a renderizar un panel con las categorías/productos más recientes (sin reconfigurar)",
       "options": {
         "id": "ID del panel (ver /list-panels)"
+      },
+      "replies": {
+        "channel_gone": "❌ El canal <#{id}> ya no existe. Elimina el panel y vuelve a configurarlo.",
+        "edit_failed": "❌ No se pudo editar el mensaje del panel: {error}",
+        "message_gone": "❌ El mensaje del panel ya no está en el canal. Elimina el panel y vuelve a configurarlo.",
+        "no_message_ref": "❌ Este panel no tiene referencia de mensaje (posiblemente corrupto). Elimínalo y vuelve a configurarlo.",
+        "other_server": "❌ Este panel pertenece a otro servidor.",
+        "rebuild_failed": "❌ No se pudo reconstruir el panel: {error}",
+        "refreshed": "✅ ¡Panel `{id}` actualizado!\n\n📬 Ubicación: {channel}\n🎨 Diseño: {layout}\n🎫 Categorías: {count} activas"
       }
     },
     "update-panel": {
@@ -219,12 +341,55 @@
       "options": {
         "id": "ID del panel (ver /list-panels)",
         "field": "Qué campo editar"
+      },
+      "fields": {
+        "body": "Cuerpo del panel (vacío = global; admite plantillas)",
+        "color": "Color hex (p. ej. #ff5733, vacío = naranja predeterminado)",
+        "footer": "Texto del pie (vacío = usar el nombre del bot)",
+        "image": "URL de imagen grande (vacío = sin imagen)",
+        "thumbnail": "URL de miniatura pequeña (vacío = sin miniatura)",
+        "title": "Título del panel (vacío = usar el global)"
+      },
+      "modal": {
+        "admin_check_failed": "❌ No se pudo verificar tu permiso de administrador (error de caché de Discord) — inténtalo de nuevo.",
+        "bad_customid": "❌ Formato de customId del modal no válido.",
+        "channel_not_found": "\n\n⚠️ Canal del panel no encontrado. Metadatos actualizados de todos modos.",
+        "msg_not_found": "\n\n⚠️ Mensaje del panel no encontrado (posiblemente eliminado). Metadatos actualizados de todos modos.",
+        "no_admin": "❌ No tienes permiso de administrador para editar paneles.",
+        "not_found": "❌ Panel `{id}` no encontrado (puede que ya esté eliminado).",
+        "refresh_failed": "\n\n⚠️ No se pudo actualizar el mensaje: {error} (metadatos actualizados de todos modos).",
+        "refreshed": "\n\n✅ Mensaje del panel actualizado.",
+        "text_too_long": "❌ El texto es demasiado largo ({length} > {max} caracteres).",
+        "update_failed": "❌ No se pudo actualizar el panel.",
+        "updated": "✅ ¡Campo `{field}` del panel `{id}` actualizado!{rendered}",
+        "url_invalid": "❌ URL de {field} no válida. Debe ser http(s)://...",
+        "url_too_long": "❌ La URL de {field} es demasiado larga ({length} caracteres, máx 2048 — límite de embed de Discord). Usa un enlace más corto."
+      },
+      "replies": {
+        "invalid_field": "❌ Campo `{field}` no válido.",
+        "modal_title": "Editar {field} — {id}..."
       }
     },
     "edit-message": {
       "description": "Edita el texto del embed vía modal (multilínea, más flexible que /set-message)",
       "options": {
         "tipe": "Elige qué mensaje editar"
+      },
+      "modal": {
+        "admin_check_failed": "❌ No se pudo verificar tu permiso de administrador (error de caché de Discord) — inténtalo de nuevo.",
+        "empty": "❌ El texto no puede estar vacío.",
+        "invalid_type": "❌ Tipo de mensaje `{tipe}` no válido.",
+        "kind_body": "cuerpo",
+        "kind_title": "título",
+        "no_admin": "❌ No tienes permiso de administrador para editar mensajes.",
+        "preview_truncated": "\n...(recortado para la vista previa)",
+        "save_failed": "❌ No se pudo guardar el cambio: {error}",
+        "success": "✅ Mensaje **{tipe}** actualizado mediante el editor modal.\n\n**Vista previa:**\n```\n{preview}\n```",
+        "too_long": "❌ El texto es demasiado largo ({length} caracteres, máx {max} para {kind})."
+      },
+      "replies": {
+        "input_label": "Texto de {tipe} (máx {max} caracteres)",
+        "modal_title": "Editar {tipe}"
       }
     },
     "add-product": {
@@ -281,12 +446,72 @@
       }
     },
     "config-show": {
-      "description": "Ver toda la configuración actual del bot"
+      "description": "Ver toda la configuración actual del bot",
+      "replies": {
+        "channel_audit_log": "Registro de auditoría",
+        "channel_goodbye": "Despedida",
+        "channel_invoice": "Factura",
+        "channel_server_booster": "Booster del servidor",
+        "channel_server_log": "Registro del servidor",
+        "channel_transcript": "Transcripción de tickets",
+        "channel_welcome": "Bienvenida",
+        "days_count": "{count} días",
+        "days_permanent": "♾️ permanente",
+        "escrow_fee_flat": "• Comisión: {value} fijo por trato",
+        "escrow_fee_percent": "• Comisión: {value}% del precio del trato",
+        "escrow_view_deals": "• Ver tratos activos: `/midman-deals`",
+        "field_channels": "📢 Canales",
+        "field_escrow": "🤝 Escrow",
+        "field_keys": "🔑 Llaves VIP (modelo basado en llaves)",
+        "field_panels": "🎭 Paneles de self-role ({count})",
+        "field_products": "📦 Productos ({count})",
+        "field_roles": "🎭 Roles",
+        "field_schedules": "⏰ Eliminaciones de roles programadas",
+        "field_sessions": "🛠️ Sesiones del embed builder",
+        "keys_active": "• Activas: **{count}**",
+        "keys_expired": "• ⚠️ Expiradas (esperando la limpieza del programador): **{count}**",
+        "keys_expired_zero": "• Expiradas: **0** ✅",
+        "keys_incl_permanent": " (incluyendo {count} permanentes)",
+        "keys_total": "• Total de llaves almacenadas: **{count}**",
+        "more_panels": "\n… +{count} panel más",
+        "more_products": "\n\n… +{count} productos más — usa /list-products",
+        "no_panels": "_(aún no hay paneles — usa `/setup-selfrole`)_",
+        "no_products": "_(aún no hay productos — usa `/add-product`)_",
+        "no_session": "_(sin sesión activa — usa `/embed-builder` para empezar)_",
+        "not_set": "❌ aún sin configurar",
+        "panel_exclusive": "🔒 Exclusivo",
+        "panel_line": "  • **{title}** — {type} | {mode} | {count} rol",
+        "panel_multi": "✅ Múltiple",
+        "panel_type_button": "🔘 Botón",
+        "panel_type_select": "📋 Selección",
+        "panels_registered": "{count} paneles registrados en este servidor:\n",
+        "product_line": "• **{label}** (`{value}`) — {price}\n  → Rol: {role} | Duración: {days}",
+        "role_admin": "Admin",
+        "role_booster": "Booster (auto)",
+        "role_midman": "Midman (Escrow)",
+        "role_not_mapped": "❌ aún sin mapear",
+        "role_unverified": "Unverified (no verificado)",
+        "role_verified": "Verified (verificado)",
+        "sched_left_dh": "quedan {days}d {hours}h",
+        "sched_left_h": "quedan {hours}h",
+        "sched_loop": "• Ciclo del programador: cada 60 segundos",
+        "sched_next": "• Próxima ejecución: **{value}**",
+        "sched_next_loop": "se ejecuta en el siguiente ciclo",
+        "sched_total": "• Total de programaciones activas: **{count}**",
+        "session_active": "**{count} sesión activa** (tuya) — usa `/embed-list` para ver los detalles",
+        "subtitle": "Esta es la configuración actual del bot (v3.1 — VIP por keys + self-role + embed builder):",
+        "title": "⚙️ CONFIGURACIÓN DEL BOT",
+        "truncated_note": "\n… (recortado — límite de campo de Discord de 1024 caracteres)"
+      }
     },
     "remove-role": {
       "description": "Elimina un rol de la configuración (verified / unverified / admin / midman / booster)",
       "options": {
         "tipe": "Elige el tipo de rol a eliminar"
+      },
+      "replies": {
+        "not_set": "ℹ️ El rol **{tipe}** no está configurado de todos modos — no hay nada que quitar.",
+        "removed": "✅ Rol **{tipe}** eliminado de la configuración.\n\n💡 Para volver a configurarlo, usa: `/set-role {tipe} @rol`"
       }
     },
     "set-midman-fee": {
@@ -318,19 +543,45 @@
       "description": "Elimina un canal de la configuración (invoice, welcome, goodbye, logs, transcript)",
       "options": {
         "tipe": "Elige el tipo de canal a eliminar"
+      },
+      "replies": {
+        "not_set": "ℹ️ El canal **{tipe}** no está configurado de todos modos — no hay nada que quitar.",
+        "removed": "✅ Canal **{tipe}** eliminado de la configuración.\n\n💡 Para volver a configurarlo, usa: `/set-channel {tipe} #canal`"
       }
     },
     "list-messages": {
-      "description": "Ver todos los textos de embed actuales"
+      "description": "Ver todos los textos de embed actuales",
+      "replies": {
+        "empty": "(vacío)",
+        "label_goodbye_body": "👋 Cuerpo de despedida",
+        "label_goodbye_title": "👋 Título de despedida",
+        "label_ticket_body": "🎫 Cuerpo del ticket",
+        "label_ticket_price_header": "🎫 Encabezado de precios del ticket",
+        "label_ticket_title": "🎫 Título del ticket",
+        "label_verify_body": "✅ Cuerpo de verificación",
+        "label_verify_title": "✅ Título de verificación",
+        "label_welcome_body": "👋 Cuerpo de bienvenida",
+        "label_welcome_title": "👋 Título de bienvenida",
+        "subtitle": "Aquí está todo el texto de mensajes actual. Usa `/set-message` para cambiarlo, `/reset-message` para restaurar los valores predeterminados.",
+        "title": "📝 LISTA DE MENSAJES DE EMBEDS"
+      }
     },
     "reset-message": {
       "description": "Restaura el texto del embed al valor predeterminado",
       "options": {
         "tipe": "Elige qué mensaje restablecer (o ALL para todos)"
+      },
+      "replies": {
+        "all": "✅ **TODOS los mensajes** restablecidos a los valores predeterminados.",
+        "one": "✅ Mensaje **{tipe}** restablecido a los valores predeterminados.\n\n**Antes:**\n```\n{before}\n```\n**Ahora:**\n```\n{after}\n```"
       }
     },
     "reset-config": {
-      "description": "⚠️ Borra TODA la configuración (roles, canales, mensajes) — ¡no se puede deshacer!"
+      "description": "⚠️ Borra TODA la configuración (roles, canales, mensajes) — ¡no se puede deshacer!",
+      "replies": {
+        "confirm_btn": "⚠️ Sí, reinicio total",
+        "confirm_msg": "🚨 **CONFIRMACIÓN DE REINICIO DE CONFIGURACIÓN**\n\nAviso: esto eliminará **TODA** la configuración (roles, canales, productos, mensajes).\n¡Esto no se puede deshacer!\n\nHaz clic en el botón de abajo para confirmar:"
+      }
     },
     "set-product-role": {
       "description": "Configura un rol y duración de auto-expiración para un producto específico",
@@ -1176,15 +1427,54 @@
         "word_action": "Acción para el filtro de palabras",
         "max_mentions": "Máximo de menciones por mensaje (predeterminado: 5)",
         "mention_action": "Acción para menciones masivas"
+      },
+      "replies": {
+        "field_block_links": "🔗 Bloquear enlaces",
+        "field_match_mode": "🎯 Modo de coincidencia",
+        "field_max_mentions": "👥 Máx. menciones",
+        "field_mention_action": "🔨 Acción por menciones",
+        "field_spam_action": "🔨 Acción contra spam",
+        "field_spam_threshold": "⚡ Umbral de spam",
+        "field_status": "✅ Estado",
+        "field_word_action": "🔨 Acción de palabra (respaldo)",
+        "field_word_filter": "📝 Filtro de palabras",
+        "footer": "Usa /add-word /remove-word /list-words para gestionar palabras. /automod-show para detalles.",
+        "match_substring": "Subcadena",
+        "match_whole": "Palabra completa",
+        "spam_value": "{count} mensajes / {seconds}s",
+        "title": "🛡️ CONFIGURACIÓN DE AUTO-MOD ACTUALIZADA",
+        "word_filter_value": "{count} palabras (+{exempt} exentas)"
       }
     },
     "automod-show": {
-      "description": "Ver la configuración actual del auto-mod"
+      "description": "Ver la configuración actual del auto-mod",
+      "replies": {
+        "date_unknown": "desconocido",
+        "field_exempt": "🛡️ Palabras exentas ({count})",
+        "field_link_blocking": "🔗 Bloqueo de enlaces",
+        "field_mention_limit": "👥 Límite de menciones",
+        "field_spam_detection": "⚡ Detección de spam",
+        "field_word_filter": "📝 Filtro de palabras ({count} palabras)",
+        "footer": "Gestionar palabras: /add-word, /remove-word, /list-words • Actualizado: {date}",
+        "link_whitelist": "Sí\nCanal en lista blanca: {channels}\nRol en lista blanca: {roles}",
+        "match_substring": "**Subcadena** — coincide en cualquier parte (puede causar falsos positivos)",
+        "match_whole": "**Palabra completa** — la palabra debe ir por sí sola (\"asu\" no coincide con \"asus\")",
+        "mention_value": "Máx {count} menciones → {action}",
+        "not_configured": "ℹ️ El auto-mod aún no está configurado. Usa `/set-automod` para configurarlo y luego `/automod-toggle enabled:true`.",
+        "spam_value": "{count} mensajes en {seconds}s → {action}",
+        "status_off": "Desactivado ❌",
+        "status_on": "Activado ✅",
+        "title": "🛡️ CONFIGURACIÓN DE AUTO-MOD"
+      }
     },
     "automod-toggle": {
       "description": "Activa/desactiva el auto-mod",
       "options": {
         "enabled": "¿Activar o desactivar?"
+      },
+      "replies": {
+        "disabled": "❌ Auto-mod desactivado.\n\n💡 Tu configuración actual sigue guardada. Actívalo de nuevo más tarde y funcionará de inmediato — sin reconfigurar.",
+        "enabled": "✅ Auto-mod activado.\n\n💡 Tu configuración actual sigue guardada. Actívalo de nuevo más tarde y funcionará de inmediato — sin reconfigurar."
       }
     },
     "add-link-whitelist": {
@@ -1192,6 +1482,10 @@
       "options": {
         "channel": "Canal permitido para publicar enlaces",
         "role": "Rol permitido para publicar enlaces"
+      },
+      "replies": {
+        "added": "✅ ¡Lista blanca añadida!\n\n📢 Canales: {channels}\n🎭 Roles: {roles}",
+        "pick_one": "❌ Elige un canal o rol para la lista blanca."
       }
     },
     "add-word": {
@@ -1200,6 +1494,17 @@
         "words": "Palabras a añadir (separadas por comas, p. ej. palabra1,palabra2)",
         "tipe": "¿A qué lista añadir?",
         "action": "Acción específica para estas palabras (vacío = usar la word_action global)"
+      },
+      "replies": {
+        "action_label": " (acción: **{action}**)",
+        "blocklist_added": "✅ Añadido a la **lista de bloqueo**: {words}{action}",
+        "blocklist_now": "\n📝 Lista de bloqueo ahora: **{count} palabras** • coincidencia: {match} • exentas: {exempt} palabras",
+        "exempt_added": "✅ Añadido a **exentas**: {words}",
+        "exempt_now": "\n🛡️ Exentas ahora: **{count} palabras** — los mensajes que contengan estas palabras no serán marcados por el auto-mod.",
+        "no_valid": "❌ No hay palabras válidas que añadir.",
+        "skipped": "⏭️ Omitidas (ya existen): {words}",
+        "skipped_hint": "⏭️ Omitidas (ya existen — usa /remove-word primero si quieres cambiarlas): {words}",
+        "view_all": "💡 Ver todo: `/list-words`"
       }
     },
     "remove-word": {
@@ -1207,16 +1512,38 @@
       "options": {
         "word": "La palabra a eliminar",
         "tipe": "¿De qué lista eliminar?"
+      },
+      "replies": {
+        "list_blocklist": "la lista de bloqueo",
+        "list_exempt": "la lista de exentas",
+        "not_in_list": "ℹ️ La palabra `{word}` no está en {list}. Revisa la lista: `/list-words`.",
+        "removed": "✅ Palabra `{word}` quitada de **{list}**.\n\n💡 Para volver a añadirla: `/add-word words:{word}`"
       }
     },
     "list-words": {
-      "description": "Ver la lista de bloqueo + palabras exentas + acciones por palabra"
+      "description": "Ver la lista de bloqueo + palabras exentas + acciones por palabra",
+      "replies": {
+        "fallback_value": "{action} — usada para palabras sin acción específica",
+        "field_blocklist": "⛔ Lista de bloqueo ({count})",
+        "field_exempt": "🛡️ Exentas ({count})",
+        "field_fallback": "🔨 Acción de respaldo",
+        "footer": "Añadir: /add-word • Quitar: /remove-word • Reemplazo masivo: /set-automod block_words",
+        "match_substring": "**Subcadena** — coincide en cualquier parte",
+        "match_whole": "**Palabra completa** — \"asu\" no coincide con \"asus\"",
+        "not_configured": "ℹ️ El auto-mod aún no está configurado — no hay palabras bloqueadas.\n\nAñade tus primeras palabras: `/add-word words:word1,word2`",
+        "title": "📝 FILTRO DE PALABRAS — {count} palabras"
+      }
     },
     "remove-link-whitelist": {
       "description": "Elimina un canal/rol de la lista blanca de enlaces",
       "options": {
         "channel": "El canal a eliminar de la lista blanca",
         "role": "El rol a eliminar de la lista blanca"
+      },
+      "replies": {
+        "not_in_list": "ℹ️ {target} no está en la lista blanca de enlaces.",
+        "pick_one": "❌ Elige el canal o rol a quitar de la lista blanca.",
+        "removed": "✅ Quitado de la lista blanca de enlaces: **{list}**\n\n📢 Canales: {channels}\n🎭 Roles: {roles}"
       }
     },
     "afk": {

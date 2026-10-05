@@ -83,7 +83,38 @@
       "everyone_invalid": "❌ لا يمكن استخدام @everyone كرتبة تلقائية.",
       "managed": "❌ **{name}** رتبة مُدارة (رتبة بوت/تكامل/بوست) — لا يمكن إسنادها يدويًا."
     },
-    "style_invalid": "❌ قيمة `style` غير صالحة."
+    "style_invalid": "❌ قيمة `style` غير صالحة.",
+    "automod": {
+      "more_suffix": "\n…+{count} إضافي",
+      "none_listed": "_(لا شيء)_"
+    },
+    "automod_action": {
+      "delete_only": "حذف فقط",
+      "global": "(عام)",
+      "kick": "طرد",
+      "mute_10m": "كتم 10 دقائق",
+      "mute_1h": "كتم ساعة",
+      "warn": "تحذير (رسالة خاصة)"
+    },
+    "ticket_panel": {
+      "desc_escrow": "صفقة ضمان بثلاثة أطراف",
+      "desc_support": "الدعم / افتح تذكرة مباشرة",
+      "desc_transaction": "معاملة — {count} منتجًا ({keyInfo})",
+      "empty_hint_normal": "هذا طبيعي إن كان القصد منها إجراءً سريعًا.",
+      "empty_hint_sales": "إذا كانت هذه فئة مبيعات، أضف المنتجات أولًا: `/add-product category:{id} requires_key:false`",
+      "empty_key_missing": "⚠️ **{label}** (`{id}`) — مضبوطة على *استخدام المفاتيح* لكن دون منتجات بعد. الضغط على زرها يفتح تذكرة **دعم** (وليس معاملة). أضف منتجات: `/add-product category:{id} requires_key:true`",
+      "empty_no_products": "ℹ️ **{label}** (`{id}`) — دون منتجات، الضغط على زرها يفتح تذكرة **دعم** مباشرة. {hint}",
+      "empty_warn_header": "\n\n🔮 **فئات بدون منتجات** (النقر = تذكرة دعم فورية):\n{lines}",
+      "key_mixed": "{without} بدون مفاتيح / {with} بمفاتيح",
+      "key_with": "بمفاتيح",
+      "key_without": "بدون مفاتيح",
+      "no_categories": "لا توجد فئات",
+      "no_products": "_(لا توجد منتجات بعد — استخدم `/add-product`)_",
+      "no_products_cat": "_(لا توجد منتجات في هذه الفئة بعد)_",
+      "price_header": "💰 قائمة الأسعار 💰",
+      "select_placeholder": "اختر فئة التذكرة...",
+      "server_fallback": "السيرفر"
+    }
   },
   "bot_commands": {
     "help": {
@@ -93,16 +124,42 @@
       }
     },
     "setup-verify": {
-      "description": "إعداد لوحة التحقق"
+      "description": "إعداد لوحة التحقق",
+      "replies": {
+        "button_default": "وثّقني",
+        "installed": "✅ تم تثبيت لوحة التحقق!",
+        "send_failed": "❌ فشل إرسال لوحة التحقق: {error}\n\nتأكد من أن البوت يملك صلاحيتي **إرسال الرسائل** و **تضمين الروابط** في هذه القناة.",
+        "verified_missing": "❌ رتبة Verified (الموثّق) لم يتم ضبطها بعد. استخدم `/set-role verified @role` أولاً."
+      }
     },
     "setup-ticket": {
-      "description": "إعداد لوحة التذاكر وقائمة الأسعار"
+      "description": "إعداد لوحة التذاكر وقائمة الأسعار",
+      "replies": {
+        "admin_missing": "❌ رتبة Admin لم يتم ضبطها بعد. استخدم `/set-role admin @role` أولاً قبل تثبيت لوحة التذاكر.",
+        "body_too_long": "❌ نص التذكرة طويل جدًا بعد توسيع {price_list}: **{length}/{max}** حرفًا.\n\n💡 قصّر نص التذكرة (`/set-message ticketBody`)، أو قلّل عدد المنتجات، أو استخدم `{price_list:<category>}` لعرض فئة محددة فقط.",
+        "fallback_buy": "شراء مفتاح / معاملة",
+        "fallback_help": "مساعدة",
+        "fallback_report": "إبلاغ",
+        "installed": "✅ تم تثبيت لوحة التذاكر! ({count} فئة نشطة)",
+        "no_categories": "_(لا توجد فئات بعد)_",
+        "no_products": "_(لا توجد منتجات بعد)_",
+        "no_products_hint": "_(لا توجد منتجات بعد — استخدم `/add-product`)_",
+        "price_header": "💰 قائمة الأسعار 💰",
+        "send_failed": "❌ فشل إرسال لوحة التذاكر: {error}\n\nتأكد من أن البوت يملك صلاحيتي **إرسال الرسائل** و **تضمين الروابط** في هذه القناة.",
+        "title_too_long": "❌ عنوان التذكرة طويل جدًا ({length} حرفًا، الحد الأقصى {max}). قصّره عبر `/set-message ticketTitle`."
+      }
     },
     "set-role": {
       "description": "تعيين الرتب (verified / unverified / admin / midman / booster)",
       "options": {
         "tipe": "اختر نوع الرتبة",
         "role": "الرتبة التي سيتم استخدامها"
+      },
+      "replies": {
+        "booster_applied": "\n🚀 حصل {count} من الأعضاء الذين لديهم بوست حاليًا على الرتبة فورًا. من الآن فصاعدًا تلقائيًا: تُمنح الرتبة عند البوست وتُزال عند انتهائه.",
+        "booster_failed": "\n⚠️ تم حفظ الرتبة، لكن فشل تطبيقها على أصحاب البوست الحاليين: {error}",
+        "booster_none": "\nℹ️ لا أحد يقوم بالبوست حاليًا — ستُمنح الرتبة تلقائيًا عندما يقوم أحدهم بالبوست، وتُزال عند انتهاء بوسته.",
+        "success": "✅ تم ضبط رتبة **{tipe}** إلى {role} (`{id}`)"
       }
     },
     "set-channel": {
@@ -110,12 +167,28 @@
       "options": {
         "tipe": "اختر نوع القناة",
         "channel": "قناة الكتابة التي سيتم استخدامها"
+      },
+      "replies": {
+        "success": "✅ تم ضبط قناة **{tipe}** إلى {channel} (`{id}`)",
+        "text_only": "❌ يجب أن تكون القناة قناة نصية.",
+        "transcript_tip": "\n\n💡 كل تذكرة تُغلق سيتم حفظ سجل محادثتها تلقائيًا في هذه القناة كإثبات للمعاملة."
       }
     },
     "test-welcome": {
       "description": "تشخيص ومعاينة رسالة الترحيب/الوداع (اعرف سبب عدم ظهورها)",
       "options": {
         "tipe": "أيّهما تريد اختباره"
+      },
+      "replies": {
+        "channel_not_found": "❌ **قناة {tipe}: غير موجودة** (المعرف `{id}`) — إما محذوفة أو المعرف يعود لسيرفر آخر → أعد ضبطها عبر `/set-channel {tipe} #channel`",
+        "channel_not_set": "❌ **قناة {tipe}: غير مضبوطة** → أصلحها عبر `/set-channel {tipe} #channel`",
+        "channel_ok": "✅ **قناة {tipe}:** {channel} (`{id}`)",
+        "events_active": "ℹ️ أحداث انضمام/مغادرة الأعضاء: ✅ نشطة (البوت متصل بنيّة GuildMembers)",
+        "perms_fix": "→ الحل: إعدادات السيرفر ← تلك القناة ← أضف البوت ← فعّل **إرسال الرسائل** + **تضمين الروابط**",
+        "perms_line": "{view} عرض القناة · {send} إرسال الرسائل · {embed} تضمين الروابط (صلاحيات البوت في تلك القناة)",
+        "preview_failed": "⚠️ تعذّر إرسال المعاينة إلى هذه القناة: {error}\nتحقق أيضًا من صلاحيات إرسال الرسائل + تضمين الروابط للبوت هنا — قناة {tipe} على الأرجح تواجه نفس المشكلة.",
+        "preview_sent": "🧪 تم إرسال المعاينة إلى **هذه القناة** — {tipe} الحقيقي يُرسل إلى {channel}. تستخدم المعاينة بياناتك أنت بصفتك \"العضو الجديد\".",
+        "channel_unset_fallback": "القناة التي ضبطتها"
       }
     },
     "set-message": {
@@ -123,6 +196,13 @@
       "options": {
         "tipe": "اختر الرسالة التي تريد تعديلها",
         "teks": "النص الجديد (يدعم \\n سطرًا جديدًا). استخدم {user} {username} {server} {count} {action}"
+      },
+      "replies": {
+        "limit_body": "المتن (الحد الأقصى 4096)",
+        "limit_title": "العنوان (الحد الأقصى 256)",
+        "preview_truncated": "\n… (معاينة مقتطعة — الإجمالي {length} حرفًا)",
+        "success": "✅ تم تحديث رسالة **{tipe}**.\n\nمعاينة:\n```\n{preview}\n```\nالمتغيرات المتاحة: `{user}` `{username}` `{server}` `{count}` `{action}`",
+        "too_long": "❌ النص طويل جدًا لـ **{tipe}**.\n\n📏 الطول: **{length}** حرفًا\n🎯 الحد: **{limit}** حرفًا ({label})\n💡 قصّر {more} حرفًا إضافيًا."
       }
     },
     "set-verify-button": {
@@ -131,6 +211,10 @@
         "label": "نص الزر (80 حرفًا كحد أقصى)",
         "emoji": "إيموجي الزر (يونيكود أو مخصص <:name:id>)",
         "style": "لون الزر"
+      },
+      "replies": {
+        "style_invalid_choices": "❌ `style` غير صالح. اختر: Primary, Secondary, Success, Danger.",
+        "updated": "✅ تم تحديث زر التحقق!\n\n**معاينة:**"
       }
     },
     "add-category": {
@@ -197,21 +281,59 @@
         "footer": "نص التذييل. اتركه فارغًا = استخدم اسم البوت",
         "channel": "القناة المستهدفة (الافتراضي: القناة الحالية). يجب أن تكون قناة كتابة",
         "use_dropdown": "TRUE = استخدام قائمة منسدلة (الافتراضي: FALSE = أزرار)"
+      },
+      "replies": {
+        "build_failed": "❌ فشل بناء اللوحة: {error}",
+        "installed": "✅ تم تثبيت لوحة التذاكر في {channel}!\n\n🆔 معرف اللوحة: `{id}` (احفظه لـ /update-panel، /delete-panel، /refresh-panel)\n🎫 الفئات: {categories} ({count})\n🎨 التخطيط: {layout}",
+        "layout_buttons": "أزرار",
+        "layout_dropdown": "قائمة اختيار منسدلة",
+        "missing_ids": "\n\n⚠️ معرفات فئات غير موجودة (تم تجاهلها): `{ids}`",
+        "must_be_text": "❌ يجب أن تكون القناة المستهدفة قناة نصية.",
+        "no_categories_cmd": "❌ لا توجد فئات بعد. أضف واحدة أولًا عبر `/add-category`، أو استخدم `/setup-ticket` للإعدادات الافتراضية.",
+        "no_match": "❌ لا توجد فئات مطابقة لـ: `{filter}`. استخدم /list-categories لعرض القائمة.",
+        "send_failed": "❌ فشل إرسال لوحة التذاكر إلى {channel}: {error}\n\nتأكد من أن البوت يملك صلاحيتي **إرسال الرسائل** و **تضمين الروابط** في تلك القناة."
       }
     },
     "list-panels": {
-      "description": "عرض جميع لوحات التذاكر الدائمة في هذا السيرفر"
+      "description": "عرض جميع لوحات التذاكر الدائمة في هذا السيرفر",
+      "replies": {
+        "channel_missing": "_(قناة مفقودة)_",
+        "default_title": "_(عنوان افتراضي)_",
+        "footer": "{count} لوحة نشطة • استخدم المعرف لـ /delete-panel، /update-panel، /refresh-panel",
+        "line": "`{n}.` 🆔 `{id}`\n   {title} — في {channel}\n   🎫 {cats} فئة • 🎨 {layout} • 📅 {date}",
+        "more": "\n\n… +{count} لوحة إضافية غير معروضة",
+        "none": "📭 لا توجد لوحات تذاكر دائمة في هذا السيرفر بعد.\n\n💡 أنشئ واحدة عبر `/setup-ticket-panel` — ستُدرج هنا تلقائيًا.",
+        "title": "🎫 قائمة لوحات التذاكر"
+      }
     },
     "delete-panel": {
       "description": "حذف لوحة تذاكر عبر المعرّف (يحذف الرسالة + البيانات تلقائيًا)",
       "options": {
         "id": "معرّف اللوحة (انظر /list-panels)"
+      },
+      "replies": {
+        "deleted": "✅ تم حذف اللوحة `{id}`.\n\n{status}",
+        "meta_failed": "❌ فشل حذف بيانات اللوحة `{id}`. ربما تكون محذوفة بالفعل.",
+        "not_found": "❌ اللوحة `{id}` غير موجودة. استخدم /list-panels لعرض القائمة.",
+        "other_server": "❌ هذه اللوحة تعود لسيرفر آخر. لا يمكن حذفها.",
+        "status_meta_only": "✅ تم تنظيف بيانات اللوحة الوصفية.",
+        "status_msg_deleted": "✅ تم حذف رسالة اللوحة من القناة + تنظيف البيانات الوصفية.",
+        "status_msg_gone": "ℹ️ رسالة اللوحة لم تعد موجودة في القناة (ربما حُذفت يدويًا). تم تنظيف البيانات الوصفية."
       }
     },
     "refresh-panel": {
       "description": "إعادة عرض لوحة بأحدث التصنيفات/المنتجات (دون إعداد من جديد)",
       "options": {
         "id": "معرّف اللوحة (انظر /list-panels)"
+      },
+      "replies": {
+        "channel_gone": "❌ القناة <#{id}> لم تعد موجودة. احذف اللوحة وأعد إعدادها.",
+        "edit_failed": "❌ فشل تعديل رسالة اللوحة: {error}",
+        "message_gone": "❌ رسالة اللوحة لم تعد في القناة. احذف اللوحة وأعد إعدادها.",
+        "no_message_ref": "❌ هذه اللوحة بلا مرجع رسالة (ربما تالفة). احذفها وأعد إعدادها.",
+        "other_server": "❌ هذه اللوحة تعود لسيرفر آخر.",
+        "rebuild_failed": "❌ فشل إعادة بناء اللوحة: {error}",
+        "refreshed": "✅ تم تحديث اللوحة `{id}`!\n\n📬 الموقع: {channel}\n🎨 التخطيط: {layout}\n🎫 الفئات: {count} نشطة"
       }
     },
     "update-panel": {
@@ -219,12 +341,55 @@
       "options": {
         "id": "معرّف اللوحة (انظر /list-panels)",
         "field": "الحقل المراد تعديله"
+      },
+      "fields": {
+        "body": "متن اللوحة (فارغ = عام؛ يدعم القوالب)",
+        "color": "لون hex (مثل #ff5733، فارغ = البرتقالي الافتراضي)",
+        "footer": "نص التذييل (فارغ = استخدام اسم البوت)",
+        "image": "رابط الصورة الكبيرة (فارغ = بلا صورة)",
+        "thumbnail": "رابط الصورة المصغرة (فارغ = بلا مصغرة)",
+        "title": "عنوان اللوحة (فارغ = استخدام العام)"
+      },
+      "modal": {
+        "admin_check_failed": "❌ تعذّر التحقق من صلاحية الأدمن لديك (خطأ في ذاكرة ديسكورد المؤقتة) — حاول مرة أخرى.",
+        "bad_customid": "❌ تنسيق معرف النافذة غير صالح.",
+        "channel_not_found": "\n\n⚠️ قناة اللوحة غير موجودة. تم تحديث البيانات الوصفية رغم ذلك.",
+        "msg_not_found": "\n\n⚠️ رسالة اللوحة غير موجودة (ربما حُذفت). تم تحديث البيانات الوصفية رغم ذلك.",
+        "no_admin": "❌ لا تملك صلاحية الأدمن لتعديل اللوحات.",
+        "not_found": "❌ اللوحة `{id}` غير موجودة (ربما تكون قد حُذفت بالفعل).",
+        "refresh_failed": "\n\n⚠️ فشل تحديث الرسالة: {error} (تم تحديث البيانات الوصفية رغم ذلك).",
+        "refreshed": "\n\n✅ تم تحديث رسالة اللوحة.",
+        "text_too_long": "❌ النص طويل جدًا ({length} > {max} حرفًا).",
+        "update_failed": "❌ فشل تحديث اللوحة.",
+        "updated": "✅ تم تحديث الحقل `{field}` للوحة `{id}`!{rendered}",
+        "url_invalid": "❌ رابط {field} غير صالح. يجب أن يكون http(s)://...",
+        "url_too_long": "❌ رابط {field} طويل جدًا ({length} حرفًا، الحد الأقصى 2048 — حد رسائل ديسكورد المضمّنة). استخدم رابطًا أقصر."
+      },
+      "replies": {
+        "invalid_field": "❌ حقل غير صالح `{field}`.",
+        "modal_title": "تعديل {field} — {id}..."
       }
     },
     "edit-message": {
       "description": "تعديل نص الرسالة عبر نافذة منبثقة (متعدد الأسطر، أكثر مرونة من /set-message)",
       "options": {
         "tipe": "اختر الرسالة التي تريد تعديلها"
+      },
+      "modal": {
+        "admin_check_failed": "❌ تعذّر التحقق من صلاحية الأدمن لديك (خطأ في ذاكرة ديسكورد المؤقتة) — حاول مرة أخرى.",
+        "empty": "❌ لا يمكن أن يكون النص فارغًا.",
+        "invalid_type": "❌ نوع رسالة غير صالح `{tipe}`.",
+        "kind_body": "المتن",
+        "kind_title": "العنوان",
+        "no_admin": "❌ لا تملك صلاحية الأدمن لتعديل الرسائل.",
+        "preview_truncated": "\n...(مقتطع للمعاينة)",
+        "save_failed": "❌ فشل حفظ التغيير: {error}",
+        "success": "✅ تم تحديث رسالة **{tipe}** عبر محرر النافذة.\n\n**معاينة:**\n```\n{preview}\n```",
+        "too_long": "❌ النص طويل جدًا ({length} حرفًا، الحد الأقصى {max} حرفًا لـ {kind})."
+      },
+      "replies": {
+        "input_label": "نص {tipe} (الحد الأقصى {max} حرفًا)",
+        "modal_title": "تعديل {tipe}"
       }
     },
     "add-product": {
@@ -281,12 +446,72 @@
       }
     },
     "config-show": {
-      "description": "عرض جميع إعدادات البوت الحالية"
+      "description": "عرض جميع إعدادات البوت الحالية",
+      "replies": {
+        "channel_audit_log": "سجل التدقيق",
+        "channel_goodbye": "الوداع",
+        "channel_invoice": "الفاتورة",
+        "channel_server_booster": "بوست السيرفر",
+        "channel_server_log": "سجل السيرفر",
+        "channel_transcript": "سجل التذكرة",
+        "channel_welcome": "الترحيب",
+        "days_count": "{count} يومًا",
+        "days_permanent": "♾️ دائم",
+        "escrow_fee_flat": "• العمولة: {value} ثابتة لكل صفقة",
+        "escrow_fee_percent": "• العمولة: {value}% من قيمة الصفقة",
+        "escrow_view_deals": "• عرض الصفقات النشطة: `/midman-deals`",
+        "field_channels": "📢 القنوات",
+        "field_escrow": "🤝 الضمان",
+        "field_keys": "🔑 مفاتيح VIP (نموذج قائم على المفاتيح)",
+        "field_panels": "🎭 لوحات الرتب الذاتية ({count})",
+        "field_products": "📦 المنتجات ({count})",
+        "field_roles": "🎭 الرتب",
+        "field_schedules": "⏰ إزالات الرتب المجدولة",
+        "field_sessions": "🛠️ جلسات منشئ الرسائل المضمّنة",
+        "keys_active": "• نشطة: **{count}**",
+        "keys_expired": "• ⚠️ منتهية الصلاحية (في انتظار تنظيف المجدول): **{count}**",
+        "keys_expired_zero": "• منتهية الصلاحية: **0** ✅",
+        "keys_incl_permanent": " (بما في ذلك {count} دائمًا)",
+        "keys_total": "• إجمالي المفاتيح المخزنة: **{count}**",
+        "more_panels": "\n… +{count} لوحة إضافية",
+        "more_products": "\n\n… +{count} منتجًا إضافيًا — استخدم /list-products",
+        "no_panels": "_(لا توجد لوحات بعد — استخدم `/setup-selfrole`)_",
+        "no_products": "_(لا توجد منتجات بعد — استخدم `/add-product`)_",
+        "no_session": "_(لا توجد جلسة نشطة — استخدم `/embed-builder` للبدء)_",
+        "not_set": "❌ لم يُضبط بعد",
+        "panel_exclusive": "🔒 حصري",
+        "panel_line": "  • **{title}** — {type} | {mode} | {count} رتبة",
+        "panel_multi": "✅ متعدد",
+        "panel_type_button": "🔘 زر",
+        "panel_type_select": "📋 قائمة",
+        "panels_registered": "{count} لوحة مسجلة في هذا السيرفر:\n",
+        "product_line": "• **{label}** (`{value}`) — {price}\n  → الرتبة: {role} | المدة: {days}",
+        "role_admin": "Admin",
+        "role_booster": "Booster (تلقائي)",
+        "role_midman": "Midman (ضمان)",
+        "role_not_mapped": "❌ غير مرتبط بعد",
+        "role_unverified": "Unverified (غير موثّق)",
+        "role_verified": "Verified (موثّق)",
+        "sched_left_dh": "متبقٍ {days} يوم و{hours} ساعة",
+        "sched_left_h": "متبقٍ {hours} ساعة",
+        "sched_loop": "• دورة المجدول: كل 60 ثانية",
+        "sched_next": "• التنفيذ التالي: **{value}**",
+        "sched_next_loop": "يعمل في الدورة التالية",
+        "sched_total": "• إجمالي الجداول النشطة: **{count}**",
+        "session_active": "**{count} جلسة نشطة** (تخصك) — استخدم `/embed-list` لعرض التفاصيل",
+        "subtitle": "هذا هو الإعداد الحالي للبوت (v3.1 — VIP قائم على المفاتيح + الرتب الذاتية + منشئ الإembeds):",
+        "title": "⚙️ إعدادات البوت",
+        "truncated_note": "\n… (مقتطع — حد حقل ديسكورد 1024 حرفًا)"
+      }
     },
     "remove-role": {
       "description": "إزالة رتبة من الإعدادات (verified / unverified / admin / midman / booster)",
       "options": {
         "tipe": "اختر نوع الرتبة المراد إزالتها"
+      },
+      "replies": {
+        "not_set": "ℹ️ رتبة **{tipe}** غير مضبوطة أصلًا — لا يوجد ما يُزال.",
+        "removed": "✅ تمت إزالة رتبة **{tipe}** من الإعدادات.\n\n💡 لإعادة ضبطها، استخدم: `/set-role {tipe} @role`"
       }
     },
     "set-midman-fee": {
@@ -318,19 +543,45 @@
       "description": "إزالة قناة من الإعدادات (invoice / welcome / goodbye / audit-log / server-log / transcript)",
       "options": {
         "tipe": "اختر نوع القناة المراد إزالتها"
+      },
+      "replies": {
+        "not_set": "ℹ️ قناة **{tipe}** غير مضبوطة أصلًا — لا يوجد ما يُزال.",
+        "removed": "✅ تمت إزالة قناة **{tipe}** من الإعدادات.\n\n💡 لإعادة ضبطها، استخدم: `/set-channel {tipe} #channel`"
       }
     },
     "list-messages": {
-      "description": "عرض جميع نصوص الرسائل الحالية"
+      "description": "عرض جميع نصوص الرسائل الحالية",
+      "replies": {
+        "empty": "(فارغ)",
+        "label_goodbye_body": "👋 متن الوداع",
+        "label_goodbye_title": "👋 عنوان الوداع",
+        "label_ticket_body": "🎫 متن التذكرة",
+        "label_ticket_price_header": "🎫 رأس أسعار التذكرة",
+        "label_ticket_title": "🎫 عنوان التذكرة",
+        "label_verify_body": "✅ متن التحقق",
+        "label_verify_title": "✅ عنوان التحقق",
+        "label_welcome_body": "👋 متن الترحيب",
+        "label_welcome_title": "👋 عنوان الترحيب",
+        "subtitle": "هذه كل نصوص الرسائل الحالية. استخدم `/set-message` للتغيير، و `/reset-message` لاستعادة الافتراضي.",
+        "title": "📝 قائمة نصوص الرسائل المضمّنة"
+      }
     },
     "reset-message": {
       "description": "إعادة نص الرسالة إلى الافتراضي",
       "options": {
         "tipe": "اختر الرسالة المراد إعادة تعيينها (أو ALL للكل)"
+      },
+      "replies": {
+        "all": "✅ تمت إعادة **كل الرسائل** إلى الافتراضي.",
+        "one": "✅ تمت إعادة رسالة **{tipe}** إلى الافتراضي.\n\n**قبل:**\n```\n{before}\n```\n**الآن:**\n```\n{after}\n```"
       }
     },
     "reset-config": {
-      "description": "⚠️ حذف جميع الإعدادات (الرتب، القنوات، الرسائل) — لا يمكن التراجع!"
+      "description": "⚠️ حذف جميع الإعدادات (الرتب، القنوات، الرسائل) — لا يمكن التراجع!",
+      "replies": {
+        "confirm_btn": "⚠️ نعم، إعادة ضبط كاملة",
+        "confirm_msg": "🚨 **تأكيد إعادة ضبط الإعدادات**\n\nتحذير: سيؤدي هذا إلى حذف **كل** الإعدادات (الرتب، القنوات، المنتجات، الرسائل).\nلا يمكن التراجع عن هذا!\n\nاضغط الزر أدناه للتأكيد:"
+      }
     },
     "set-product-role": {
       "description": "تعيين رتبة ومدة انتهاء تلقائي لمنتج معين",
@@ -1176,15 +1427,54 @@
         "word_action": "إجراء فلتر الكلمات",
         "max_mentions": "أقصى عدد إشارات لكل رسالة (الافتراضي: 5)",
         "mention_action": "إجراء الإشارات الجماعية"
+      },
+      "replies": {
+        "field_block_links": "🔗 حجب الروابط",
+        "field_match_mode": "🎯 وضع المطابقة",
+        "field_max_mentions": "👥 الحد الأقصى للإشارات",
+        "field_mention_action": "🔨 إجراء الإشارات",
+        "field_spam_action": "🔨 إجراء السبام",
+        "field_spam_threshold": "⚡ عتبة السبام",
+        "field_status": "✅ الحالة",
+        "field_word_action": "🔨 إجراء الكلمات (احتياطي)",
+        "field_word_filter": "📝 تصفية الكلمات",
+        "footer": "استخدم /add-word /remove-word /list-words لإدارة الكلمات. و /automod-show للتفاصيل.",
+        "match_substring": "جزء من الكلمة",
+        "match_whole": "كلمة كاملة",
+        "spam_value": "{count} رسالة / {seconds} ثانية",
+        "title": "🛡️ تم تحديث إعدادات الحماية التلقائية",
+        "word_filter_value": "{count} كلمة (+{exempt} مستثناة)"
       }
     },
     "automod-show": {
-      "description": "عرض إعدادات الإدارة التلقائية الحالية"
+      "description": "عرض إعدادات الإدارة التلقائية الحالية",
+      "replies": {
+        "date_unknown": "غير معروف",
+        "field_exempt": "🛡️ الكلمات المستثناة ({count})",
+        "field_link_blocking": "🔗 حجب الروابط",
+        "field_mention_limit": "👥 حد الإشارات",
+        "field_spam_detection": "⚡ كشف السبام",
+        "field_word_filter": "📝 تصفية الكلمات ({count} كلمة)",
+        "footer": "إدارة الكلمات: /add-word, /remove-word, /list-words • آخر تحديث: {date}",
+        "link_whitelist": "نعم\nقناة القائمة البيضاء: {channels}\nرتبة القائمة البيضاء: {roles}",
+        "match_substring": "**جزء من الكلمة** — يطابق في أي موضع (قد يسبب نتائج خاطئة)",
+        "match_whole": "**كلمة كاملة** — يجب أن تكون الكلمة مستقلة (\"asu\" لا تطابق \"asus\")",
+        "mention_value": "بحد أقصى {count} إشارة → {action}",
+        "not_configured": "ℹ️ الحماية التلقائية غير مهيأة بعد. استخدم `/set-automod` لإعدادها، ثم `/automod-toggle enabled:true`.",
+        "spam_value": "{count} رسالة في {seconds} ثانية → {action}",
+        "status_off": "معطّلة ❌",
+        "status_on": "مفعّلة ✅",
+        "title": "🛡️ إعدادات الحماية التلقائية"
+      }
     },
     "automod-toggle": {
       "description": "تفعيل/تعطيل الإدارة التلقائية",
       "options": {
         "enabled": "تفعيل أم تعطيل؟"
+      },
+      "replies": {
+        "disabled": "❌ تم تعطيل الحماية التلقائية.\n\n💡 إعداداتك الحالية لا تزال محفوظة. فعّلها لاحقًا وستعمل فورًا — دون الحاجة لإعادة الإعداد.",
+        "enabled": "✅ تم تفعيل الحماية التلقائية.\n\n💡 إعداداتك الحالية لا تزال محفوظة. فعّلها لاحقًا وستعمل فورًا — دون الحاجة لإعادة الإعداد."
       }
     },
     "add-link-whitelist": {
@@ -1192,6 +1482,10 @@
       "options": {
         "channel": "القناة المسموح لها بنشر الروابط",
         "role": "الرتبة المسموح لها بنشر الروابط"
+      },
+      "replies": {
+        "added": "✅ تمت إضافة القائمة البيضاء!\n\n📢 القنوات: {channels}\n🎭 الرتب: {roles}",
+        "pick_one": "❌ اختر قناة أو رتبة لإضافتها إلى القائمة البيضاء."
       }
     },
     "add-word": {
@@ -1200,6 +1494,17 @@
         "words": "الكلمات المراد إضافتها (مفصولة بفواصل، مثل: كلمة1،كلمة2)",
         "tipe": "إضافة إلى أي قائمة؟",
         "action": "إجراء خاص لهذه الكلمات (فارغ = استخدام word_action العام)"
+      },
+      "replies": {
+        "action_label": " (الإجراء: **{action}**)",
+        "blocklist_added": "✅ أُضيفت إلى **قائمة الحجب**: {words}{action}",
+        "blocklist_now": "\n📝 قائمة الحجب الآن: **{count} كلمة** • المطابقة: {match} • المستثنيات: {exempt} كلمة",
+        "exempt_added": "✅ أُضيفت إلى **المستثنيات**: {words}",
+        "exempt_now": "\n🛡️ المستثنيات الآن: **{count} كلمة** — الرسائل التي تحتوي هذه الكلمات لن تُعلَّم من قبل الحماية التلقائية.",
+        "no_valid": "❌ لا توجد كلمات صالحة للإضافة.",
+        "skipped": "⏭️ تم تخطيها (موجودة بالفعل): {words}",
+        "skipped_hint": "⏭️ تم تخطيها (موجودة بالفعل — استخدم /remove-word أولًا إن أردت تغييرها): {words}",
+        "view_all": "💡 عرض الكل: `/list-words`"
       }
     },
     "remove-word": {
@@ -1207,16 +1512,38 @@
       "options": {
         "word": "الكلمة المراد إزالتها",
         "tipe": "الإزالة من أي قائمة؟"
+      },
+      "replies": {
+        "list_blocklist": "قائمة الحجب",
+        "list_exempt": "قائمة المستثنيات",
+        "not_in_list": "ℹ️ الكلمة `{word}` ليست في {list}. راجع القائمة: `/list-words`.",
+        "removed": "✅ تمت إزالة الكلمة `{word}` من **{list}**.\n\n💡 لإعادتها: `/add-word words:{word}`"
       }
     },
     "list-words": {
-      "description": "عرض قائمة الحظر + قائمة الإعفاء + إجراء كل كلمة"
+      "description": "عرض قائمة الحظر + قائمة الإعفاء + إجراء كل كلمة",
+      "replies": {
+        "fallback_value": "{action} — تُستخدم للكلمات بدون إجراء محدد",
+        "field_blocklist": "⛔ قائمة الحجب ({count})",
+        "field_exempt": "🛡️ المستثنيات ({count})",
+        "field_fallback": "🔨 الإجراء الاحتياطي",
+        "footer": "إضافة: /add-word • حذف: /remove-word • استبدال جماعي: /set-automod block_words",
+        "match_substring": "**جزء من الكلمة** — يطابق في أي موضع",
+        "match_whole": "**كلمة كاملة** — \"asu\" لا تطابق \"asus\"",
+        "not_configured": "ℹ️ الحماية التلقائية غير مهيأة بعد — لا توجد كلمات محجوبة.\n\nأضف أول كلماتك: `/add-word words:word1,word2`",
+        "title": "📝 تصفية الكلمات — {count} كلمة"
+      }
     },
     "remove-link-whitelist": {
       "description": "إزالة قناة/رتبة من القائمة البيضاء للروابط",
       "options": {
         "channel": "القناة المراد إزالتها من القائمة البيضاء",
         "role": "الرتبة المراد إزالتها من القائمة البيضاء"
+      },
+      "replies": {
+        "not_in_list": "ℹ️ {target} ليست في قائمة الروابط البيضاء.",
+        "pick_one": "❌ اختر القناة أو الرتبة المراد إزالتها من القائمة البيضاء.",
+        "removed": "✅ تمت الإزالة من قائمة الروابط البيضاء: **{list}**\n\n📢 القنوات: {channels}\n🎭 الرتب: {roles}"
       }
     },
     "afk": {

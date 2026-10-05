@@ -83,7 +83,38 @@
       "everyone_invalid": "❌ @everyone tidak bisa dipakai sebagai auto-role.",
       "managed": "❌ **{name}** adalah role terkelola (role bot/integrasi/boost) — role ini tidak bisa diberikan secara manual."
     },
-    "style_invalid": "❌ `style` tidak valid."
+    "style_invalid": "❌ `style` tidak valid.",
+    "automod": {
+      "more_suffix": "\n…+{count} lagi",
+      "none_listed": "_(tidak ada)_"
+    },
+    "automod_action": {
+      "delete_only": "Hapus saja",
+      "global": "(global)",
+      "kick": "Kick",
+      "mute_10m": "Mute 10m",
+      "mute_1h": "Mute 1j",
+      "warn": "Peringatan (DM)"
+    },
+    "ticket_panel": {
+      "desc_escrow": "Deal escrow 3 pihak",
+      "desc_support": "Support / buka ticket langsung",
+      "desc_transaction": "Transaksi — {count} produk ({keyInfo})",
+      "empty_hint_normal": "Wajar jika memang dimaksudkan sebagai aksi cepat.",
+      "empty_hint_sales": "Jika ini kategori penjualan, tambahkan produk dulu: `/add-product category:{id} requires_key:false`",
+      "empty_key_missing": "⚠️ **{label}** (`{id}`) — diatur *memakai key* tetapi belum punya produk. Menekan tombolnya membuka ticket **SUPPORT** (bukan transaksi). Tambahkan produk: `/add-product category:{id} requires_key:true`",
+      "empty_no_products": "ℹ️ **{label}** (`{id}`) — tanpa produk, menekan tombolnya langsung membuka ticket **SUPPORT**. {hint}",
+      "empty_warn_header": "\n\n🔮 **Kategori tanpa produk** (klik = langsung ticket SUPPORT):\n{lines}",
+      "key_mixed": "{without} tanpa key / {with} dengan key",
+      "key_with": "dengan key",
+      "key_without": "tanpa key",
+      "no_categories": "Tidak ada kategori",
+      "no_products": "_(belum ada produk — gunakan `/add-product`)_",
+      "no_products_cat": "_(belum ada produk di kategori ini)_",
+      "price_header": "💰 DAFTAR HARGA 💰",
+      "select_placeholder": "Pilih kategori ticket...",
+      "server_fallback": "Server"
+    }
   },
   "bot_commands": {
     "help": {
@@ -93,16 +124,42 @@
       }
     },
     "setup-verify": {
-      "description": "Siapkan panel verifikasi"
+      "description": "Siapkan panel verifikasi",
+      "replies": {
+        "button_default": "Verifikasi Saya",
+        "installed": "✅ Panel verifikasi terpasang!",
+        "send_failed": "❌ Gagal mengirim panel verifikasi: {error}\n\nPastikan bot punya izin **Send Messages** dan **Embed Links** di channel ini.",
+        "verified_missing": "❌ Role Verified belum diatur. Gunakan `/set-role verified @role` dulu."
+      }
     },
     "setup-ticket": {
-      "description": "Siapkan panel tiket & daftar harga"
+      "description": "Siapkan panel tiket & daftar harga",
+      "replies": {
+        "admin_missing": "❌ Role Admin belum diatur. Gunakan `/set-role admin @role` dulu sebelum memasang panel ticket.",
+        "body_too_long": "❌ Body ticket terlalu panjang SETELAH ekspansi {price_list}: **{length}/{max}** karakter.\n\n💡 Persingkat body ticket (`/set-message ticketBody`), kurangi jumlah produk, atau pakai `{price_list:<category>}` untuk menampilkan kategori tertentu saja.",
+        "fallback_buy": "Beli Key / Transaksi",
+        "fallback_help": "Bantuan",
+        "fallback_report": "Lapor",
+        "installed": "✅ Panel ticket terpasang! ({count} kategori aktif)",
+        "no_categories": "_(belum ada kategori)_",
+        "no_products": "_(belum ada produk)_",
+        "no_products_hint": "_(belum ada produk — gunakan `/add-product`)_",
+        "price_header": "💰 DAFTAR HARGA 💰",
+        "send_failed": "❌ Gagal mengirim panel ticket: {error}\n\nPastikan bot punya izin **Send Messages** dan **Embed Links** di channel ini.",
+        "title_too_long": "❌ Judul Ticket terlalu panjang ({length} karakter, maks {max}). Persingkat lewat `/set-message ticketTitle`."
+      }
     },
     "set-role": {
       "description": "Atur role (verified / unverified / admin / midman / booster)",
       "options": {
         "tipe": "Pilih tipe role",
         "role": "Role yang akan dipakai"
+      },
+      "replies": {
+        "booster_applied": "\n🚀 {count} member yang sedang boost langsung mendapat role ini. Mulai sekarang otomatis: role diberikan saat boost, dicabut saat boost berakhir.",
+        "booster_failed": "\n⚠️ Role tersimpan, tetapi penerapannya ke booster yang ada gagal: {error}",
+        "booster_none": "\nℹ️ Tidak ada yang sedang boost saat ini — role akan diberikan otomatis saat ada yang boost, dan dicabut saat boost-nya berakhir.",
+        "success": "✅ Role **{tipe}** diatur ke {role} (`{id}`)"
       }
     },
     "set-channel": {
@@ -110,12 +167,28 @@
       "options": {
         "tipe": "Pilih tipe channel",
         "channel": "Channel teks yang akan dipakai"
+      },
+      "replies": {
+        "success": "✅ Channel **{tipe}** diatur ke {channel} (`{id}`)",
+        "text_only": "❌ Channel harus berupa text channel.",
+        "transcript_tip": "\n\n💡 Setiap ticket yang ditutup akan otomatis menyimpan riwayat chatnya ke channel ini sebagai bukti transaksi."
       }
     },
     "test-welcome": {
       "description": "Diagnosis & pratinjau embed welcome/goodbye (cari tahu kenapa tidak muncul)",
       "options": {
         "tipe": "Mana yang mau dites"
+      },
+      "replies": {
+        "channel_not_found": "❌ **Channel {tipe}: tidak ditemukan** (ID `{id}`) — terhapus, atau ID-nya milik server lain → atur ulang dengan `/set-channel {tipe} #channel`",
+        "channel_not_set": "❌ **Channel {tipe}: belum diatur** → perbaiki dengan `/set-channel {tipe} #channel`",
+        "channel_ok": "✅ **Channel {tipe}:** {channel} (`{id}`)",
+        "events_active": "ℹ️ Event Join/Leave member: ✅ aktif (bot online dengan intent GuildMembers)",
+        "perms_fix": "→ perbaiki: Server Settings → channel tersebut → tambahkan bot → aktifkan **Send Messages** + **Embed Links**",
+        "perms_line": "{view} Lihat Channel · {send} Kirim Pesan · {embed} Embed Link (izin bot di channel tersebut)",
+        "preview_failed": "⚠️ Pratinjau TIDAK bisa dikirim ke channel ini: {error}\nPeriksa juga izin Send Messages + Embed Links bot DI SINI — channel {tipe} kemungkinan mengalami masalah yang sama.",
+        "preview_sent": "🧪 Pratinjau dikirim ke **channel ini** — {tipe} yang sebenarnya dikirim ke {channel}. Pratinjau memakai data Anda sendiri sebagai \"member baru\".",
+        "channel_unset_fallback": "channel yang Anda atur"
       }
     },
     "set-message": {
@@ -123,6 +196,13 @@
       "options": {
         "tipe": "Pilih pesan yang mau diedit",
         "teks": "Teks baru (mendukung \\n baris baru). Gunakan {user} {username} {server} {count} {action}"
+      },
+      "replies": {
+        "limit_body": "body (maks 4096)",
+        "limit_title": "judul (maks 256)",
+        "preview_truncated": "\n… (pratinjau dipotong — total {length} karakter)",
+        "success": "✅ Pesan **{tipe}** diperbarui.\n\nPratinjau:\n```\n{preview}\n```\nVariabel yang tersedia: `{user}` `{username}` `{server}` `{count}` `{action}`",
+        "too_long": "❌ Teks terlalu panjang untuk **{tipe}**.\n\n📏 Panjang: **{length}** karakter\n🎯 Batas: **{limit}** karakter ({label})\n💡 Pangkas {more} karakter lagi."
       }
     },
     "set-verify-button": {
@@ -131,6 +211,10 @@
         "label": "Teks tombol (maks 80 karakter)",
         "emoji": "Emoji tombol (unicode atau kustom <:name:id>)",
         "style": "Warna tombol"
+      },
+      "replies": {
+        "style_invalid_choices": "❌ `style` tidak valid. Pilih: Primary, Secondary, Success, Danger.",
+        "updated": "✅ Tombol verifikasi diperbarui!\n\n**Pratinjau:**"
       }
     },
     "add-category": {
@@ -197,21 +281,59 @@
         "footer": "Teks footer. Kosong = pakai nama bot",
         "channel": "Channel tujuan (default: channel saat ini). Harus channel teks",
         "use_dropdown": "TRUE = pakai menu dropdown (default: FALSE = tombol)"
+      },
+      "replies": {
+        "build_failed": "❌ Gagal membangun panel: {error}",
+        "installed": "✅ Panel ticket terpasang di {channel}!\n\n🆔 ID Panel: `{id}` (simpan untuk /update-panel, /delete-panel, /refresh-panel)\n🎫 Kategori: {categories} ({count})\n🎨 Layout: {layout}",
+        "layout_buttons": "Tombol",
+        "layout_dropdown": "Menu Pilihan Dropdown",
+        "missing_ids": "\n\n⚠️ ID kategori tidak ditemukan (diabaikan): `{ids}`",
+        "must_be_text": "❌ Channel tujuan harus berupa text channel.",
+        "no_categories_cmd": "❌ Belum ada kategori. Tambahkan dulu dengan `/add-category`, atau gunakan `/setup-ticket` untuk bawaan default.",
+        "no_match": "❌ Tidak ada kategori yang cocok: `{filter}`. Gunakan /list-categories untuk melihat daftarnya.",
+        "send_failed": "❌ Gagal mengirim panel ticket ke {channel}: {error}\n\nPastikan bot punya izin **Send Messages** dan **Embed Links** di channel tersebut."
       }
     },
     "list-panels": {
-      "description": "Lihat semua panel tiket persisten di server ini"
+      "description": "Lihat semua panel tiket persisten di server ini",
+      "replies": {
+        "channel_missing": "_(channel hilang)_",
+        "default_title": "_(judul default)_",
+        "footer": "{count} panel aktif • Gunakan ID untuk /delete-panel, /update-panel, /refresh-panel",
+        "line": "`{n}.` 🆔 `{id}`\n   {title} — di {channel}\n   🎫 {cats} kategori • 🎨 {layout} • 📅 {date}",
+        "more": "\n\n… +{count} panel lagi tidak ditampilkan",
+        "none": "📭 Belum ada panel ticket permanen di server ini.\n\n💡 Buat satu dengan `/setup-ticket-panel` — akan otomatis tercantum di sini.",
+        "title": "🎫 DAFTAR PANEL TICKET"
+      }
     },
     "delete-panel": {
       "description": "Hapus panel tiket berdasarkan ID (otomatis menghapus pesan + metadata)",
       "options": {
         "id": "ID panel (lihat /list-panels)"
+      },
+      "replies": {
+        "deleted": "✅ Panel `{id}` dihapus.\n\n{status}",
+        "meta_failed": "❌ Gagal menghapus metadata panel `{id}`. Mungkin sudah terhapus.",
+        "not_found": "❌ Panel `{id}` tidak ditemukan. Gunakan /list-panels untuk melihat daftarnya.",
+        "other_server": "❌ Panel ini milik server lain. Tidak bisa dihapus.",
+        "status_meta_only": "✅ Metadata panel dibersihkan.",
+        "status_msg_deleted": "✅ Pesan panel dihapus dari channel + metadata dibersihkan.",
+        "status_msg_gone": "ℹ️ Pesan panel sudah tidak ada di channel (kemungkinan dihapus manual). Metadata dibersihkan."
       }
     },
     "refresh-panel": {
       "description": "Render ulang panel dengan kategori/produk terbaru (tanpa perlu setup ulang)",
       "options": {
         "id": "ID panel (lihat /list-panels)"
+      },
+      "replies": {
+        "channel_gone": "❌ Channel <#{id}> sudah tidak ada. Hapus panelnya dan pasang ulang.",
+        "edit_failed": "❌ Gagal mengedit pesan panel: {error}",
+        "message_gone": "❌ Pesan panel sudah tidak ada di channel. Hapus panelnya dan pasang ulang.",
+        "no_message_ref": "❌ Panel ini tidak punya referensi pesan (kemungkinan rusak). Hapus dan pasang ulang.",
+        "other_server": "❌ Panel ini milik server lain.",
+        "rebuild_failed": "❌ Gagal membangun ulang panel: {error}",
+        "refreshed": "✅ Panel `{id}` disegarkan!\n\n📬 Lokasi: {channel}\n🎨 Layout: {layout}\n🎫 Kategori: {count} aktif"
       }
     },
     "update-panel": {
@@ -219,12 +341,55 @@
       "options": {
         "id": "ID panel (lihat /list-panels)",
         "field": "Field mana yang mau diedit"
+      },
+      "fields": {
+        "body": "Isi Panel (kosong = global; mendukung template)",
+        "color": "Warna hex (mis. #ff5733, kosong = oranye default)",
+        "footer": "Teks footer (kosong = pakai nama bot)",
+        "image": "URL gambar besar (kosong = tanpa gambar)",
+        "thumbnail": "URL thumbnail kecil (kosong = tanpa thumbnail)",
+        "title": "Judul Panel (kosong = pakai global)"
+      },
+      "modal": {
+        "admin_check_failed": "❌ Tidak bisa memverifikasi izin admin Anda (error cache Discord) — silakan coba lagi.",
+        "bad_customid": "❌ Format customId modal tidak valid.",
+        "channel_not_found": "\n\n⚠️ Channel panel tidak ditemukan. Metadata tetap diperbarui.",
+        "msg_not_found": "\n\n⚠️ Pesan panel tidak ditemukan (kemungkinan dihapus). Metadata tetap diperbarui.",
+        "no_admin": "❌ Anda tidak punya izin admin untuk mengedit panel.",
+        "not_found": "❌ Panel `{id}` tidak ditemukan (mungkin sudah terhapus).",
+        "refresh_failed": "\n\n⚠️ Gagal menyegarkan pesan: {error} (metadata tetap diperbarui).",
+        "refreshed": "\n\n✅ Pesan panel disegarkan.",
+        "text_too_long": "❌ Teks terlalu panjang ({length} > {max} karakter).",
+        "update_failed": "❌ Gagal memperbarui panel.",
+        "updated": "✅ Field `{field}` dari panel `{id}` diperbarui!{rendered}",
+        "url_invalid": "❌ URL {field} tidak valid. Harus http(s)://...",
+        "url_too_long": "❌ URL {field} terlalu panjang ({length} karakter, maks 2048 — batas embed Discord). Gunakan link yang lebih pendek."
+      },
+      "replies": {
+        "invalid_field": "❌ Field `{field}` tidak valid.",
+        "modal_title": "Edit {field} — {id}..."
       }
     },
     "edit-message": {
       "description": "Edit teks embed lewat modal (multi-baris, lebih fleksibel dari /set-message)",
       "options": {
         "tipe": "Pilih pesan yang mau diedit"
+      },
+      "modal": {
+        "admin_check_failed": "❌ Tidak bisa memverifikasi izin admin Anda (error cache Discord) — silakan coba lagi.",
+        "empty": "❌ Teks tidak boleh kosong.",
+        "invalid_type": "❌ Tipe pesan `{tipe}` tidak valid.",
+        "kind_body": "isi",
+        "kind_title": "judul",
+        "no_admin": "❌ Anda tidak punya izin admin untuk mengedit pesan.",
+        "preview_truncated": "\n...(dipotong untuk pratinjau)",
+        "save_failed": "❌ Gagal menyimpan perubahan: {error}",
+        "success": "✅ Pesan **{tipe}** diperbarui lewat editor modal.\n\n**Pratinjau:**\n```\n{preview}\n```",
+        "too_long": "❌ Teks terlalu panjang ({length} karakter, maks {max} karakter untuk {kind})."
+      },
+      "replies": {
+        "input_label": "Teks {tipe} (maks {max} karakter)",
+        "modal_title": "Edit {tipe}"
       }
     },
     "add-product": {
@@ -281,12 +446,72 @@
       }
     },
     "config-show": {
-      "description": "Lihat seluruh konfigurasi bot saat ini"
+      "description": "Lihat seluruh konfigurasi bot saat ini",
+      "replies": {
+        "channel_audit_log": "Audit Log",
+        "channel_goodbye": "Goodbye",
+        "channel_invoice": "Invoice",
+        "channel_server_booster": "Server Booster",
+        "channel_server_log": "Server Log",
+        "channel_transcript": "Transkrip Ticket",
+        "channel_welcome": "Welcome",
+        "days_count": "{count} hari",
+        "days_permanent": "♾️ permanen",
+        "escrow_fee_flat": "• Fee: {value} tetap per deal",
+        "escrow_fee_percent": "• Fee: {value}% dari harga deal",
+        "escrow_view_deals": "• Lihat deal aktif: `/midman-deals`",
+        "field_channels": "📢 Channel",
+        "field_escrow": "🤝 Escrow",
+        "field_keys": "🔑 Key VIP (Model Berbasis Key)",
+        "field_panels": "🎭 Panel Self-Role ({count})",
+        "field_products": "📦 Produk ({count})",
+        "field_roles": "🎭 Role",
+        "field_schedules": "⏰ Pencabutan Role Terjadwal",
+        "field_sessions": "🛠️ Sesi Embed Builder",
+        "keys_active": "• Aktif: **{count}**",
+        "keys_expired": "• ⚠️ Kedaluwarsa (menunggu scheduler membersihkan): **{count}**",
+        "keys_expired_zero": "• Kedaluwarsa: **0** ✅",
+        "keys_incl_permanent": " (termasuk {count} permanen)",
+        "keys_total": "• Total key tersimpan: **{count}**",
+        "more_panels": "\n… +{count} panel lagi",
+        "more_products": "\n\n… +{count} produk lagi — gunakan /list-products",
+        "no_panels": "_(belum ada panel — gunakan `/setup-selfrole`)_",
+        "no_products": "_(belum ada produk — gunakan `/add-product`)_",
+        "no_session": "_(tidak ada sesi aktif — gunakan `/embed-builder` untuk mulai)_",
+        "not_set": "❌ belum diatur",
+        "panel_exclusive": "🔒 Eksklusif",
+        "panel_line": "  • **{title}** — {type} | {mode} | {count} role",
+        "panel_multi": "✅ Multi",
+        "panel_type_button": "🔘 Tombol",
+        "panel_type_select": "📋 Pilihan",
+        "panels_registered": "{count} panel terdaftar di server ini:\n",
+        "product_line": "• **{label}** (`{value}`) — {price}\n  → Role: {role} | Durasi: {days}",
+        "role_admin": "Admin",
+        "role_booster": "Booster (otomatis)",
+        "role_midman": "Midman (Escrow)",
+        "role_not_mapped": "❌ belum dipetakan",
+        "role_unverified": "Unverified",
+        "role_verified": "Verified",
+        "sched_left_dh": "sisa {days}h {hours}j",
+        "sched_left_h": "sisa {hours}j",
+        "sched_loop": "• Loop scheduler: setiap 60 detik",
+        "sched_next": "• Eksekusi berikutnya: **{value}**",
+        "sched_next_loop": "berjalan pada loop berikutnya",
+        "sched_total": "• Total jadwal aktif: **{count}**",
+        "session_active": "**{count} sesi aktif** (milik Anda) — gunakan `/embed-list` untuk melihat detailnya",
+        "subtitle": "Berikut setup bot saat ini (v3.1 — VIP berbasis key + self-role + embed builder):",
+        "title": "⚙️ KONFIGURASI BOT",
+        "truncated_note": "\n… (dipotong — batas field Discord 1024 karakter)"
+      }
     },
     "remove-role": {
       "description": "Hapus role dari konfigurasi (verified / unverified / admin / midman / booster)",
       "options": {
         "tipe": "Pilih tipe role yang akan dihapus"
+      },
+      "replies": {
+        "not_set": "ℹ️ Role **{tipe}** memang belum diatur — tidak ada yang perlu dihapus.",
+        "removed": "✅ Role **{tipe}** dihapus dari config.\n\n💡 Untuk mengaturnya lagi, gunakan: `/set-role {tipe} @role`"
       }
     },
     "set-midman-fee": {
@@ -318,19 +543,45 @@
       "description": "Hapus channel dari konfigurasi (invoice / welcome / goodbye / audit-log / server-log / transcript)",
       "options": {
         "tipe": "Pilih tipe channel yang akan dihapus"
+      },
+      "replies": {
+        "not_set": "ℹ️ Channel **{tipe}** memang belum diatur — tidak ada yang perlu dihapus.",
+        "removed": "✅ Channel **{tipe}** dihapus dari config.\n\n💡 Untuk mengaturnya lagi, gunakan: `/set-channel {tipe} #channel`"
       }
     },
     "list-messages": {
-      "description": "Lihat semua teks embed saat ini"
+      "description": "Lihat semua teks embed saat ini",
+      "replies": {
+        "empty": "(kosong)",
+        "label_goodbye_body": "👋 Isi Goodbye",
+        "label_goodbye_title": "👋 Judul Goodbye",
+        "label_ticket_body": "🎫 Isi Ticket",
+        "label_ticket_price_header": "🎫 Header Harga Ticket",
+        "label_ticket_title": "🎫 Judul Ticket",
+        "label_verify_body": "✅ Isi Verify",
+        "label_verify_title": "✅ Judul Verify",
+        "label_welcome_body": "👋 Isi Welcome",
+        "label_welcome_title": "👋 Judul Welcome",
+        "subtitle": "Berikut seluruh teks pesan saat ini. Gunakan `/set-message` untuk mengubah, `/reset-message` untuk mengembalikan default.",
+        "title": "📝 DAFTAR PESAN EMBED"
+      }
     },
     "reset-message": {
       "description": "Reset teks embed kembali ke default",
       "options": {
         "tipe": "Pilih pesan yang mau direset (atau ALL untuk semua)"
+      },
+      "replies": {
+        "all": "✅ **SEMUA pesan** direset ke default.",
+        "one": "✅ Pesan **{tipe}** direset ke default.\n\n**Sebelum:**\n```\n{before}\n```\n**Sekarang:**\n```\n{after}\n```"
       }
     },
     "reset-config": {
-      "description": "⚠️ Hapus SEMUA pengaturan (roles, channels, messages) - tidak bisa dibatalkan!"
+      "description": "⚠️ Hapus SEMUA pengaturan (roles, channels, messages) - tidak bisa dibatalkan!",
+      "replies": {
+        "confirm_btn": "⚠️ Ya, Reset Penuh",
+        "confirm_msg": "🚨 **KONFIRMASI RESET CONFIG**\n\nPeringatan: ini akan menghapus **SEMUA** pengaturan (role, channel, produk, pesan).\nTindakan ini tidak bisa dibatalkan!\n\nKlik tombol di bawah untuk konfirmasi:"
+      }
     },
     "set-product-role": {
       "description": "Atur role & durasi auto-expire untuk produk tertentu",
@@ -1176,15 +1427,54 @@
         "word_action": "Aksi untuk filter kata",
         "max_mentions": "Maks mention per pesan (default: 5)",
         "mention_action": "Aksi untuk mass-mention"
+      },
+      "replies": {
+        "field_block_links": "🔗 Blokir Link",
+        "field_match_mode": "🎯 Mode Pencocokan",
+        "field_max_mentions": "👥 Maks Mention",
+        "field_mention_action": "🔨 Aksi Mention",
+        "field_spam_action": "🔨 Aksi Spam",
+        "field_spam_threshold": "⚡ Ambang Spam",
+        "field_status": "✅ Status",
+        "field_word_action": "🔨 Aksi Kata (fallback)",
+        "field_word_filter": "📝 Filter Kata",
+        "footer": "Gunakan /add-word /remove-word /list-words untuk mengelola kata. /automod-show untuk detail.",
+        "match_substring": "Bagian kata",
+        "match_whole": "Kata utuh",
+        "spam_value": "{count} pesan / {seconds} dtk",
+        "title": "🛡️ KONFIGURASI AUTO-MOD DIPERBARUI",
+        "word_filter_value": "{count} kata (+{exempt} pengecualian)"
       }
     },
     "automod-show": {
-      "description": "Lihat konfigurasi auto-mod saat ini"
+      "description": "Lihat konfigurasi auto-mod saat ini",
+      "replies": {
+        "date_unknown": "tidak diketahui",
+        "field_exempt": "🛡️ Kata Pengecualian ({count})",
+        "field_link_blocking": "🔗 Pemblokiran Link",
+        "field_mention_limit": "👥 Batas Mention",
+        "field_spam_detection": "⚡ Deteksi Spam",
+        "field_word_filter": "📝 Filter Kata ({count} kata)",
+        "footer": "Kelola kata: /add-word, /remove-word, /list-words • Diperbarui: {date}",
+        "link_whitelist": "Ya\nKanal whitelist: {channels}\nRole whitelist: {roles}",
+        "match_substring": "**Bagian kata** — cocok di mana saja (bisa memicu false positive)",
+        "match_whole": "**Kata utuh** — kata harus berdiri sendiri (\"asu\" tidak cocok dengan \"asus\")",
+        "mention_value": "Maks {count} mention → {action}",
+        "not_configured": "ℹ️ Auto-mod belum dikonfigurasi. Gunakan `/set-automod` untuk menyiapkan, lalu `/automod-toggle enabled:true`.",
+        "spam_value": "{count} pesan dalam {seconds} dtk → {action}",
+        "status_off": "Nonaktif ❌",
+        "status_on": "Aktif ✅",
+        "title": "🛡️ KONFIGURASI AUTO-MOD"
+      }
     },
     "automod-toggle": {
       "description": "Aktifkan/nonaktifkan auto-mod",
       "options": {
         "enabled": "Aktifkan atau nonaktifkan?"
+      },
+      "replies": {
+        "disabled": "❌ Auto-mod dinonaktifkan.\n\n💡 Config Anda saat ini tetap tersimpan. Aktifkan lagi nanti dan langsung berfungsi — tanpa perlu disetel ulang.",
+        "enabled": "✅ Auto-mod diaktifkan.\n\n💡 Config Anda saat ini tetap tersimpan. Aktifkan lagi nanti dan langsung berfungsi — tanpa perlu disetel ulang."
       }
     },
     "add-link-whitelist": {
@@ -1192,6 +1482,10 @@
       "options": {
         "channel": "Channel yang boleh mengirim link",
         "role": "Role yang boleh mengirim link"
+      },
+      "replies": {
+        "added": "✅ Whitelist ditambahkan!\n\n📢 Channel: {channels}\n🎭 Role: {roles}",
+        "pick_one": "❌ Pilih channel atau role untuk di-whitelist."
       }
     },
     "add-word": {
@@ -1200,6 +1494,17 @@
         "words": "Kata yang ditambah (dipisah koma, mis. kata1,kata2)",
         "tipe": "Tambah ke daftar mana?",
         "action": "Aksi khusus untuk kata-kata ini (kosong = pakai word_action global)"
+      },
+      "replies": {
+        "action_label": " (aksi: **{action}**)",
+        "blocklist_added": "✅ Ditambahkan ke **blocklist**: {words}{action}",
+        "blocklist_now": "\n📝 Blocklist sekarang: **{count} kata** • cocok: {match} • pengecualian: {exempt} kata",
+        "exempt_added": "✅ Ditambahkan ke **pengecualian**: {words}",
+        "exempt_now": "\n🛡️ Pengecualian sekarang: **{count} kata** — pesan yang mengandung kata-kata ini tidak ditandai auto-mod.",
+        "no_valid": "❌ Tidak ada kata yang valid untuk ditambahkan.",
+        "skipped": "⏭️ Dilewati (sudah ada): {words}",
+        "skipped_hint": "⏭️ Dilewati (sudah ada — gunakan /remove-word dulu jika ingin mengubahnya): {words}",
+        "view_all": "💡 Lihat semua: `/list-words`"
       }
     },
     "remove-word": {
@@ -1207,16 +1512,38 @@
       "options": {
         "word": "Kata yang akan dihapus",
         "tipe": "Hapus dari daftar mana?"
+      },
+      "replies": {
+        "list_blocklist": "blocklist",
+        "list_exempt": "daftar pengecualian",
+        "not_in_list": "ℹ️ Kata `{word}` tidak ada di {list}. Periksa daftarnya: `/list-words`.",
+        "removed": "✅ Kata `{word}` dihapus dari **{list}**.\n\n💡 Untuk menambahkan lagi: `/add-word words:{word}`"
       }
     },
     "list-words": {
-      "description": "Lihat blocklist + daftar kata exempt + aksi per kata"
+      "description": "Lihat blocklist + daftar kata exempt + aksi per kata",
+      "replies": {
+        "fallback_value": "{action} — dipakai untuk kata tanpa aksi khusus",
+        "field_blocklist": "⛔ Blocklist ({count})",
+        "field_exempt": "🛡️ Pengecualian ({count})",
+        "field_fallback": "🔨 Aksi Fallback",
+        "footer": "Tambah: /add-word • Hapus: /remove-word • Ganti massal: /set-automod block_words",
+        "match_substring": "**Bagian kata** — cocok di mana saja",
+        "match_whole": "**Kata utuh** — \"asu\" tidak cocok dengan \"asus\"",
+        "not_configured": "ℹ️ Auto-mod belum dikonfigurasi — belum ada kata yang diblokir.\n\nTambahkan kata pertama Anda: `/add-word words:word1,word2`",
+        "title": "📝 FILTER KATA — {count} kata"
+      }
     },
     "remove-link-whitelist": {
       "description": "Hapus channel/role dari whitelist link",
       "options": {
         "channel": "Channel yang akan dihapus dari whitelist",
         "role": "Role yang akan dihapus dari whitelist"
+      },
+      "replies": {
+        "not_in_list": "ℹ️ {target} tidak ada di whitelist link.",
+        "pick_one": "❌ Pilih channel atau role yang akan dihapus dari whitelist.",
+        "removed": "✅ Dihapus dari whitelist link: **{list}**\n\n📢 Channel: {channels}\n🎭 Role: {roles}"
       }
     },
     "afk": {
