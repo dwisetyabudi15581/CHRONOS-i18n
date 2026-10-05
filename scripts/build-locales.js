@@ -109,6 +109,13 @@ for (const lang of LANGS) {
         if (rogue.length) {
             problems.push(`  PLACEHOLDER ${k}: en={${enPh.join(',')}} ${lang} has unknown {${rogue.join(',')}}`);
         }
+        // Discord hard limit: command + option descriptions max 100 chars.
+        // The English sources already comply — translations must too.
+        if (/^bot_commands\.[^.]+\.description$/.test(k) || /^bot_commands\.[^.]+\.options\./.test(k)) {
+            if (v.length > 100) {
+                problems.push(`  TOO_LONG ${k}: ${v.length} chars (Discord max 100)`);
+            }
+        }
     }
 
     if (problems.length) {

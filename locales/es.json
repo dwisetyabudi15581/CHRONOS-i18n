@@ -54,7 +54,7 @@
       }
     },
     "set-channel": {
-      "description": "Configura canales (invoice / welcome / goodbye / audit-log / server-log / transcript / server-booster)",
+      "description": "Configura canales (invoice, welcome, goodbye, audit-log, server-log, transcript, booster)",
       "options": {
         "tipe": "Elige el tipo de canal",
         "channel": "El canal de texto a utilizar"
@@ -101,7 +101,7 @@
       }
     },
     "update-category": {
-      "description": "Edita una categoría de tickets existente (label/emoji/style/requires_key) sin borrar y volver a añadir",
+      "description": "Edita una categoría de tickets existente (label/emoji/style/requires_key) sin borrarla",
       "options": {
         "id": "El ID de la categoría a actualizar",
         "label": "Nueva etiqueta del botón (máx. 80 caracteres)",
@@ -201,7 +201,7 @@
       "description": "Ver todos los tratos de escrow activos en este servidor"
     },
     "remove-channel": {
-      "description": "Elimina un canal de la configuración (invoice / welcome / goodbye / audit-log / server-log / transcript)",
+      "description": "Elimina un canal de la configuración (invoice, welcome, goodbye, logs, transcript)",
       "options": {
         "tipe": "Elige el tipo de canal a eliminar"
       }
@@ -250,10 +250,10 @@
       }
     },
     "clear-schedule": {
-      "description": "Elimina todos los roles programados de un usuario (+ opcionalmente borra todas sus keys y quita el rol VIP)",
+      "description": "Elimina los roles programados de un usuario (+ opcional: borrar sus keys y quitar el rol VIP)",
       "options": {
         "user": "El usuario a limpiar",
-        "clear_keys": "True = borrar TODAS las keys del usuario + quitar el rol VIP (restablecimiento total). Predeterminado: false."
+        "clear_keys": "True = borrar TODAS las keys + quitar el rol VIP (reset total). Por defecto: false."
       }
     },
     "setup-selfrole": {
@@ -473,7 +473,7 @@
       "description": "Configura temp voice — crea automáticamente una categoría + canal de panel + canal de activación"
     },
     "tempvoice-remove": {
-      "description": "Elimina la configuración de temp voice del servidor (la categoría + todos los canales relacionados se borran)"
+      "description": "Elimina el setup de temp voice (categoría + canales relacionados se borran)"
     },
     "send-message": {
       "description": "Envía un mensaje de texto plano a un canal de texto (admite \\n y menciones)",
@@ -602,7 +602,7 @@
       "description": "Top 10 de miembros con el nivel más alto (público)"
     },
     "set-language": {
-      "description": "Configura el idioma de respuesta del bot para este servidor (predeterminado: auto — sigue el idioma de Discord de cada usuario)",
+      "description": "Idioma de respuesta del bot en este servidor (auto = el idioma de Discord de cada usuario)",
       "options": {
         "bahasa": "Elige el idioma (Auto = seguir el idioma de la app de Discord de cada usuario)"
       },

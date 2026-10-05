@@ -54,7 +54,7 @@
       }
     },
     "set-channel": {
-      "description": "Kanäle festlegen (invoice / welcome / goodbye / audit-log / server-log / transcript / server-booster)",
+      "description": "Kanäle festlegen (invoice, welcome, goodbye, audit-log, server-log, transcript, booster)",
       "options": {
         "tipe": "Wähle den Kanaltyp",
         "channel": "Der zu verwendende Textkanal"
@@ -201,7 +201,7 @@
       "description": "Alle aktiven Treuhand-Deals auf diesem Server anzeigen"
     },
     "remove-channel": {
-      "description": "Einen Kanal aus der Konfiguration entfernen (invoice / welcome / goodbye / audit-log / server-log / transcript)",
+      "description": "Kanal aus der Konfiguration entfernen (invoice, welcome, goodbye, logs, transcript)",
       "options": {
         "tipe": "Wähle den zu entfernenden Kanaltyp"
       }
@@ -250,7 +250,7 @@
       }
     },
     "clear-schedule": {
-      "description": "Alle geplanten Rollen eines Benutzers löschen (+ optional alle Keys löschen & die VIP-Rolle entfernen)",
+      "description": "Alle geplanten Rollen eines Benutzers löschen (+ optional Keys & VIP-Rolle entfernen)",
       "options": {
         "user": "Der zu bereinigende Benutzer",
         "clear_keys": "True = ALLE Benutzer-Keys löschen + VIP-Rolle entfernen (voller Reset). Standard: false."
@@ -324,7 +324,7 @@
       "description": "Alle gespeicherten Backups anzeigen (max. die 7 neuesten)"
     },
     "restore-backup": {
-      "description": "Ein Backup per Name wiederherstellen (erstellt automatisch ein Sicherheits-Backup vor der Wiederherstellung)",
+      "description": "Ein Backup per Name wiederherstellen (mit automatischem Sicherheits-Backup davor)",
       "options": {
         "name": "Backup-Ordnername (siehe /backup-list, Format: JJJJ-MM-TT_HH-mm-ss)"
       }
@@ -447,7 +447,7 @@
       "description": "Liste der aktuellen Server-Booster + neueren Boost-Verlauf (öffentlich)"
     },
     "test-booster": {
-      "description": "Die Boost-Hinzufügen/Entfernen-Benachrichtigung diagnostizieren & vorbelegen (herausfinden, warum sie nicht erscheint)",
+      "description": "Die Boost-Benachrichtigung diagnostizieren & vorbelegen (warum sie nicht erscheint)",
       "options": {
         "tipe": "Welches getestet werden soll",
         "live": "Die Vorschau auch an den ECHTEN Server-Booster-Kanal senden (Zustelltest)"
@@ -602,7 +602,7 @@
       "description": "Top 10 Mitglieder mit dem höchsten Level (öffentlich)"
     },
     "set-language": {
-      "description": "Die Antwort-Sprache des Bots für diesen Server festlegen (Standard: auto — folgt der Discord-Sprache jedes Benutzers)",
+      "description": "Antwort-Sprache des Bots für diesen Server (Standard: auto — Discord-Sprache je Benutzer)",
       "options": {
         "bahasa": "Sprache wählen (Auto = der Discord-App-Sprache jedes Benutzers folgen)"
       },
