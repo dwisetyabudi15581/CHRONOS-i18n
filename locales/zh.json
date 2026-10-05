@@ -2160,5 +2160,160 @@
       "unverified_remove_failed": "\n⚠️ 机器人无法移除 Unverified 身份组。请确保机器人的身份组位于 Unverified 身份组之上。请联系管理员手动移除。",
       "verified_missing": "❌ 尚未设置 Verified 身份组。请让管理员运行 `/set-role verified @身份组`。"
     }
+  },
+  "help": {
+    "all": {
+      "description": "_全部命令完整列表（v{version}）。_",
+      "dropped_note": "\n\n… 还有 {count} 个分类未加载（单条消息大小限制）— 请使用 📂 下拉菜单或 🔍 搜索命令。",
+      "field_truncated": "\n… +更多行未显示。",
+      "title": "🤖 全部命令"
+    },
+    "cat": {
+      "afk": {
+        "detail": "**AFK = \"请勿打扰\"：挂 AFK 期间，任何人提及你都会立即收到带原因的自动回复。**\n• `/afk reason` — 挂 AFK，如 `/afk reason:\"学习中，8点回来\"`。管理员和成员都可用（公开命令）。\n• `/afk-clear` — 你回来了；提及不再被回复。\n• `/afk-list` — 当前所有 AFK 的人 + 原因。\n❓ **会自动回来吗？** 用 `/afk-clear` 清除 — 状态不会自己过期。",
+        "lines": "• `/afk reason:...` — 挂 AFK（被提及时代为回复）\n• `/afk-clear` — 回来 · `/afk-list` — 谁在 AFK",
+        "name": "AFK 系统",
+        "short": "提及 AFK 用户时自动回复"
+      },
+      "announce": {
+        "detail": "**两种公告方式：立即发送，或定时发送。**\n• `/announce channel title description color image thumbnail mention` — 立即发送一个精美 embed。`mention` — 同时 ping 某身份组/@everyone。\n• `/announce-schedule at recurring` — 定时：`at:30m`（30 分钟后）或 `at:2026-12-25 09:00`，`recurring:daily|weekly|monthly` 或单次。重复公告会自动重发。\n• `/announce-list` — 所有待发计划 + ID · `/announce-cancel id` — 触发前删除。\n❓ **时区？** 机器人使用服务器配置的 TZ 偏移 — 建议先提前几分钟安排一次验证。\n❓ **修改定时公告？** 取消 + 重建 — `/announce-list` 显示可复用的完整参数。",
+        "lines": "• `/announce channel:#ch title:... description:...` — 公告\n• `/announce-schedule at:30m recurring:daily` — 定时（单次/重复）\n• `/announce-list` `/announce-cancel` — 查看与取消",
+        "name": "定时公告",
+        "short": "立即或定时发送公告"
+      },
+      "automod": {
+        "detail": "**自动管理盯住每条消息并立即行动 — 规则由你定。**\n**配置：**\n• `/set-automod` — 总开关：`spam_threshold`（刷屏阈值）、`spam_action`、`block_links`、`block_words`、`word_action`、`max_mentions`、`mention_action`。\n• `/automod-show` — 查看当前规则 · `/automod-toggle enabled:false|true` — 一键开关。\n\n**违禁词：**\n• `/add-word words:词1,词2 action:Mute_10_minutes` — 添加词汇（逗号分隔、追加 — 绝不覆盖）+ 处罚。`tipe:Exempt_(word)` 则将词汇加白。\n• `/remove-word word tipe` — 删除一个 · `/list-words` — 查看违禁词、豁免 + 每词处罚。\n\n**链接与豁免：**\n• `/add-link-whitelist channel|#ch role|@role` — 谁可以发链接（频道或身份组）。\n• 匹配为全词：\"cat\" 不会匹配 \"category\" — 更长的词不会误报。\n❓ **触发了却没处罚？** 查看 `/automod-show` — 所需规则是否启用、机器人身份组是否高于对方？",
+        "lines": "• `/set-automod` `/automod-show` `/automod-toggle` — 启用与查看\n• `/add-word words:word1,word2 action:Mute_10_minutes` — 词汇 + 处罚\n• `/remove-word` `/list-words` · `/add-word tipe:Exempt_(word)` — 白名单\n• `/add-link-whitelist` `/remove-link-whitelist` — 允许的链接\n💡 全词匹配：\"cat\" 不会匹配 \"category\"",
+        "name": "反垃圾与自动管理",
+        "short": "违禁词、链接白名单、自动处置"
+      },
+      "backup": {
+        "detail": "**备份保护你的全部配置：商品、密钥、面板、身份组、频道、统计、服务器计数器、加成历史…**\n• `/backup-now` — 立即手动备份一次。每 24 小时也会自动运行安全备份。\n• `/backup-list` — 备份槽位（最多 7 个，最旧淘汰）+ 名称与时间戳。\n• `/restore-backup name` — 从槽位恢复一切。恢复前会先做一次全新安全备份，随时可回退。\n• `/reset-config` — ⚠️ 将所有设置恢复出厂（身份组、频道、商品、文案）。两步确认 — 请先 `/backup-now`！\n❓ **恢复会刷新实时缓存** — 机器人立即加载恢复的数据，无需重启。\n❓ **文件在哪？** `data/backups/` — 请勿手动编辑；使用命令操作。",
+        "lines": "• `/backup-now` — 立即备份（每 24h 自动，最多 7 槽位）\n• `/backup-list` `/restore-backup` — 查看与恢复\n• `/reset-config` — ⚠️ 删除全部配置（两步确认）",
+        "name": "备份与维护",
+        "short": "备份数据、恢复、重置配置"
+      },
+      "categories": {
+        "detail": "**分类 = 面板上的门。每个分类有 `id`、`label`（成员看到的名称）、`emoji` 和按钮 `style`（颜色）。**\n• `/add-category id label emoji style requires_key` — 如 `/add-category id:service label:\"Service\" emoji:🎮 style:Success requires_key:false`。\n• `requires_key:true` — 分类售卖商品：成员看到商品下拉菜单 + 价格表。`requires_key:false` — 普通求助/举报工单。\n• `/update-category id` — 无需删除重建即可编辑 label/emoji/style/requires_key · `/remove-category id` · `/list-categories`。\n💡 带商品的分类显示下拉菜单；没有商品时点击直接创建工单。\n\n**自动拆分（默认）：工单自动归入 3 个分类** — 🎫 TRANSACTIONS（商品订单）· 🎫 ASSISTANCE（求助/举报）· 🤝 ESCROW（担保交易）。通过 `/edit-message` 类型 `ticketCategoryKey`、`ticketCategoryNoKey`、`midman.category` 重命名。\n❓ **加了商品但下拉菜单没出现？** 运行 `/refresh-panel id` — 面板 embed 会用新列表刷新。",
+        "lines": "• `/add-category id:service label:\"Service\" emoji:🎮 style:Success requires_key:false`\n• `/update-category id:service label:...` — 编辑 · `/remove-category` · `/list-categories`\n💡 有商品 → 下拉菜单；没有 → 直接创建工单。\n**自动拆分**为 3 个分类：🎫 TRANSACTIONS（商品）· 🎫 ASSISTANCE（求助/举报）· 🤝 ESCROW（担保）。自定义名称：`ticketCategoryKey` `ticketCategoryNoKey` `midman.category`",
+        "name": "工单分类",
+        "short": "分类增删改查 + 自动拆分 3 类"
+      },
+      "giveaway": {
+        "detail": "**抽奖**\n• `/giveaway create channel prize duration winners required_role` — 如 `/giveaway create channel:#events prize:\"VIP 30D\" winners:1 duration:60`（分钟）。`required_role` — 仅持该身份组的成员可参与。\n• `/giveaway list` — 进行中的抽奖 + ID · `/giveaway end id` — 立即结束（抽选 + 公布获奖者） · `/giveaway reroll id` — 为已结束的重抽。\n• 参与方式 = 点击 🎉 表情 — 机器人自行记录参与、防止重复，并在结束时重新渲染 embed。\n\n**投票**\n• `/poll create channel question multiple` — 如 `/poll create channel:#general question:\"电影之夜？\" multiple:true`（成员可选多项）。选项在模态框中输入（2–10 个）。\n• `/poll list` — 进行中的投票 + ID · `/poll close id` — 锁定投票 + 展示计票。\n❓ **获奖人数不对？** 创建时设置 `winners`；reroll 会精确重抽该数量。",
+        "lines": "• `/giveaway create channel:#ch prize:... winners:1 duration:60` — 开始\n• `/giveaway list` `/giveaway end` `/giveaway reroll` — 管理\n• `/poll create` `/poll list` `/poll close` — 投票",
+        "name": "抽奖与投票",
+        "short": "创建 / 管理抽奖和投票"
+      },
+      "info": {
+        "detail": "**/help — 指挥中心**\n• `/help` — 本导航器：在 📂 下拉菜单选择分类（每个命令都有说明）、🔍 **Search Commands** 搜关键词、📖 **All Commands** 看紧凑完整列表，或直接运行 `/help search:keyword`。\n• 每个分类视图就是完整指南 — 语法、行为、以及最常见问题的答案。\n\n**/config-show — 一页看全部设置**\n• 身份组、频道、商品、自动回复、自动管理、等级… 全部配置在一个 embed 里 — 大改之后检查一遍，确认全部生效。\n\n**🌐 网页控制台 — CHRONOS-Dashboard**\n• 这里的每个命令都可以在网页上运行，流程、校验器与审计日志完全相同（v4.9.3 起完全对等）— 22 个标签页：商品、带实时自动过期的密钥、工单、管理、备份等。\n• 设置：在机器人 `.env` 中设 `DASH_API_TOKEN`，部署控制台（Vercel），把其 `DASH_API_URL` 指向机器人 — 见控制台仓库 README。\n• 控制台顶栏会在机器人版本过旧时提醒 — `git pull` 之后请务必重启机器人。\n\n❓ **命令没出现？** 斜杠命令在启动时注册到服务器 — 刚拉取更新请重启机器人。\n❓ **权限？** 管理命令需要管理服务器权限；公开命令（`/rank`、`/leaderboard`、`/my-stats`、`/boosters`、`/afk`）所有人可用。",
+        "lines": "• `/help` — 帮助中心（或 `/help search:keyword`）\n• `/config-show` — 一次查看全部配置",
+        "name": "机器人信息",
+        "short": "帮助中心与查看全部配置"
+      },
+      "keys": {
+        "detail": "**密钥 = 购买凭证。买家出示密钥，工作人员核销一次，身份组 + 到期计划自动处理。**\n• `/set-key user value key` — 注册密钥，如 `/set-key value:vip30 key:ABCDE-12345`。买家立即获得商品身份组，到期计划按商品身份组时长自动延长（/set-product-role 的 `days` — 绝不重复，取最大延长）。\n• `/list-keys user` — 成员名下所有密钥，含有效与过期，附日期。\n• `/clear-schedule user` — 移除成员所有身份组到期计划；`clear_keys:true` 同时删除其密钥并移除 VIP 身份组 — 退款/拒付时的完整清理。\n\n❓ **密钥已被使用？** 每个密钥只能核销一次 — 工作人员可在 `/list-keys` 中查看状态。\n❓ **买家丢了密钥？** `/list-keys user` 会显示 — 不用翻私信。",
+        "lines": "• `/set-key user:@user value:vip30 key:ABCDE-12345` — 分配商品密钥\n• `/list-keys user:@user` — 成员密钥 · `/clear-schedule user clear_keys:true` — 清理",
+        "name": "密钥管理",
+        "short": "商品密钥库存与成员到期计划"
+      },
+      "leveling": {
+        "detail": "**等级 = 活跃 XP：成员每条消息获得 XP，身份组按等级解锁。**\n• `/setup-leveling enabled:true` — 开启。调优：`xp_per_message`、`cooldown`（获得 XP 的消息间隔秒数 — 防刷）、`announce_levelup`（是否公开播报升级）。\n• `/add-level-role level role` — 如 `/add-level-role level:5 role:@Active` — 升级时**自动**发放。`/list-level-roles` — 所有奖励 · `/remove-level-role level` — 移除一个。\n• `/rank user?` — 你（或他人）的等级 + XP（公开命令）。\n• `/leaderboard-level` — 等级前 10 名（公开）。\n❓ **XP 没计入？** 冷却生效 — 同一窗口内连发消息不给 XP（防刷）。\n❓ **升级没发身份组？** 机器人身份组必须在奖励身份组之上。",
+        "lines": "• `/setup-leveling` — 启用消息 XP\n• `/add-level-role level:5 role:@VIP` — 升级身份组 · `/list-level-roles` `/remove-level-role`\n• `/rank` — 你的 XP · `/leaderboard-level` — 成员排行",
+        "name": "等级系统",
+        "short": "每条消息得 XP + 升级发身份组"
+      },
+      "logging": {
+        "detail": "**每个频道都是可选的 — 只设置你需要的。所有类型用同一命令：`/set-channel tipe:... channel:#ch`。**\n• `tipe:server-log` — 消息删除/编辑、加入/离开、封禁、加成事件 — 服务器的黑匣子。\n• `tipe:audit-log` — 管理操作（配置变更、商品、管理）。\n• `tipe:transcript` — 关闭的工单在此归档为专业、自包含的 HTML 存档（Discord 风格、可搜索、内嵌付款凭证图片 — v4.9.11）。设置 `TRANSCRIPT_PUBLIC_URL` 后，关闭消息还带\"View Transcript\"按钮，直接在浏览器打开存档 — 无需下载（v4.9.12）。\n• `tipe:welcome` / `tipe:goodbye` — 加入/离开 embed。用 `/test-welcome tipe:welcome` 测试和诊断（检查配置、频道、权限并发送实时预览）。\n• `tipe:invoice` — 购买发票（每笔完成订单一张）。\n• `tipe:server-booster` — 🚀 加成开始/结束自动播报粉色 embed，且即使未设置此频道也始终记录在服务器日志 + 加成历史中。\n• `/remove-channel tipe` — 关闭一项（适用的事件仍会流入服务器日志）。\n❓ **设置了频道却收不到消息？** 欢迎/离开运行 `/test-welcome`，加成运行 `/test-booster`，或检查机器人在该频道的查看 + 发送 + Embed 权限。\n❓ **频道被删了？** 用 `/set-channel` 重新设置 — 失效频道 ID 会在启动时被检测并报告。",
+        "lines": "• `/set-channel server-log #ch` — 删帖、编辑、进出、封禁\n• `audit-log #ch` — 管理操作 · `transcript #ch` — 工单存档\n• `/set-channel welcome/goodbye/invoice/server-booster #ch`\n• `/test-welcome` — 诊断欢迎/离开 + 实时预览\n• `/remove-channel type` — 关闭某一项\nℹ️ 未设置 `server-log` = 无事件记录。",
+        "name": "日志与频道",
+        "short": "启用服务器日志、审计、存档、欢迎"
+      },
+      "messages": {
+        "detail": "**系统文案 — 机器人发送的每个 embed（面板正文、工单开场、欢迎…）的措辞都可以修改。**\n• `/edit-message tipe` — 选择文案并在模态框中编辑（支持多行）。`/list-messages` — 查看所有可自定义文案 + 当前值。\n• `/reset-message tipe` — 恢复默认。`/set-message` — 单行版本。\n• 模板变量自动填充：`{server}`（服务器名）、`{price_header}` + `{price_list}` / `{price_list:cat}`（实时价格表）、`{categories_list}`。\n\n**自定义消息与 embed**\n• `/send-message channel message mention` — 纯文本（支持 \n + 提及） — 用于规则、ping、速记。\n• `/announce` — 通过表单发一个精美 embed（标题/描述/颜色/图片/缩略图/提及）。\n• `/embed-builder` — 复杂 embed 的交互式构建器，带实时预览（多字段、作者、页脚）。`/embed-list` — 你的会话 · `/embed-cancel session_id` — 丢弃卡住的会话。\n❓ **文案里价格表为空？** 变量只在有商品时填充 — 先添加商品，再 `/refresh-panel`。",
+        "lines": "**系统文案：** `/set-message ticketBody text...` · `/edit-message`（模态框） · `/reset-message` · `/list-messages`\n**自定义 embed：** `/send-message`（表单） · `/embed-builder` · `/embed-list` `/embed-cancel`\n💡 变量：`{server}` `{price_header}` `{price_list}` `{price_list:cat}` `{categories_list}`",
+        "name": "消息与 Embed 构建器",
+        "short": "编辑系统文案 + 发送自定义 embed"
+      },
+      "midman": {
+        "detail": "**担保 = 机器人当裁判：买家和卖家各自确认，中间人放款，手续费自动入账。**\n**设置（一次性）：**\n• `/set-role tipe:midman role:@Midman` — 任何交易开启前必须设置。拥有此身份组的工作人员就是担保员。\n• `/set-midman-fee mode value` — 手续费：`mode:Percent value:5`（5%）或 `mode:Flat value:5000`（固定 5,000）。`0` = 免费。\n• `/midman-deals` — 一页展示所有进行中的交易（买家、卖家、中间人、金额、状态）。\n\n**交易流程**\n1️⃣ 成员在工单面板点击 **🤝 Escrow** 并填写买家/卖家/价格 → 创建包含三方的交易频道。\n2️⃣ 买家和卖家各自按下 **Agree** — 双方同意后机器人锁定编辑（共 3 步）。\n3️⃣ 中间人结算：**Complete**（放款 + 记手续费）或 **Cancel**（全员解约）。\n❓ **交易卡住了？** `/midman-deals` 显示状态；频道被删的交易会在启动时 + 每日自动对账。\n❓ **交易金额格式？** 仅支持整数（`$25,000`、`€2.500`、`Rp 150.000`） — `$2.5` 这类小数因歧义被刻意拒绝（交易安全）。商品价格可以带分；担保金额不行。\n❓ **手续费计入统计吗？** 已完成交易计入交易统计（交易金额 — 任何货币均可）。",
+        "lines": "• `/set-role midman @role` — 开启交易前必须设置\n• `/set-midman-fee mode:Percent value:5` — 每笔手续费（百分比/固定，0=免费）\n• `/midman-deals` — 所有进行中的交易\n💡 三方担保：买家 ⇄ 卖家，中间人保管资金。通过面板上的 **🤝 Escrow** 按钮开启 — 双方 **Agree Deal** 前共 3 步。",
+        "name": "担保交易（Midman）",
+        "short": "三方担保交易 + 自动手续费"
+      },
+      "moderation": {
+        "detail": "**警告与记录**\n• `/warn user reason` — 发出警告。处罚自动执行：3 警告 = 禁言1小时 · 5 = 禁言1天 · 7 = 踢出。可能时通过私信通知成员。\n• `/warn-list user` — 一页展示：活跃警告 + 所有历史处罚（禁言/踢出/封禁，含日期与原因）。\n• `/warn-remove user warn_id` — 删除单条警告（不公正的警告从计数中消失）。`/warn-clear user` — 全部清除。\n\n**直接操作**\n• `/timeout user duration reason` — 禁言 1–40320 分钟（最长 28 天）；`/untimeout user` 提前解除。\n• `/kick user reason` — 移出服务器（可通过新邀请再次加入）。\n• `/ban user reason` — 永久封禁，可选择删除其最近消息（`delete_days` 0–7）。`/unban user_id` — 按 ID 解封（即使对方已离开也有效）。\n• `/purge amount user?` — 在当前频道批量删除 1–100 条近期消息；加 `user` 只删该成员的消息。\n\n❓ **为什么无法管理某成员？** 对方身份组比机器人高 — 在服务器设置 → 身份组中把机器人的身份组往上拖。\n❓ **一切记录到哪？** 服务器日志频道 + 成员的警告记录 — 不会有静默操作。",
+        "lines": "**违规记录：**\n• `/warn user reason` — 警告（3次=禁言1小时，5次=禁言1天，7次=踢出）\n• `/warn-list user` — 警告+处罚记录 · `/warn-remove` `/warn-clear`\n**直接操作：**\n• `/timeout user minutes reason` — 禁言（最长 40320 = 28天）· `/untimeout`\n• `/kick` 踢出 · `/ban` 封禁 · `/unban` 解封\n• `/purge amount:100 user?` — 批量删除消息（1-100）\n💡 自动记录到 `/warn-list` + 服务器日志。更高身份组免疫。",
+        "name": "管理（Moderation）",
+        "short": "警告、禁言、踢出、封禁、清屏 — 一站式"
+      },
+      "panels": {
+        "detail": "**面板就是橱窗：一个带按钮的 embed — 成员点击，私密工单即开启。**\n• `/setup-ticket-panel` — 安装。完全自定义：`title`、`body`、`categories`（显示哪些工单分类）、`color`、`image`、`thumbnail`、`footer`、`channel`、`use_dropdown:true`（用紧凑下拉菜单替代按钮）。\n• `/list-panels` — 所有面板 + ID · `/update-panel id field` — 通过模态框编辑标题/正文/颜色/图片/页脚（无需重新安装）。\n• `/refresh-panel id` — 用最新分类/商品重新渲染（添加商品后运行 — 否则 embed 仍显示旧列表）。\n• `/delete-panel id` — 删除面板（消息 + 配置）。\n\n**新成员验证**\n• `/setup-verify` — 安装验证面板：新加入的成员点击按钮获得已验证身份组（并移除未验证身份组）。\n• `/set-verify-button label emoji style` — 自定义按钮外观。\n• `/setup-ticket` — 旧版单分类面板（为老配置保留；建议使用 `/setup-ticket-panel`）。\n\n❓ **面板显示旧价格？** 运行 `/refresh-panel id` — 或用 `/update-panel` 改文字。\n❓ **成员点击没反应？** 检查机器人创建频道的权限 + 能否看到工单分类中的频道。",
+        "lines": "• `/setup-ticket-panel` — 多分类面板（选项：`title` `body` `categories` `color` `image` `footer` `channel` `use_dropdown`）\n• `/list-panels` `/update-panel` `/refresh-panel` `/delete-panel` — 管理面板\n• `/setup-verify` — 新成员验证 · `/set-verify-button` — 按钮样式\n• `/setup-ticket` — 旧版单分类面板",
+        "name": "工单面板与验证",
+        "short": "安装工单面板与新成员验证"
+      },
+      "products": {
+        "detail": "**商品 = 你卖的东西。每个商品有 `value`（唯一 ID）、`label`（买家看到的名称）和 `price`（价格）。**\n• `/add-product label value price` — 添加一个，如 `/add-product value:vip30 label:\"VIP 30D\" price:\"Rp 30.000\"`。可选 `category`、`requires_key`。\n• `requires_key:true`（默认）— 买家收到商品密钥，交给你的工作人员运行 `/set-key` 发放身份组。最适合 VIP 身份组类商品。\n• `requires_key:false` — 文本/私信商品：面板收集买家备注，详情人工发货（账号、服务、礼品）。\n• `/update-product value` — 无需删除重建，直接编辑已有商品的 label/price/category/requires_key。确认时会显示计入每单统计的金额。\n• `/remove-product value` · `/list-products` — 删除 / 查看目录。\n\n**购买自动身份组**\n• `/set-product-role value role days` — 交易完成时自动给买家身份组，`days` 天后自动移除（留空 = 永久）。\n• `/remove-product-role value` — 停止发放 · `/list-product-roles` — 查看全部。\n\n❓ **价格格式？** 任何货币都行：`30000`、`30.000`、`$3`、`€25`、`¥1000`、`Rp 30.000`、`30rb`、`3jt`。也支持双货币（`3$ USD | Rp 25.000` — 记录 Rp 金额）。统计只记数字、与货币无关 — 请统一用一种货币定价。\n❓ **支持小数吗？** 支持 — `$2.5`、`5.88`、`9.99`、`€9,99` 都会带分记录（统计显示 `2.5` / `5.88` / `9.99`；不带货币符号也有效）。三位点分仍视为千位：`50.000` → 50.000。担保交易金额只支持整数。\n❓ **买家看得到价格吗？** 看得到 — 工单面板价格表完全使用你的 `label` + `price`。",
+        "lines": "• `/add-product value:vip30 label:\"VIP 30D\" price:\"Rp 30.000\"` — 密钥商品\n• `/add-product ... requires_key:false` — 服务/账号（详情私信发给买家）\n• `/update-product value:vip30 label:\"...\"` — 编辑 · `/remove-product` · `/list-products`\n• `/set-product-role` — 购买时给身份组（+到期） · `/remove-product-role` `/list-product-roles`",
+        "name": "商品与自动身份组",
+        "short": "商品增删改查 + 购买时自动给身份组"
+      },
+      "quickstart": {
+        "detail": "**第一次用这个机器人？按以下顺序搭建服务器（一次性）：**\n1️⃣ `/set-role tipe:verified role:@Verified` — 成员通过验证后获得的身份组\n2️⃣ `/add-category` + `/add-product` — 准备你要卖的东西（见 Products 商品分类）\n3️⃣ `/setup-ticket-panel` — 安装成员点击购买的订单面板\n4️⃣ `/setup-verify` — 验证门槛：新成员点击按钮获得已验证身份组\n5️⃣ `/set-channel tipe:server-log channel:#log` — 记录加入、离开、删帖、封禁\n\n**基础跑通后的加分项（全部可选）：**\n• `/serverstats setup` — 频道列表顶部的实时成员/加成计数器（可挑选显示哪些）\n• `/set-channel tipe:server-booster channel:#boosts` — 有人加成时发送粉色 embed\n• `/setup-leveling` — 每条消息得 XP + 升级身份组\n• `/setup-tempvoice` — 成员可自行创建的私密语音频道\n• `/add-responder` — 常见问题自动回复\n• **CHRONOS-Dashboard** — 也可以从网页管理这一切，流程与这些命令相同（在 .env 中设置 `DASH_API_TOKEN` 启用 DASH API）\n\n💡 这里没有破坏性操作，且在安装面板之前**不会向成员发送任何内容** — 可以放心探索。每个命令都在其分类中通过 📂 下拉菜单详细说明。",
+        "lines": "**第一次用这个机器人？按此顺序操作：**\n1️⃣ `/set-role verified @Verified` — 已验证成员身份组\n2️⃣ `/add-category` + `/add-product` — 准备商品目录\n3️⃣ `/setup-ticket-panel` — 安装工单面板\n4️⃣ `/setup-verify` — 新成员验证\n5️⃣ `/set-channel server-log #log` — 启用服务器日志\n💡 然后通过 📂 下拉菜单探索其他分类。",
+        "name": "快速上手",
+        "short": "第一次用？从零搭建服务器的顺序"
+      },
+      "responder": {
+        "detail": "**自动回复 = FAQ 机器：消息包含触发词 → 机器人立即回复。**\n• `/add-responder trigger reply` — 如 `/add-responder trigger:beli reply:\"请开一个工单 🎫\"` — 消息中任意位置**整词**包含 \"beli\" 即触发。\n• `match_mode:contains`（默认）— 任意位置整词：\"怎么买 beli\" 触发 \"beli\" — 但 \"belian\" 不会。`match_mode:exact` — 仅消息以触发词开头时（老式 `!sosmed` 风格）。\n• `reply_type` — 普通回复或 embed · `cooldown` — 同一触发词再次生效的间隔秒数（`0` = 总是）。\n• `/list-responder` — 所有触发词 + 回复 + 模式 · `/remove-responder trigger` — 删除一个。\n❓ **一条消息两个触发词？** 都会回复 — 冷却中的触发词不会阻断扫描（另一个匹配的触发词照常回答）。\n❓ **不触发？** 多词触发词可用（\"cara beli\"）；连续空格会折叠；正则元字符被转义（不会报错）。",
+        "lines": "• `/add-responder trigger:beli reply:...` — 任意位置出现 \"beli\" 都自动回复\n• `match_mode:contains|exact` — 词在任意处，或开头\n• `/list-responder` · `/remove-responder` — 查看与删除",
+        "name": "自动回复",
+        "short": "消息包含触发词时自动回复 FAQ"
+      },
+      "roles": {
+        "detail": "**系统身份组（机器人逻辑）** — `/set-role tipe role`：\n• `tipe:verified` — 验证后发放 · `tipe:unverified` — 验证前持有 · `tipe:admin` — 谁可用管理命令 · `tipe:midman` — 担保员。`/remove-role tipe` 清除一个。\n• `tipe:booster`（v3.9.59）— 加成者身份组：成员加成时**自动**发放、加成结束自动移除；设置时立即应用到现有加成者。测试链路：`/test-booster`。\n\n**自选身份组面板（成员自主）** — 成员点击自行领取/移除身份组：\n• `/setup-selfrole title description type:button|dropdown exclusive` — 安装面板。`exclusive:true` = 面板内一次只能持有一个身份组。\n• `/selfrole-add panel_id role label emoji style requires_role` — 向面板添加身份组（按钮外观 + 可选 emoji）。`requires_role:@Verified` — 仅已持有该身份组的成员可领（门槛福利）。\n• `/selfrole-remove panel_id role` — 移除一个 · `/selfrole-list` — 面板 + 身份组 · `/selfrole-delete panel_id` — 删除整个面板。\n❓ **成员领不了身份组？** 检查该项 `requires_role` + 机器人身份组位置（必须在其管理的身份组之上）。",
+        "lines": "• `/set-role verified @role` — 系统身份组（verified/unverified/admin/midman/**booster**） · `/remove-role`\n• `/setup-selfrole title:... type:button` — 成员自选身份组面板\n• `/selfrole-add` `/selfrole-remove` — 管理列表 · `/selfrole-list` `/selfrole-delete`\n💡 `requires_role:@Verified` — 条件锁定身份组",
+        "name": "身份组与自选身份组",
+        "short": "系统身份组 + 成员自选身份组面板"
+      },
+      "stats": {
+        "detail": "**实时计数频道（类似 ServerStats 机器人）：**\n• `/serverstats setup` — 在频道列表最顶部创建 \"📊 SERVER STATS\" 分类。语音频道的名称就是实时计数器 — 成员一眼看到数字，无人可加入。\n• **选择显示哪些计数器**（v3.9.53）：`members bots boosts roles channels` — 默认全开；设为 **False** 跳过，如 `/serverstats setup bots:false channels:false` 只创建 👥 · 🚀 · 🎭。至少保留一个。\n• `/serverstats remove` — 全部删除 · `/serverstats refresh` — 立即强制更新。要**更改**选择：先 `remove` 再 `setup`。\n• 自动更新：成员进出、加成增减、频道与身份组增删。限流安全（Discord 每频道每 10 分钟允许 2 次重命名 — 更新有节流并每 ~5 分钟自愈）。计数器被删会提醒；全部消失 → 自动停用。\n\n**加成通知：** 成员开始/停止加成 → 粉色 embed 自动发送到 server-booster 频道（`/set-channel tipe:server-booster #ch`），且始终记录在服务器日志 + `/boosters` 历史中。设置加成者身份组（`/set-role tipe:booster @role`）后，该身份组随加成自动发放/移除。\n• **自己测试（v3.9.58）：** `/test-booster tipe:add`（或 `tipe:remove`）— 检查整条链路（频道已设 → 存在 → 机器人权限，含加成者身份组），在此预览精确的 embed，`live:true` 还会实际投递到真实频道。纯模拟 — 不记录任何数据。\n\n**数字与排行**\n• `/stats` — 服务器概览：实时成员、加成、未结工单 + 追踪的活动（消息、交易）。无收入行 — 消费属个人隐私。\n• `/boosters` — 实时加成者名册 + 近期历史（公开）。\n• `/leaderboard metric` — 消息 / 消费 / 抽奖获胜前 10（公开）。\n• `/my-stats` — 你的消息、交易 + 总消费（公开 — 只有你能看到自己的页面）。",
+        "lines": "• `/stats` — 实时服务器统计\n• `/serverstats` — 实时计数频道\n• `/boosters` — 加成者 + 历史\n• `/test-booster` — 测试加成通知 + 预览\n• `/leaderboard` — 前 10 排行\n• `/my-stats` — 你的消息与交易",
+        "name": "统计",
+        "short": "实时统计、计数频道、加成、排行榜"
+      },
+      "tempvoice": {
+        "detail": "**私密语音 = 成员按需获得自己的语音频道。**\n• `/setup-tempvoice` — 创建分类 + **Join to create** 触发频道。成员加入 → 立即生成专属语音频道，内含控制面板。\n• 控制面板按钮：**重命名**频道、**上锁/解锁**、**转让**所有权、主人离开后**claim** 认领，最后一人离开时自动删除（不产生僵尸频道）。\n• `/tempvoice-remove` — 停用该功能（删除相关分类 + 频道）。\n❓ **加入后没创建频道？** 检查机器人的管理频道权限 + 触发频道是否被删。\n❓ **有上限吗？** Discord 限制每服务器频道数；超大型服务器可能需要多个触发频道。",
+        "lines": "• `/setup-tempvoice` — 安装触发频道 · `/tempvoice-remove` — 停用\n💡 加入触发频道 → 自动创建私密语音 + 控制面板（重命名、上锁、转让）",
+        "name": "私密语音",
+        "short": "加入触发频道时自动创建语音频道"
+      }
+    },
+    "category": {
+      "nav_name": "↩️ 导航",
+      "nav_value": "通过 📂 下拉菜单切换分类 · 点击 **🏠 主菜单** 返回 · **🔍 搜索命令** 进行搜索。"
+    },
+    "footer": "Community Bot v{version} — 全能社区机器人",
+    "home": {
+      "categories_field": "📚 分类（{count}）",
+      "description": "你好 {mention}！你是**管理员/工作人员** — 这里是机器人控制中心（v{version}），共 **{count} 个命令分类**。\n\n**现在需要什么？**\n> 🛡️ 成员出问题了？→ **Moderation（管理）**（警告/禁言/踢出/封禁）\n> 🛒 想配置销售？→ **Quick Start（快速上手）** · **Products（商品）** · **Midman/Escrow（担保）**\n> 👀 需要监管？→ **Logging & Channels（日志与频道）**\n> 🎉 服务器冷清？→ **Giveaways & Polls（抽奖与投票）** · **Leveling（等级）**\n\n**使用方法：**\n> 1️⃣ 在下方的 **📂** 下拉菜单选择分类\n> 2️⃣ 点击 **🔍 搜索命令** — 输入关键词（如 `key`、`escrow`）\n> 3️⃣ 或直接运行 `/help search:panel`\n> 4️⃣ 点击 **📖 全部命令** 查看完整列表\n> 🌐 更喜欢网页？**CHRONOS-Dashboard** 提供同样的控制（在 .env 中设置 `DASH_API_TOKEN` 启用）",
+      "title": "🤖 CHRONOS — 帮助中心"
+    },
+    "search": {
+      "empty_body": "关键词为空。请再次点击 **🔍 搜索命令** 并输入关键词（如 `panel`、`key`、`escrow`）。",
+      "header": "关键词：`{query}` — {results}\n_通过 🔍 按钮更换关键词 · 🏠 主菜单返回。_",
+      "no_matches": "无匹配",
+      "no_results_body": "没有匹配的命令。请换一个关键词 — 如 `ticket`、`product`、`role`、`announce`、`warn`、`giveaway`。",
+      "results_found": "找到 **{count}** 条结果",
+      "title": "🔍 搜索结果",
+      "truncated_body": "\n\n… +更多结果未显示。请尝试更具体的关键词。"
+    },
+    "ui": {
+      "all_button": "📖 全部命令",
+      "home_button": "🏠 主菜单",
+      "search_button": "🔍 搜索命令",
+      "select_placeholder": "📂 选择命令分类…"
+    }
   }
 }
