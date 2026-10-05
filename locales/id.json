@@ -1916,7 +1916,13 @@
       "add_btn": "+ Tambah",
       "words_ph": "kata1, kata2, kata3",
       "exempt_ph": "kata1, kata2",
-      "exempt_hint": "Kata pengecualian tetap diizinkan meskipun cocok dengan pola kata terblokir."
+      "exempt_hint": "Kata pengecualian tetap diizinkan meskipun cocok dengan pola kata terblokir.",
+      "action_delete": "Hapus pesan",
+      "action_warn": "Peringatkan",
+      "action_mute10": "Mute 10 menit",
+      "action_mute1h": "Mute 1 jam",
+      "action_mute1d": "Mute 1 hari",
+      "action_kick": "Keluarkan"
     },
     "responders": {
       "active_title": "Responder Aktif",

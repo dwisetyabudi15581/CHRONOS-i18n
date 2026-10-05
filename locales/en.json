@@ -1944,7 +1944,13 @@
       "add_btn": "+ Add",
       "words_ph": "word1, word2, word3",
       "exempt_ph": "word1, word2",
-      "exempt_hint": "Exempt words are allowed even if they match a blocked word pattern."
+      "exempt_hint": "Exempt words are allowed even if they match a blocked word pattern.",
+      "action_delete": "Delete message",
+      "action_warn": "Warn",
+      "action_mute10": "Mute 10 minutes",
+      "action_mute1h": "Mute 1 hour",
+      "action_mute1d": "Mute 1 day",
+      "action_kick": "Kick"
     },
     "responders": {
       "active_title": "Active Responders",

@@ -1916,7 +1916,13 @@
       "add_btn": "+ 添加",
       "words_ph": "词1, 词2, 词3",
       "exempt_ph": "词1, 词2",
-      "exempt_hint": "豁免词即使匹配违禁词模式也仍然允许。"
+      "exempt_hint": "豁免词即使匹配违禁词模式也仍然允许。",
+      "action_delete": "删除消息",
+      "action_warn": "警告",
+      "action_mute10": "禁言 10 分钟",
+      "action_mute1h": "禁言 1 小时",
+      "action_mute1d": "禁言 1 天",
+      "action_kick": "踢出"
     },
     "responders": {
       "active_title": "生效中的自动回复",

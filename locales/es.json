@@ -1916,7 +1916,13 @@
       "add_btn": "+ Añadir",
       "words_ph": "palabra1, palabra2, palabra3",
       "exempt_ph": "palabra1, palabra2",
-      "exempt_hint": "Las palabras exentas están permitidas aunque coincidan con un patrón de palabra bloqueada."
+      "exempt_hint": "Las palabras exentas están permitidas aunque coincidan con un patrón de palabra bloqueada.",
+      "action_delete": "Eliminar mensaje",
+      "action_warn": "Avisar",
+      "action_mute10": "Silenciar 10 minutos",
+      "action_mute1h": "Silenciar 1 hora",
+      "action_mute1d": "Silenciar 1 día",
+      "action_kick": "Expulsar"
     },
     "responders": {
       "active_title": "Responders Activos",
