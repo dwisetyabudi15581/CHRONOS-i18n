@@ -1,6 +1,6 @@
 {
   "name": "@chronos/i18n",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "Shared i18n runtime + dictionaries for CHRONOS-bot (Discord) and CHRONOS-Dashboard (Next.js) — en, id, es, zh, ar, de. One source of truth so web and bot never drift.",
   "main": "index.js",
   "types": "index.d.ts",
