@@ -72,7 +72,18 @@
       "manage_messages": "Nachrichten verwalten",
       "timeout_members": "Mitglieder auszeitsetzen"
     },
-    "cancel": "Abbrechen"
+    "cancel": "Abbrechen",
+    "category_not_found": "❌ Kategorie `{id}` nicht gefunden. Nutze /list-categories, um die Liste zu sehen.",
+    "emoji_invalid": "❌ `emoji` ist ungültig. Nutze ein Unicode-Emoji (z. B. 🎫) oder ein Custom-Emoji im Format `<:name:id>`.",
+    "product_value_not_found": "❌ Produkt mit dem Wert `{value}` nicht gefunden.",
+    "product_value_not_found_hint": "❌ Produkt mit dem Wert `{value}` nicht gefunden. Nutze `/list-products`, um die Liste zu sehen.",
+    "refresh_panel_hint": "💡 Nutze `/refresh-panel <id>`, um installierte Panels neu zu rendern.",
+    "roles": {
+      "above_bot": "❌ **{name}** liegt über der höchsten Rolle des Bots — erhöhe die Bot-Rolle unter Servereinstellungen → Rollen oder wähle eine niedrigere Rolle.",
+      "everyone_invalid": "❌ @everyone kann nicht als Auto-Rolle verwendet werden.",
+      "managed": "❌ **{name}** ist eine verwaltete Rolle (Bot-/Integrations-/Boost-Rolle) — sie kann nicht manuell zugewiesen werden."
+    },
+    "style_invalid": "❌ `style` ist ungültig."
   },
   "bot_commands": {
     "help": {
@@ -130,15 +141,34 @@
         "emoji": "Button-Emoji (Unicode oder benutzerdefiniert <:name:id>)",
         "style": "Button-Farbe",
         "requires_key": "Benötigt diese Kategorie den Set-Key-Button? (Standard: ja)"
+      },
+      "replies": {
+        "duplicate": "❌ Eine Kategorie mit der ID `{id}` existiert bereits. Nutze zuerst /remove-category, wenn du sie ersetzen willst.",
+        "id_invalid": "❌ `id` darf nur Buchstaben/Zahlen/_/- enthalten, max. 30 Zeichen.",
+        "max": "❌ Maximal 25 Kategorien (Discord-Limit: 25 Buttons pro Nachricht).",
+        "success": "✅ Kategorie hinzugefügt!\n\n🎫 ID: `{id}`\n📝 Label: **{label}**\n{emoji} Emoji: {emoji}\n🎨 Stil: {style}\n🔑 Key erforderlich: {key}\n\n💡 Nutze `/setup-ticket` (oder `/refresh-panel <id>`, falls das Panel schon existiert), um die neue Kategorie anzuwenden."
       }
     },
     "list-categories": {
-      "description": "Alle registrierten Ticket-Kategorien anzeigen"
+      "description": "Alle registrierten Ticket-Kategorien anzeigen",
+      "replies": {
+        "default_flag": " *(Standard)*",
+        "empty": "📭 Noch keine Kategorien. Die 5 Standard-Kategorien (transaction, help, report, claim_giveaway, midman) werden verwendet, wenn die Konfiguration leer ist.",
+        "footer": "{count}/25 Kategorien belegt",
+        "line": "`{i}.` {emoji} **{label}** (`{id}`) — {style} {keyflag}{default}",
+        "title": "🎫 TICKET-KATEGORIELISTE"
+      }
     },
     "remove-category": {
       "description": "Eine Ticket-Kategorie aus der Konfiguration entfernen",
       "options": {
         "id": "Die zu löschende Kategorie-ID"
+      },
+      "replies": {
+        "is_default": "❌ Kategorie `{id}` ist eine Standard-Kategorie und kann nicht gelöscht werden.\nUm sie zu deaktivieren, setze `requiresKey: false` oder ändere das Label direkt in der Konfiguration.",
+        "migrated": "📦 {count} Produkte, die diese Kategorie nutzten, wurden automatisch in die Kategorie `transaction` verschoben.",
+        "no_products": "ℹ️ Keine Produkte nutzten diese Kategorie.",
+        "success": "✅ Kategorie **{label}** (`{id}`) erfolgreich gelöscht.\n\n{migration}"
       }
     },
     "update-category": {
@@ -149,6 +179,10 @@
         "emoji": "Neues Button-Emoji (Unicode oder benutzerdefiniert <:name:id>)",
         "style": "Neue Button-Farbe",
         "requires_key": "Benötigt diese Kategorie den Set-Key-Button?"
+      },
+      "replies": {
+        "no_changes": "ℹ️ Keine Änderungen vorgenommen. Gib mindestens 1 Feld zum Aktualisieren an (label/emoji/style/requires_key).\n\nDie Kategorie **{label}** (`{id}`) bleibt unverändert.",
+        "success": "✅ Kategorie **{label}** (`{id}`) erfolgreich aktualisiert!\n\n📝 Änderungen:\n{changes}\n\n{hint}"
       }
     },
     "setup-ticket-panel": {
@@ -201,16 +235,35 @@
         "price": "Preis (z. B. Rp 50.000 / $3 / $2.50 / 5.88 / 25k — max. 100 Zeichen)",
         "category": "Produktkategorie (Standard: transaction). Siehe /list-categories.",
         "requires_key": "Benötigt dieses Produkt Set Key? (Standard: ja für Key-Kategorien)"
+      },
+      "replies": {
+        "category_not_found": "❌ Kategorie `{category}` nicht gefunden. Nutze /list-categories, um die Liste zu sehen, oder /add-category, um eine neue zu erstellen.",
+        "duplicate": "❌ Ein Produkt mit dem Wert `{value}` existiert bereits.",
+        "max": "❌ Maximal 25 Produkte (Discord-Dropdown-Limit).",
+        "price_invalid": "❌ Der Preis `{raw}` kann nicht als Betrag gelesen werden — er würde bei jedem Verkauf **0** in die Statistik eintragen.\n✅ Akzeptierte Formate: `25000` · `25.000` · `25,000` · `$3` · `$2.50` · `5.88` · `€25` · `Rp 30.000` · `30rb` · `3jt` · `3$ USD | Rp 25.000` (der Rp-Teil wird erfasst) · `free`",
+        "revenue_note": "\n💰 In der Statistik erfasst als: **{amount}** pro Verkauf (Ticket- + Treuhand-Transaktionen)",
+        "success": "✅ Produkt hinzugefügt: **{label}** — {price}{revenue}\n📦 Kategorie: `{category}` | 🔑 Key erforderlich: {key}",
+        "value_invalid": "❌ `value` darf nur Buchstaben/Zahlen/_/- enthalten, max. 50 Zeichen, ohne Leerzeichen/Kommas/Doppelpunkte."
       }
     },
     "remove-product": {
       "description": "Ein Produkt aus der Preisliste entfernen",
       "options": {
         "value": "Der zu löschende Produktwert (z. B. 7d)"
+      },
+      "replies": {
+        "not_found": "❌ Produkt `{value}` nicht gefunden.",
+        "success": "✅ Produkt gelöscht: **{label}**"
       }
     },
     "list-products": {
-      "description": "Alle aktuellen Produkte anzeigen"
+      "description": "Alle aktuellen Produkte anzeigen",
+      "replies": {
+        "empty": "📭 Noch keine Produkte.",
+        "line": "`{i}.` **{label}** — {price}\n   └ Wert: `{value}`",
+        "more": "… +{count} weitere (Nutze `/update-product` / `/config-show` für Details)",
+        "title": "📋 PRODUKTLISTE"
+      }
     },
     "update-product": {
       "description": "Ein bestehendes Produkt bearbeiten (Label/Preis/Kategorie/requires_key) ohne Löschen+Neuanlegen",
@@ -220,6 +273,11 @@
         "price": "Neuer Preis (z. B. \"Rp 25.000\" / \"$3\" / \"$2.50\" / \"5.88\")",
         "category": "Neue Kategorie (siehe /list-categories)",
         "requires_key": "Benötigt dieses Produkt Set Key? (ja=Key, nein=Dienstleistung/ohne Key)"
+      },
+      "replies": {
+        "no_changes": "ℹ️ Keine Änderungen vorgenommen. Gib mindestens 1 Feld zum Aktualisieren an (label/price/category/requires_key).\n\nDas Produkt **{label}** (`{value}`) bleibt unverändert.",
+        "stats_change": "💰 in der Statistik erfasst: **{amount}** pro Verkauf",
+        "success": "✅ Produkt **{label}** (`{value}`) erfolgreich aktualisiert!\n\n📝 Änderungen:\n{changes}\n\n{hint}"
       }
     },
     "config-show": {
@@ -236,10 +294,25 @@
       "options": {
         "mode": "Berechnungsmodus der Gebühr",
         "value": "Gebührenwert (Prozent: 0-90, Festbetrag: Betrag pro Deal). 0 = kostenlos"
+      },
+      "replies": {
+        "fee_flat": "**{amount}** pauschal pro Deal",
+        "fee_percent": "**{value}%** des Deal-Preises",
+        "flat_absurd": "❌ Dieser Gebührenbetrag ist unvernünftig.",
+        "negative": "❌ Die Gebühr darf nicht negativ sein.",
+        "percent_cap": "❌ Die prozentuale Gebühr ist auf **90%** des Deal-Preises begrenzt (Plausibilitätsschutz — prüfe den Wert).",
+        "success": "✅ Treuhandgebühr festgelegt: {fee} — die Gebühr wird **zum Preis ADDIERT** (nicht vom Guthaben des Verkäufers abgezogen).\n💡 Beispiel: ein Deal über **{price}** → Gebühr **{feeAmt}** → der Käufer überweist **{buyer}**, der Verkäufer erhält **{seller}** (vollständig).\nDie Gebühr gilt für NEUE Deals (laufende Deals behalten die Gebühr von ihrer Erstellung)."
       }
     },
     "midman-deals": {
-      "description": "Alle aktiven Treuhand-Deals auf diesem Server anzeigen"
+      "description": "Alle aktiven Treuhand-Deals auf diesem Server anzeigen",
+      "replies": {
+        "age": "vor {hours} Std.",
+        "empty": "✅ Keine aktiven Treuhand-Deals auf diesem Server.",
+        "line": "{channel} — **{state}**\n┣ 🛒 {buyer} ⇄ 🏷️ {seller}\n┗ 📦 {item} • {total} (Preis {price} + Gebühr {fee}) • {age}",
+        "more": "⚠️ Zeige die ersten 25 Deals (es gibt mehr).",
+        "title": "🤝 Aktive Treuhand-Deals — {count} Deal(s)"
+      }
     },
     "remove-channel": {
       "description": "Kanal aus der Konfiguration entfernen (invoice, welcome, goodbye, logs, transcript)",
@@ -265,16 +338,33 @@
         "value": "Produktwert (z. B. 30d)",
         "role": "Die Rolle, die bei erfolgreicher Auswahl vergeben wird",
         "days": "Tage, bevor die Rolle automatisch entfernt wird (0 = permanent)"
+      },
+      "replies": {
+        "days_invalid": "❌ `days` muss zwischen 0 und 3650 liegen. (0 = permanent, >0 = Dauer in Tagen).",
+        "expire_days": "automatische Entfernung nach **{days} Tagen**",
+        "expire_permanent": "**permanent** (wird nicht automatisch entfernt)",
+        "success": "✅ Auto-Rolle für Produkt **{label}** festgelegt!\n\n🎁 Rolle: {role}\n⏰ Ablauf: {expire}\n\n💡 Die Rolle wird automatisch vergeben, wenn ein Admin im Ticket auf **🔑 Set Key** / **📦 Deliver Order** / **✅ Order Success** klickt."
       }
     },
     "remove-product-role": {
       "description": "Die Auto-Rolle eines bestimmten Produkts entfernen",
       "options": {
         "value": "Produktwert (z. B. 30d)"
+      },
+      "replies": {
+        "no_role": "ℹ️ Produkt **{label}** hat noch keine Auto-Rolle.",
+        "success": "✅ Auto-Rolle für Produkt **{label}** erfolgreich entfernt."
       }
     },
     "list-product-roles": {
-      "description": "Alle Produkt-→-Rollen-Zuordnungen + Dauern anzeigen"
+      "description": "Alle Produkt-→-Rollen-Zuordnungen + Dauern anzeigen",
+      "replies": {
+        "empty": "📭 Noch kein Produkt hat eine Auto-Rolle. Nutze `/set-product-role`, um eine einzurichten.",
+        "expire_days": "{days} Tage",
+        "line": "• **{label}** (`{value}`) → {role} — Ablauf: {expire}",
+        "permanent": "permanent",
+        "title": "🎁 AUTO-ROLLE PRO PRODUKT"
+      }
     },
     "set-key": {
       "description": "Einem Benutzer einen Key geben + Rolle vergeben + Termin verlängern (MAX EXTEND)",
@@ -282,6 +372,31 @@
         "user": "Der Benutzer, der den Key erhält",
         "value": "Produktwert (z. B. 30d)",
         "key": "Der Key, der dem Benutzer gesendet wird (max. 200 Zeichen)"
+      },
+      "replies": {
+        "char_count": "…({count} Zeichen)",
+        "db_failed": "❌ Speichern des Keys in der Datenbank fehlgeschlagen: {error}\n\nPrüfe Speicherplatz und Dateiberechtigungen für `data/keys.json`. Es wurde keine Rolle vergeben, kein Zeitplan erstellt.",
+        "dm": "Hi {username}! Du hast ein Geschenk vom Admin bekommen 🎁\n\n📦 Produkt: {product}\n🌐 Server: {server}\n\n🔑 KEY:\n`{key}`\n\n🎭 Rolle: {role}\n⏰ Läuft ab: {expire}\n\n📋 Deine aktiven Keys für diese Rolle:\n{keyList}\n\n💡 Bewahre deinen Key gut auf. Wenn die Rolle plötzlich verschwindet, während dein Key noch aktiv ist, kontaktiere einen Admin.",
+        "dm_expire_days": "noch {days} Tage",
+        "dm_expire_permanent": "permanent (läuft nie ab)",
+        "dm_failed": "⚠️ DM fehlgeschlagen (DMs geschlossen).",
+        "dm_key_line": "{i}. `{key}` ({remaining} übrig)",
+        "dm_sent": "📬 DM gesendet.",
+        "expire_days": "{days} Tage",
+        "expire_permanent": "permanent",
+        "invoice_failed": "\n⚠️ Rechnung nicht gesendet (Rechnungskanal noch nicht eingerichtet).",
+        "invoice_sent": "🧾 Rechnung gesendet.",
+        "key_empty": "❌ Der Key darf nicht leer sein.",
+        "no_autorole": "❌ Produkt **{label}** hat noch keine Auto-Rolle. Nutze zuerst `/set-product-role`.",
+        "product_not_found": "❌ Produktwert `{value}` nicht gefunden. Nutze `/list-products`, um die Liste zu sehen.",
+        "role_failed": "❌ Rolle {role} konnte nicht hinzugefügt werden. Stelle sicher, dass die Bot-Rolle ÜBER dieser Rolle steht.\n\n⚠️ **Key gespeichert OHNE Rolle.** Sobald die Bot-Rolle korrigiert ist, kann ein Admin:\n• Die Rolle dem Mitglied manuell geben, oder\n• Diesen Key per `/clear-schedule clear_keys:true` löschen und neu setzen.",
+        "role_not_found": "❌ Rollen-ID `{roleId}` in dieser Guild nicht gefunden.",
+        "schedule_extended": "↳ Zeitplan verlängert (MAX EXTEND).",
+        "schedule_failed": "\n⚠️ **Erstellen des Auto-Ablauf-Zeitplans fehlgeschlagen:** {error}. Die Rolle läuft nicht automatisch ab — ein Admin muss sie manuell entfernen.",
+        "schedule_new": "↳ Neuer Zeitplan erstellt.",
+        "schedule_permanent": "↳ Permanent, alter Zeitplan entfernt.",
+        "success": "✅ **Set Key erfolgreich!**\n\n👤 Benutzer: {user}\n📦 Produkt: {product}\n🔑 Key: `{key}`\n🎭 Rolle: {role}\n⏰ Läuft ab: {expire}\n{schedule}\n{dm}\n{invoice}{warning}",
+        "user_not_found": "❌ Benutzer {user} ist nicht auf diesem Server."
       }
     },
     "list-keys": {
@@ -302,6 +417,14 @@
       "options": {
         "user": "Der zu bereinigende Benutzer",
         "clear_keys": "True = ALLE Benutzer-Keys löschen + VIP-Rolle entfernen (voller Reset). Standard: false."
+      },
+      "replies": {
+        "keys_kept": "ℹ️ Keys NICHT entfernt (clear_keys=false). Nutze `clear_keys:true` für ein vollständiges VIP-Reset.\n",
+        "keys_removed": "🔑 Entfernte Keys (diese Guild): **{count}**\n",
+        "roles_failed": "⚠️ Rollen konnten NICHT entfernt werden (Bot-Hierarchie / Berechtigungen): {roles} — MANUELL ENTFERNEN!\n",
+        "roles_removed": "🎭 Entfernte Rollen: {roles}\n",
+        "schedules_removed": "📋 Entfernte Zeitpläne (diese Guild): **{count}**\n",
+        "success": "🧹 **Bereinigung abgeschlossen!**\n\n👤 Benutzer: {user}\n{schedules}{keys}"
       }
     },
     "setup-selfrole": {
@@ -501,15 +624,36 @@
       }
     },
     "backup-now": {
-      "description": "Jetzt ein manuelles Backup erstellen (Konfiguration, Keys, geplante Rollen, Self-Roles usw.)"
+      "description": "Jetzt ein manuelles Backup erstellen (Konfiguration, Keys, geplante Rollen, Self-Roles usw.)",
+      "replies": {
+        "errors_section": "⚠️ Fehler:\n```\n{errors}\n```\n",
+        "failed": "❌ Backup konnte nicht erstellt werden: {error}",
+        "partial": "⚠️ **TEILBACKUP!** Nur {count} Dateien wurden kopiert (einige schlugen fehl).\n\n❌ Fehler:\n```\n{errors}\n```\n💡 Ein Backup wurde aus den erfolgreichen Dateien erstellt — es ist aber **unvollständig**. Prüfe Speicherplatz & Berechtigungen der `data/`-Dateien.",
+        "success": "💾 **Backup erfolgreich erstellt!**\n\n📁 Name: `{name}`\n📦 Kopierte Dateien: **{files}**\n📊 Gesamtgröße: **{size}**\n{errors}💡 Auto-Backup läuft alle 24 Stunden + beim Bot-Start. Die 7 neuesten Backups bleiben erhalten.",
+        "total_failure": "❌ Komplettes Backup-Versagen: {errors}"
+      }
     },
     "backup-list": {
-      "description": "Alle gespeicherten Backups anzeigen (max. die 7 neuesten)"
+      "description": "Alle gespeicherten Backups anzeigen (max. die 7 neuesten)",
+      "replies": {
+        "age_day": "vor {n} Tg.",
+        "age_hour": "vor {n} Std.",
+        "age_min": "vor {n} Min.",
+        "desc": "Insgesamt **{total}** Backups gespeichert (max 7, ältere werden automatisch bereinigt).\n\n{lines}\n\n💡 Wiederherstellen mit: `/restore-backup name:<ordnername>`",
+        "empty": "📭 Noch keine Backups. Beim Bot-Start wird automatisch ein Backup erstellt.",
+        "line": "`{i}.` 📁 `{name}`\n   📦 {files} Datei(en) | 📊 {size} | ⏰ {age}",
+        "title": "💾 BACKUP-LISTE"
+      }
     },
     "restore-backup": {
       "description": "Ein Backup per Name wiederherstellen (mit automatischem Sicherheits-Backup davor)",
       "options": {
         "name": "Backup-Ordnername (siehe /backup-list, Format: JJJJ-MM-TT_HH-mm-ss)"
+      },
+      "replies": {
+        "confirm": "⚠️ **BACKUP-WIEDERHERSTELLUNG BESTÄTIGEN**\n\n📁 Backup: `{name}`\n\n**Was beim Klick auf Bestätigen passiert:**\n• Der Bot erstellt automatisch ein Sicherheits-Backup (pre-restore) des AKTUELLEN Zustands\n• Alle JSON-Dateien (config, keys, scheduledRoles, warns usw.) werden mit den Versionen dieses Backups überschrieben\n• Der Bot muss neu gestartet werden, um die neuen Daten vollständig zu laden\n\n**Das kann nicht rückgängig gemacht werden** (außer durch Wiederherstellen des Sicherheits-Backups).\n\nKlicke unten auf einen Button, um fortzufahren oder abzubrechen.",
+        "confirm_button": "⚠️ Ja, jetzt wiederherstellen",
+        "invalid_name": "❌ Ungültiges Backup-Namensformat: `{name}`\n\nUnterstützte Formate: `YYYY-MM-DD_HH-mm-ss` oder `pre-restore_YYYY-MM-DD_HH-mm-ss`. Siehe `/backup-list`."
       }
     },
     "giveaway": {
@@ -800,13 +944,76 @@
       }
     },
     "boosters": {
-      "description": "Liste der aktuellen Server-Booster + neueren Boost-Verlauf (öffentlich)"
+      "description": "Liste der aktuellen Server-Booster + neueren Boost-Verlauf (öffentlich)",
+      "embed": {
+        "add": {
+          "desc": "**{user}** hat gerade **{guild}** geboostet! Danke für deine Unterstützung des Servers 💖",
+          "footer": "{guild} — danke dir!",
+          "server": "📊 Server",
+          "since": "🚀 Boostet seit",
+          "tier_zero": "Server-Level 0 (auf dem Weg zu Level 1!)",
+          "title": "🚀 NEUER SERVER-BOOST!",
+          "tier": {
+            "one": "Server-Level **{tier}** · {count} Boost gesamt",
+            "other": "Server-Level **{tier}** · {count} Boosts gesamt"
+          }
+        },
+        "booster": "👤 Booster",
+        "list": {
+          "boosters_listed": "⭐ Gelistete Booster",
+          "desc": "Diese Mitglieder boosten gerade **{guild}** 💖\n\n{lines}",
+          "empty_desc": "Dieser Server hat derzeit keine aktiven Booster. 🌱\nEin Server-Boost schaltet Vorteile für alle frei — jeder Boost zählt!",
+          "footer": "Booster-Liste = live aus Discord • Boost-Historie vom Bot erfasst",
+          "line": "{i}. <@{user}> — seit <t:{ts}:D> (<t:{ts}:R>)",
+          "more": "… +{count} weitere Booster nicht angezeigt",
+          "recent": "🕘 Aktuelle Boost-Aktivität",
+          "server_level": "📊 Server-Level",
+          "tier": "Level {tier}",
+          "tier_zero": "Level 0 (noch keine Boosts)",
+          "title": "🚀 SERVER-BOOSTER — {guild}",
+          "level_value": {
+            "one": "{tier} ({count} Boost)",
+            "other": "{tier} ({count} Boosts)"
+          }
+        },
+        "remove": {
+          "desc": "**{user}** boostet **{guild}** nicht mehr.{since}",
+          "since": "\n\nEr/sie boostete seit dem <t:{ts}:D>.",
+          "title": "💔 BOOST BEENDET"
+        }
+      }
     },
     "test-booster": {
       "description": "Die Boost-Benachrichtigung diagnostizieren & vorbelegen (warum sie nicht erscheint)",
       "options": {
         "tipe": "Welches getestet werden soll",
         "live": "Die Vorschau auch an den ECHTEN Server-Booster-Kanal senden (Zustelltest)"
+      },
+      "replies": {
+        "chan_fallback": "der von dir gesetzte server-booster-Kanal",
+        "chan_not_found": "❌ **server-booster-Kanal: nicht gefunden** (ID `{id}`) — gelöscht, oder die ID gehört zu einem anderen Server → neu setzen mit `/set-channel server-booster #channel`",
+        "chan_not_set": "❌ **server-booster-Kanal: nicht gesetzt** → behebe es mit `/set-channel server-booster #channel`",
+        "chan_ok": "✅ **server-booster-Kanal:** {channel} (`{id}`)",
+        "detection": "ℹ️ Boost-Erkennung: ✅ aktiv (guildMemberUpdate premium_since-Diff — der Bot ist online mit dem GuildMembers-Intent)",
+        "footer": "🧪 **Nur Simulation** — es wird nichts aufgezeichnet: Boost-Historie (`/boosters`), Server-Log und Live-Zähler bleiben unangetastet, die Booster-Rolle wird nie verändert.",
+        "live_failed": "🧪 Live-Zustellung: ❌ im server-booster-Kanal fehlgeschlagen: {error} — prüfe dort die Berechtigungen Nachrichten senden + Links einbetten des Bots.",
+        "live_ok": "🧪 Live-Zustellung: ✅ auch an den ECHTEN server-booster-Kanal gesendet — die gesamte Kette funktioniert Ende-zu-Ende.",
+        "live_skipped": "🧪 Live-Zustellung: übersprungen — der server-booster-Kanal ist nicht gesetzt (oder wurde gelöscht). Behebe das oben zuerst.",
+        "no_manage_roles": "❌ dem Bot fehlt die Berechtigung **Rollen verwalten** → aktiviere sie unter Servereinstellungen → Rollen → Bot",
+        "perms_fix": "→ Fix: Servereinstellungen → dieser Kanal → Bot hinzufügen → **Nachrichten senden** + **Links einbetten** aktivieren",
+        "perms_line": "{view} Kanal anzeigen · {send} Nachrichten senden · {embed} Links einbetten (Bot-Berechtigungen in dem Kanal)",
+        "preview_failed": "⚠️ Vorschau konnte NICHT an diesen Kanal gesendet werden: {error}\nPrüfe auch HIER die Berechtigungen Nachrichten senden + Links einbetten des Bots — der server-booster-Kanal hat wahrscheinlich dasselbe Problem.",
+        "preview_sent": "🧪 Vorschau an **diesen Kanal** gesendet — die echte {type} geht an {channel}. Sie nutzt deine eigenen Daten als \"der Booster\".",
+        "role_above_bot": "❌ die Booster-Rolle liegt ÜBER der höchsten Rolle des Bots — der Bot kann sie nicht zuweisen → verschiebe die Booster-Rolle UNTER die Bot-Rolle (Servereinstellungen → Rollen)",
+        "role_not_found": "❌ **Booster-Rolle: nicht gefunden** (ID `{id}`) — gelöscht, oder die ID gehört zu einem anderen Server → neu setzen mit `/set-role booster @role`",
+        "role_not_set": "ℹ️ Booster-Rolle: nicht gesetzt (optional) → `/set-role booster @role`, damit boostende Mitglieder automatisch eine Rolle bekommen",
+        "role_ok": "✅ **Booster-Rolle:** {role} — wird automatisch vergeben, wenn ein Mitglied boostet, und entfernt, wenn der Boost endet",
+        "type_add": "Boost-Benachrichtigung",
+        "type_remove": "Hinweis zum Boost-Ende",
+        "server_now": {
+          "one": "ℹ️ Server jetzt: Level {tier} · {count} Boost",
+          "other": "ℹ️ Server jetzt: Level {tier} · {count} Boosts"
+        }
       }
     },
     "serverstats": {
@@ -927,15 +1134,36 @@
         "reply_type": "Antworttyp (Standard: Text)",
         "cooldown": "Abklingzeit in Sekunden (Anti-Spam, Standard: 3, 0 = aus)",
         "match_mode": "Wie das Schlüsselwort mit einer Nachricht übereinstimmt (Standard: Contains)"
+      },
+      "replies": {
+        "cooldown_invalid": "❌ `cooldown` darf nicht negativ sein. Nutze 0 zum Deaktivieren oder mindestens 1 Sekunde.",
+        "match_hint_contains": "💡 Ein Mitglied sendet eine beliebige Nachricht, die das Wort `{trigger}` **enthält** (z. B. „{example}“) → der Bot antwortet automatisch. Nur ganze Wörter treffen — längere Wörter wie „{example_long}“ lösen es nicht aus.",
+        "match_hint_exact": "💡 Ein Mitglied sendet eine Nachricht, die **beginnt mit** `{trigger}` → der Bot antwortet automatisch.",
+        "match_label_contains": "enthält (ganzes Wort, überall in der Nachricht)",
+        "match_label_exact": "Nachrichtenanfang (exakt)",
+        "success": "✅ Responder hinzugefügt!\n\n🔤 Trigger: `{trigger}`\n💬 Antwort: {reply}\n📝 Typ: {type}\n🎯 Übereinstimmung: {match}\n⏱️ Cooldown: {cooldown}s\n\n{hint}"
       }
     },
     "list-responder": {
-      "description": "Alle registrierten Auto-Responder anzeigen"
+      "description": "Alle registrierten Auto-Responder anzeigen",
+      "replies": {
+        "desc": "Insgesamt **{total}** Responder{note}.\n\n{lines}",
+        "empty": "📭 Noch keine Responder. Nutze `/add-responder trigger:\"!sosmed\" reply:\"...\"`, um einen hinzuzufügen.",
+        "footer": "{count}/50 Responder belegt",
+        "hidden_note": " (zeige die neuesten {shown} — {hidden} ältere ausgeblendet)",
+        "line": "`{i}.` `{trigger}` → {reply} *({mode} • {count}x verwendet)*",
+        "mode_contains": "enthält",
+        "mode_start": "Anfang",
+        "title": "💬 AUTO-RESPONDER-LISTE"
+      }
     },
     "remove-responder": {
       "description": "Einen Auto-Responder per Auslöser löschen",
       "options": {
         "trigger": "Der zu löschende Auslöser"
+      },
+      "replies": {
+        "success": "✅ Responder mit dem Trigger `{trigger}` erfolgreich entfernt."
       }
     },
     "set-automod": {

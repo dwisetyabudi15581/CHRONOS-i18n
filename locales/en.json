@@ -72,7 +72,18 @@
       "manage_messages": "Manage Messages",
       "timeout_members": "Timeout Members"
     },
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "category_not_found": "❌ Category `{id}` not found. Use /list-categories to see the list.",
+    "emoji_invalid": "❌ `emoji` is not valid. Use a unicode emoji (e.g. 🎫) or a custom emoji in the format `<:name:id>`.",
+    "product_value_not_found": "❌ Product with value `{value}` not found.",
+    "product_value_not_found_hint": "❌ Product with value `{value}` not found. Use `/list-products` to see the list.",
+    "refresh_panel_hint": "💡 Use `/refresh-panel <id>` to re-render installed panels.",
+    "roles": {
+      "above_bot": "❌ **{name}** is above the bot's highest role — move the bot's role up in Server Settings → Roles, or pick a lower role.",
+      "everyone_invalid": "❌ @everyone cannot be used as an auto-role.",
+      "managed": "❌ **{name}** is a managed role (bot/integration/boost role) — it cannot be assigned manually."
+    },
+    "style_invalid": "❌ `style` is not valid."
   },
   "bot_commands": {
     "help": {
@@ -132,16 +143,35 @@
         "emoji": "Button emoji (unicode or custom <:name:id>)",
         "style": "Button color",
         "requires_key": "Does this category need the Set Key button? (default: true)"
+      },
+      "replies": {
+        "duplicate": "❌ A category with ID `{id}` already exists. Use /remove-category first if you want to replace it.",
+        "id_invalid": "❌ `id` may only contain letters/numbers/_/-, max 30 characters.",
+        "max": "❌ Maximum of 25 categories (Discord limit: 25 buttons per message).",
+        "success": "✅ Category added!\n\n🎫 ID: `{id}`\n📝 Label: **{label}**\n{emoji} Emoji: {emoji}\n🎨 Style: {style}\n🔑 Requires Key: {key}\n\n💡 Use `/setup-ticket` (or `/refresh-panel <id>` if the panel already exists) to apply the new category."
       }
     },
     "list-categories": {
       "description": "View all registered ticket categories",
-      "options": {}
+      "options": {},
+      "replies": {
+        "default_flag": " *(default)*",
+        "empty": "📭 No categories yet. The 5 default categories (transaction, help, report, claim_giveaway, midman) are used when the config is empty.",
+        "footer": "{count}/25 categories used",
+        "line": "`{i}.` {emoji} **{label}** (`{id}`) — {style} {keyflag}{default}",
+        "title": "🎫 TICKET CATEGORY LIST"
+      }
     },
     "remove-category": {
       "description": "Remove a ticket category from the config",
       "options": {
         "id": "The category ID to delete"
+      },
+      "replies": {
+        "is_default": "❌ Category `{id}` is a default category and cannot be deleted.\nTo disable it, set `requiresKey: false` or edit the label directly in the config.",
+        "migrated": "📦 {count} products using this category were automatically moved to the `transaction` category.",
+        "no_products": "ℹ️ No products were using this category.",
+        "success": "✅ Category **{label}** (`{id}`) successfully deleted.\n\n{migration}"
       }
     },
     "update-category": {
@@ -152,6 +182,10 @@
         "emoji": "New button emoji (unicode or custom <:name:id>)",
         "style": "New button color",
         "requires_key": "Does this category need the Set Key button?"
+      },
+      "replies": {
+        "no_changes": "ℹ️ No changes were made. Provide at least 1 field to update (label/emoji/style/requires_key).\n\nCategory **{label}** (`{id}`) stays as it was.",
+        "success": "✅ Category **{label}** (`{id}`) successfully updated!\n\n📝 Changes:\n{changes}\n\n{hint}"
       }
     },
     "setup-ticket-panel": {
@@ -205,17 +239,36 @@
         "price": "Price (e.g. Rp 50.000 / $3 / $2.50 / 5.88 / 25k — max 100 chars)",
         "category": "Product category (default: transaction). See /list-categories for the list.",
         "requires_key": "Does this product need Set Key? (default: true for key categories)"
+      },
+      "replies": {
+        "category_not_found": "❌ Category `{category}` not found. Use /list-categories to see the list, or /add-category to create a new one.",
+        "duplicate": "❌ A product with value `{value}` already exists.",
+        "max": "❌ Maximum of 25 products (Discord dropdown limit).",
+        "price_invalid": "❌ The price `{raw}` cannot be read as an amount — it would record **0** into the stats on every sale.\n✅ Accepted formats: `25000` · `25.000` · `25,000` · `$3` · `$2.50` · `5.88` · `€25` · `Rp 30.000` · `30rb` · `3jt` · `3$ USD | Rp 25.000` (the Rp part is recorded) · `free`",
+        "revenue_note": "\n💰 Counted in stats as: **{amount}** per sale (ticket + escrow transactions)",
+        "success": "✅ Product added: **{label}** — {price}{revenue}\n📦 Category: `{category}` | 🔑 Requires Key: {key}",
+        "value_invalid": "❌ `value` may only contain letters/numbers/_/-, max 50 characters, no spaces/commas/colons."
       }
     },
     "remove-product": {
       "description": "Remove a product from the price list",
       "options": {
         "value": "The product value to delete (e.g. 7d)"
+      },
+      "replies": {
+        "not_found": "❌ Product `{value}` not found.",
+        "success": "✅ Product deleted: **{label}**"
       }
     },
     "list-products": {
       "description": "View all current products",
-      "options": {}
+      "options": {},
+      "replies": {
+        "empty": "📭 No products yet.",
+        "line": "`{i}.` **{label}** — {price}\n   └ value: `{value}`",
+        "more": "… +{count} more (use `/update-product` / `/config-show` for details)",
+        "title": "📋 PRODUCT LIST"
+      }
     },
     "update-product": {
       "description": "Edit an existing product (label/price/category/requires_key) without delete+re-add",
@@ -225,6 +278,11 @@
         "price": "New price (e.g. \"Rp 25.000\" / \"$3\" / \"$2.50\" / \"5.88\")",
         "category": "New category (see /list-categories)",
         "requires_key": "Does this product need Set Key? (true=key, false=service/non-key)"
+      },
+      "replies": {
+        "no_changes": "ℹ️ No changes were made. Provide at least 1 field to update (label/price/category/requires_key).\n\nProduct **{label}** (`{value}`) stays as it was.",
+        "stats_change": "💰 counted in stats: **{amount}** per sale",
+        "success": "✅ Product **{label}** (`{value}`) successfully updated!\n\n📝 Changes:\n{changes}\n\n{hint}"
       }
     },
     "config-show": {
@@ -242,11 +300,26 @@
       "options": {
         "mode": "Fee calculation mode",
         "value": "Fee value (percent: 0-90, flat: amount per deal). 0 = free"
+      },
+      "replies": {
+        "fee_flat": "**{amount}** flat per deal",
+        "fee_percent": "**{value}%** of the deal price",
+        "flat_absurd": "❌ That fee amount is unreasonable.",
+        "negative": "❌ Fee cannot be negative.",
+        "percent_cap": "❌ Percentage fee is capped at **90%** of the deal price (sanity guard — double-check the value).",
+        "success": "✅ Escrow fee set: {fee} — the fee is **ADDED on top of the price** (not deducted from the seller's funds).\n💡 Example: a **{price}** deal → fee **{feeAmt}** → the buyer transfers **{buyer}**, the seller receives **{seller}** (in full).\nThe fee applies to NEW deals (in-flight deals keep the fee from when they were created)."
       }
     },
     "midman-deals": {
       "description": "View all active escrow deals on this server",
-      "options": {}
+      "options": {},
+      "replies": {
+        "age": "{hours}h ago",
+        "empty": "✅ No active escrow deals on this server.",
+        "line": "{channel} — **{state}**\n┣ 🛒 {buyer} ⇄ 🏷️ {seller}\n┗ 📦 {item} • {total} (price {price} + fee {fee}) • {age}",
+        "more": "⚠️ Showing the first 25 deals (there are more).",
+        "title": "🤝 Active Escrow Deals — {count} deal(s)"
+      }
     },
     "remove-channel": {
       "description": "Remove a channel from the config (invoice / welcome / goodbye / audit-log / server-log / transcript)",
@@ -274,17 +347,34 @@
         "value": "Product value (e.g. 30d)",
         "role": "The role granted when a purchase succeeds",
         "days": "Days before the role is automatically removed (0 = permanent)"
+      },
+      "replies": {
+        "days_invalid": "❌ `days` must be between 0 and 3650. (0 = permanent, >0 = duration in days).",
+        "expire_days": "auto-removed after **{days} days**",
+        "expire_permanent": "**permanent** (will not be auto-removed)",
+        "success": "✅ Auto-role for product **{label}** set!\n\n🎁 Role: {role}\n⏰ Expiry: {expire}\n\n💡 The role is automatically granted when an admin clicks **🔑 Set Key** / **📦 Deliver Order** / **✅ Order Success** in the ticket."
       }
     },
     "remove-product-role": {
       "description": "Remove the auto-role from a specific product",
       "options": {
         "value": "Product value (e.g. 30d)"
+      },
+      "replies": {
+        "no_role": "ℹ️ Product **{label}** doesn't have an auto-role yet.",
+        "success": "✅ Auto-role for product **{label}** successfully removed."
       }
     },
     "list-product-roles": {
       "description": "View all product → role mappings + durations",
-      "options": {}
+      "options": {},
+      "replies": {
+        "empty": "📭 No products have an auto-role yet. Use `/set-product-role` to set one up.",
+        "expire_days": "{days} days",
+        "line": "• **{label}** (`{value}`) → {role} — expire: {expire}",
+        "permanent": "permanent",
+        "title": "🎁 AUTO-ROLE PER PRODUCT"
+      }
     },
     "set-key": {
       "description": "Give a key to a user + grant role + extend schedule (MAX EXTEND)",
@@ -292,6 +382,31 @@
         "user": "The user receiving the key",
         "value": "Product value (e.g. 30d)",
         "key": "The key to send to the user (max 200 chars)"
+      },
+      "replies": {
+        "char_count": "…({count} char)",
+        "db_failed": "❌ Failed to save the key to the database: {error}\n\nCheck disk space and file permissions for `data/keys.json`. No role was granted, no schedule was created.",
+        "dm": "Hi {username}! You got a gift from the admin 🎁\n\n📦 Product: {product}\n🌐 Server: {server}\n\n🔑 KEY:\n`{key}`\n\n🎭 Role: {role}\n⏰ Expires: {expire}\n\n📋 Your active keys for this role:\n{keyList}\n\n💡 Keep your key safe. If the role suddenly disappears while your key is still active, contact an admin.",
+        "dm_expire_days": "{days} days left",
+        "dm_expire_permanent": "permanent (never expires)",
+        "dm_failed": "⚠️ DM failed (DMs closed).",
+        "dm_key_line": "{i}. `{key}` ({remaining} left)",
+        "dm_sent": "📬 DM sent.",
+        "expire_days": "{days} days",
+        "expire_permanent": "permanent",
+        "invoice_failed": "\n⚠️ Invoice not sent (invoice channel not set yet).",
+        "invoice_sent": "🧾 Invoice sent.",
+        "key_empty": "❌ Key cannot be empty.",
+        "no_autorole": "❌ Product **{label}** has no auto-role yet. Use `/set-product-role` first.",
+        "product_not_found": "❌ Product value `{value}` not found. Use `/list-products` to see the list.",
+        "role_failed": "❌ Failed to add role {role}. Make sure the bot role is ABOVE that role.\n\n⚠️ **Key saved WITHOUT the role.** Once the bot role is fixed, an admin can:\n• Manually add the role to the member, or\n• Delete this key via `/clear-schedule clear_keys:true` then set the key again.",
+        "role_not_found": "❌ Role ID `{roleId}` not found in this guild.",
+        "schedule_extended": "↳ Schedule extended (MAX EXTEND).",
+        "schedule_failed": "\n⚠️ **Failed to create the auto-expire schedule:** {error}. The role will not auto-expire — an admin must remove it manually.",
+        "schedule_new": "↳ New schedule created.",
+        "schedule_permanent": "↳ Permanent, old schedule removed.",
+        "success": "✅ **Set Key successful!**\n\n👤 User: {user}\n📦 Product: {product}\n🔑 Key: `{key}`\n🎭 Role: {role}\n⏰ Expires: {expire}\n{schedule}\n{dm}\n{invoice}{warning}",
+        "user_not_found": "❌ User {user} is not on this server."
       }
     },
     "list-keys": {
@@ -312,6 +427,14 @@
       "options": {
         "user": "The user to clear",
         "clear_keys": "True = delete ALL user keys + remove the VIP role (full reset). Default: false."
+      },
+      "replies": {
+        "keys_kept": "ℹ️ Keys NOT removed (clear_keys=false). Use `clear_keys:true` for a full VIP reset.\n",
+        "keys_removed": "🔑 Keys removed (this guild): **{count}**\n",
+        "roles_failed": "⚠️ Roles FAILED to remove (bot hierarchy / permissions): {roles} — REMOVE THEM MANUALLY!\n",
+        "roles_removed": "🎭 Roles removed: {roles}\n",
+        "schedules_removed": "📋 Schedules removed (this guild): **{count}**\n",
+        "success": "🧹 **Clear complete!**\n\n👤 User: {user}\n{schedules}{keys}"
       }
     },
     "setup-selfrole": {
@@ -515,16 +638,37 @@
     },
     "backup-now": {
       "description": "Create a manual backup now (config, keys, scheduledRoles, selfRoles, etc.)",
-      "options": {}
+      "options": {},
+      "replies": {
+        "errors_section": "⚠️ Errors:\n```\n{errors}\n```\n",
+        "failed": "❌ Failed to create backup: {error}",
+        "partial": "⚠️ **PARTIAL BACKUP!** Only {count} files were copied (some failed).\n\n❌ Errors:\n```\n{errors}\n```\n💡 A backup was still created from the successful files — but it is **incomplete**. Check disk space & permissions on the `data/` files.",
+        "success": "💾 **Backup successfully created!**\n\n📁 Name: `{name}`\n📦 Files copied: **{files}**\n📊 Total size: **{size}**\n{errors}💡 Auto-backup runs every 24 hours + at bot start. The 7 most recent backups are kept.",
+        "total_failure": "❌ Total backup failure: {errors}"
+      }
     },
     "backup-list": {
       "description": "View all saved backups (max 7 most recent)",
-      "options": {}
+      "options": {},
+      "replies": {
+        "age_day": "{n}d ago",
+        "age_hour": "{n}h ago",
+        "age_min": "{n}m ago",
+        "desc": "Total **{total}** backups stored (max 7, older ones auto-cleaned).\n\n{lines}\n\n💡 Restore with: `/restore-backup name:<folder-name>`",
+        "empty": "📭 No backups yet. An automatic backup is created at bot start.",
+        "line": "`{i}.` 📁 `{name}`\n   📦 {files} file | 📊 {size} | ⏰ {age}",
+        "title": "💾 BACKUP LIST"
+      }
     },
     "restore-backup": {
       "description": "Restore a backup by name (auto-creates a safety backup before restoring)",
       "options": {
         "name": "Backup folder name (see /backup-list, format: YYYY-MM-DD_HH-mm-ss)"
+      },
+      "replies": {
+        "confirm": "⚠️ **RESTORE BACKUP CONFIRMATION**\n\n📁 Backup: `{name}`\n\n**What happens if you click Confirm:**\n• The bot will create an automatic safety backup (pre-restore) of the CURRENT state\n• All JSON files (config, keys, scheduledRoles, warns, etc.) will be overwritten with this backup's versions\n• The bot needs a restart to fully load the new data\n\n**This cannot be undone** (except by restoring the safety backup).\n\nClick a button below to continue or cancel.",
+        "confirm_button": "⚠️ Yes, Restore Now",
+        "invalid_name": "❌ Invalid backup name format: `{name}`\n\nSupported formats: `YYYY-MM-DD_HH-mm-ss` or `pre-restore_YYYY-MM-DD_HH-mm-ss`. See `/backup-list`."
       }
     },
     "giveaway": {
@@ -826,13 +970,76 @@
     },
     "boosters": {
       "description": "List the current server boosters + recent boost history (public)",
-      "options": {}
+      "options": {},
+      "embed": {
+        "add": {
+          "desc": "**{user}** just boosted **{guild}**! Thank you for supporting the server 💖",
+          "footer": "{guild} — thank you!",
+          "server": "📊 Server",
+          "since": "🚀 Boosting since",
+          "tier_zero": "Server Level 0 (boosting toward Level 1!)",
+          "title": "🚀 NEW SERVER BOOST!",
+          "tier": {
+            "one": "Server Level **{tier}** · {count} boost total",
+            "other": "Server Level **{tier}** · {count} boosts total"
+          }
+        },
+        "booster": "👤 Booster",
+        "list": {
+          "boosters_listed": "⭐ Boosters Listed",
+          "desc": "These members are boosting **{guild}** right now 💖\n\n{lines}",
+          "empty_desc": "This server has no active boosters right now. 🌱\nBoosting the server unlocks perks for everyone — every boost counts!",
+          "footer": "Booster list = live from Discord • boost history tracked by the bot",
+          "line": "{i}. <@{user}> — since <t:{ts}:D> (<t:{ts}:R>)",
+          "more": "… +{count} more booster(s) not shown",
+          "recent": "🕘 Recent Boost Activity",
+          "server_level": "📊 Server Level",
+          "tier": "Level {tier}",
+          "tier_zero": "Level 0 (no boosts yet)",
+          "title": "🚀 SERVER BOOSTERS — {guild}",
+          "level_value": {
+            "one": "{tier} ({count} boost)",
+            "other": "{tier} ({count} boosts)"
+          }
+        },
+        "remove": {
+          "desc": "**{user}** is no longer boosting **{guild}**.{since}",
+          "since": "\n\nThey had been boosting since <t:{ts}:D>.",
+          "title": "💔 BOOST ENDED"
+        }
+      }
     },
     "test-booster": {
       "description": "Diagnose & preview the boost add/remove notification (find out why it does not appear)",
       "options": {
         "tipe": "Which one to test",
         "live": "Also send the preview to the REAL server-booster channel (delivery test)"
+      },
+      "replies": {
+        "chan_fallback": "the server-booster channel you set",
+        "chan_not_found": "❌ **server-booster channel: not found** (ID `{id}`) — deleted, or the ID belongs to another server → re-set with `/set-channel server-booster #channel`",
+        "chan_not_set": "❌ **server-booster channel: not set** → fix with `/set-channel server-booster #channel`",
+        "chan_ok": "✅ **server-booster channel:** {channel} (`{id}`)",
+        "detection": "ℹ️ Boost detection: ✅ active (guildMemberUpdate premium_since diff — the bot is online with the GuildMembers intent)",
+        "footer": "🧪 **Simulation only** — nothing is recorded: boost history (`/boosters`), the server log and the live counters stay untouched, the booster role is never touched.",
+        "live_failed": "🧪 Live delivery: ❌ failed in the server-booster channel: {error} — check the bot's Send Messages + Embed Links permissions there.",
+        "live_ok": "🧪 Live delivery: ✅ also sent to the REAL server-booster channel — the full chain works end-to-end.",
+        "live_skipped": "🧪 Live delivery: skipped — the server-booster channel is not set (or was deleted). Fix it above first.",
+        "no_manage_roles": "❌ the bot lacks the **Manage Roles** permission → enable it in Server Settings → Roles → bot",
+        "perms_fix": "→ fix: Server Settings → that channel → add the bot → enable **Send Messages** + **Embed Links**",
+        "perms_line": "{view} View Channel · {send} Send Messages · {embed} Embed Links (bot permissions in that channel)",
+        "preview_failed": "⚠️ Preview could NOT be sent to this channel: {error}\nCheck the bot's Send Messages + Embed Links permissions HERE too — the server-booster channel likely has the same problem.",
+        "preview_sent": "🧪 Preview sent to **this channel** — the real {type} goes to {channel}. It uses your own data as \"the booster\".",
+        "role_above_bot": "❌ the booster role is positioned ABOVE the bot's highest role — the bot cannot assign it → move the booster role BELOW the bot role (Server Settings → Roles)",
+        "role_not_found": "❌ **booster role: not found** (ID `{id}`) — deleted, or the ID belongs to another server → set it again with `/set-role booster @role`",
+        "role_not_set": "ℹ️ Booster role: not set (optional) → `/set-role booster @role` so boosting members automatically get a role",
+        "role_ok": "✅ **booster role:** {role} — granted automatically when a member boosts, removed when the boost ends",
+        "type_add": "boost notification",
+        "type_remove": "boost-ended notice",
+        "server_now": {
+          "one": "ℹ️ Server now: Level {tier} · {count} boost",
+          "other": "ℹ️ Server now: Level {tier} · {count} boosts"
+        }
       }
     },
     "serverstats": {
@@ -964,16 +1171,37 @@
         "reply_type": "Reply type (default: text)",
         "cooldown": "Cooldown in seconds (anti-spam, default: 3, 0 = off)",
         "match_mode": "How the trigger matches a message (default: Contains)"
+      },
+      "replies": {
+        "cooldown_invalid": "❌ `cooldown` cannot be negative. Use 0 to disable the cooldown, or at least 1 second.",
+        "match_hint_contains": "💡 A member sends any message **containing** the word `{trigger}` (e.g. \"{example}\") → the bot auto-replies. Only whole words match — \"{example_long}\" style longer words won't trigger it.",
+        "match_hint_exact": "💡 A member sends a message **starting with** `{trigger}` → the bot auto-replies.",
+        "match_label_contains": "contains (whole word, anywhere in the message)",
+        "match_label_exact": "start of message (exact)",
+        "success": "✅ Responder added!\n\n🔤 Trigger: `{trigger}`\n💬 Reply: {reply}\n📝 Type: {type}\n🎯 Match: {match}\n⏱️ Cooldown: {cooldown}s\n\n{hint}"
       }
     },
     "list-responder": {
       "description": "View all registered auto-responders",
-      "options": {}
+      "options": {},
+      "replies": {
+        "desc": "Total **{total}** responders{note}.\n\n{lines}",
+        "empty": "📭 No responders yet. Use `/add-responder trigger:\"!sosmed\" reply:\"...\"` to add one.",
+        "footer": "{count}/50 responders used",
+        "hidden_note": " (showing the latest {shown} — {hidden} older hidden)",
+        "line": "`{i}.` `{trigger}` → {reply} *({mode} • used {count}x)*",
+        "mode_contains": "contains",
+        "mode_start": "start",
+        "title": "💬 AUTO-RESPONDER LIST"
+      }
     },
     "remove-responder": {
       "description": "Delete an auto-responder by trigger",
       "options": {
         "trigger": "The trigger to delete"
+      },
+      "replies": {
+        "success": "✅ Responder with trigger `{trigger}` successfully removed."
       }
     },
     "set-automod": {

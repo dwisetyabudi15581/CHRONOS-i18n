@@ -72,7 +72,18 @@
       "manage_messages": "管理消息",
       "timeout_members": "超时成员"
     },
-    "cancel": "取消"
+    "cancel": "取消",
+    "category_not_found": "❌ 未找到分类 `{id}`。使用 /list-categories 查看列表。",
+    "emoji_invalid": "❌ `emoji` 无效。请使用 unicode 表情（如 🎫）或格式为 `<:name:id>` 的自定义表情。",
+    "product_value_not_found": "❌ 未找到 value 为 `{value}` 的商品。",
+    "product_value_not_found_hint": "❌ 未找到 value 为 `{value}` 的商品。使用 `/list-products` 查看列表。",
+    "refresh_panel_hint": "💡 使用 `/refresh-panel <id>` 重新渲染已安装的面板。",
+    "roles": {
+      "above_bot": "❌ **{name}** 高于机器人的最高角色——请在服务器设置 → 角色中上移机器人角色，或选择更低的角色。",
+      "everyone_invalid": "❌ @everyone 不能用作自动角色。",
+      "managed": "❌ **{name}** 是托管角色（机器人/集成/助力角色）——无法手动授予。"
+    },
+    "style_invalid": "❌ `style` 无效。"
   },
   "bot_commands": {
     "help": {
@@ -130,15 +141,34 @@
         "emoji": "按钮表情（unicode 或自定义 <:name:id>）",
         "style": "按钮颜色",
         "requires_key": "此分类是否需要 Set Key 按钮？（默认：是）"
+      },
+      "replies": {
+        "duplicate": "❌ ID 为 `{id}` 的分类已存在。如需替换，请先使用 /remove-category。",
+        "id_invalid": "❌ `id` 只能包含字母/数字/_/-，最多 30 个字符。",
+        "max": "❌ 最多 25 个分类（Discord 限制：每条消息 25 个按钮）。",
+        "success": "✅ 分类已添加！\n\n🎫 ID：`{id}`\n📝 标签：**{label}**\n{emoji} 表情：{emoji}\n🎨 样式：{style}\n🔑 需要密钥：{key}\n\n💡 使用 `/setup-ticket`（或面板已存在时使用 `/refresh-panel <id>`）来应用新分类。"
       }
     },
     "list-categories": {
-      "description": "查看所有已注册的工单分类"
+      "description": "查看所有已注册的工单分类",
+      "replies": {
+        "default_flag": " *（默认）*",
+        "empty": "📭 还没有分类。配置为空时将使用 5 个默认分类（transaction、help、report、claim_giveaway、midman）。",
+        "footer": "已使用 {count}/25 个分类",
+        "line": "`{i}.` {emoji} **{label}**（`{id}`）— {style} {keyflag}{default}",
+        "title": "🎫 工单分类列表"
+      }
     },
     "remove-category": {
       "description": "从配置中移除一个工单分类",
       "options": {
         "id": "要删除的分类 ID"
+      },
+      "replies": {
+        "is_default": "❌ 分类 `{id}` 是默认分类，无法删除。\n如需禁用，请设置 `requiresKey: false` 或直接在配置中修改标签。",
+        "migrated": "📦 {count} 个使用此分类的商品已自动移动到 `transaction` 分类。",
+        "no_products": "ℹ️ 没有商品使用此分类。",
+        "success": "✅ 分类 **{label}**（`{id}`）已成功删除。\n\n{migration}"
       }
     },
     "update-category": {
@@ -149,6 +179,10 @@
         "emoji": "新的按钮表情（unicode 或自定义 <:name:id>）",
         "style": "新的按钮颜色",
         "requires_key": "此分类是否需要 Set Key 按钮？"
+      },
+      "replies": {
+        "no_changes": "ℹ️ 未做任何更改。请至少填写 1 个字段来更新（label/emoji/style/requires_key）。\n\n分类 **{label}**（`{id}`）保持原样。",
+        "success": "✅ 分类 **{label}**（`{id}`）已成功更新！\n\n📝 更改：\n{changes}\n\n{hint}"
       }
     },
     "setup-ticket-panel": {
@@ -201,16 +235,35 @@
         "price": "价格（如 Rp 50.000 / $3 / $2.50 / 5.88 / 25k — 最多 100 字符）",
         "category": "商品分类（默认：transaction）。列表见 /list-categories。",
         "requires_key": "此商品是否需要 Set Key？（默认：key 类别为是）"
+      },
+      "replies": {
+        "category_not_found": "❌ 未找到分类 `{category}`。使用 /list-categories 查看列表，或使用 /add-category 新建。",
+        "duplicate": "❌ value 为 `{value}` 的商品已存在。",
+        "max": "❌ 最多 25 个商品（Discord 下拉菜单限制）。",
+        "price_invalid": "❌ 无法将价格 `{raw}` 解析为金额——每次销售都会在统计中记录 **0**。\n✅ 接受的格式：`25000` · `25.000` · `25,000` · `$3` · `$2.50` · `5.88` · `€25` · `Rp 30.000` · `30rb` · `3jt` · `3$ USD | Rp 25.000`（只记录 Rp 部分）· `free`",
+        "revenue_note": "\n💰 统计中记为：每笔销售 **{amount}**（工单 + 托管交易）",
+        "success": "✅ 商品已添加：**{label}** — {price}{revenue}\n📦 分类：`{category}` | 🔑 需要密钥：{key}",
+        "value_invalid": "❌ `value` 只能包含字母/数字/_/-，最多 50 个字符，不能包含空格/逗号/冒号。"
       }
     },
     "remove-product": {
       "description": "从价目表中移除商品",
       "options": {
         "value": "要删除的商品 value（如 7d）"
+      },
+      "replies": {
+        "not_found": "❌ 未找到商品 `{value}`。",
+        "success": "✅ 商品已删除：**{label}**"
       }
     },
     "list-products": {
-      "description": "查看当前所有商品"
+      "description": "查看当前所有商品",
+      "replies": {
+        "empty": "📭 还没有商品。",
+        "line": "`{i}.` **{label}** — {price}\n   └ value：`{value}`",
+        "more": "… 还有 {count} 个（使用 `/update-product` / `/config-show` 查看详情）",
+        "title": "📋 商品列表"
+      }
     },
     "update-product": {
       "description": "编辑已有商品（label/price/category/requires_key），无需删除后重新添加",
@@ -220,6 +273,11 @@
         "price": "新价格（如 \"Rp 25.000\" / \"$3\" / \"$2.50\" / \"5.88\"）",
         "category": "新分类（见 /list-categories）",
         "requires_key": "此商品是否需要 Set Key？（是=key，否=服务/非 key）"
+      },
+      "replies": {
+        "no_changes": "ℹ️ 未做任何更改。请至少填写 1 个字段来更新（label/price/category/requires_key）。\n\n商品 **{label}**（`{value}`）保持原样。",
+        "stats_change": "💰 统计记录：每笔销售 **{amount}**",
+        "success": "✅ 商品 **{label}**（`{value}`）已成功更新！\n\n📝 更改：\n{changes}\n\n{hint}"
       }
     },
     "config-show": {
@@ -236,10 +294,25 @@
       "options": {
         "mode": "手续费计算模式",
         "value": "手续费数值（百分比：0-90，固定：每笔交易金额）。0 = 免费"
+      },
+      "replies": {
+        "fee_flat": "每笔交易固定 **{amount}**",
+        "fee_percent": "成交价的 **{value}%**",
+        "flat_absurd": "❌ 该手续费金额不合理。",
+        "negative": "❌ 手续费不能为负数。",
+        "percent_cap": "❌ 百分比手续费上限为成交价的 **90%**（安全防护——请再次确认数值）。",
+        "success": "✅ 托管手续费已设置：{fee}——手续费**加在价格之上**（不从卖家资金中扣除）。\n💡 示例：一笔 **{price}** 的交易 → 手续费 **{feeAmt}** → 买家转账 **{buyer}**，卖家收到 **{seller}**（全额）。\n手续费仅适用于新交易（进行中的交易保持创建时的手续费）。"
       }
     },
     "midman-deals": {
-      "description": "查看本服务器所有进行中的担保交易"
+      "description": "查看本服务器所有进行中的担保交易",
+      "replies": {
+        "age": "{hours} 小时前",
+        "empty": "✅ 本服务器没有进行中的托管交易。",
+        "line": "{channel} — **{state}**\n┣ 🛒 {buyer} ⇄ 🏷️ {seller}\n┗ 📦 {item} • {total}（价格 {price} + 手续费 {fee}）• {age}",
+        "more": "⚠️ 仅显示前 25 笔交易（还有更多）。",
+        "title": "🤝 进行中的托管交易 —— {count} 笔"
+      }
     },
     "remove-channel": {
       "description": "从配置中移除频道（invoice / welcome / goodbye / audit-log / server-log / transcript）",
@@ -265,16 +338,33 @@
         "value": "商品 value（如 30d）",
         "role": "购买成功后授予的身份组",
         "days": "身份组自动移除前的天数（0 = 永久）"
+      },
+      "replies": {
+        "days_invalid": "❌ `days` 必须在 0 到 3650 之间。（0 = 永久，>0 = 天数。）",
+        "expire_days": "**{days} 天**后自动移除",
+        "expire_permanent": "**永久**（不会被自动移除）",
+        "success": "✅ 已设置商品 **{label}** 的自动角色！\n\n🎁 角色：{role}\n⏰ 到期：{expire}\n\n💡 管理员在工单中点击 **🔑 Set Key** / **📦 Deliver Order** / **✅ Order Success** 时将自动授予该角色。"
       }
     },
     "remove-product-role": {
       "description": "移除特定商品的自动身份组",
       "options": {
         "value": "商品 value（如 30d）"
+      },
+      "replies": {
+        "no_role": "ℹ️ 商品 **{label}** 还没有自动角色。",
+        "success": "✅ 已成功移除商品 **{label}** 的自动角色。"
       }
     },
     "list-product-roles": {
-      "description": "查看所有商品 → 身份组映射 + 时长"
+      "description": "查看所有商品 → 身份组映射 + 时长",
+      "replies": {
+        "empty": "📭 还没有商品设置自动角色。使用 `/set-product-role` 进行设置。",
+        "expire_days": "{days} 天",
+        "line": "• **{label}**（`{value}`）→ {role} —— 到期：{expire}",
+        "permanent": "永久",
+        "title": "🎁 每个商品的自动角色"
+      }
     },
     "set-key": {
       "description": "给用户发放 key + 授予身份组 + 延长排期（MAX EXTEND）",
@@ -282,6 +372,31 @@
         "user": "接收 key 的用户",
         "value": "商品 value（如 30d）",
         "key": "发送给用户的 key（最多 200 字符）"
+      },
+      "replies": {
+        "char_count": "……（{count} 字符）",
+        "db_failed": "❌ 保存密钥到数据库失败：{error}\n\n请检查磁盘空间和 `data/keys.json` 文件权限。未授予任何角色，也未创建任何计划任务。",
+        "dm": "你好 {username}！你收到了来自管理员的礼物 🎁\n\n📦 商品：{product}\n🌐 服务器：{server}\n\n🔑 密钥：\n`{key}`\n\n🎭 角色：{role}\n⏰ 有效期至：{expire}\n\n📋 你在该角色下的有效密钥：\n{keyList}\n\n💡 请妥善保管密钥。如果密钥仍在有效期内角色却突然消失，请联系管理员。",
+        "dm_expire_days": "剩余 {days} 天",
+        "dm_expire_permanent": "永久（永不过期）",
+        "dm_failed": "⚠️ 私信发送失败（私信已关闭）。",
+        "dm_key_line": "{i}. `{key}`（剩余 {remaining}）",
+        "dm_sent": "📬 私信已发送。",
+        "expire_days": "{days} 天",
+        "expire_permanent": "永久",
+        "invoice_failed": "\n⚠️ 发票未发送（尚未设置发票频道）。",
+        "invoice_sent": "🧾 发票已发送。",
+        "key_empty": "❌ 密钥不能为空。",
+        "no_autorole": "❌ 商品 **{label}** 还没有自动角色。请先使用 `/set-product-role`。",
+        "product_not_found": "❌ 未找到商品 value `{value}`。使用 `/list-products` 查看列表。",
+        "role_failed": "❌ 添加角色 {role} 失败。请确保机器人角色位于该角色之上。\n\n⚠️ **密钥已保存，但未授予角色。** 机器人角色修复后，管理员可以：\n• 手动为成员添加角色，或\n• 通过 `/clear-schedule clear_keys:true` 删除此密钥后重新设置。",
+        "role_not_found": "❌ 本服务器中未找到角色 ID `{roleId}`。",
+        "schedule_extended": "↳ 计划已延长（MAX EXTEND）。",
+        "schedule_failed": "\n⚠️ **创建自动到期计划失败：**{error}。该角色不会自动到期——管理员必须手动移除。",
+        "schedule_new": "↳ 已创建新计划。",
+        "schedule_permanent": "↳ 永久，旧计划已移除。",
+        "success": "✅ **设置密钥成功！**\n\n👤 用户：{user}\n📦 商品：{product}\n🔑 密钥：`{key}`\n🎭 角色：{role}\n⏰ 到期：{expire}\n{schedule}\n{dm}\n{invoice}{warning}",
+        "user_not_found": "❌ 用户 {user} 不在本服务器。"
       }
     },
     "list-keys": {
@@ -302,6 +417,14 @@
       "options": {
         "user": "要清除的用户",
         "clear_keys": "True = 删除该用户所有 key + 移除 VIP 身份组（完全重置）。默认：false。"
+      },
+      "replies": {
+        "keys_kept": "ℹ️ 密钥未删除（clear_keys=false）。使用 `clear_keys:true` 进行完整 VIP 重置。\n",
+        "keys_removed": "🔑 已移除的密钥（本服务器）：**{count}**\n",
+        "roles_failed": "⚠️ 以下角色移除失败（机器人层级/权限）：{roles}——请手动移除！\n",
+        "roles_removed": "🎭 已移除的角色：{roles}\n",
+        "schedules_removed": "📋 已移除的计划任务（本服务器）：**{count}**\n",
+        "success": "🧹 **清理完成！**\n\n👤 用户：{user}\n{schedules}{keys}"
       }
     },
     "setup-selfrole": {
@@ -501,15 +624,36 @@
       }
     },
     "backup-now": {
-      "description": "立即创建手动备份（config、keys、scheduledRoles、selfRoles 等）"
+      "description": "立即创建手动备份（config、keys、scheduledRoles、selfRoles 等）",
+      "replies": {
+        "errors_section": "⚠️ 错误：\n```\n{errors}\n```\n",
+        "failed": "❌ 创建备份失败：{error}",
+        "partial": "⚠️ **部分备份！** 仅复制了 {count} 个文件（部分失败）。\n\n❌ 错误：\n```\n{errors}\n```\n💡 已用成功复制的文件创建了备份——但**不完整**。请检查磁盘空间和 `data/` 文件权限。",
+        "success": "💾 **备份创建成功！**\n\n📁 名称：`{name}`\n📦 已复制文件：**{files}**\n📊 总大小：**{size}**\n{errors}💡 自动备份每 24 小时及机器人启动时运行。保留最近 7 个备份。",
+        "total_failure": "❌ 备份完全失败：{errors}"
+      }
     },
     "backup-list": {
-      "description": "查看所有已保存的备份（最多显示最近 7 个）"
+      "description": "查看所有已保存的备份（最多显示最近 7 个）",
+      "replies": {
+        "age_day": "{n} 天前",
+        "age_hour": "{n} 小时前",
+        "age_min": "{n} 分钟前",
+        "desc": "共存储 **{total}** 个备份（最多 7 个，旧备份自动清理）。\n\n{lines}\n\n💡 使用以下命令恢复：`/restore-backup name:<文件夹名称>`",
+        "empty": "📭 还没有备份。机器人启动时会自动创建备份。",
+        "line": "`{i}.` 📁 `{name}`\n   📦 {files} 个文件 | 📊 {size} | ⏰ {age}",
+        "title": "💾 备份列表"
+      }
     },
     "restore-backup": {
       "description": "按名称恢复备份（恢复前会自动创建安全备份）",
       "options": {
         "name": "备份文件夹名称（见 /backup-list，格式：YYYY-MM-DD_HH-mm-ss）"
+      },
+      "replies": {
+        "confirm": "⚠️ **恢复备份确认**\n\n📁 备份：`{name}`\n\n**点击确认后会发生什么：**\n• 机器人将首先对当前状态创建自动安全备份（pre-restore）\n• 所有 JSON 文件（config、keys、scheduledRoles、warns 等）将被此备份的版本覆盖\n• 机器人需要重启才能完整加载新数据\n\n**此操作无法撤销**（除非恢复安全备份）。\n\n请点击下方按钮继续或取消。",
+        "confirm_button": "⚠️ 是的，立即恢复",
+        "invalid_name": "❌ 备份名称格式无效：`{name}`\n\n支持的格式：`YYYY-MM-DD_HH-mm-ss` 或 `pre-restore_YYYY-MM-DD_HH-mm-ss`。参见 `/backup-list`。"
       }
     },
     "giveaway": {
@@ -800,13 +944,76 @@
       }
     },
     "boosters": {
-      "description": "列出当前服务器 Boost 成员 + 最近的 Boost 历史（公开）"
+      "description": "列出当前服务器 Boost 成员 + 最近的 Boost 历史（公开）",
+      "embed": {
+        "add": {
+          "desc": "**{user}** 刚刚助力了 **{guild}**！感谢你对服务器的支持 💖",
+          "footer": "{guild} —— 谢谢你！",
+          "server": "📊 服务器",
+          "since": "🚀 助力始于",
+          "tier_zero": "服务器等级 0（正朝等级 1 前进！）",
+          "title": "🚀 新的服务器助力！",
+          "tier": {
+            "one": "服务器等级 **{tier}** · 共 {count} 次助力",
+            "other": "服务器等级 **{tier}** · 共 {count} 次助力"
+          }
+        },
+        "booster": "👤 助力者",
+        "list": {
+          "boosters_listed": "⭐ 已列出的助力者",
+          "desc": "这些成员正在为 **{guild}** 助力 💖\n\n{lines}",
+          "empty_desc": "本服务器目前没有活跃的助力者。🌱\n助力服务器能为大家解锁特权——每一份助力都很重要！",
+          "footer": "助力者列表 = 实时来自 Discord • 助力历史由机器人记录",
+          "line": "{i}. <@{user}> —— 自 <t:{ts}:D>（<t:{ts}:R>）",
+          "more": "…… 还有 {count} 位助力者未显示",
+          "recent": "🕘 近期助力动态",
+          "server_level": "📊 服务器等级",
+          "tier": "等级 {tier}",
+          "tier_zero": "等级 0（还没有助力）",
+          "title": "🚀 服务器助力者 —— {guild}",
+          "level_value": {
+            "one": "{tier}（{count} 次助力）",
+            "other": "{tier}（{count} 次助力）"
+          }
+        },
+        "remove": {
+          "desc": "**{user}** 不再为 **{guild}** 助力。{since}",
+          "since": "\n\n其助力始于 <t:{ts}:D>。",
+          "title": "💔 助力已结束"
+        }
+      }
     },
     "test-booster": {
       "description": "诊断并预览 Boost 增加/移除通知（找出不显示的原因）",
       "options": {
         "tipe": "要测试哪一个",
         "live": "同时将预览发送到真实的 server-booster 频道（发送测试）"
+      },
+      "replies": {
+        "chan_fallback": "你设置的 server-booster 频道",
+        "chan_not_found": "❌ **server-booster 频道：未找到**（ID `{id}`）——已删除，或该 ID 属于其他服务器 → 使用 `/set-channel server-booster #频道` 重新设置",
+        "chan_not_set": "❌ **server-booster 频道：未设置** → 使用 `/set-channel server-booster #频道` 修复",
+        "chan_ok": "✅ **server-booster 频道：**{channel}（`{id}`）",
+        "detection": "ℹ️ 助力检测：✅ 激活（guildMemberUpdate premium_since 差异——机器人在线且已启用 GuildMembers intent）",
+        "footer": "🧪 **仅模拟**——不会记录任何内容：助力历史（`/boosters`）、服务器日志和实时计数器均保持原样，助力者角色也不会被改动。",
+        "live_failed": "🧪 实时投递：❌ 在 server-booster 频道失败：{error}——请检查机器人在那里的发送消息 + 嵌入链接权限。",
+        "live_ok": "🧪 实时投递：✅ 也已发送到真正的 server-booster 频道——整条链路端到端正常工作。",
+        "live_skipped": "🧪 实时投递：已跳过——server-booster 频道未设置（或已被删除）。请先按上方提示修复。",
+        "no_manage_roles": "❌ 机器人缺少**管理角色**权限 → 在服务器设置 → 角色 → 机器人中启用",
+        "perms_fix": "→ 修复：服务器设置 → 该频道 → 添加机器人 → 启用**发送消息** + **嵌入链接**",
+        "perms_line": "{view} 查看频道 · {send} 发送消息 · {embed} 嵌入链接（机器人在该频道的权限）",
+        "preview_failed": "⚠️ 预览无法发送到本频道：{error}\n也请在此处检查机器人的发送消息 + 嵌入链接权限——server-booster 频道很可能存在同样的问题。",
+        "preview_sent": "🧪 预览已发送到**本频道**——真正的{type}会发送到 {channel}。它使用你自己的数据作为“助力者”。",
+        "role_above_bot": "❌ 助力者角色位于机器人最高角色之上——机器人无法授予 → 请将助力者角色移到机器人角色下方（服务器设置 → 角色）",
+        "role_not_found": "❌ **助力者角色：未找到**（ID `{id}`）——已删除，或该 ID 属于其他服务器 → 使用 `/set-role booster @角色` 重新设置",
+        "role_not_set": "ℹ️ 助力者角色：未设置（可选）→ `/set-role booster @角色`，让助力的成员自动获得角色",
+        "role_ok": "✅ **助力者角色：**{role} —— 成员助力时自动授予，助力结束时自动移除",
+        "type_add": "助力通知",
+        "type_remove": "助力结束通知",
+        "server_now": {
+          "one": "ℹ️ 服务器当前：等级 {tier} · {count} 次助力",
+          "other": "ℹ️ 服务器当前：等级 {tier} · {count} 次助力"
+        }
       }
     },
     "serverstats": {
@@ -927,15 +1134,36 @@
         "reply_type": "回复类型（默认：文本）",
         "cooldown": "冷却秒数（防刷屏，默认：3，0 = 关闭）",
         "match_mode": "触发词与消息的匹配方式（默认：Contains）"
+      },
+      "replies": {
+        "cooldown_invalid": "❌ `cooldown` 不能为负数。使用 0 禁用冷却，或至少 1 秒。",
+        "match_hint_contains": "💡 成员发送任何**包含**单词 `{trigger}` 的消息（例如“{example}”）→ 机器人自动回复。仅匹配整词——像“{example_long}”这样的更长单词不会触发。",
+        "match_hint_exact": "💡 成员发送**以** `{trigger}` **开头**的消息 → 机器人自动回复。",
+        "match_label_contains": "包含（整词，消息任意位置）",
+        "match_label_exact": "消息开头（精确）",
+        "success": "✅ 自动回复已添加！\n\n🔤 触发词：`{trigger}`\n💬 回复：{reply}\n📝 类型：{type}\n🎯 匹配：{match}\n⏱️ 冷却：{cooldown} 秒\n\n{hint}"
       }
     },
     "list-responder": {
-      "description": "查看所有已注册的自动回复器"
+      "description": "查看所有已注册的自动回复器",
+      "replies": {
+        "desc": "共 **{total}** 个自动回复{note}。\n\n{lines}",
+        "empty": "📭 还没有自动回复。使用 `/add-responder trigger:\"!sosmed\" reply:\"...\"` 添加一个。",
+        "footer": "已使用 {count}/50 个自动回复",
+        "hidden_note": "（显示最新 {shown} 个——{hidden} 个较旧的已隐藏）",
+        "line": "`{i}.` `{trigger}` → {reply} *（{mode} • 已使用 {count} 次）*",
+        "mode_contains": "包含",
+        "mode_start": "开头",
+        "title": "💬 自动回复列表"
+      }
     },
     "remove-responder": {
       "description": "按触发词删除自动回复器",
       "options": {
         "trigger": "要删除的触发词"
+      },
+      "replies": {
+        "success": "✅ 已成功移除触发词为 `{trigger}` 的自动回复。"
       }
     },
     "set-automod": {

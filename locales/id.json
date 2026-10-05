@@ -72,7 +72,18 @@
       "manage_messages": "Kelola Pesan",
       "timeout_members": "Timeout Members"
     },
-    "cancel": "Batal"
+    "cancel": "Batal",
+    "category_not_found": "❌ Kategori `{id}` tidak ditemukan. Gunakan /list-categories untuk melihat daftarnya.",
+    "emoji_invalid": "❌ `emoji` tidak valid. Gunakan emoji unicode (mis. 🎫) atau emoji kustom dengan format `<:name:id>`.",
+    "product_value_not_found": "❌ Produk dengan value `{value}` tidak ditemukan.",
+    "product_value_not_found_hint": "❌ Produk dengan value `{value}` tidak ditemukan. Gunakan `/list-products` untuk melihat daftarnya.",
+    "refresh_panel_hint": "💡 Gunakan `/refresh-panel <id>` untuk me-render ulang panel yang terpasang.",
+    "roles": {
+      "above_bot": "❌ **{name}** berada di atas role tertinggi bot — naikkan role bot di Pengaturan Server → Roles, atau pilih role yang lebih rendah.",
+      "everyone_invalid": "❌ @everyone tidak bisa dipakai sebagai auto-role.",
+      "managed": "❌ **{name}** adalah role terkelola (role bot/integrasi/boost) — role ini tidak bisa diberikan secara manual."
+    },
+    "style_invalid": "❌ `style` tidak valid."
   },
   "bot_commands": {
     "help": {
@@ -130,15 +141,34 @@
         "emoji": "Emoji tombol (unicode atau kustom <:name:id>)",
         "style": "Warna tombol",
         "requires_key": "Apakah kategori ini butuh tombol Set Key? (default: ya)"
+      },
+      "replies": {
+        "duplicate": "❌ Kategori dengan ID `{id}` sudah ada. Gunakan /remove-category dulu jika ingin menggantinya.",
+        "id_invalid": "❌ `id` hanya boleh berisi huruf/angka/_/-, maksimal 30 karakter.",
+        "max": "❌ Maksimal 25 kategori (batas Discord: 25 tombol per pesan).",
+        "success": "✅ Kategori ditambahkan!\n\n🎫 ID: `{id}`\n📝 Label: **{label}**\n{emoji} Emoji: {emoji}\n🎨 Style: {style}\n🔑 Butuh Key: {key}\n\n💡 Gunakan `/setup-ticket` (atau `/refresh-panel <id>` jika panelnya sudah ada) untuk menerapkan kategori baru."
       }
     },
     "list-categories": {
-      "description": "Lihat semua kategori tiket yang terdaftar"
+      "description": "Lihat semua kategori tiket yang terdaftar",
+      "replies": {
+        "default_flag": " *(bawaan)*",
+        "empty": "📭 Belum ada kategori. 5 kategori bawaan (transaction, help, report, claim_giveaway, midman) dipakai saat config kosong.",
+        "footer": "{count}/25 kategori terpakai",
+        "line": "`{i}.` {emoji} **{label}** (`{id}`) — {style} {keyflag}{default}",
+        "title": "🎫 DAFTAR KATEGORI TIKET"
+      }
     },
     "remove-category": {
       "description": "Hapus kategori tiket dari konfigurasi",
       "options": {
         "id": "ID kategori yang akan dihapus"
+      },
+      "replies": {
+        "is_default": "❌ Kategori `{id}` adalah kategori bawaan dan tidak bisa dihapus.\nUntuk menonaktifkannya, set `requiresKey: false` atau ubah labelnya langsung di config.",
+        "migrated": "📦 {count} produk yang memakai kategori ini otomatis dipindahkan ke kategori `transaction`.",
+        "no_products": "ℹ️ Tidak ada produk yang memakai kategori ini.",
+        "success": "✅ Kategori **{label}** (`{id}`) berhasil dihapus.\n\n{migration}"
       }
     },
     "update-category": {
@@ -149,6 +179,10 @@
         "emoji": "Emoji tombol baru (unicode atau kustom <:name:id>)",
         "style": "Warna tombol baru",
         "requires_key": "Apakah kategori ini butuh tombol Set Key?"
+      },
+      "replies": {
+        "no_changes": "ℹ️ Tidak ada perubahan. Isi minimal 1 field untuk memperbarui (label/emoji/style/requires_key).\n\nKategori **{label}** (`{id}`) tetap seperti semula.",
+        "success": "✅ Kategori **{label}** (`{id}`) berhasil diperbarui!\n\n📝 Perubahan:\n{changes}\n\n{hint}"
       }
     },
     "setup-ticket-panel": {
@@ -201,16 +235,35 @@
         "price": "Harga (mis. Rp 50.000 / $3 / $2.50 / 5.88 / 25k — maks 100 karakter)",
         "category": "Kategori produk (default: transaction). Lihat /list-categories.",
         "requires_key": "Apakah produk ini butuh Set Key? (default: ya untuk kategori key)"
+      },
+      "replies": {
+        "category_not_found": "❌ Kategori `{category}` tidak ditemukan. Gunakan /list-categories untuk melihat daftarnya, atau /add-category untuk membuat baru.",
+        "duplicate": "❌ Produk dengan value `{value}` sudah ada.",
+        "max": "❌ Maksimal 25 produk (batas dropdown Discord).",
+        "price_invalid": "❌ Harga `{raw}` tidak bisa dibaca sebagai nominal — setiap penjualan akan tercatat **0** di statistik.\n✅ Format yang diterima: `25000` · `25.000` · `25,000` · `$3` · `$2.50` · `5.88` · `€25` · `Rp 30.000` · `30rb` · `3jt` · `3$ USD | Rp 25.000` (bagian Rp yang dicatat) · `free`",
+        "revenue_note": "\n💰 Tercatat di statistik sebagai: **{amount}** per penjualan (transaksi ticket + escrow)",
+        "success": "✅ Produk ditambahkan: **{label}** — {price}{revenue}\n📦 Kategori: `{category}` | 🔑 Butuh Key: {key}",
+        "value_invalid": "❌ `value` hanya boleh berisi huruf/angka/_/-, maksimal 50 karakter, tanpa spasi/koma/titik dua."
       }
     },
     "remove-product": {
       "description": "Hapus produk dari daftar harga",
       "options": {
         "value": "Value produk yang akan dihapus (mis. 7d)"
+      },
+      "replies": {
+        "not_found": "❌ Produk `{value}` tidak ditemukan.",
+        "success": "✅ Produk dihapus: **{label}**"
       }
     },
     "list-products": {
-      "description": "Lihat semua produk saat ini"
+      "description": "Lihat semua produk saat ini",
+      "replies": {
+        "empty": "📭 Belum ada produk.",
+        "line": "`{i}.` **{label}** — {price}\n   └ value: `{value}`",
+        "more": "… +{count} lagi (gunakan `/update-product` / `/config-show` untuk detailnya)",
+        "title": "📋 DAFTAR PRODUK"
+      }
     },
     "update-product": {
       "description": "Edit produk yang sudah ada (label/price/category/requires_key) tanpa hapus+tambah ulang",
@@ -220,6 +273,11 @@
         "price": "Harga baru (mis. \"Rp 25.000\" / \"$3\" / \"$2.50\" / \"5.88\")",
         "category": "Kategori baru (lihat /list-categories)",
         "requires_key": "Apakah produk ini butuh Set Key? (ya=key, bukan=jasa/non-key)"
+      },
+      "replies": {
+        "no_changes": "ℹ️ Tidak ada perubahan. Isi minimal 1 field untuk memperbarui (label/price/category/requires_key).\n\nProduk **{label}** (`{value}`) tetap seperti semula.",
+        "stats_change": "💰 tercatat di statistik: **{amount}** per penjualan",
+        "success": "✅ Produk **{label}** (`{value}`) berhasil diperbarui!\n\n📝 Perubahan:\n{changes}\n\n{hint}"
       }
     },
     "config-show": {
@@ -236,10 +294,25 @@
       "options": {
         "mode": "Mode perhitungan fee",
         "value": "Nilai fee (persen: 0-90, nominal: jumlah per deal). 0 = gratis"
+      },
+      "replies": {
+        "fee_flat": "**{amount}** tetap per deal",
+        "fee_percent": "**{value}%** dari harga deal",
+        "flat_absurd": "❌ Nominal fee itu tidak wajar.",
+        "negative": "❌ Fee tidak boleh negatif.",
+        "percent_cap": "❌ Fee persentase dibatasi maksimal **90%** dari harga deal (pengaman — periksa kembali nilainya).",
+        "success": "✅ Fee escrow diatur: {fee} — fee **DITAMBAHKAN di atas harga** (tidak dipotong dari dana penjual).\n💡 Contoh: deal **{price}** → fee **{feeAmt}** → pembeli mengirim **{buyer}**, penjual menerima **{seller}** (penuh).\nFee berlaku untuk deal BARU (deal yang berjalan tetap memakai fee saat deal dibuat)."
       }
     },
     "midman-deals": {
-      "description": "Lihat semua deal escrow aktif di server ini"
+      "description": "Lihat semua deal escrow aktif di server ini",
+      "replies": {
+        "age": "{hours} jam lalu",
+        "empty": "✅ Tidak ada deal escrow aktif di server ini.",
+        "line": "{channel} — **{state}**\n┣ 🛒 {buyer} ⇄ 🏷️ {seller}\n┗ 📦 {item} • {total} (harga {price} + fee {fee}) • {age}",
+        "more": "⚠️ Menampilkan 25 deal pertama (masih ada lagi).",
+        "title": "🤝 Deal Escrow Aktif — {count} deal"
+      }
     },
     "remove-channel": {
       "description": "Hapus channel dari konfigurasi (invoice / welcome / goodbye / audit-log / server-log / transcript)",
@@ -265,16 +338,33 @@
         "value": "Value produk (mis. 30d)",
         "role": "Role yang diberikan saat pembelian berhasil",
         "days": "Jumlah hari sebelum role otomatis dicabut (0 = permanen)"
+      },
+      "replies": {
+        "days_invalid": "❌ `days` harus di antara 0 dan 3650. (0 = permanen, >0 = durasi dalam hari).",
+        "expire_days": "otomatis dihapus setelah **{days} hari**",
+        "expire_permanent": "**permanen** (tidak akan dihapus otomatis)",
+        "success": "✅ Auto-role untuk produk **{label}** diatur!\n\n🎁 Role: {role}\n⏰ Kedaluwarsa: {expire}\n\n💡 Role otomatis diberikan saat admin menekan **🔑 Set Key** / **📦 Deliver Order** / **✅ Order Success** di ticket."
       }
     },
     "remove-product-role": {
       "description": "Hapus auto-role dari produk tertentu",
       "options": {
         "value": "Value produk (mis. 30d)"
+      },
+      "replies": {
+        "no_role": "ℹ️ Produk **{label}** belum punya auto-role.",
+        "success": "✅ Auto-role untuk produk **{label}** berhasil dihapus."
       }
     },
     "list-product-roles": {
-      "description": "Lihat semua pemetaan produk → role + durasinya"
+      "description": "Lihat semua pemetaan produk → role + durasinya",
+      "replies": {
+        "empty": "📭 Belum ada produk yang punya auto-role. Gunakan `/set-product-role` untuk mengaturnya.",
+        "expire_days": "{days} hari",
+        "line": "• **{label}** (`{value}`) → {role} — kedaluwarsa: {expire}",
+        "permanent": "permanen",
+        "title": "🎁 AUTO-ROLE PER PRODUK"
+      }
     },
     "set-key": {
       "description": "Beri key ke user + beri role + perpanjang jadwal (MAX EXTEND)",
@@ -282,6 +372,31 @@
         "user": "User yang menerima key",
         "value": "Value produk (mis. 30d)",
         "key": "Key yang dikirim ke user (maks 200 karakter)"
+      },
+      "replies": {
+        "char_count": "…({count} karakter)",
+        "db_failed": "❌ Gagal menyimpan key ke database: {error}\n\nPeriksa ruang disk dan permission file `data/keys.json`. Tidak ada role yang diberikan, tidak ada jadwal yang dibuat.",
+        "dm": "Hai {username}! Kamu dapat hadiah dari admin 🎁\n\n📦 Produk: {product}\n🌐 Server: {server}\n\n🔑 KEY:\n`{key}`\n\n🎭 Role: {role}\n⏰ Berlaku sampai: {expire}\n\n📋 Key aktifmu untuk role ini:\n{keyList}\n\n💡 Simpan key-mu baik-baik. Jika role tiba-tiba hilang padahal key-mu masih aktif, hubungi admin.",
+        "dm_expire_days": "sisa {days} hari",
+        "dm_expire_permanent": "permanen (tidak pernah hangus)",
+        "dm_failed": "⚠️ DM gagal (DM ditutup).",
+        "dm_key_line": "{i}. `{key}` (sisa {remaining})",
+        "dm_sent": "📬 DM terkirim.",
+        "expire_days": "{days} hari",
+        "expire_permanent": "permanen",
+        "invoice_failed": "\n⚠️ Invoice tidak terkirim (channel invoice belum diatur).",
+        "invoice_sent": "🧾 Invoice terkirim.",
+        "key_empty": "❌ Key tidak boleh kosong.",
+        "no_autorole": "❌ Produk **{label}** belum punya auto-role. Gunakan `/set-product-role` dulu.",
+        "product_not_found": "❌ Value produk `{value}` tidak ditemukan. Gunakan `/list-products` untuk melihat daftarnya.",
+        "role_failed": "❌ Gagal menambahkan role {role}. Pastikan role bot berada DI ATAS role tersebut.\n\n⚠️ **Key tersimpan TANPA role.** Setelah role bot diperbaiki, admin bisa:\n• Menambahkan role ke member secara manual, atau\n• Menghapus key ini lewat `/clear-schedule clear_keys:true` lalu set key ulang.",
+        "role_not_found": "❌ ID role `{roleId}` tidak ditemukan di server ini.",
+        "schedule_extended": "↳ Jadwal diperpanjang (MAX EXTEND).",
+        "schedule_failed": "\n⚠️ **Gagal membuat jadwal kedaluwarsa otomatis:** {error}. Role tidak akan hangus otomatis — admin harus menghapusnya secara manual.",
+        "schedule_new": "↳ Jadwal baru dibuat.",
+        "schedule_permanent": "↳ Permanen, jadwal lama dihapus.",
+        "success": "✅ **Set Key berhasil!**\n\n👤 User: {user}\n📦 Produk: {product}\n🔑 Key: `{key}`\n🎭 Role: {role}\n⏰ Hangus: {expire}\n{schedule}\n{dm}\n{invoice}{warning}",
+        "user_not_found": "❌ User {user} tidak ada di server ini."
       }
     },
     "list-keys": {
@@ -302,6 +417,14 @@
       "options": {
         "user": "User yang akan dibersihkan",
         "clear_keys": "True = hapus SEMUA key user + cabut role VIP (reset penuh). Default: false."
+      },
+      "replies": {
+        "keys_kept": "ℹ️ Key TIDAK dihapus (clear_keys=false). Gunakan `clear_keys:true` untuk reset VIP penuh.\n",
+        "keys_removed": "🔑 Key dihapus (server ini): **{count}**\n",
+        "roles_failed": "⚠️ Role GAGAL dihapus (hirarki bot / permission): {roles} — HAPUS SECARA MANUAL!\n",
+        "roles_removed": "🎭 Role dihapus: {roles}\n",
+        "schedules_removed": "📋 Jadwal dihapus (server ini): **{count}**\n",
+        "success": "🧹 **Pembersihan selesai!**\n\n👤 User: {user}\n{schedules}{keys}"
       }
     },
     "setup-selfrole": {
@@ -501,15 +624,36 @@
       }
     },
     "backup-now": {
-      "description": "Buat backup manual sekarang (config, keys, scheduledRoles, selfRoles, dll.)"
+      "description": "Buat backup manual sekarang (config, keys, scheduledRoles, selfRoles, dll.)",
+      "replies": {
+        "errors_section": "⚠️ Error:\n```\n{errors}\n```\n",
+        "failed": "❌ Gagal membuat backup: {error}",
+        "partial": "⚠️ **BACKUP SEBAGIAN!** Hanya {count} file yang tersalin (sebagian gagal).\n\n❌ Error:\n```\n{errors}\n```\n💡 Backup tetap dibuat dari file yang berhasil — tetapi **tidak lengkap**. Periksa ruang disk & permission file `data/`.",
+        "success": "💾 **Backup berhasil dibuat!**\n\n📁 Nama: `{name}`\n📦 File tersalin: **{files}**\n📊 Total ukuran: **{size}**\n{errors}💡 Auto-backup berjalan setiap 24 jam + saat bot start. 7 backup terbaru disimpan.",
+        "total_failure": "❌ Backup gagal total: {errors}"
+      }
     },
     "backup-list": {
-      "description": "Lihat semua backup tersimpan (maks 7 terbaru)"
+      "description": "Lihat semua backup tersimpan (maks 7 terbaru)",
+      "replies": {
+        "age_day": "{n} hari lalu",
+        "age_hour": "{n} jam lalu",
+        "age_min": "{n} mnt lalu",
+        "desc": "Total **{total}** backup tersimpan (maks 7, yang lama dibersihkan otomatis).\n\n{lines}\n\n💡 Pulihkan dengan: `/restore-backup name:<nama-folder>`",
+        "empty": "📭 Belum ada backup. Backup otomatis dibuat saat bot start.",
+        "line": "`{i}.` 📁 `{name}`\n   📦 {files} file | 📊 {size} | ⏰ {age}",
+        "title": "💾 DAFTAR BACKUP"
+      }
     },
     "restore-backup": {
       "description": "Restore backup berdasarkan nama (otomatis membuat backup pengaman sebelum restore)",
       "options": {
         "name": "Nama folder backup (lihat /backup-list, format: YYYY-MM-DD_HH-mm-ss)"
+      },
+      "replies": {
+        "confirm": "⚠️ **KONFIRMASI RESTORE BACKUP**\n\n📁 Backup: `{name}`\n\n**Yang terjadi jika Anda menekan Confirm:**\n• Bot akan membuat backup pengaman otomatis (pre-restore) dari kondisi SAAT INI\n• Semua file JSON (config, keys, scheduledRoles, warns, dll.) akan ditimpa dengan versi dari backup ini\n• Bot perlu di-restart agar data baru dimuat penuh\n\n**Ini tidak bisa dibatalkan** (kecuali dengan me-restore backup pengaman).\n\nTekan tombol di bawah untuk lanjut atau batal.",
+        "confirm_button": "⚠️ Ya, Restore Sekarang",
+        "invalid_name": "❌ Format nama backup tidak valid: `{name}`\n\nFormat yang didukung: `YYYY-MM-DD_HH-mm-ss` atau `pre-restore_YYYY-MM-DD_HH-mm-ss`. Lihat `/backup-list`."
       }
     },
     "giveaway": {
@@ -800,13 +944,76 @@
       }
     },
     "boosters": {
-      "description": "Daftar booster server saat ini + riwayat boost terbaru (publik)"
+      "description": "Daftar booster server saat ini + riwayat boost terbaru (publik)",
+      "embed": {
+        "add": {
+          "desc": "**{user}** baru saja boost **{guild}**! Terima kasih sudah mendukung server 💖",
+          "footer": "{guild} — terima kasih!",
+          "server": "📊 Server",
+          "since": "🚀 Boost sejak",
+          "tier_zero": "Level Server 0 (menuju Level 1!)",
+          "title": "🚀 BOOST SERVER BARU!",
+          "tier": {
+            "one": "Level Server **{tier}** · total {count} boost",
+            "other": "Level Server **{tier}** · total {count} boost"
+          }
+        },
+        "booster": "👤 Booster",
+        "list": {
+          "boosters_listed": "⭐ Booster Terdaftar",
+          "desc": "Member-member ini sedang boost **{guild}** 💖\n\n{lines}",
+          "empty_desc": "Server ini belum punya booster aktif saat ini. 🌱\nBoost server membuka banyak keuntungan untuk semua orang — setiap boost berarti!",
+          "footer": "Daftar booster = langsung dari Discord • riwayat boost dilacak oleh bot",
+          "line": "{i}. <@{user}> — sejak <t:{ts}:D> (<t:{ts}:R>)",
+          "more": "… +{count} booster lain tidak ditampilkan",
+          "recent": "🕘 Aktivitas Boost Terbaru",
+          "server_level": "📊 Level Server",
+          "tier": "Level {tier}",
+          "tier_zero": "Level 0 (belum ada boost)",
+          "title": "🚀 SERVER BOOSTER — {guild}",
+          "level_value": {
+            "one": "{tier} ({count} boost)",
+            "other": "{tier} ({count} boost)"
+          }
+        },
+        "remove": {
+          "desc": "**{user}** tidak lagi boost **{guild}**.{since}",
+          "since": "\n\nMereka sudah boost sejak <t:{ts}:D>.",
+          "title": "💔 BOOST BERAKHIR"
+        }
+      }
     },
     "test-booster": {
       "description": "Diagnosis & pratinjau notifikasi tambah/hapus boost (cari tahu kenapa tidak muncul)",
       "options": {
         "tipe": "Mana yang mau dites",
         "live": "Kirim juga pratinjau ke channel server-booster yang ASLI (tes pengiriman)"
+      },
+      "replies": {
+        "chan_fallback": "channel server-booster yang Anda atur",
+        "chan_not_found": "❌ **channel server-booster: tidak ditemukan** (ID `{id}`) — terhapus, atau ID-nya milik server lain → atur ulang dengan `/set-channel server-booster #channel`",
+        "chan_not_set": "❌ **channel server-booster: belum diatur** → perbaiki dengan `/set-channel server-booster #channel`",
+        "chan_ok": "✅ **channel server-booster:** {channel} (`{id}`)",
+        "detection": "ℹ️ Deteksi boost: ✅ aktif (diff premium_since pada guildMemberUpdate — bot online dengan intent GuildMembers)",
+        "footer": "🧪 **Hanya simulasi** — tidak ada yang dicatat: riwayat boost (`/boosters`), log server dan counter live tidak tersentuh, role booster juga tidak diubah.",
+        "live_failed": "🧪 Live delivery: ❌ gagal di channel server-booster: {error} — periksa permission Send Messages + Embed Links bot di sana.",
+        "live_ok": "🧪 Live delivery: ✅ juga terkirim ke channel server-booster yang ASLI — seluruh rantai berfungsi end-to-end.",
+        "live_skipped": "🧪 Live delivery: dilewati — channel server-booster belum diatur (atau sudah dihapus). Perbaiki dulu seperti di atas.",
+        "no_manage_roles": "❌ bot tidak punya permission **Manage Roles** → aktifkan di Pengaturan Server → Roles → bot",
+        "perms_fix": "→ perbaikan: Pengaturan Server → channel itu → tambahkan bot → aktifkan **Send Messages** + **Embed Links**",
+        "perms_line": "{view} Lihat Channel · {send} Kirim Pesan · {embed} Sematkan Tautan (permission bot di channel itu)",
+        "preview_failed": "⚠️ Pratinjau GAGAL dikirim ke channel ini: {error}\nPeriksa juga permission Send Messages + Embed Links bot di SINI — channel server-booster kemungkinan punya masalah yang sama.",
+        "preview_sent": "🧪 Pratinjau dikirim ke **channel ini** — {type} yang asli dikirim ke {channel}. Pratinjau memakai data Anda sebagai \"booster\".",
+        "role_above_bot": "❌ role booster berada DI ATAS role tertinggi bot — bot tidak bisa memberikannya → pindahkan role booster ke BAWAH role bot (Pengaturan Server → Roles)",
+        "role_not_found": "❌ **role booster: tidak ditemukan** (ID `{id}`) — terhapus, atau ID-nya milik server lain → atur ulang dengan `/set-role booster @role`",
+        "role_not_set": "ℹ️ Role booster: belum diatur (opsional) → `/set-role booster @role` agar member yang boost otomatis mendapat role",
+        "role_ok": "✅ **role booster:** {role} — diberikan otomatis saat member boost, dihapus saat boost berakhir",
+        "type_add": "notifikasi boost",
+        "type_remove": "pemberitahuan boost berakhir",
+        "server_now": {
+          "one": "ℹ️ Server saat ini: Level {tier} · {count} boost",
+          "other": "ℹ️ Server saat ini: Level {tier} · {count} boost"
+        }
       }
     },
     "serverstats": {
@@ -927,15 +1134,36 @@
         "reply_type": "Tipe balasan (default: teks)",
         "cooldown": "Cooldown dalam detik (anti-spam, default: 3, 0 = mati)",
         "match_mode": "Cara trigger mencocokkan pesan (default: Contains)"
+      },
+      "replies": {
+        "cooldown_invalid": "❌ `cooldown` tidak boleh negatif. Gunakan 0 untuk menonaktifkan cooldown, atau minimal 1 detik.",
+        "match_hint_contains": "💡 Member mengirim pesan apa pun yang **mengandung** kata `{trigger}` (mis. \"{example}\") → bot membalas otomatis. Hanya kata utuh yang cocok — kata yang lebih panjang seperti \"{example_long}\" tidak akan memicunya.",
+        "match_hint_exact": "💡 Member mengirim pesan yang **diawali** `{trigger}` → bot membalas otomatis.",
+        "match_label_contains": "mengandung (kata utuh, di mana saja dalam pesan)",
+        "match_label_exact": "awal pesan (exact)",
+        "success": "✅ Responder ditambahkan!\n\n🔤 Trigger: `{trigger}`\n💬 Balasan: {reply}\n📝 Tipe: {type}\n🎯 Cocok: {match}\n⏱️ Cooldown: {cooldown} dtk\n\n{hint}"
       }
     },
     "list-responder": {
-      "description": "Lihat semua auto-responder terdaftar"
+      "description": "Lihat semua auto-responder terdaftar",
+      "replies": {
+        "desc": "Total **{total}** responder{note}.\n\n{lines}",
+        "empty": "📭 Belum ada responder. Gunakan `/add-responder trigger:\"!sosmed\" reply:\"...\"` untuk menambahkan.",
+        "footer": "{count}/50 responder terpakai",
+        "hidden_note": " (menampilkan {shown} terbaru — {hidden} lebih lama disembunyikan)",
+        "line": "`{i}.` `{trigger}` → {reply} *({mode} • terpakai {count}x)*",
+        "mode_contains": "mengandung",
+        "mode_start": "awal",
+        "title": "💬 DAFTAR AUTO-RESPONDER"
+      }
     },
     "remove-responder": {
       "description": "Hapus auto-responder berdasarkan trigger",
       "options": {
         "trigger": "Trigger yang akan dihapus"
+      },
+      "replies": {
+        "success": "✅ Responder dengan trigger `{trigger}` berhasil dihapus."
       }
     },
     "set-automod": {
