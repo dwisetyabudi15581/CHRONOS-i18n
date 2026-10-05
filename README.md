@@ -6,8 +6,21 @@ Shared internationalization runtime + dictionaries for **[CHRONOS-bot](https://g
 
 ## Install (GitHub dependency — no registry needed)
 
+npm 12+ (bundled with Node 26) disables fetching **git-type dependencies by default** (`EALLOWGIT`). Use the explicit `git+https` form (anonymous clone — no SSH keys, no tokens) and allow git deps in your project's `.npmrc`:
+
 ```bash
-npm install github:dwisetyabudi15581/CHRONOS-i18n#v1.0.0
+npm install git+https://github.com/dwisetyabudi15581/CHRONOS-i18n.git#v1.1.0
+```
+
+```ini
+# .npmrc (project root) — required on npm 12+, harmlessly ignored by older npm
+allow-git=all
+```
+
+In `package.json`:
+
+```json
+"@chronos/i18n": "git+https://github.com/dwisetyabudi15581/CHRONOS-i18n.git#v1.1.0"
 ```
 
 CommonJS (the bot):
