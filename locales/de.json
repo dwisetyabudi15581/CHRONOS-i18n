@@ -1683,7 +1683,9 @@
       "bot_not_installed": "Bot nicht installiert",
       "invite_one": "Einladen",
       "back_to_servers": "Zurück zur Serverliste",
-      "back_to_servers_short": "← Server"
+      "back_to_servers_short": "← Server",
+      "header_add_title": "CHRONOS zu einem anderen Server hinzufügen",
+      "header_add_sub": "Server, die du verwaltest, auf denen der Bot noch nicht installiert ist."
     },
     "common": {
       "loading": "Lädt…",
@@ -2335,6 +2337,30 @@
       "no_results": "Keine Funktionen passen zu „{query}“",
       "close": "Schließen",
       "all_features": "Alle Funktionen"
+    },
+    "tabdesc": {
+      "overview": "Serverstatus, Statistiken und aktive Module auf einen Blick.",
+      "general": "Bot-Sprache, Schlüsselrollen, Systemkanäle und Willkommens-/Abschiedsnachrichten.",
+      "verify": "Verifizierungspanel installieren und Nachricht sowie Button anpassen.",
+      "tickets": "Ticket- und Transaktionspanels samt Kategorien.",
+      "products": "Produkte, Preise, Kategorien und Shop-Autorollen.",
+      "warns": "Moderationsaktionen, Verwarntafel und Membersuche.",
+      "afk": "Momentan abwesende (AFK) Member und ihre Auto-Antworten.",
+      "automod": "Anti-Spam, Erwähnungslimit, Wortfilter und Link-Whitelist.",
+      "responders": "Automatische Antworten beim Auftreten eines Auslöseworts.",
+      "announce": "Einmalige oder wiederkehrende geplante Ankündigungen.",
+      "selfroles": "Selbstbedienungs-Rollenpanels: Member wählen ihre Rollen selbst.",
+      "tempvoice": "Automatisch erstellte temporäre Sprachkanäle.",
+      "leveling": "XP, Level und Rollenbelohnungen für Aktivität.",
+      "keys": "VIP-Produktschlüssel erstellen und verwalten, inkl. Ablaufpläne.",
+      "midman": "Gebühren und Einstellungen für Middleman-Transaktionen.",
+      "giveaway": "Giveaways erstellen, beenden und neu ziehen.",
+      "stats": "Bestenlisten: Nachrichten, Käufe, Ausgaben und Booster.",
+      "serverstats": "Statistikkanäle, die sich selbst aktualisieren.",
+      "embed": "Embeds mit Live-Vorschau bauen und senden.",
+      "poll": "Normale und bewegliche Umfragen mit Live-Ergebnissen.",
+      "send-message": "Eine einfache Nachricht in einen beliebigen Kanal senden.",
+      "backup": "Serverkonfiguration sichern und wiederherstellen."
     }
   },
   "interactions": {

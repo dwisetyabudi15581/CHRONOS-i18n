@@ -1683,7 +1683,9 @@
       "bot_not_installed": "机器人未安装",
       "invite_one": "邀请",
       "back_to_servers": "返回服务器列表",
-      "back_to_servers_short": "← 服务器"
+      "back_to_servers_short": "← 服务器",
+      "header_add_title": "将 CHRONOS 添加到其他服务器",
+      "header_add_sub": "你管理但尚未安装机器人的服务器。"
     },
     "common": {
       "loading": "加载中…",
@@ -2335,6 +2337,30 @@
       "no_results": "没有匹配“{query}”的功能",
       "close": "关闭",
       "all_features": "所有功能"
+    },
+    "tabdesc": {
+      "overview": "一目了然的服务器状态、统计数据与已启用模块。",
+      "general": "机器人语言、关键身份组、系统频道与欢迎/告别消息。",
+      "verify": "安装验证面板，并编辑其消息与按钮。",
+      "tickets": "工单与交易面板及其分类。",
+      "products": "商品、价格、分类与商店自动身份组。",
+      "warns": "管理操作、警告榜与成员查询。",
+      "afk": "当前 AFK 的成员及其自动回复备注。",
+      "automod": "防刷屏、提及上限、词过滤与链接白名单。",
+      "responders": "触发词出现时的自动回复。",
+      "announce": "一次性或循环的定时公告。",
+      "selfroles": "自选身份组面板：成员自行领取身份组。",
+      "tempvoice": "自动创建的临时语音频道。",
+      "leveling": "活跃度对应的 XP、等级与身份组奖励。",
+      "keys": "创建并管理 VIP 商品密钥及到期计划。",
+      "midman": "中介交易手续费与设置。",
+      "giveaway": "创建、结束与重抽抽奖。",
+      "stats": "排行榜：消息、购买、消费与加速。",
+      "serverstats": "自动更新的服务器统计频道。",
+      "embed": "实时预览，构建并发送嵌入消息。",
+      "poll": "普通与移动投票，结果实时可见。",
+      "send-message": "向任意频道发送普通消息。",
+      "backup": "备份与恢复服务器配置。"
     }
   },
   "interactions": {

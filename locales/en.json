@@ -1711,7 +1711,9 @@
       "bot_not_installed": "Bot not installed",
       "invite_one": "Invite",
       "back_to_servers": "Back to server list",
-      "back_to_servers_short": "← Servers"
+      "back_to_servers_short": "← Servers",
+      "header_add_title": "Add CHRONOS to another server",
+      "header_add_sub": "Servers you manage where the bot is not installed yet."
     },
     "common": {
       "loading": "Loading…",
@@ -2363,6 +2365,30 @@
       "no_results": "No features match “{query}”",
       "close": "Close",
       "all_features": "All features"
+    },
+    "tabdesc": {
+      "overview": "Server status, statistics and active modules at a glance.",
+      "general": "Bot language, key roles, system channels and welcome/goodbye messages.",
+      "verify": "Install the verification panel and edit its message and button.",
+      "tickets": "Ticket & transaction panels and their categories.",
+      "products": "Products, prices, categories and store auto-roles.",
+      "warns": "Moderation actions, warn board and member lookup.",
+      "afk": "Members currently AFK and their auto-reply notes.",
+      "automod": "Anti-spam, mention limits, word filter and link whitelist.",
+      "responders": "Automatic replies when a trigger word appears.",
+      "announce": "One-time or recurring scheduled announcements.",
+      "selfroles": "Self-serve role panels: members pick their own roles.",
+      "tempvoice": "Temporary voice channels created automatically.",
+      "leveling": "XP, levels and role rewards for activity.",
+      "keys": "Create and manage VIP product keys and expiry schedules.",
+      "midman": "Middleman transaction fees and settings.",
+      "giveaway": "Create, end and reroll giveaways.",
+      "stats": "Leaderboards: messages, purchases, spending and boosters.",
+      "serverstats": "Statistic channels that update themselves.",
+      "embed": "Build and send embeds with a live preview.",
+      "poll": "Regular and moving polls with live results.",
+      "send-message": "Send a plain message to any channel.",
+      "backup": "Back up and restore the server configuration."
     }
   },
   "interactions": {

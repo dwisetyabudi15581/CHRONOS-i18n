@@ -1683,7 +1683,9 @@
       "bot_not_installed": "Bot belum terpasang",
       "invite_one": "Invite",
       "back_to_servers": "Kembali ke daftar server",
-      "back_to_servers_short": "← Server"
+      "back_to_servers_short": "← Server",
+      "header_add_title": "Tambahkan CHRONOS ke server lain",
+      "header_add_sub": "Server yang kamu kelola tapi botnya belum dipasang."
     },
     "common": {
       "loading": "Memuat…",
@@ -2335,6 +2337,30 @@
       "no_results": "Tidak ada fitur yang cocok dengan “{query}”",
       "close": "Tutup",
       "all_features": "Semua fitur"
+    },
+    "tabdesc": {
+      "overview": "Status server, statistik, dan modul yang aktif dalam satu pandangan.",
+      "general": "Bahasa bot, peran penting, kanal sistem, dan pesan sambutan/perpisahan.",
+      "verify": "Pasang panel verifikasi dan atur pesan serta tombolnya.",
+      "tickets": "Panel tiket & transaksi beserta kategorinya.",
+      "products": "Produk, harga, kategori, dan auto-role toko.",
+      "warns": "Aksi moderasi, papan peringatan, dan pencarian member.",
+      "afk": "Member yang sedang AFK beserta catatan balasan otomatisnya.",
+      "automod": "Anti-spam, batas mention, filter kata, dan whitelist link.",
+      "responders": "Balasan otomatis saat kata pemicu muncul.",
+      "announce": "Pengumuman terjadwal sekali jalan atau berulang.",
+      "selfroles": "Panel peran mandiri: member memilih perannya sendiri.",
+      "tempvoice": "Kanal suara sementara yang dibuat otomatis.",
+      "leveling": "XP, level, dan hadiah peran untuk aktivitas.",
+      "keys": "Buat & kelola kunci VIP produk beserta jadwal kedaluwarsanya.",
+      "midman": "Fee dan pengaturan transaksi middleman.",
+      "giveaway": "Buat, akhiri, dan reroll giveaway.",
+      "stats": "Papan peringkat: pesan, pembelian, pengeluaran, dan booster.",
+      "serverstats": "Kanal statistik server yang diperbarui otomatis.",
+      "embed": "Bangun dan kirim embed dengan pratinjau langsung.",
+      "poll": "Poll biasa maupun bergerak dengan hasil langsung.",
+      "send-message": "Kirim pesan biasa ke kanal mana pun.",
+      "backup": "Cadangkan dan pulihkan konfigurasi server."
     }
   },
   "interactions": {

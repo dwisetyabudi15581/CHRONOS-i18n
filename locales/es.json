@@ -1683,7 +1683,9 @@
       "bot_not_installed": "Bot no instalado",
       "invite_one": "Invitar",
       "back_to_servers": "Volver a la lista de servidores",
-      "back_to_servers_short": "← Servidores"
+      "back_to_servers_short": "← Servidores",
+      "header_add_title": "Añade CHRONOS a otro servidor",
+      "header_add_sub": "Servidores que administras donde el bot aún no está instalado."
     },
     "common": {
       "loading": "Cargando…",
@@ -2335,6 +2337,30 @@
       "no_results": "Ninguna función coincide con “{query}”",
       "close": "Cerrar",
       "all_features": "Todas las funciones"
+    },
+    "tabdesc": {
+      "overview": "Estado del servidor, estadísticas y módulos activos de un vistazo.",
+      "general": "Idioma del bot, roles clave, canales del sistema y mensajes de bienvenida.",
+      "verify": "Instala el panel de verificación y edita su mensaje y botón.",
+      "tickets": "Paneles de tickets y transacciones con sus categorías.",
+      "products": "Productos, precios, categorías y autoroles de la tienda.",
+      "warns": "Acciones de moderación, tabla de avisos y búsqueda de miembros.",
+      "afk": "Miembros ausentes (AFK) y sus notas de respuesta automática.",
+      "automod": "Antispam, límite de menciones, filtro de palabras y lista blanca de enlaces.",
+      "responders": "Respuestas automáticas al aparecer una palabra clave.",
+      "announce": "Anuncios programados únicos o recurrentes.",
+      "selfroles": "Paneles de roles: los miembros eligen los suyos.",
+      "tempvoice": "Canales de voz temporales creados automáticamente.",
+      "leveling": "XP, niveles y recompensas de rol por actividad.",
+      "keys": "Crea y gestiona claves VIP y sus vencimientos.",
+      "midman": "Comisiones y ajustes de transacciones de intermediario.",
+      "giveaway": "Crea, finaliza y rehace sorteos.",
+      "stats": "Clasificaciones: mensajes, compras, gasto y boosts.",
+      "serverstats": "Canales de estadísticas que se actualizan solos.",
+      "embed": "Crea y envía embeds con vista previa en vivo.",
+      "poll": "Encuestas normales y móviles con resultados en vivo.",
+      "send-message": "Envía un mensaje simple a cualquier canal.",
+      "backup": "Copia y restaura la configuración del servidor."
     }
   },
   "interactions": {
