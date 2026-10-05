@@ -2321,6 +2321,15 @@
       "notfound_body": "Halaman ini tidak ada.",
       "global_title": "Error dashboard",
       "global_body": "Dashboard itu sendiri gagal merender. Bot tidak terpengaruh. Coba lagi di bawah — jika berlanjut, periksa log deployment."
+    },
+    "nav": {
+      "label": "Bagian",
+      "group_overview": "Ringkasan",
+      "group_moderation": "Moderasi",
+      "group_automation": "Otomasi",
+      "group_economy": "Ekonomi",
+      "group_insights": "Wawasan",
+      "group_tools": "Alat"
     }
   },
   "interactions": {

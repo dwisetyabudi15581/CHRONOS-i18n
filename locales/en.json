@@ -2349,6 +2349,15 @@
       "notfound_body": "This page does not exist.",
       "global_title": "Dashboard error",
       "global_body": "The dashboard itself failed to render. The bot is unaffected. Retry below — if it persists, check the deployment logs."
+    },
+    "nav": {
+      "label": "Sections",
+      "group_overview": "Overview",
+      "group_moderation": "Moderation",
+      "group_automation": "Automation",
+      "group_economy": "Economy",
+      "group_insights": "Insights",
+      "group_tools": "Tools"
     }
   },
   "interactions": {

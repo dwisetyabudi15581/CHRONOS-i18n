@@ -2321,6 +2321,15 @@
       "notfound_body": "Esta página no existe.",
       "global_title": "Error del panel",
       "global_body": "El panel en sí falló al renderizarse. El bot no está afectado. Reintenta abajo — si persiste, revisa los registros del despliegue."
+    },
+    "nav": {
+      "label": "Secciones",
+      "group_overview": "Resumen",
+      "group_moderation": "Moderación",
+      "group_automation": "Automatización",
+      "group_economy": "Economía",
+      "group_insights": "Análisis",
+      "group_tools": "Herramientas"
     }
   },
   "interactions": {

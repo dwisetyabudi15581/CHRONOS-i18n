@@ -2321,6 +2321,15 @@
       "notfound_body": "هذه الصفحة غير موجودة.",
       "global_title": "خطأ في اللوحة",
       "global_body": "فشلت اللوحة نفسها في العرض. البوت غير متأثر. أعد المحاولة أدناه — إذا استمر، راجع سجلات النشر."
+    },
+    "nav": {
+      "label": "الأقسام",
+      "group_overview": "نظرة عامة",
+      "group_moderation": "الإشراف",
+      "group_automation": "الأتمتة",
+      "group_economy": "الاقتصاد",
+      "group_insights": "الرؤى",
+      "group_tools": "الأدوات"
     }
   },
   "interactions": {

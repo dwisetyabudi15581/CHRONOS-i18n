@@ -2321,6 +2321,15 @@
       "notfound_body": "此页面不存在。",
       "global_title": "面板错误",
       "global_body": "面板本身渲染失败。Bot 不受影响。请在下方重试 — 如果持续出现，请检查部署日志。"
+    },
+    "nav": {
+      "label": "分区",
+      "group_overview": "概览",
+      "group_moderation": "管理",
+      "group_automation": "自动化",
+      "group_economy": "经济",
+      "group_insights": "洞察",
+      "group_tools": "工具"
     }
   },
   "interactions": {

@@ -2321,6 +2321,15 @@
       "notfound_body": "Diese Seite existiert nicht.",
       "global_title": "Dashboard-Fehler",
       "global_body": "Das Dashboard selbst konnte nicht gerendert werden. Der Bot ist nicht betroffen. Versuche es unten erneut — falls es bestehen bleibt, prüfe die Deployment-Logs."
+    },
+    "nav": {
+      "label": "Bereiche",
+      "group_overview": "Übersicht",
+      "group_moderation": "Moderation",
+      "group_automation": "Automatisierung",
+      "group_economy": "Wirtschaft",
+      "group_insights": "Einblicke",
+      "group_tools": "Werkzeuge"
     }
   },
   "interactions": {
