@@ -1,0 +1,663 @@
+{
+  "common": {
+    "guild_only": "🚫 命令只能在服务器内使用 — CHRONOS 没有私信功能。",
+    "duplicate_delivery": "✅ 该命令已执行完毕 — 这是一次重复投递，不会重复执行。",
+    "access_denied": "🚫 **访问被拒绝。**\n\n斜杠命令只能由**管理员/工作人员**使用。\n\n如果你认为这是误判，请联系服务器管理员。",
+    "unmapped_command": "⚠️ 命令 `{command}` 尚未被路由支持。请联系开发者。",
+    "not_set": "未设置",
+    "yes": "是",
+    "no": "否",
+    "enabled": "已启用",
+    "disabled": "已停用",
+    "all": "全部",
+    "none": "无",
+    "seconds": {
+      "one": "{count} 秒",
+      "other": "{count} 秒"
+    },
+    "minutes": {
+      "one": "{count} 分钟",
+      "other": "{count} 分钟"
+    },
+    "hours": {
+      "one": "{count} 小时",
+      "other": "{count} 小时"
+    },
+    "days": {
+      "one": "{count} 天",
+      "other": "{count} 天"
+    },
+    "permanent": "永久",
+    "error_generic": "出现问题，请重试。",
+    "error_discord_api": "Discord API 错误，请稍后重试。",
+    "missing_permissions": "我缺少执行此操作所需的权限。请检查我的身份组位置和权限。",
+    "language_changed": "语言已切换为 {language}。"
+  },
+  "bot_commands": {
+    "help": {
+      "description": "帮助中心：选择分类或按关键词搜索命令",
+      "options": {
+        "search": "要搜索的命令关键词（如 key、escrow、panel）"
+      }
+    },
+    "setup-verify": {
+      "description": "设置验证面板"
+    },
+    "setup-ticket": {
+      "description": "设置工单面板和价目表"
+    },
+    "set-role": {
+      "description": "设置身份组（verified / unverified / admin / midman / booster）",
+      "options": {
+        "tipe": "选择身份组类型",
+        "role": "要使用的身份组"
+      }
+    },
+    "set-channel": {
+      "description": "设置频道（invoice / welcome / goodbye / audit-log / server-log / transcript / server-booster）",
+      "options": {
+        "tipe": "选择频道类型",
+        "channel": "要使用的文字频道"
+      }
+    },
+    "test-welcome": {
+      "description": "诊断并预览欢迎/欢送 embed（找出不显示的原因）",
+      "options": {
+        "tipe": "要测试哪一个"
+      }
+    },
+    "set-message": {
+      "description": "编辑欢迎 / 欢送 / 验证 / 工单 embed 文本",
+      "options": {
+        "tipe": "选择要编辑的消息",
+        "teks": "新文本（支持 \\n 换行）。可用变量 {user} {username} {server} {count} {action}"
+      }
+    },
+    "set-verify-button": {
+      "description": "自定义验证按钮（标签、表情、样式）",
+      "options": {
+        "label": "按钮文字（最多 80 字符）",
+        "emoji": "按钮表情（unicode 或自定义 <:name:id>）",
+        "style": "按钮颜色"
+      }
+    },
+    "add-category": {
+      "description": "添加新的工单分类（用于动态工单面板）",
+      "options": {
+        "id": "唯一分类 ID（字母/数字/_/-，最多 30 字符）",
+        "label": "按钮标签（最多 80 字符）",
+        "emoji": "按钮表情（unicode 或自定义 <:name:id>）",
+        "style": "按钮颜色",
+        "requires_key": "此分类是否需要 Set Key 按钮？（默认：是）"
+      }
+    },
+    "list-categories": {
+      "description": "查看所有已注册的工单分类"
+    },
+    "remove-category": {
+      "description": "从配置中移除一个工单分类",
+      "options": {
+        "id": "要删除的分类 ID"
+      }
+    },
+    "update-category": {
+      "description": "编辑已有的工单分类（label/emoji/style/requires_key），无需删除后重新添加",
+      "options": {
+        "id": "要更新的分类 ID",
+        "label": "新的按钮标签（最多 80 字符）",
+        "emoji": "新的按钮表情（unicode 或自定义 <:name:id>）",
+        "style": "新的按钮颜色",
+        "requires_key": "此分类是否需要 Set Key 按钮？"
+      }
+    },
+    "setup-ticket-panel": {
+      "description": "设置完全可自定义的工单面板（支持多面板）",
+      "options": {
+        "title": "Embed 标题（覆盖全局）。留空 = 使用配置默认值",
+        "categories": "要显示的分类 ID，逗号分隔（留空 = 全部）",
+        "body": "自定义正文。支持 \\n 和 {server} {price_list} {categories_list}",
+        "color": "十六进制颜色（如 #ff5733 或 #fff）。留空 = 默认橙色",
+        "image": "大图 URL（https://...）。留空 = 无图片",
+        "thumbnail": "小缩略图 URL（https://...）。留空 = 无缩略图",
+        "footer": "页脚文字。留空 = 使用机器人名称",
+        "channel": "目标频道（默认：当前频道）。必须是文字频道",
+        "use_dropdown": "TRUE = 使用下拉选择菜单（默认：FALSE = 按钮）"
+      }
+    },
+    "list-panels": {
+      "description": "查看本服务器所有持久化工单面板"
+    },
+    "delete-panel": {
+      "description": "按 ID 删除工单面板（自动删除消息 + 元数据）",
+      "options": {
+        "id": "面板 ID（见 /list-panels）"
+      }
+    },
+    "refresh-panel": {
+      "description": "用最新的分类/商品重新渲染面板（无需重新设置）",
+      "options": {
+        "id": "面板 ID（见 /list-panels）"
+      }
+    },
+    "update-panel": {
+      "description": "通过模态框编辑面板字段（title/body/color/image/thumbnail/footer）",
+      "options": {
+        "id": "面板 ID（见 /list-panels）",
+        "field": "要编辑的字段"
+      }
+    },
+    "edit-message": {
+      "description": "通过模态框编辑 embed 消息文本（多行，比 /set-message 更灵活）",
+      "options": {
+        "tipe": "选择要编辑的消息"
+      }
+    },
+    "add-product": {
+      "description": "向价目表添加新商品",
+      "options": {
+        "label": "商品名称（如 7 天卡，最多 80 字符）",
+        "value": "唯一 ID（如 7d）",
+        "price": "价格（如 Rp 50.000 / $3 / $2.50 / 5.88 / 25k — 最多 100 字符）",
+        "category": "商品分类（默认：transaction）。列表见 /list-categories。",
+        "requires_key": "此商品是否需要 Set Key？（默认：key 类别为是）"
+      }
+    },
+    "remove-product": {
+      "description": "从价目表中移除商品",
+      "options": {
+        "value": "要删除的商品 value（如 7d）"
+      }
+    },
+    "list-products": {
+      "description": "查看当前所有商品"
+    },
+    "update-product": {
+      "description": "编辑已有商品（label/price/category/requires_key），无需删除后重新添加",
+      "options": {
+        "value": "要更新的商品 value（标识符 — 不可更改）",
+        "label": "新的商品标签（最多 80 字符）",
+        "price": "新价格（如 \"Rp 25.000\" / \"$3\" / \"$2.50\" / \"5.88\"）",
+        "category": "新分类（见 /list-categories）",
+        "requires_key": "此商品是否需要 Set Key？（是=key，否=服务/非 key）"
+      }
+    },
+    "config-show": {
+      "description": "查看机器人当前的全部配置"
+    },
+    "remove-role": {
+      "description": "从配置中移除身份组（verified / unverified / admin / midman / booster）",
+      "options": {
+        "tipe": "选择要移除的身份组类型"
+      }
+    },
+    "set-midman-fee": {
+      "description": "设置担保交易手续费（按交易价格百分比或固定金额）",
+      "options": {
+        "mode": "手续费计算模式",
+        "value": "手续费数值（百分比：0-90，固定：每笔交易金额）。0 = 免费"
+      }
+    },
+    "midman-deals": {
+      "description": "查看本服务器所有进行中的担保交易"
+    },
+    "remove-channel": {
+      "description": "从配置中移除频道（invoice / welcome / goodbye / audit-log / server-log / transcript）",
+      "options": {
+        "tipe": "选择要移除的频道类型"
+      }
+    },
+    "list-messages": {
+      "description": "查看当前所有 embed 消息文本"
+    },
+    "reset-message": {
+      "description": "将 embed 消息文本重置为默认值",
+      "options": {
+        "tipe": "选择要重置的消息（或 ALL 全部重置）"
+      }
+    },
+    "reset-config": {
+      "description": "⚠️ 删除所有设置（身份组、频道、消息）- 无法撤销！"
+    },
+    "set-product-role": {
+      "description": "为特定商品设置身份组和自动过期时长",
+      "options": {
+        "value": "商品 value（如 30d）",
+        "role": "购买成功后授予的身份组",
+        "days": "身份组自动移除前的天数（0 = 永久）"
+      }
+    },
+    "remove-product-role": {
+      "description": "移除特定商品的自动身份组",
+      "options": {
+        "value": "商品 value（如 30d）"
+      }
+    },
+    "list-product-roles": {
+      "description": "查看所有商品 → 身份组映射 + 时长"
+    },
+    "set-key": {
+      "description": "给用户发放 key + 授予身份组 + 延长排期（MAX EXTEND）",
+      "options": {
+        "user": "接收 key 的用户",
+        "value": "商品 value（如 30d）",
+        "key": "发送给用户的 key（最多 200 字符）"
+      }
+    },
+    "list-keys": {
+      "description": "查看用户的所有 key（有效和已过期）",
+      "options": {
+        "user": "要查看 key 的用户"
+      }
+    },
+    "clear-schedule": {
+      "description": "清除用户的所有定时身份组（+ 可选：删除所有 key 并移除 VIP 身份组）",
+      "options": {
+        "user": "要清除的用户",
+        "clear_keys": "True = 删除该用户所有 key + 移除 VIP 身份组（完全重置）。默认：false。"
+      }
+    },
+    "setup-selfrole": {
+      "description": "创建新的自助身份组面板（成员可自行领取/移除身份组）",
+      "options": {
+        "title": "面板标题（如 选择通知身份组）",
+        "description": "面板描述（支持 \\n 换行）",
+        "type": "面板界面类型",
+        "exclusive": "True = 一次只能持有 1 个身份组（如颜色身份组）。默认 false。"
+      }
+    },
+    "selfrole-add": {
+      "description": "向已有的自助身份组面板添加身份组",
+      "options": {
+        "panel_id": "面板 ID（见 /selfrole-list 或面板页脚）",
+        "role": "要添加到面板的身份组",
+        "label": "按钮 / 选项标签（最多 80 字符）",
+        "emoji": "表情（可选，如 🔔）",
+        "description": "描述（可选，下拉菜单用，支持 \\n 换行）",
+        "style": "按钮颜色（默认：Secondary）",
+        "requires_role": "用户领取此身份组前必须已拥有的身份组（可选）"
+      }
+    },
+    "selfrole-remove": {
+      "description": "从自助身份组面板移除身份组",
+      "options": {
+        "panel_id": "面板 ID",
+        "role": "要从面板移除的身份组"
+      }
+    },
+    "selfrole-list": {
+      "description": "查看本服务器的所有自助身份组面板"
+    },
+    "selfrole-delete": {
+      "description": "删除自助身份组面板（删除消息 + 配置）",
+      "options": {
+        "panel_id": "要删除的面板 ID"
+      }
+    },
+    "announce": {
+      "description": "快速公告 — 向频道发送 embed（1 条命令，1 个 embed）",
+      "options": {
+        "channel": "公告目标频道",
+        "title": "公告标题",
+        "description": "公告内容（支持 \\n 换行）",
+        "color": "十六进制颜色（如 #FF0000）。默认：blurple",
+        "image": "大图 URL（可选）",
+        "thumbnail": "角落小缩略图 URL（可选）",
+        "mention": "提及：@everyone、@here 或 <@&role_id>"
+      }
+    },
+    "embed-builder": {
+      "description": "带实时预览的交互式 embed 构建器（用于复杂 embed）"
+    },
+    "embed-list": {
+      "description": "查看你所有进行中的 embed 构建会话（+ 草稿消息链接）"
+    },
+    "embed-cancel": {
+      "description": "按 ID 取消 embed 构建会话（如果草稿被删除/出问题）",
+      "options": {
+        "session_id": "会话 ID（见 /embed-list）"
+      }
+    },
+    "backup-now": {
+      "description": "立即创建手动备份（config、keys、scheduledRoles、selfRoles 等）"
+    },
+    "backup-list": {
+      "description": "查看所有已保存的备份（最多显示最近 7 个）"
+    },
+    "restore-backup": {
+      "description": "按名称恢复备份（恢复前会自动创建安全备份）",
+      "options": {
+        "name": "备份文件夹名称（见 /backup-list，格式：YYYY-MM-DD_HH-mm-ss）"
+      }
+    },
+    "giveaway": {
+      "description": "管理社区抽奖（创建、查看、提前结束、重摇）",
+      "options": {
+        "create": "创建新抽奖",
+        "list": "查看本服务器的所有抽奖",
+        "end": "提前结束抽奖 + 抽出获奖者",
+        "reroll": "重摇已结束抽奖的获奖者"
+      }
+    },
+    "announce-schedule": {
+      "description": "定时向频道发送公告（单次或周期）",
+      "options": {
+        "channel": "目标频道",
+        "title": "公告标题",
+        "description": "公告内容（支持 \\n 换行）",
+        "at": "发送时间。格式：\"30m\"、\"2h\"、\"1d\" 或 \"2026-01-15 20:00\"",
+        "color": "十六进制颜色（如 #FF0000）。默认：blurple",
+        "image": "大图 URL（可选）",
+        "thumbnail": "小缩略图 URL（可选）",
+        "mention": "提及：@everyone、@here 或 <@&role_id>",
+        "recurring": "重复（可选）"
+      }
+    },
+    "announce-list": {
+      "description": "查看所有待发送的定时公告"
+    },
+    "announce-cancel": {
+      "description": "按 ID 取消定时公告",
+      "options": {
+        "id": "公告 ID（见 /announce-list）"
+      }
+    },
+    "warn": {
+      "description": "警告成员（自动处罚：3 次=禁言 1 小时，5 次=禁言 1 天，7 次=踢出）",
+      "options": {
+        "user": "要警告的成员",
+        "reason": "警告原因（支持 \\n 换行）"
+      }
+    },
+    "warn-list": {
+      "description": "查看用户的所有警告记录",
+      "options": {
+        "user": "要查询的用户"
+      }
+    },
+    "warn-remove": {
+      "description": "按 ID 删除 1 条警告",
+      "options": {
+        "user": "警告所属用户",
+        "warn_id": "警告 ID（见 /warn-list）"
+      }
+    },
+    "warn-clear": {
+      "description": "删除用户的全部警告",
+      "options": {
+        "user": "要清除警告的用户"
+      }
+    },
+    "timeout": {
+      "description": "临时禁言成员（最长 28 天）— 记入其历史",
+      "options": {
+        "user": "要禁言的成员",
+        "duration": "时长（分钟）（如 60 = 1 小时，1440 = 1 天，最长 40320 = 28 天）",
+        "reason": "原因（通过私信发送给成员）"
+      }
+    },
+    "untimeout": {
+      "description": "提前解除成员的禁言（timeout）",
+      "options": {
+        "user": "要解除禁言的成员",
+        "reason": "解除原因"
+      }
+    },
+    "purge": {
+      "description": "批量删除频道消息（1-100 条，仅限 <14 天）",
+      "options": {
+        "amount": "要删除的消息数量（1-100）",
+        "user": "留空 = 所有消息；填写 = 仅该用户的消息"
+      }
+    },
+    "kick": {
+      "description": "将成员移出服务器（记入其历史）",
+      "options": {
+        "user": "要踢出的成员",
+        "reason": "原因（通过私信发送给成员）"
+      }
+    },
+    "ban": {
+      "description": "封禁成员 + 可选删除其 0-7 天内的消息（记录在案）",
+      "options": {
+        "user": "要封禁的成员",
+        "delete_days": "删除该成员最近 N 天的消息（0-7，默认 0）",
+        "reason": "原因（通过私信发送给成员）"
+      }
+    },
+    "unban": {
+      "description": "按 User ID 撤销封禁（用户无需在服务器中）",
+      "options": {
+        "user_id": "User ID，17-20 位数字（开发者模式 → 复制用户 ID）",
+        "reason": "解封原因"
+      }
+    },
+    "stats": {
+      "description": "查看服务器汇总统计（仅管理员）"
+    },
+    "leaderboard": {
+      "description": "查看前 10 名成员（公开 — 普通成员也可使用）",
+      "options": {
+        "metric": "排行榜指标"
+      }
+    },
+    "my-stats": {
+      "description": "查看你的个人统计（公开 — 普通成员也可使用）"
+    },
+    "boosters": {
+      "description": "列出当前服务器 Boost 成员 + 最近的 Boost 历史（公开）"
+    },
+    "test-booster": {
+      "description": "诊断并预览 Boost 增加/移除通知（找出不显示的原因）",
+      "options": {
+        "tipe": "要测试哪一个",
+        "live": "同时将预览发送到真实的 server-booster 频道（发送测试）"
+      }
+    },
+    "serverstats": {
+      "description": "自动更新的实时计数频道（成员数、Boost 数…）",
+      "options": {
+        "setup": "创建计数分类 + 实时计数频道",
+        "remove": "删除计数频道 + 分类并清空配置",
+        "refresh": "立即强制刷新所有计数器"
+      }
+    },
+    "poll": {
+      "description": "管理社区投票（创建、查看、关闭）",
+      "options": {
+        "create": "创建新投票（选项通过模态框输入）",
+        "list": "查看本服务器的所有投票",
+        "close": "关闭投票 + 显示最终结果"
+      }
+    },
+    "setup-tempvoice": {
+      "description": "设置临时语音 — 自动创建分类 + 面板频道 + 触发频道"
+    },
+    "tempvoice-remove": {
+      "description": "移除本服务器的临时语音设置（分类 + 所有相关频道一并删除）"
+    },
+    "send-message": {
+      "description": "向文字频道发送纯文本消息（支持 \\n 和提及）",
+      "options": {
+        "channel": "目标频道（必须是文字频道）",
+        "message": "消息内容（支持 \\n 换行）。最多 2000 字符。",
+        "mention": "提及：@everyone、@here 或 <@&role_id> / <@user_id>"
+      }
+    },
+    "add-responder": {
+      "description": "添加自动回复器：触发关键词 → 自动回复",
+      "options": {
+        "trigger": "触发关键词（如 !sosmed）。不区分大小写，最多 50 字符。",
+        "reply": "回复文本（支持 \\n）。最多 2000 字符。",
+        "reply_type": "回复类型（默认：文本）",
+        "cooldown": "冷却秒数（防刷屏，默认：3，0 = 关闭）",
+        "match_mode": "触发词与消息的匹配方式（默认：Contains）"
+      }
+    },
+    "list-responder": {
+      "description": "查看所有已注册的自动回复器"
+    },
+    "remove-responder": {
+      "description": "按触发词删除自动回复器",
+      "options": {
+        "trigger": "要删除的触发词"
+      }
+    },
+    "set-automod": {
+      "description": "配置自动管理（刷屏、链接、词语过滤、提及上限）",
+      "options": {
+        "spam_threshold": "时间窗口内计为刷屏的消息数（默认：5）",
+        "spam_action": "对刷屏者的处罚",
+        "block_links": "屏蔽所有链接？",
+        "block_words": "要屏蔽的词语（逗号分隔，如 词1,词2）",
+        "word_action": "词语过滤的处罚",
+        "max_mentions": "每条消息的最大提及数（默认：5）",
+        "mention_action": "大量提及的处罚"
+      }
+    },
+    "automod-show": {
+      "description": "查看当前的自动管理配置"
+    },
+    "automod-toggle": {
+      "description": "启用/停用自动管理",
+      "options": {
+        "enabled": "启用还是停用？"
+      }
+    },
+    "add-link-whitelist": {
+      "description": "将频道/身份组加入链接白名单（允许发送链接）",
+      "options": {
+        "channel": "允许发送链接的频道",
+        "role": "允许发送链接的身份组"
+      }
+    },
+    "add-word": {
+      "description": "向自动管理屏蔽/豁免列表添加词语（追加，不替换）",
+      "options": {
+        "words": "要添加的词语（逗号分隔，如 词1,词2）",
+        "tipe": "添加到哪个列表？",
+        "action": "这些词语的专属处罚（留空 = 使用全局 word_action）"
+      }
+    },
+    "remove-word": {
+      "description": "从自动管理屏蔽/豁免列表移除 1 个词语",
+      "options": {
+        "word": "要移除的词语",
+        "tipe": "从哪个列表移除？"
+      }
+    },
+    "list-words": {
+      "description": "查看屏蔽列表 + 豁免词语 + 每个词语的处罚"
+    },
+    "remove-link-whitelist": {
+      "description": "从链接白名单移除频道/身份组",
+      "options": {
+        "channel": "要从白名单移除的频道",
+        "role": "要从白名单移除的身份组"
+      }
+    },
+    "afk": {
+      "description": "设置离开状态（被提及时机器人自动回复）",
+      "options": {
+        "reason": "离开原因（支持 \\n，如 \"吃饭，30 分钟后回来\"）"
+      }
+    },
+    "afk-clear": {
+      "description": "清除你的离开状态"
+    },
+    "afk-list": {
+      "description": "查看当前所有离开的成员"
+    },
+    "setup-leveling": {
+      "description": "启用/停用等级系统 + 配置 XP",
+      "options": {
+        "enabled": "启用还是停用等级系统？",
+        "xp_per_message": "每条消息的 XP（默认：15）",
+        "cooldown": "冷却秒数（默认：60）",
+        "announce_levelup": "用户升级时发布公告？（默认：是）"
+      }
+    },
+    "add-level-role": {
+      "description": "为特定等级添加奖励身份组（升级时自动授予）",
+      "options": {
+        "level": "要达到的等级（如 10）",
+        "role": "要授予的身份组"
+      }
+    },
+    "list-level-roles": {
+      "description": "查看所有等级奖励身份组"
+    },
+    "remove-level-role": {
+      "description": "移除特定等级的奖励身份组",
+      "options": {
+        "level": "要移除身份组的等级"
+      }
+    },
+    "rank": {
+      "description": "查看你的等级和 XP（或其他用户）",
+      "options": {
+        "user": "要查询的用户（默认：你自己）"
+      }
+    },
+    "leaderboard-level": {
+      "description": "等级最高的前 10 名成员（公开）"
+    },
+    "set-language": {
+      "description": "设置本服务器的机器人回复语言（默认：auto — 跟随每位用户的 Discord 语言）",
+      "options": {
+        "bahasa": "选择语言（Auto = 跟随每位用户的 Discord 应用语言）"
+      },
+      "replies": {
+        "set_auto": "🌍 **语言已保存：Auto。**\n\n现在每位成员都会收到与其 Discord 应用语言一致的回复（机器人尚未支持的语言将显示英文）。",
+        "set_fixed": "🌍 **语言已保存：{language}。**\n\n本服务器的所有回复现在都使用该语言，不受各成员 Discord 应用语言的影响。",
+        "current": "🌐 本服务器的语言：**{language}**\n\n`/set-language` → 更改。",
+        "invalid": "⚠️ 未知语言。"
+      }
+    }
+  },
+  "bot_commands.giveaway.options.create.channel": "抽奖频道",
+  "bot_commands.giveaway.options.create.prize": "奖品（如 VIP 30 天，最多 200 字符）",
+  "bot_commands.giveaway.options.create.duration": "时长（分钟，最少 1）",
+  "bot_commands.giveaway.options.create.winners": "获奖人数（1-20，默认 1）",
+  "bot_commands.giveaway.options.create.required_role": "参与者必须拥有的身份组（可选）",
+  "bot_commands.giveaway.options.end.id": "抽奖 ID（见 /giveaway list）",
+  "bot_commands.giveaway.options.reroll.id": "抽奖 ID（见 /giveaway list）",
+  "bot_commands.serverstats.options.setup.members": "显示 👥 成员计数器（默认：是）",
+  "bot_commands.serverstats.options.setup.bots": "显示 🤖 机器人计数器（默认：是）",
+  "bot_commands.serverstats.options.setup.boosts": "显示 🚀 Boost 计数器（默认：是）",
+  "bot_commands.serverstats.options.setup.roles": "显示 🎭 身份组计数器（默认：是）",
+  "bot_commands.serverstats.options.setup.channels": "显示 📺 频道计数器（默认：是）",
+  "bot_commands.poll.options.create.channel": "投票频道",
+  "bot_commands.poll.options.create.question": "投票问题（最多 250 字符）",
+  "bot_commands.poll.options.create.multiple": "True = 成员可选择多个选项。默认 false（单选）",
+  "bot_commands.poll.options.close.id": "投票 ID（见 /poll list）",
+  "dashboard": {
+    "landing": {
+      "tagline": "在浏览器中管理你的 CHRONOS Discord 机器人。配置模块、查看统计数据，并即时同步更改。",
+      "login": "使用 Discord 登录",
+      "invite_title": "将 CHRONOS-bot 添加到其他服务器"
+    },
+    "header": {
+      "your_servers": "你的服务器",
+      "servers_subtitle": "你管理的、已安装 CHRONOS-bot 的服务器。",
+      "invite_bot": "＋ 邀请机器人",
+      "logout": "退出登录"
+    },
+    "common": {
+      "loading": "加载中…",
+      "error_generic": "出现问题，请重试。",
+      "retry": "重试",
+      "save": "保存",
+      "cancel": "取消",
+      "delete": "删除",
+      "edit": "编辑",
+      "close": "关闭",
+      "saved": "已保存",
+      "bot_offline": "无法连接机器人 API — 机器人是否正在运行？",
+      "back": "返回"
+    },
+    "language": {
+      "label": "语言",
+      "changed": "语言已设置为 {language}"
+    }
+  }
+}

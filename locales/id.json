@@ -1,0 +1,663 @@
+{
+  "common": {
+    "guild_only": "🚫 Perintah hanya berfungsi di dalam server — CHRONOS tidak punya fitur DM.",
+    "duplicate_delivery": "✅ Perintah itu sudah selesai dieksekusi — ini pengiriman duplikat, tidak ada yang dijalankan ulang.",
+    "access_denied": "🚫 **Akses Ditolak.**\n\nSlash command hanya bisa digunakan oleh **Admin/Staff**.\n\nJika menurut Anda ini keliru, hubungi admin server.",
+    "unmapped_command": "⚠️ Perintah `{command}` belum didukung router. Hubungi developer.",
+    "not_set": "Belum diatur",
+    "yes": "Ya",
+    "no": "Tidak",
+    "enabled": "Aktif",
+    "disabled": "Nonaktif",
+    "all": "Semua",
+    "none": "Tidak ada",
+    "seconds": {
+      "one": "{count} detik",
+      "other": "{count} detik"
+    },
+    "minutes": {
+      "one": "{count} menit",
+      "other": "{count} menit"
+    },
+    "hours": {
+      "one": "{count} jam",
+      "other": "{count} jam"
+    },
+    "days": {
+      "one": "{count} hari",
+      "other": "{count} hari"
+    },
+    "permanent": "Permanen",
+    "error_generic": "Terjadi kesalahan. Silakan coba lagi.",
+    "error_discord_api": "Error API Discord. Silakan coba lagi sebentar lagi.",
+    "missing_permissions": "Saya tidak punya izin yang dibutuhkan untuk aksi ini. Cek posisi role dan izin saya.",
+    "language_changed": "Bahasa diubah ke {language}."
+  },
+  "bot_commands": {
+    "help": {
+      "description": "Pusat bantuan: pilih kategori atau cari perintah berdasarkan kata kunci",
+      "options": {
+        "search": "Kata kunci perintah yang dicari (mis. key, escrow, panel)"
+      }
+    },
+    "setup-verify": {
+      "description": "Siapkan panel verifikasi"
+    },
+    "setup-ticket": {
+      "description": "Siapkan panel tiket & daftar harga"
+    },
+    "set-role": {
+      "description": "Atur role (verified / unverified / admin / midman / booster)",
+      "options": {
+        "tipe": "Pilih tipe role",
+        "role": "Role yang akan dipakai"
+      }
+    },
+    "set-channel": {
+      "description": "Atur channel (invoice / welcome / goodbye / audit-log / server-log / transcript / server-booster)",
+      "options": {
+        "tipe": "Pilih tipe channel",
+        "channel": "Channel teks yang akan dipakai"
+      }
+    },
+    "test-welcome": {
+      "description": "Diagnosis & pratinjau embed welcome/goodbye (cari tahu kenapa tidak muncul)",
+      "options": {
+        "tipe": "Mana yang mau dites"
+      }
+    },
+    "set-message": {
+      "description": "Edit teks embed welcome / goodbye / verify / tiket",
+      "options": {
+        "tipe": "Pilih pesan yang mau diedit",
+        "teks": "Teks baru (mendukung \\n baris baru). Gunakan {user} {username} {server} {count} {action}"
+      }
+    },
+    "set-verify-button": {
+      "description": "Kustomisasi tombol verifikasi (label, emoji, gaya)",
+      "options": {
+        "label": "Teks tombol (maks 80 karakter)",
+        "emoji": "Emoji tombol (unicode atau kustom <:name:id>)",
+        "style": "Warna tombol"
+      }
+    },
+    "add-category": {
+      "description": "Tambah kategori tiket baru (untuk panel tiket dinamis)",
+      "options": {
+        "id": "ID kategori unik (huruf/angka/_/-, maks 30 karakter)",
+        "label": "Label tombol (maks 80 karakter)",
+        "emoji": "Emoji tombol (unicode atau kustom <:name:id>)",
+        "style": "Warna tombol",
+        "requires_key": "Apakah kategori ini butuh tombol Set Key? (default: ya)"
+      }
+    },
+    "list-categories": {
+      "description": "Lihat semua kategori tiket yang terdaftar"
+    },
+    "remove-category": {
+      "description": "Hapus kategori tiket dari konfigurasi",
+      "options": {
+        "id": "ID kategori yang akan dihapus"
+      }
+    },
+    "update-category": {
+      "description": "Edit kategori tiket yang sudah ada (label/emoji/style/requires_key) tanpa hapus+tambah ulang",
+      "options": {
+        "id": "ID kategori yang akan diperbarui",
+        "label": "Label tombol baru (maks 80 karakter)",
+        "emoji": "Emoji tombol baru (unicode atau kustom <:name:id>)",
+        "style": "Warna tombol baru",
+        "requires_key": "Apakah kategori ini butuh tombol Set Key?"
+      }
+    },
+    "setup-ticket-panel": {
+      "description": "Siapkan panel tiket dengan kustomisasi penuh (dukungan multi-panel)",
+      "options": {
+        "title": "Judul embed (menimpa global). Kosong = pakai default konfigurasi",
+        "categories": "ID kategori dipisah koma untuk ditampilkan (kosong = semua)",
+        "body": "Body kustom. Mendukung \\n & {server} {price_list} {categories_list}",
+        "color": "Warna hex (mis. #ff5733 atau #fff). Kosong = oranye default",
+        "image": "URL gambar besar (https://...). Kosong = tanpa gambar",
+        "thumbnail": "URL thumbnail kecil (https://...). Kosong = tanpa thumbnail",
+        "footer": "Teks footer. Kosong = pakai nama bot",
+        "channel": "Channel tujuan (default: channel saat ini). Harus channel teks",
+        "use_dropdown": "TRUE = pakai menu dropdown (default: FALSE = tombol)"
+      }
+    },
+    "list-panels": {
+      "description": "Lihat semua panel tiket persisten di server ini"
+    },
+    "delete-panel": {
+      "description": "Hapus panel tiket berdasarkan ID (otomatis menghapus pesan + metadata)",
+      "options": {
+        "id": "ID panel (lihat /list-panels)"
+      }
+    },
+    "refresh-panel": {
+      "description": "Render ulang panel dengan kategori/produk terbaru (tanpa perlu setup ulang)",
+      "options": {
+        "id": "ID panel (lihat /list-panels)"
+      }
+    },
+    "update-panel": {
+      "description": "Edit field panel (title/body/color/image/thumbnail/footer) lewat modal",
+      "options": {
+        "id": "ID panel (lihat /list-panels)",
+        "field": "Field mana yang mau diedit"
+      }
+    },
+    "edit-message": {
+      "description": "Edit teks embed lewat modal (multi-baris, lebih fleksibel dari /set-message)",
+      "options": {
+        "tipe": "Pilih pesan yang mau diedit"
+      }
+    },
+    "add-product": {
+      "description": "Tambah produk baru ke daftar harga",
+      "options": {
+        "label": "Nama produk (mis. 7 Hari, maks 80 karakter)",
+        "value": "ID unik (mis. 7d)",
+        "price": "Harga (mis. Rp 50.000 / $3 / $2.50 / 5.88 / 25k — maks 100 karakter)",
+        "category": "Kategori produk (default: transaction). Lihat /list-categories.",
+        "requires_key": "Apakah produk ini butuh Set Key? (default: ya untuk kategori key)"
+      }
+    },
+    "remove-product": {
+      "description": "Hapus produk dari daftar harga",
+      "options": {
+        "value": "Value produk yang akan dihapus (mis. 7d)"
+      }
+    },
+    "list-products": {
+      "description": "Lihat semua produk saat ini"
+    },
+    "update-product": {
+      "description": "Edit produk yang sudah ada (label/price/category/requires_key) tanpa hapus+tambah ulang",
+      "options": {
+        "value": "Value produk yang akan diperbarui (identifier — tidak bisa diubah)",
+        "label": "Label produk baru (maks 80 karakter)",
+        "price": "Harga baru (mis. \"Rp 25.000\" / \"$3\" / \"$2.50\" / \"5.88\")",
+        "category": "Kategori baru (lihat /list-categories)",
+        "requires_key": "Apakah produk ini butuh Set Key? (ya=key, bukan=jasa/non-key)"
+      }
+    },
+    "config-show": {
+      "description": "Lihat seluruh konfigurasi bot saat ini"
+    },
+    "remove-role": {
+      "description": "Hapus role dari konfigurasi (verified / unverified / admin / midman / booster)",
+      "options": {
+        "tipe": "Pilih tipe role yang akan dihapus"
+      }
+    },
+    "set-midman-fee": {
+      "description": "Atur fee escrow (persen dari harga deal atau nominal tetap)",
+      "options": {
+        "mode": "Mode perhitungan fee",
+        "value": "Nilai fee (persen: 0-90, nominal: jumlah per deal). 0 = gratis"
+      }
+    },
+    "midman-deals": {
+      "description": "Lihat semua deal escrow aktif di server ini"
+    },
+    "remove-channel": {
+      "description": "Hapus channel dari konfigurasi (invoice / welcome / goodbye / audit-log / server-log / transcript)",
+      "options": {
+        "tipe": "Pilih tipe channel yang akan dihapus"
+      }
+    },
+    "list-messages": {
+      "description": "Lihat semua teks embed saat ini"
+    },
+    "reset-message": {
+      "description": "Reset teks embed kembali ke default",
+      "options": {
+        "tipe": "Pilih pesan yang mau direset (atau ALL untuk semua)"
+      }
+    },
+    "reset-config": {
+      "description": "⚠️ Hapus SEMUA pengaturan (roles, channels, messages) - tidak bisa dibatalkan!"
+    },
+    "set-product-role": {
+      "description": "Atur role & durasi auto-expire untuk produk tertentu",
+      "options": {
+        "value": "Value produk (mis. 30d)",
+        "role": "Role yang diberikan saat pembelian berhasil",
+        "days": "Jumlah hari sebelum role otomatis dicabut (0 = permanen)"
+      }
+    },
+    "remove-product-role": {
+      "description": "Hapus auto-role dari produk tertentu",
+      "options": {
+        "value": "Value produk (mis. 30d)"
+      }
+    },
+    "list-product-roles": {
+      "description": "Lihat semua pemetaan produk → role + durasinya"
+    },
+    "set-key": {
+      "description": "Beri key ke user + beri role + perpanjang jadwal (MAX EXTEND)",
+      "options": {
+        "user": "User yang menerima key",
+        "value": "Value produk (mis. 30d)",
+        "key": "Key yang dikirim ke user (maks 200 karakter)"
+      }
+    },
+    "list-keys": {
+      "description": "Lihat semua key (aktif & kedaluwarsa) milik user",
+      "options": {
+        "user": "User yang key-nya mau dilihat"
+      }
+    },
+    "clear-schedule": {
+      "description": "Hapus semua role terjadwal milik user (+ opsional: hapus semua key & cabut role VIP)",
+      "options": {
+        "user": "User yang akan dibersihkan",
+        "clear_keys": "True = hapus SEMUA key user + cabut role VIP (reset penuh). Default: false."
+      }
+    },
+    "setup-selfrole": {
+      "description": "Buat panel self-role baru (member bisa ambil/lepas role sendiri)",
+      "options": {
+        "title": "Judul panel (mis. Ambil Role Notif)",
+        "description": "Deskripsi panel (mendukung \\n baris baru)",
+        "type": "Tipe UI panel",
+        "exclusive": "True = hanya 1 role boleh dalam satu waktu (mis. role warna). Default false."
+      }
+    },
+    "selfrole-add": {
+      "description": "Tambah role ke panel self-role yang sudah ada",
+      "options": {
+        "panel_id": "ID panel (lihat /selfrole-list atau footer panel)",
+        "role": "Role yang akan ditambahkan ke panel",
+        "label": "Label tombol / opsi (maks 80 karakter)",
+        "emoji": "Emoji (opsional, mis. 🔔)",
+        "description": "Deskripsi (opsional, menu select, mendukung \\n baris baru)",
+        "style": "Warna tombol (default: Secondary)",
+        "requires_role": "Role yang harus dimiliki user sebelum mengambil role ini (opsional)"
+      }
+    },
+    "selfrole-remove": {
+      "description": "Hapus role dari panel self-role",
+      "options": {
+        "panel_id": "ID panel",
+        "role": "Role yang akan dihapus dari panel"
+      }
+    },
+    "selfrole-list": {
+      "description": "Lihat semua panel self-role di server ini"
+    },
+    "selfrole-delete": {
+      "description": "Hapus panel self-role (menghapus pesan + konfigurasi)",
+      "options": {
+        "panel_id": "ID panel yang akan dihapus"
+      }
+    },
+    "announce": {
+      "description": "Umumkan cepat — kirim embed ke channel (1 perintah, 1 embed)",
+      "options": {
+        "channel": "Channel tujuan pengumuman",
+        "title": "Judul pengumuman",
+        "description": "Isi pengumuman (mendukung baris baru \\n)",
+        "color": "Warna hex (mis. #FF0000). Default: blurple",
+        "image": "URL gambar besar (opsional)",
+        "thumbnail": "URL thumbnail kecil di pojok (opsional)",
+        "mention": "Mention: @everyone, @here, atau <@&role_id>"
+      }
+    },
+    "embed-builder": {
+      "description": "Embed builder interaktif dengan pratinjau langsung (untuk embed kompleks)"
+    },
+    "embed-list": {
+      "description": "Lihat semua sesi embed builder aktif milikmu (+ link ke pesan draft)"
+    },
+    "embed-cancel": {
+      "description": "Batalkan sesi embed builder berdasarkan ID (jika draftnya terhapus/bermasalah)",
+      "options": {
+        "session_id": "ID sesi (lihat /embed-list)"
+      }
+    },
+    "backup-now": {
+      "description": "Buat backup manual sekarang (config, keys, scheduledRoles, selfRoles, dll.)"
+    },
+    "backup-list": {
+      "description": "Lihat semua backup tersimpan (maks 7 terbaru)"
+    },
+    "restore-backup": {
+      "description": "Restore backup berdasarkan nama (otomatis membuat backup pengaman sebelum restore)",
+      "options": {
+        "name": "Nama folder backup (lihat /backup-list, format: YYYY-MM-DD_HH-mm-ss)"
+      }
+    },
+    "giveaway": {
+      "description": "Kelola giveaway komunitas (buat, lihat, akhiri, reroll)",
+      "options": {
+        "create": "Buat giveaway baru",
+        "list": "Lihat semua giveaway di server ini",
+        "end": "Akhiri giveaway lebih awal + pilih pemenang",
+        "reroll": "Reroll pemenang giveaway yang sudah berakhir"
+      }
+    },
+    "announce-schedule": {
+      "description": "Jadwalkan pengumuman ke channel pada waktu tertentu (sekali atau berulang)",
+      "options": {
+        "channel": "Channel tujuan",
+        "title": "Judul pengumuman",
+        "description": "Isi pengumuman (mendukung \\n untuk baris baru)",
+        "at": "Waktu kirim. Format: \"30m\", \"2h\", \"1d\", atau \"2026-01-15 20:00\"",
+        "color": "Warna hex (mis. #FF0000). Default: blurple",
+        "image": "URL gambar besar (opsional)",
+        "thumbnail": "URL thumbnail kecil (opsional)",
+        "mention": "Mention: @everyone, @here, atau <@&role_id>",
+        "recurring": "Ulangi (opsional)"
+      }
+    },
+    "announce-list": {
+      "description": "Lihat semua pengumuman terjadwal yang menunggu"
+    },
+    "announce-cancel": {
+      "description": "Batalkan pengumuman terjadwal berdasarkan ID",
+      "options": {
+        "id": "ID pengumuman (lihat /announce-list)"
+      }
+    },
+    "warn": {
+      "description": "Warn member (aksi otomatis: 3=mute 1 jam, 5=mute 1 hari, 7=kick)",
+      "options": {
+        "user": "Member yang di-warn",
+        "reason": "Alasan peringatan (mendukung \\n baris baru)"
+      }
+    },
+    "warn-list": {
+      "description": "Lihat semua peringatan milik seorang user",
+      "options": {
+        "user": "User yang mau dicek"
+      }
+    },
+    "warn-remove": {
+      "description": "Hapus 1 peringatan berdasarkan ID",
+      "options": {
+        "user": "User pemilik peringatan",
+        "warn_id": "ID warn (lihat /warn-list)"
+      }
+    },
+    "warn-clear": {
+      "description": "Hapus SEMUA peringatan milik seorang user",
+      "options": {
+        "user": "User yang peringatannya akan dihapus"
+      }
+    },
+    "timeout": {
+      "description": "Mute member sementara (maks 28 hari) — tercatat di riwayatnya",
+      "options": {
+        "user": "Member yang akan di-mute",
+        "duration": "Durasi dalam MENIT (mis. 60 = 1 jam, 1440 = 1 hari, maks 40320 = 28 hari)",
+        "reason": "Alasan (dikirim ke member via DM)"
+      }
+    },
+    "untimeout": {
+      "description": "Angkat timeout (mute) member lebih awal",
+      "options": {
+        "user": "Member yang timeout-nya diangkat",
+        "reason": "Alasan pengangkatan"
+      }
+    },
+    "purge": {
+      "description": "Hapus massal pesan di channel (1-100, hanya yang <14 hari)",
+      "options": {
+        "amount": "Jumlah pesan yang akan dihapus (1-100)",
+        "user": "Kosong = semua pesan; isi = hanya pesan user ini"
+      }
+    },
+    "kick": {
+      "description": "Keluarkan member dari server (tercatat di riwayatnya)",
+      "options": {
+        "user": "Member yang akan di-kick",
+        "reason": "Alasan (dikirim ke member via DM)"
+      }
+    },
+    "ban": {
+      "description": "Ban member + opsional hapus pesan 0-7 hari terakhir (tercatat)",
+      "options": {
+        "user": "Member yang akan di-ban",
+        "delete_days": "Hapus pesan member dari N hari terakhir (0-7, default 0)",
+        "reason": "Alasan (dikirim ke member via DM)"
+      }
+    },
+    "unban": {
+      "description": "Cabut ban berdasarkan User ID (user tidak perlu ada di server)",
+      "options": {
+        "user_id": "User ID, 17-20 digit (Developer Mode → Copy User ID)",
+        "reason": "Alasan unban"
+      }
+    },
+    "stats": {
+      "description": "Lihat statistik server agregat (khusus admin)"
+    },
+    "leaderboard": {
+      "description": "Lihat 10 member teratas (publik — member biasa bisa pakai)",
+      "options": {
+        "metric": "Metrik leaderboard"
+      }
+    },
+    "my-stats": {
+      "description": "Lihat statistik pribadimu (publik — member biasa bisa pakai)"
+    },
+    "boosters": {
+      "description": "Daftar booster server saat ini + riwayat boost terbaru (publik)"
+    },
+    "test-booster": {
+      "description": "Diagnosis & pratinjau notifikasi tambah/hapus boost (cari tahu kenapa tidak muncul)",
+      "options": {
+        "tipe": "Mana yang mau dites",
+        "live": "Kirim juga pratinjau ke channel server-booster yang ASLI (tes pengiriman)"
+      }
+    },
+    "serverstats": {
+      "description": "Channel counter live (member, boost…) yang diperbarui otomatis",
+      "options": {
+        "setup": "Buat kategori counter + channel counter live",
+        "remove": "Hapus channel counter + kategori dan bersihkan konfigurasinya",
+        "refresh": "Paksa refresh semua counter sekarang"
+      }
+    },
+    "poll": {
+      "description": "Kelola poll komunitas (buat, lihat, tutup)",
+      "options": {
+        "create": "Buat poll baru (input opsi lewat modal)",
+        "list": "Lihat semua poll di server ini",
+        "close": "Tutup poll + tampilkan hasil akhir"
+      }
+    },
+    "setup-tempvoice": {
+      "description": "Siapkan temp voice — otomatis membuat kategori + channel panel + channel trigger"
+    },
+    "tempvoice-remove": {
+      "description": "Hapus setup temp voice dari server (kategori + semua channel terkait ikut dihapus)"
+    },
+    "send-message": {
+      "description": "Kirim pesan teks biasa ke channel teks (mendukung \\n & mention)",
+      "options": {
+        "channel": "Channel tujuan (harus channel teks)",
+        "message": "Isi pesan (mendukung \\n untuk baris baru). Maks 2000 karakter.",
+        "mention": "Mention: @everyone, @here, atau <@&role_id> / <@user_id>"
+      }
+    },
+    "add-responder": {
+      "description": "Tambah auto-responder: kata kunci trigger → balasan otomatis",
+      "options": {
+        "trigger": "Kata kunci trigger (mis. !sosmed). Tidak peka huruf besar/kecil, maks 50 karakter.",
+        "reply": "Teks balasan (mendukung \\n). Maks 2000 karakter.",
+        "reply_type": "Tipe balasan (default: teks)",
+        "cooldown": "Cooldown dalam detik (anti-spam, default: 3, 0 = mati)",
+        "match_mode": "Cara trigger mencocokkan pesan (default: Contains)"
+      }
+    },
+    "list-responder": {
+      "description": "Lihat semua auto-responder terdaftar"
+    },
+    "remove-responder": {
+      "description": "Hapus auto-responder berdasarkan trigger",
+      "options": {
+        "trigger": "Trigger yang akan dihapus"
+      }
+    },
+    "set-automod": {
+      "description": "Konfigurasi auto-mod (spam, link, filter kata, batas mention)",
+      "options": {
+        "spam_threshold": "Jumlah pesan dalam window yang dihitung spam (default: 5)",
+        "spam_action": "Aksi untuk spammer",
+        "block_links": "Blokir semua link?",
+        "block_words": "Kata-kata yang diblokir (dipisah koma, mis. kata1,kata2)",
+        "word_action": "Aksi untuk filter kata",
+        "max_mentions": "Maks mention per pesan (default: 5)",
+        "mention_action": "Aksi untuk mass-mention"
+      }
+    },
+    "automod-show": {
+      "description": "Lihat konfigurasi auto-mod saat ini"
+    },
+    "automod-toggle": {
+      "description": "Aktifkan/nonaktifkan auto-mod",
+      "options": {
+        "enabled": "Aktifkan atau nonaktifkan?"
+      }
+    },
+    "add-link-whitelist": {
+      "description": "Tambah channel/role ke whitelist link (boleh mengirim link)",
+      "options": {
+        "channel": "Channel yang boleh mengirim link",
+        "role": "Role yang boleh mengirim link"
+      }
+    },
+    "add-word": {
+      "description": "Tambah kata ke blocklist/exempt auto-mod (menambah, bukan mengganti)",
+      "options": {
+        "words": "Kata yang ditambah (dipisah koma, mis. kata1,kata2)",
+        "tipe": "Tambah ke daftar mana?",
+        "action": "Aksi khusus untuk kata-kata ini (kosong = pakai word_action global)"
+      }
+    },
+    "remove-word": {
+      "description": "Hapus 1 kata dari blocklist/exempt auto-mod",
+      "options": {
+        "word": "Kata yang akan dihapus",
+        "tipe": "Hapus dari daftar mana?"
+      }
+    },
+    "list-words": {
+      "description": "Lihat blocklist + daftar kata exempt + aksi per kata"
+    },
+    "remove-link-whitelist": {
+      "description": "Hapus channel/role dari whitelist link",
+      "options": {
+        "channel": "Channel yang akan dihapus dari whitelist",
+        "role": "Role yang akan dihapus dari whitelist"
+      }
+    },
+    "afk": {
+      "description": "Set status AFK (bot balas otomatis saat kamu di-mention)",
+      "options": {
+        "reason": "Alasan AFK (mendukung \\n, mis. \"Makan, balik 30 menit\")"
+      }
+    },
+    "afk-clear": {
+      "description": "Hapus status AFK-mu"
+    },
+    "afk-list": {
+      "description": "Lihat semua member yang sedang AFK"
+    },
+    "setup-leveling": {
+      "description": "Aktifkan/nonaktifkan sistem leveling + konfigurasi XP",
+      "options": {
+        "enabled": "Aktifkan atau nonaktifkan leveling?",
+        "xp_per_message": "XP per pesan (default: 15)",
+        "cooldown": "Cooldown dalam detik (default: 60)",
+        "announce_levelup": "Umumkan saat user naik level? (default: ya)"
+      }
+    },
+    "add-level-role": {
+      "description": "Tambah role hadiah untuk level tertentu (otomatis diberikan saat naik level)",
+      "options": {
+        "level": "Level yang harus dicapai (mis. 10)",
+        "role": "Role yang akan diberikan"
+      }
+    },
+    "list-level-roles": {
+      "description": "Lihat semua role hadiah level"
+    },
+    "remove-level-role": {
+      "description": "Hapus role hadiah untuk level tertentu",
+      "options": {
+        "level": "Level yang role-nya akan dihapus"
+      }
+    },
+    "rank": {
+      "description": "Lihat level & XP-mu (atau user lain)",
+      "options": {
+        "user": "User yang mau dicek (default: kamu)"
+      }
+    },
+    "leaderboard-level": {
+      "description": "10 member dengan level tertinggi (publik)"
+    },
+    "set-language": {
+      "description": "Atur bahasa balasan bot untuk server ini (default: auto — mengikuti bahasa Discord tiap user)",
+      "options": {
+        "bahasa": "Pilih bahasa (Auto = ikuti bahasa aplikasi Discord tiap user)"
+      },
+      "replies": {
+        "set_auto": "🌍 **Bahasa tersimpan: Auto.**\n\nSekarang tiap member mendapat balasan sesuai bahasa aplikasi Discord-nya (English untuk bahasa yang belum dikuasai bot).",
+        "set_fixed": "🌍 **Bahasa tersimpan: {language}.**\n\nSemua balasan di server ini sekarang memakai bahasa ini, apa pun bahasa aplikasi Discord tiap member.",
+        "current": "🌐 Bahasa server ini: **{language}**\n\n`/set-language` → ubah.",
+        "invalid": "⚠️ Bahasa tidak dikenal."
+      }
+    }
+  },
+  "bot_commands.giveaway.options.create.channel": "Channel untuk giveaway",
+  "bot_commands.giveaway.options.create.prize": "Hadiah (mis. VIP 30 Hari, maks 200 karakter)",
+  "bot_commands.giveaway.options.create.duration": "Durasi dalam menit (min 1)",
+  "bot_commands.giveaway.options.create.winners": "Jumlah pemenang (1-20, default 1)",
+  "bot_commands.giveaway.options.create.required_role": "Role yang harus dimiliki peserta (opsional)",
+  "bot_commands.giveaway.options.end.id": "ID giveaway (lihat /giveaway list)",
+  "bot_commands.giveaway.options.reroll.id": "ID giveaway (lihat /giveaway list)",
+  "bot_commands.serverstats.options.setup.members": "Tampilkan counter 👥 Member (default: ya)",
+  "bot_commands.serverstats.options.setup.bots": "Tampilkan counter 🤖 Bots (default: ya)",
+  "bot_commands.serverstats.options.setup.boosts": "Tampilkan counter 🚀 Boosts (default: ya)",
+  "bot_commands.serverstats.options.setup.roles": "Tampilkan counter 🎭 Roles (default: ya)",
+  "bot_commands.serverstats.options.setup.channels": "Tampilkan counter 📺 Channels (default: ya)",
+  "bot_commands.poll.options.create.channel": "Channel untuk poll",
+  "bot_commands.poll.options.create.question": "Pertanyaan poll (maks 250 karakter)",
+  "bot_commands.poll.options.create.multiple": "True = member bisa memilih beberapa opsi. Default false (satu pilihan)",
+  "bot_commands.poll.options.close.id": "ID poll (lihat /poll list)",
+  "dashboard": {
+    "landing": {
+      "tagline": "Kelola CHRONOS Discord bot-mu dari browser. Konfigurasi modul, lihat statistik, dan sinkronkan perubahan secara instan.",
+      "login": "Login dengan Discord",
+      "invite_title": "Tambahkan CHRONOS-bot ke server lain"
+    },
+    "header": {
+      "your_servers": "Server Kamu",
+      "servers_subtitle": "Server yang kamu kelola dan terpasang CHRONOS-bot.",
+      "invite_bot": "＋ Invite Bot",
+      "logout": "Keluar"
+    },
+    "common": {
+      "loading": "Memuat…",
+      "error_generic": "Terjadi kesalahan. Silakan coba lagi.",
+      "retry": "Coba lagi",
+      "save": "Simpan",
+      "cancel": "Batal",
+      "delete": "Hapus",
+      "edit": "Edit",
+      "close": "Tutup",
+      "saved": "Tersimpan",
+      "bot_offline": "API bot tidak bisa dihubungi — apakah bot sedang berjalan?",
+      "back": "Kembali"
+    },
+    "language": {
+      "label": "Bahasa",
+      "changed": "Bahasa diatur ke {language}"
+    }
+  }
+}

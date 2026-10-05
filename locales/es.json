@@ -1,0 +1,663 @@
+{
+  "common": {
+    "guild_only": "🚫 Los comandos solo funcionan dentro de un servidor — CHRONOS no tiene funciones de MD.",
+    "duplicate_delivery": "✅ Ese comando ya se completó — esta era una entrega duplicada, no se volvió a ejecutar nada.",
+    "access_denied": "🚫 **Acceso denegado.**\n\nLos slash commands solo pueden ser usados por **Admin/Staff**.\n\nSi crees que esto es un error, contacta a un administrador del servidor.",
+    "unmapped_command": "⚠️ El comando `{command}` aún no es compatible con el router. Contacta al desarrollador.",
+    "not_set": "Sin configurar",
+    "yes": "Sí",
+    "no": "No",
+    "enabled": "Activado",
+    "disabled": "Desactivado",
+    "all": "Todos",
+    "none": "Ninguno",
+    "seconds": {
+      "one": "{count} segundo",
+      "other": "{count} segundos"
+    },
+    "minutes": {
+      "one": "{count} minuto",
+      "other": "{count} minutos"
+    },
+    "hours": {
+      "one": "{count} hora",
+      "other": "{count} horas"
+    },
+    "days": {
+      "one": "{count} día",
+      "other": "{count} días"
+    },
+    "permanent": "Permanente",
+    "error_generic": "Algo salió mal. Inténtalo de nuevo.",
+    "error_discord_api": "Error de la API de Discord. Inténtalo de nuevo en un momento.",
+    "missing_permissions": "Me faltan los permisos necesarios para esta acción. Revisa mi posición de rol y mis permisos.",
+    "language_changed": "Idioma cambiado a {language}."
+  },
+  "bot_commands": {
+    "help": {
+      "description": "Centro de ayuda: elige una categoría o busca comandos por palabra clave",
+      "options": {
+        "search": "Palabra clave del comando a buscar (p. ej. key, escrow, panel)"
+      }
+    },
+    "setup-verify": {
+      "description": "Configura el panel de verificación"
+    },
+    "setup-ticket": {
+      "description": "Configura el panel de tickets y la lista de precios"
+    },
+    "set-role": {
+      "description": "Configura roles (verified / unverified / admin / midman / booster)",
+      "options": {
+        "tipe": "Elige el tipo de rol",
+        "role": "El rol a utilizar"
+      }
+    },
+    "set-channel": {
+      "description": "Configura canales (invoice / welcome / goodbye / audit-log / server-log / transcript / server-booster)",
+      "options": {
+        "tipe": "Elige el tipo de canal",
+        "channel": "El canal de texto a utilizar"
+      }
+    },
+    "test-welcome": {
+      "description": "Diagnostica y previsualiza el embed de bienvenida/despedida (averigua por qué no aparece)",
+      "options": {
+        "tipe": "Cuál probar"
+      }
+    },
+    "set-message": {
+      "description": "Edita el texto del embed de bienvenida / despedida / verificación / ticket",
+      "options": {
+        "tipe": "Elige qué mensaje editar",
+        "teks": "Texto nuevo (admite \\n salto de línea). Usa {user} {username} {server} {count} {action}"
+      }
+    },
+    "set-verify-button": {
+      "description": "Personaliza el botón de verificación (etiqueta, emoji, estilo)",
+      "options": {
+        "label": "Texto del botón (máx. 80 caracteres)",
+        "emoji": "Emoji del botón (unicode o personalizado <:name:id>)",
+        "style": "Color del botón"
+      }
+    },
+    "add-category": {
+      "description": "Añade una nueva categoría de tickets (para paneles dinámicos)",
+      "options": {
+        "id": "ID de categoría único (letras/números/_/-, máx. 30 caracteres)",
+        "label": "Etiqueta del botón (máx. 80 caracteres)",
+        "emoji": "Emoji del botón (unicode o personalizado <:name:id>)",
+        "style": "Color del botón",
+        "requires_key": "¿Esta categoría necesita el botón Set Key? (predeterminado: sí)"
+      }
+    },
+    "list-categories": {
+      "description": "Ver todas las categorías de tickets registradas"
+    },
+    "remove-category": {
+      "description": "Elimina una categoría de tickets de la configuración",
+      "options": {
+        "id": "El ID de la categoría a eliminar"
+      }
+    },
+    "update-category": {
+      "description": "Edita una categoría de tickets existente (label/emoji/style/requires_key) sin borrar y volver a añadir",
+      "options": {
+        "id": "El ID de la categoría a actualizar",
+        "label": "Nueva etiqueta del botón (máx. 80 caracteres)",
+        "emoji": "Nuevo emoji del botón (unicode o personalizado <:name:id>)",
+        "style": "Nuevo color del botón",
+        "requires_key": "¿Esta categoría necesita el botón Set Key?"
+      }
+    },
+    "setup-ticket-panel": {
+      "description": "Configura un panel de tickets totalmente personalizable (soporta multi-panel)",
+      "options": {
+        "title": "Título del embed (anula el global). Vacío = usar el predeterminado de la configuración",
+        "categories": "IDs de categorías separados por comas a mostrar (vacío = todas)",
+        "body": "Cuerpo personalizado. Admite \\n y {server} {price_list} {categories_list}",
+        "color": "Color hexadecimal (p. ej. #ff5733 o #fff). Vacío = naranja predeterminado",
+        "image": "URL de imagen grande (https://...). Vacío = sin imagen",
+        "thumbnail": "URL de miniatura pequeña (https://...). Vacío = sin miniatura",
+        "footer": "Texto del pie. Vacío = usar el nombre del bot",
+        "channel": "Canal destino (predeterminado: canal actual). Debe ser un canal de texto",
+        "use_dropdown": "TRUE = usar menú desplegable (predeterminado: FALSE = botones)"
+      }
+    },
+    "list-panels": {
+      "description": "Ver todos los paneles de tickets persistentes en este servidor"
+    },
+    "delete-panel": {
+      "description": "Elimina un panel de tickets por ID (borra automáticamente el mensaje + metadatos)",
+      "options": {
+        "id": "ID del panel (ver /list-panels)"
+      }
+    },
+    "refresh-panel": {
+      "description": "Vuelve a renderizar un panel con las categorías/productos más recientes (sin reconfigurar)",
+      "options": {
+        "id": "ID del panel (ver /list-panels)"
+      }
+    },
+    "update-panel": {
+      "description": "Edita un campo del panel (title/body/color/image/thumbnail/footer) vía modal",
+      "options": {
+        "id": "ID del panel (ver /list-panels)",
+        "field": "Qué campo editar"
+      }
+    },
+    "edit-message": {
+      "description": "Edita el texto del embed vía modal (multilínea, más flexible que /set-message)",
+      "options": {
+        "tipe": "Elige qué mensaje editar"
+      }
+    },
+    "add-product": {
+      "description": "Añade un producto nuevo a la lista de precios",
+      "options": {
+        "label": "Nombre del producto (p. ej. 7 Días, máx. 80 caracteres)",
+        "value": "ID único (p. ej. 7d)",
+        "price": "Precio (p. ej. Rp 50.000 / $3 / $2.50 / 5.88 / 25k — máx. 100 caracteres)",
+        "category": "Categoría del producto (predeterminado: transaction). Ver /list-categories.",
+        "requires_key": "¿Este producto necesita Set Key? (predeterminado: sí para categorías con key)"
+      }
+    },
+    "remove-product": {
+      "description": "Elimina un producto de la lista de precios",
+      "options": {
+        "value": "El value del producto a eliminar (p. ej. 7d)"
+      }
+    },
+    "list-products": {
+      "description": "Ver todos los productos actuales"
+    },
+    "update-product": {
+      "description": "Edita un producto existente (label/price/category/requires_key) sin borrar y volver a añadir",
+      "options": {
+        "value": "El value del producto a actualizar (identificador — no se puede cambiar)",
+        "label": "Nueva etiqueta del producto (máx. 80 caracteres)",
+        "price": "Precio nuevo (p. ej. \"Rp 25.000\" / \"$3\" / \"$2.50\" / \"5.88\")",
+        "category": "Nueva categoría (ver /list-categories)",
+        "requires_key": "¿Este producto necesita Set Key? (sí=key, no=servicio/sin key)"
+      }
+    },
+    "config-show": {
+      "description": "Ver toda la configuración actual del bot"
+    },
+    "remove-role": {
+      "description": "Elimina un rol de la configuración (verified / unverified / admin / midman / booster)",
+      "options": {
+        "tipe": "Elige el tipo de rol a eliminar"
+      }
+    },
+    "set-midman-fee": {
+      "description": "Configura la comisión de escrow (porcentaje del precio del trato o monto fijo)",
+      "options": {
+        "mode": "Modo de cálculo de la comisión",
+        "value": "Valor de la comisión (porcentaje: 0-90, fijo: monto por trato). 0 = gratis"
+      }
+    },
+    "midman-deals": {
+      "description": "Ver todos los tratos de escrow activos en este servidor"
+    },
+    "remove-channel": {
+      "description": "Elimina un canal de la configuración (invoice / welcome / goodbye / audit-log / server-log / transcript)",
+      "options": {
+        "tipe": "Elige el tipo de canal a eliminar"
+      }
+    },
+    "list-messages": {
+      "description": "Ver todos los textos de embed actuales"
+    },
+    "reset-message": {
+      "description": "Restaura el texto del embed al valor predeterminado",
+      "options": {
+        "tipe": "Elige qué mensaje restablecer (o ALL para todos)"
+      }
+    },
+    "reset-config": {
+      "description": "⚠️ Borra TODA la configuración (roles, canales, mensajes) — ¡no se puede deshacer!"
+    },
+    "set-product-role": {
+      "description": "Configura un rol y duración de auto-expiración para un producto específico",
+      "options": {
+        "value": "Value del producto (p. ej. 30d)",
+        "role": "El rol otorgado cuando una compra se realiza con éxito",
+        "days": "Días antes de que el rol se elimine automáticamente (0 = permanente)"
+      }
+    },
+    "remove-product-role": {
+      "description": "Elimina el auto-rol de un producto específico",
+      "options": {
+        "value": "Value del producto (p. ej. 30d)"
+      }
+    },
+    "list-product-roles": {
+      "description": "Ver todas las asignaciones producto → rol + duraciones"
+    },
+    "set-key": {
+      "description": "Da una key a un usuario + otorga rol + extiende el horario (MAX EXTEND)",
+      "options": {
+        "user": "El usuario que recibe la key",
+        "value": "Value del producto (p. ej. 30d)",
+        "key": "La key que se envía al usuario (máx. 200 caracteres)"
+      }
+    },
+    "list-keys": {
+      "description": "Ver todas las keys (activas y expiradas) del usuario",
+      "options": {
+        "user": "El usuario cuyas keys se quieren ver"
+      }
+    },
+    "clear-schedule": {
+      "description": "Elimina todos los roles programados de un usuario (+ opcionalmente borra todas sus keys y quita el rol VIP)",
+      "options": {
+        "user": "El usuario a limpiar",
+        "clear_keys": "True = borrar TODAS las keys del usuario + quitar el rol VIP (restablecimiento total). Predeterminado: false."
+      }
+    },
+    "setup-selfrole": {
+      "description": "Crea un nuevo panel de self-role (los miembros pueden tomar/quitar roles por sí mismos)",
+      "options": {
+        "title": "Título del panel (p. ej. Elige un Rol de Notif)",
+        "description": "Descripción del panel (admite \\n salto de línea)",
+        "type": "Tipo de UI del panel",
+        "exclusive": "True = solo se permite 1 rol a la vez (p. ej. roles de color). Predeterminado false."
+      }
+    },
+    "selfrole-add": {
+      "description": "Añade un rol a un panel de self-role existente",
+      "options": {
+        "panel_id": "ID del panel (ver /selfrole-list o el pie del panel)",
+        "role": "El rol a añadir al panel",
+        "label": "Etiqueta del botón / opción (máx. 80 caracteres)",
+        "emoji": "Emoji (opcional, p. ej. 🔔)",
+        "description": "Descripción (opcional, menú select, admite \\n salto de línea)",
+        "style": "Color del botón (predeterminado: Secondary)",
+        "requires_role": "Un rol que el usuario debe tener antes de tomar este rol (opcional)"
+      }
+    },
+    "selfrole-remove": {
+      "description": "Elimina un rol de un panel de self-role",
+      "options": {
+        "panel_id": "ID del panel",
+        "role": "El rol a eliminar del panel"
+      }
+    },
+    "selfrole-list": {
+      "description": "Ver todos los paneles de self-role en este servidor"
+    },
+    "selfrole-delete": {
+      "description": "Elimina un panel de self-role (borra el mensaje + la configuración)",
+      "options": {
+        "panel_id": "El ID del panel a eliminar"
+      }
+    },
+    "announce": {
+      "description": "Anuncio rápido — envía un embed a un canal (1 comando, 1 embed)",
+      "options": {
+        "channel": "Canal destino del anuncio",
+        "title": "Título del anuncio",
+        "description": "Contenido del anuncio (admite salto de línea \\n)",
+        "color": "Color hexadecimal (p. ej. #FF0000). Predeterminado: blurple",
+        "image": "URL de imagen grande (opcional)",
+        "thumbnail": "URL de miniatura de esquina (opcional)",
+        "mention": "Mención: @everyone, @here, o <@&role_id>"
+      }
+    },
+    "embed-builder": {
+      "description": "Constructor de embeds interactivo con vista previa en vivo (para embeds complejos)"
+    },
+    "embed-list": {
+      "description": "Ver todas tus sesiones activas del constructor de embeds (+ enlace al mensaje borrador)"
+    },
+    "embed-cancel": {
+      "description": "Cancela una sesión del constructor de embeds por ID (si el borrador se borró/falló)",
+      "options": {
+        "session_id": "ID de sesión (ver /embed-list)"
+      }
+    },
+    "backup-now": {
+      "description": "Crea una copia de seguridad manual ahora (config, keys, scheduledRoles, selfRoles, etc.)"
+    },
+    "backup-list": {
+      "description": "Ver todas las copias guardadas (máx. las 7 más recientes)"
+    },
+    "restore-backup": {
+      "description": "Restaura una copia por nombre (crea automáticamente una copia de seguridad antes de restaurar)",
+      "options": {
+        "name": "Nombre de la carpeta de la copia (ver /backup-list, formato: YYYY-MM-DD_HH-mm-ss)"
+      }
+    },
+    "giveaway": {
+      "description": "Gestiona sorteos de la comunidad (crear, ver, terminar, reroll)",
+      "options": {
+        "create": "Crear un nuevo sorteo",
+        "list": "Ver todos los sorteos en este servidor",
+        "end": "Terminar un sorteo antes de tiempo + elegir ganadores",
+        "reroll": "Reroll del ganador de un sorteo terminado"
+      }
+    },
+    "announce-schedule": {
+      "description": "Programa un anuncio en un canal a una hora específica (única o recurrente)",
+      "options": {
+        "channel": "Canal destino",
+        "title": "Título del anuncio",
+        "description": "Contenido del anuncio (admite \\n para salto de línea)",
+        "at": "Hora de envío. Formato: \"30m\", \"2h\", \"1d\", o \"2026-01-15 20:00\"",
+        "color": "Color hexadecimal (p. ej. #FF0000). Predeterminado: blurple",
+        "image": "URL de imagen grande (opcional)",
+        "thumbnail": "URL de miniatura pequeña (opcional)",
+        "mention": "Mención: @everyone, @here, o <@&role_id>",
+        "recurring": "Repetir (opcional)"
+      }
+    },
+    "announce-list": {
+      "description": "Ver todos los anuncios programados pendientes"
+    },
+    "announce-cancel": {
+      "description": "Cancela un anuncio programado por ID",
+      "options": {
+        "id": "ID del anuncio (ver /announce-list)"
+      }
+    },
+    "warn": {
+      "description": "Advierte a un miembro (acción automática: 3=mute 1h, 5=mute 1d, 7=kick)",
+      "options": {
+        "user": "El miembro a advertir",
+        "reason": "Motivo de la advertencia (admite \\n salto de línea)"
+      }
+    },
+    "warn-list": {
+      "description": "Ver todas las advertencias de un usuario",
+      "options": {
+        "user": "El usuario a comprobar"
+      }
+    },
+    "warn-remove": {
+      "description": "Elimina 1 advertencia por ID",
+      "options": {
+        "user": "El usuario dueño de la advertencia",
+        "warn_id": "ID de la advertencia (ver /warn-list)"
+      }
+    },
+    "warn-clear": {
+      "description": "Elimina TODAS las advertencias de un usuario",
+      "options": {
+        "user": "El usuario cuyas advertencias se van a borrar"
+      }
+    },
+    "timeout": {
+      "description": "Silencia temporalmente a un miembro (máx. 28 días) — queda registrado en su historial",
+      "options": {
+        "user": "El miembro a silenciar",
+        "duration": "Duración en MINUTOS (p. ej. 60 = 1 hora, 1440 = 1 día, máx. 40320 = 28 días)",
+        "reason": "Motivo (enviado al miembro por MD)"
+      }
+    },
+    "untimeout": {
+      "description": "Levanta el timeout (silencio) de un miembro antes de tiempo",
+      "options": {
+        "user": "El miembro cuyo timeout se levanta",
+        "reason": "Motivo del levantamiento"
+      }
+    },
+    "purge": {
+      "description": "Borrado masivo de mensajes en un canal (1-100, solo de <14 días)",
+      "options": {
+        "amount": "Número de mensajes a borrar (1-100)",
+        "user": "Vacío = todos los mensajes; rellenar = solo los de este usuario"
+      }
+    },
+    "kick": {
+      "description": "Expulsa a un miembro del servidor (queda registrado en su historial)",
+      "options": {
+        "user": "El miembro a expulsar",
+        "reason": "Motivo (enviado al miembro por MD)"
+      }
+    },
+    "ban": {
+      "description": "Banea a un miembro + opcionalmente borra mensajes de 0-7 días (queda registrado)",
+      "options": {
+        "user": "El miembro a banear",
+        "delete_days": "Borrar los mensajes del miembro de los últimos N días (0-7, predeterminado 0)",
+        "reason": "Motivo (enviado al miembro por MD)"
+      }
+    },
+    "unban": {
+      "description": "Revoca un ban por User ID (el usuario no necesita estar en el servidor)",
+      "options": {
+        "user_id": "User ID, 17-20 dígitos (Developer Mode → Copy User ID)",
+        "reason": "Motivo del unban"
+      }
+    },
+    "stats": {
+      "description": "Ver estadísticas agregadas del servidor (solo admin)"
+    },
+    "leaderboard": {
+      "description": "Ver el top 10 de miembros (público — los miembros normales pueden usarlo)",
+      "options": {
+        "metric": "Métrica del ranking"
+      }
+    },
+    "my-stats": {
+      "description": "Ver tus estadísticas personales (público — los miembros normales pueden usarlo)"
+    },
+    "boosters": {
+      "description": "Lista de los boosters actuales del servidor + historial reciente de boosts (público)"
+    },
+    "test-booster": {
+      "description": "Diagnostica y previsualiza la notificación de añadir/quitar boost (averigua por qué no aparece)",
+      "options": {
+        "tipe": "Cuál probar",
+        "live": "Enviar también la vista previa al canal REAL de server-booster (prueba de entrega)"
+      }
+    },
+    "serverstats": {
+      "description": "Canales contadores en vivo (miembros, boosts…) que se actualizan automáticamente",
+      "options": {
+        "setup": "Crear la categoría de contadores + canales contadores en vivo",
+        "remove": "Eliminar los canales contadores + la categoría y limpiar la configuración",
+        "refresh": "Forzar la actualización de todos los contadores ahora mismo"
+      }
+    },
+    "poll": {
+      "description": "Gestiona encuestas de la comunidad (crear, ver, cerrar)",
+      "options": {
+        "create": "Crear una nueva encuesta (entrada de opciones vía modal)",
+        "list": "Ver todas las encuestas en este servidor",
+        "close": "Cerrar una encuesta + mostrar los resultados finales"
+      }
+    },
+    "setup-tempvoice": {
+      "description": "Configura temp voice — crea automáticamente una categoría + canal de panel + canal de activación"
+    },
+    "tempvoice-remove": {
+      "description": "Elimina la configuración de temp voice del servidor (la categoría + todos los canales relacionados se borran)"
+    },
+    "send-message": {
+      "description": "Envía un mensaje de texto plano a un canal de texto (admite \\n y menciones)",
+      "options": {
+        "channel": "Canal destino (debe ser un canal de texto)",
+        "message": "Contenido del mensaje (admite \\n para salto de línea). Máx. 2000 caracteres.",
+        "mention": "Mención: @everyone, @here, o <@&role_id> / <@user_id>"
+      }
+    },
+    "add-responder": {
+      "description": "Añade un auto-responder: palabra clave disparadora → respuesta automática",
+      "options": {
+        "trigger": "Palabra clave disparadora (p. ej. !sosmed). Insensible a mayúsculas, máx. 50 caracteres.",
+        "reply": "Texto de respuesta (admite \\n). Máx. 2000 caracteres.",
+        "reply_type": "Tipo de respuesta (predeterminado: texto)",
+        "cooldown": "Enfriamiento en segundos (anti-spam, predeterminado: 3, 0 = desactivado)",
+        "match_mode": "Cómo el disparador coincide con un mensaje (predeterminado: Contains)"
+      }
+    },
+    "list-responder": {
+      "description": "Ver todos los auto-responders registrados"
+    },
+    "remove-responder": {
+      "description": "Elimina un auto-responder por disparador",
+      "options": {
+        "trigger": "El disparador a eliminar"
+      }
+    },
+    "set-automod": {
+      "description": "Configura el auto-mod (spam, enlaces, filtro de palabras, límite de menciones)",
+      "options": {
+        "spam_threshold": "Número de mensajes en la ventana que cuentan como spam (predeterminado: 5)",
+        "spam_action": "Acción para spammers",
+        "block_links": "¿Bloquear todos los enlaces?",
+        "block_words": "Palabras a bloquear (separadas por comas, p. ej. palabra1,palabra2)",
+        "word_action": "Acción para el filtro de palabras",
+        "max_mentions": "Máximo de menciones por mensaje (predeterminado: 5)",
+        "mention_action": "Acción para menciones masivas"
+      }
+    },
+    "automod-show": {
+      "description": "Ver la configuración actual del auto-mod"
+    },
+    "automod-toggle": {
+      "description": "Activa/desactiva el auto-mod",
+      "options": {
+        "enabled": "¿Activar o desactivar?"
+      }
+    },
+    "add-link-whitelist": {
+      "description": "Añade un canal/rol a la lista blanca de enlaces (permitido publicar enlaces)",
+      "options": {
+        "channel": "Canal permitido para publicar enlaces",
+        "role": "Rol permitido para publicar enlaces"
+      }
+    },
+    "add-word": {
+      "description": "Añade palabras a la lista de bloqueo/exención del auto-mod (añade, no reemplaza)",
+      "options": {
+        "words": "Palabras a añadir (separadas por comas, p. ej. palabra1,palabra2)",
+        "tipe": "¿A qué lista añadir?",
+        "action": "Acción específica para estas palabras (vacío = usar la word_action global)"
+      }
+    },
+    "remove-word": {
+      "description": "Elimina 1 palabra de la lista de bloqueo/exención del auto-mod",
+      "options": {
+        "word": "La palabra a eliminar",
+        "tipe": "¿De qué lista eliminar?"
+      }
+    },
+    "list-words": {
+      "description": "Ver la lista de bloqueo + palabras exentas + acciones por palabra"
+    },
+    "remove-link-whitelist": {
+      "description": "Elimina un canal/rol de la lista blanca de enlaces",
+      "options": {
+        "channel": "El canal a eliminar de la lista blanca",
+        "role": "El rol a eliminar de la lista blanca"
+      }
+    },
+    "afk": {
+      "description": "Establece el estado AFK (el bot responde automáticamente cuando te mencionan)",
+      "options": {
+        "reason": "Motivo del AFK (admite \\n, p. ej. \"Comiendo, vuelvo en 30 minutos\")"
+      }
+    },
+    "afk-clear": {
+      "description": "Borra tu estado AFK"
+    },
+    "afk-list": {
+      "description": "Ver todos los miembros que están AFK ahora mismo"
+    },
+    "setup-leveling": {
+      "description": "Activa/desactiva el sistema de niveles + configura el XP",
+      "options": {
+        "enabled": "¿Activar o desactivar el leveling?",
+        "xp_per_message": "XP por mensaje (predeterminado: 15)",
+        "cooldown": "Enfriamiento en segundos (predeterminado: 60)",
+        "announce_levelup": "¿Anunciar cuando un usuario sube de nivel? (predeterminado: sí)"
+      }
+    },
+    "add-level-role": {
+      "description": "Añade un rol de recompensa para un nivel específico (se asigna automáticamente al subir)",
+      "options": {
+        "level": "El nivel a alcanzar (p. ej. 10)",
+        "role": "El rol a asignar"
+      }
+    },
+    "list-level-roles": {
+      "description": "Ver todos los roles de recompensa por nivel"
+    },
+    "remove-level-role": {
+      "description": "Elimina el rol de recompensa de un nivel específico",
+      "options": {
+        "level": "El nivel al que se le quita el rol"
+      }
+    },
+    "rank": {
+      "description": "Ver tu nivel y XP (o los de otro usuario)",
+      "options": {
+        "user": "El usuario a comprobar (predeterminado: tú)"
+      }
+    },
+    "leaderboard-level": {
+      "description": "Top 10 de miembros con el nivel más alto (público)"
+    },
+    "set-language": {
+      "description": "Configura el idioma de respuesta del bot para este servidor (predeterminado: auto — sigue el idioma de Discord de cada usuario)",
+      "options": {
+        "bahasa": "Elige el idioma (Auto = seguir el idioma de la app de Discord de cada usuario)"
+      },
+      "replies": {
+        "set_auto": "🌍 **Idioma guardado: Auto.**\n\nAhora cada miembro recibe respuestas en su propio idioma de la app de Discord (inglés para los idiomas que el bot aún no domina).",
+        "set_fixed": "🌍 **Idioma guardado: {language}.**\n\nTodas las respuestas de este servidor ahora usan este idioma, sin importar el idioma de la app de Discord de cada miembro.",
+        "current": "🌐 Idioma de este servidor: **{language}**\n\n`/set-language` → cambiarlo.",
+        "invalid": "⚠️ Idioma desconocido."
+      }
+    }
+  },
+  "bot_commands.giveaway.options.create.channel": "Canal para el sorteo",
+  "bot_commands.giveaway.options.create.prize": "Premio (p. ej. VIP 30 Días, máx. 200 caracteres)",
+  "bot_commands.giveaway.options.create.duration": "Duración en minutos (mín. 1)",
+  "bot_commands.giveaway.options.create.winners": "Número de ganadores (1-20, predeterminado 1)",
+  "bot_commands.giveaway.options.create.required_role": "Un rol que los participantes deben tener (opcional)",
+  "bot_commands.giveaway.options.end.id": "ID del sorteo (ver /giveaway list)",
+  "bot_commands.giveaway.options.reroll.id": "ID del sorteo (ver /giveaway list)",
+  "bot_commands.serverstats.options.setup.members": "Mostrar el contador 👥 Miembros (predeterminado: sí)",
+  "bot_commands.serverstats.options.setup.bots": "Mostrar el contador 🤖 Bots (predeterminado: sí)",
+  "bot_commands.serverstats.options.setup.boosts": "Mostrar el contador 🚀 Boosts (predeterminado: sí)",
+  "bot_commands.serverstats.options.setup.roles": "Mostrar el contador 🎭 Roles (predeterminado: sí)",
+  "bot_commands.serverstats.options.setup.channels": "Mostrar el contador 📺 Canales (predeterminado: sí)",
+  "bot_commands.poll.options.create.channel": "Canal para la encuesta",
+  "bot_commands.poll.options.create.question": "Pregunta de la encuesta (máx. 250 caracteres)",
+  "bot_commands.poll.options.create.multiple": "True = los miembros pueden elegir varias opciones. Predeterminado false (una sola)",
+  "bot_commands.poll.options.close.id": "ID de la encuesta (ver /poll list)",
+  "dashboard": {
+    "landing": {
+      "tagline": "Gestiona tu bot de Discord CHRONOS desde el navegador. Configura módulos, consulta estadísticas y sincroniza cambios al instante.",
+      "login": "Iniciar sesión con Discord",
+      "invite_title": "Añadir CHRONOS-bot a otro servidor"
+    },
+    "header": {
+      "your_servers": "Tus servidores",
+      "servers_subtitle": "Servidores que gestionas y donde CHRONOS-bot está instalado.",
+      "invite_bot": "＋ Invitar Bot",
+      "logout": "Cerrar sesión"
+    },
+    "common": {
+      "loading": "Cargando…",
+      "error_generic": "Algo salió mal. Inténtalo de nuevo.",
+      "retry": "Reintentar",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "close": "Cerrar",
+      "saved": "Guardado",
+      "bot_offline": "No se puede conectar con la API del bot — ¿está en ejecución el bot?",
+      "back": "Volver"
+    },
+    "language": {
+      "label": "Idioma",
+      "changed": "Idioma establecido en {language}"
+    }
+  }
+}

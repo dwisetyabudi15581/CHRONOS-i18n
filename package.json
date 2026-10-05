@@ -1,0 +1,30 @@
+{
+    "name": "@chronos/i18n",
+    "version": "1.0.0",
+    "description": "Shared i18n runtime + dictionaries for CHRONOS-bot (Discord) and CHRONOS-Dashboard (Next.js) — en, id, es, zh, ar, de. One source of truth so web and bot never drift.",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "files": [
+        "index.js",
+        "index.d.ts",
+        "locales/"
+    ],
+    "scripts": {
+        "test": "node --test test/*.test.js",
+        "check": "node scripts/check-keys.js"
+    },
+    "keywords": [
+        "chronos",
+        "i18n",
+        "discord",
+        "localization"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "github:dwisetyabudi15581/CHRONOS-i18n"
+    },
+    "engines": {
+        "node": ">=18"
+    }
+}
