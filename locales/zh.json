@@ -634,13 +634,29 @@
     "landing": {
       "tagline": "在浏览器中管理你的 CHRONOS Discord 机器人。配置模块、查看统计数据，并即时同步更改。",
       "login": "使用 Discord 登录",
-      "invite_title": "将 CHRONOS-bot 添加到其他服务器"
+      "try_again": "重试",
+      "login_error": "⚠️ 登录错误",
+      "access_hint": "服务器管理员（Discord ManageGuild）及拥有允许身份组的staff可以访问本仪表板。",
+      "invite_title": "将 CHRONOS-bot 添加到其他服务器",
+      "invite_lobby": "＋ 邀请 CHRONOS 到你的服务器"
     },
     "header": {
       "your_servers": "你的服务器",
       "servers_subtitle": "你管理的、已安装 CHRONOS-bot 的服务器。",
       "invite_bot": "＋ 邀请机器人",
-      "logout": "退出登录"
+      "logout": "退出登录",
+      "bot_offline_title": "⚠️ 机器人离线",
+      "bot_offline_body": "机器人没有响应。请在你的 Termux/VPS 上启动它，然后刷新本页面。",
+      "error_loading": "加载服务器失败",
+      "no_servers": "未找到服务器。请确保 CHRONOS-bot 已被邀请到你管理的服务器。",
+      "invite_cta": "邀请 CHRONOS-bot",
+      "members": "{count} 位成员",
+      "owner_badge": "服主",
+      "admin_badge": "管理员",
+      "bot_not_installed": "机器人未安装",
+      "invite_one": "邀请",
+      "back_to_servers": "返回服务器列表",
+      "back_to_servers_short": "← 服务器"
     },
     "common": {
       "loading": "加载中…",
@@ -657,7 +673,8 @@
     },
     "language": {
       "label": "语言",
-      "changed": "语言已设置为 {language}"
+      "changed": "语言已设置为 {language}",
+      "switcher_title": "切换仪表板语言"
     }
   }
 }

@@ -634,13 +634,29 @@
     "landing": {
       "tagline": "Gestiona tu bot de Discord CHRONOS desde el navegador. Configura módulos, consulta estadísticas y sincroniza cambios al instante.",
       "login": "Iniciar sesión con Discord",
-      "invite_title": "Añadir CHRONOS-bot a otro servidor"
+      "try_again": "Reintentar",
+      "login_error": "⚠️ Error de inicio de sesión",
+      "access_hint": "Los administradores del servidor (Discord ManageGuild) y el personal con roles permitidos pueden acceder al panel.",
+      "invite_title": "Añadir CHRONOS-bot a otro servidor",
+      "invite_lobby": "＋ Invitar CHRONOS a tu servidor"
     },
     "header": {
       "your_servers": "Tus servidores",
       "servers_subtitle": "Servidores que gestionas y donde CHRONOS-bot está instalado.",
       "invite_bot": "＋ Invitar Bot",
-      "logout": "Cerrar sesión"
+      "logout": "Cerrar sesión",
+      "bot_offline_title": "⚠️ El bot está desconectado",
+      "bot_offline_body": "El bot no responde. Inícialo en tu Termux/VPS y recarga esta página.",
+      "error_loading": "Error al cargar los servidores",
+      "no_servers": "No se encontraron servidores. Asegúrate de invitar CHRONOS-bot a un servidor que gestiones.",
+      "invite_cta": "Invitar CHRONOS-bot",
+      "members": "{count} miembros",
+      "owner_badge": "Propietario",
+      "admin_badge": "Admin",
+      "bot_not_installed": "Bot no instalado",
+      "invite_one": "Invitar",
+      "back_to_servers": "Volver a la lista de servidores",
+      "back_to_servers_short": "← Servidores"
     },
     "common": {
       "loading": "Cargando…",
@@ -657,7 +673,8 @@
     },
     "language": {
       "label": "Idioma",
-      "changed": "Idioma establecido en {language}"
+      "changed": "Idioma establecido en {language}",
+      "switcher_title": "Cambiar el idioma del panel"
     }
   }
 }

@@ -634,13 +634,29 @@
     "landing": {
       "tagline": "Kelola CHRONOS Discord bot-mu dari browser. Konfigurasi modul, lihat statistik, dan sinkronkan perubahan secara instan.",
       "login": "Login dengan Discord",
-      "invite_title": "Tambahkan CHRONOS-bot ke server lain"
+      "try_again": "Coba Lagi",
+      "login_error": "⚠️ Error Login",
+      "access_hint": "Pengelola server (Discord ManageGuild) dan staff dengan role yang diizinkan bisa mengakses dashboard.",
+      "invite_title": "Tambahkan CHRONOS-bot ke server lain",
+      "invite_lobby": "＋ Invite CHRONOS ke server-mu"
     },
     "header": {
       "your_servers": "Server Kamu",
       "servers_subtitle": "Server yang kamu kelola dan terpasang CHRONOS-bot.",
       "invite_bot": "＋ Invite Bot",
-      "logout": "Keluar"
+      "logout": "Keluar",
+      "bot_offline_title": "⚠️ Bot sedang offline",
+      "bot_offline_body": "Bot tidak merespons. Jalankan bot di Termux/VPS-mu lalu muat ulang halaman ini.",
+      "error_loading": "Gagal memuat server",
+      "no_servers": "Tidak ada server yang ditemukan. Pastikan CHRONOS-bot sudah di-invite ke server yang kamu kelola.",
+      "invite_cta": "Invite CHRONOS-bot",
+      "members": "{count} member",
+      "owner_badge": "Owner",
+      "admin_badge": "Admin",
+      "bot_not_installed": "Bot belum terpasang",
+      "invite_one": "Invite",
+      "back_to_servers": "Kembali ke daftar server",
+      "back_to_servers_short": "← Server"
     },
     "common": {
       "loading": "Memuat…",
@@ -657,7 +673,8 @@
     },
     "language": {
       "label": "Bahasa",
-      "changed": "Bahasa diatur ke {language}"
+      "changed": "Bahasa diatur ke {language}",
+      "switcher_title": "Ganti bahasa dashboard"
     }
   }
 }
