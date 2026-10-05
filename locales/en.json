@@ -32,7 +32,46 @@
     "error_discord_api": "Discord API error. Please try again in a moment.",
     "missing_permissions": "I lack the required permissions for this action. Check my role position and permissions.",
     "language_changed": "Language changed to {language}.",
-    "level_and_boosts": "Level {level} ({count} boosts)"
+    "level_and_boosts": "Level {level} ({count} boosts)",
+    "dm_failed": "⚠️ DM could not be delivered (DMs closed).",
+    "dm_failed_chat": "⚠️ DM could not be delivered (DMs closed) — let them know in chat.",
+    "errors": {
+      "bot_member_unresolved": "❌ The bot could not resolve its own guild member (Discord cache miss) — please retry in a moment.",
+      "bot_missing_perm": "❌ The bot is missing the **{perm}** permission.",
+      "channel_not_found": "❌ Channel not found.",
+      "description_too_long": "❌ Description is too long ({length} chars, max {max}).",
+      "image_url_invalid": "❌ Image URL is not a valid `http://` or `https://` URL.",
+      "image_url_too_long": "❌ Image URL is too long ({length} chars, max {max}).",
+      "invalid_color": "❌ Invalid color: `{value}`. Use 6-digit hex format, e.g. `#FF0000` or `FF0000`.",
+      "text_channel_only": "❌ Channel must be a regular text channel (not a category/forum/voice channel).",
+      "thumbnail_url_invalid": "❌ Thumbnail URL is not a valid `http://` or `https://` URL.",
+      "thumbnail_url_too_long": "❌ Thumbnail URL is too long ({length} chars, max {max}).",
+      "title_too_long": "❌ Title is too long ({length} chars, max {max})."
+    },
+    "guard": {
+      "bot_hierarchy": "❌ The bot role is lower than the target — the bot cannot execute this action. Raise the bot role in Server Settings → Roles.",
+      "bot_self": "❌ You cannot take action against this bot itself.",
+      "hierarchy": "❌ You cannot take action against a member with a role equal to or higher than yours.",
+      "not_in_guild": "❌ That user is not in this server.",
+      "rejected": "❌ Action rejected ({code}).",
+      "self": "❌ You cannot take action against yourself.",
+      "target_bot": "❌ You cannot take action against bots. (Consistent with /warn — bots are not moderation targets.)"
+    },
+    "mod_history_count": "📊 User moderation history: **{count}** actions",
+    "mod_log_type": {
+      "ban": "🔨 Ban",
+      "kick": "👢 Kick",
+      "timeout": "🔇 Timeout",
+      "unban": "♻️ Unban",
+      "untimeout": "🔊 Timeout Removed"
+    },
+    "no_reason_given": "(no reason given)",
+    "perms": {
+      "ban_members": "Ban Members",
+      "kick_members": "Kick Members",
+      "manage_messages": "Manage Messages",
+      "timeout_members": "Timeout Members"
+    }
   },
   "bot_commands": {
     "help": {
@@ -322,6 +361,12 @@
         "image": "Large image URL (optional)",
         "thumbnail": "Small corner thumbnail URL (optional)",
         "mention": "Mention: @everyone, @here, or <@&role_id>"
+      },
+      "replies": {
+        "announced_by": "Announced by {by}",
+        "mention_invalid": "❌ Invalid mention format: `{mention}`\n\nSupported formats:\n• `@everyone` or `everyone`\n• `@here` or `here`\n• `<@&ROLE_ID>` (role mention)\n• `<@USER_ID>` (user mention)\n\nTip: to mention a role, type `@rolename` in Discord then copy the result.",
+        "send_failed": "❌ Failed to send to {channel}: {error}",
+        "sent": "✅ Announce sent to {channel}!\n\n📋 **Preview:**"
       }
     },
     "embed-builder": {
@@ -380,16 +425,37 @@
         "thumbnail": "Small corner thumbnail URL (optional)",
         "mention": "Mention: @everyone, @here, or <@&role_id>",
         "recurring": "Repeat (optional)"
+      },
+      "replies": {
+        "done": "✅ **Announce scheduled!**\n\n📍 Channel: {channel}\n⏰ Send at: {at} ({rel})\n{recurring}📝 Title: {title}\n🆔 ID: `{id}`\n\n💡 Check with `/announce-list`, cancel with `/announce-cancel id:{id}`",
+        "recurring_line": "🔄 Recurring: **{value}**\n",
+        "time_invalid": "❌ Invalid time format.\n\nSupported formats:\n• Relative: `30m`, `2h`, `1d`\n• Absolute: `2026-01-15 20:00` (bot timezone — default WITA/UTC+8, changeable via env TZ_OFFSET_HOURS; format YYYY-MM-DD HH:MM)",
+        "time_past": "❌ The time you entered is in the past. Use a time in the future.",
+        "mention_invalid_short": "❌ Invalid mention format: `{mention}`\n\nSupported formats: `@everyone`, `@here`, `<@&ROLE_ID>`, `<@USER_ID>`."
       }
     },
     "announce-list": {
       "description": "View all pending scheduled announcements",
-      "options": {}
+      "options": {},
+      "replies": {
+        "empty": "📭 No pending scheduled announces. Use `/announce-schedule` to create one.",
+        "entry": "• 📝 **{title}**\n  🆔 `{id}`\n  📍 <#{channel}> | ⏰ {at} ({rel})\n  {recurring}👤 By: {by}",
+        "entry_recurring": "🔄 Recurring: {value}\n  ",
+        "more": "\n\n… +{count} more announcements",
+        "title": "⏰ SCHEDULED ANNOUNCES",
+        "total": "Total **{count}** pending announcements.\n\n"
+      }
     },
     "announce-cancel": {
       "description": "Cancel a scheduled announcement by ID",
       "options": {
         "id": "Announce ID (see /announce-list)"
+      },
+      "replies": {
+        "already_sent": "❌ This announce has already been sent and can't be canceled.",
+        "done": "✅ Announce `{id}` ({title}) canceled.",
+        "not_found": "❌ Announce ID `{id}` not found.",
+        "wrong_guild": "❌ This announce doesn't belong to this guild."
       }
     },
     "warn": {
@@ -397,12 +463,43 @@
       "options": {
         "user": "The member to warn",
         "reason": "Warning reason (supports \\n newline)"
+      },
+      "replies": {
+        "auto_failed": "\n⚠️ Auto-action failed: {error}",
+        "auto_kick": "\n👢 **Auto-action:** Kicked ({count} warnings)",
+        "auto_not_repeated": "\nℹ️ Auto-action not repeated (the user already received the same action before).",
+        "auto_timeout": "\n🔇 **Auto-action:** Timeout {duration} ({count} warnings)",
+        "bot_hierarchy_warning": "\n\n⚠️ **Heads up:** The bot's role (`{bot_role}`) is lower than the target's highest role (`{target_role}`). The bot won't be able to execute the auto-action (timeout/kick) if a threshold is reached. Move the bot's role above the target's role in Server Settings → Roles so the auto-action works.",
+        "dm": "⚠️ **You received a warning in {guild}**\n\nReason: {reason}\nTotal warnings: {count}\n{action}",
+        "dm_action": "Action: {action}",
+        "dm_no_action": "No auto-action yet (thresholds: 3=mute 1h, 5=mute 1d, 7=kick)",
+        "done": "⚠️ **{user} has been warned.**\n\n📝 Reason: {reason}\n📊 Total warnings: **{count}**\n👤 By: {by}",
+        "duration_1d": "1 day",
+        "duration_1h": "1 hour",
+        "hierarchy": "❌ You cannot warn a member with a role equal to or higher than yours.",
+        "not_in_guild": "❌ User {user} is not on this server.",
+        "self": "❌ You cannot warn yourself.",
+        "target_bot": "❌ You cannot warn a bot."
       }
     },
     "warn-list": {
       "description": "View all warnings for a user",
       "options": {
         "user": "The user to check"
+      },
+      "replies": {
+        "clean": "✅ {user} has no warnings or moderation history.",
+        "desc_header": "Total **{count}** warning(s).",
+        "desc_mod": " Moderation history: **{count}** action(s).",
+        "entry": "`{index}.` 🆔 `{id}`\n   📝 {reason}\n   👤 By: {by} | ⏰ {time}{action}",
+        "entry_action": " | ⚡ {action}",
+        "footer": "User ID: {id}",
+        "mod_entry": "`{id}` {type}{duration}\n   📝 {reason}\n   👤 By: {by} | ⏰ {time}",
+        "mod_entry_duration": " ({duration})",
+        "mod_more": "\n\n+{count} more actions (see data/modlogs.json)",
+        "mod_title": "## ⚡ Moderation History ({count})",
+        "thresholds": "\n\n**Thresholds:**\n• {mute1h} warns → 1 hour mute\n• {mute1d} warns → 1 day mute\n• {kick} warns → kick",
+        "title": "⚠️ USER HISTORY — {tag}"
       }
     },
     "warn-remove": {
@@ -410,12 +507,20 @@
       "options": {
         "user": "The user who owns the warning",
         "warn_id": "Warn ID (see /warn-list)"
+      },
+      "replies": {
+        "done": "✅ Warn `{id}` removed from {user}.\n📊 Remaining warnings: **{count}**",
+        "not_found": "❌ Warn ID `{id}` not found for user {user} in this guild."
       }
     },
     "warn-clear": {
       "description": "Delete ALL warnings for a user",
       "options": {
         "user": "The user whose warnings to clear"
+      },
+      "replies": {
+        "done": "✅ **{count}** warning(s) removed from {user} in this guild.",
+        "none": "ℹ️ {user} has no warnings in this guild anyway."
       }
     },
     "timeout": {
@@ -424,6 +529,12 @@
         "user": "The member to mute",
         "duration": "Duration in MINUTES (e.g. 60 = 1 hour, 1440 = 1 day, max 40320 = 28 days)",
         "reason": "Reason (sent to the member via DM)"
+      },
+      "replies": {
+        "dm": "🔇 **You have been timed out in {guild}**\n\nDuration: {duration}\nReason: {reason}\nBy: {by}\n\nWhile the timeout is active you cannot send messages or join voice.",
+        "done": "🔇 **{user} timed out for {duration}.**\n\n📝 Reason: {reason}\n👤 By: {by}",
+        "too_long": "❌ The maximum timeout duration is **28 days** ({max} minutes).",
+        "too_short": "❌ The minimum duration is 1 minute."
       }
     },
     "untimeout": {
@@ -431,6 +542,11 @@
       "options": {
         "user": "The member whose timeout is lifted",
         "reason": "Reason for lifting it"
+      },
+      "replies": {
+        "dm": "🔊 **Your timeout in {guild} has been lifted.**\n\nReason: {reason}\nBy: {by}",
+        "done": "🔊 **Timeout for {user} removed.**\n\n📝 Reason: {reason}\n👤 By: {by}",
+        "not_timed_out": "ℹ️ {user} is not currently timed out."
       }
     },
     "purge": {
@@ -438,6 +554,16 @@
       "options": {
         "amount": "Number of messages to delete (1-100)",
         "user": "Empty = all messages; set = only this user's messages"
+      },
+      "replies": {
+        "done": "🧹 **{count} messages deleted** from #{channel}{filter}.",
+        "filter_user": " (only {user}'s messages)",
+        "none": "ℹ️ No deletable messages found (messages older than 14 days cannot be bulk-deleted).",
+        "none_user": "ℹ️ No deletable messages from {user} found (within the last 100 messages).",
+        "skipped_old": "\n⚠️ {count} messages older than 14 days were skipped (Discord bulk-delete limit — delete those manually).",
+        "text_only": "❌ Purge only works in text channels.",
+        "too_large": "❌ Maximum 100 messages per purge (Discord limit).",
+        "too_small": "❌ Minimum 1 message."
       }
     },
     "kick": {
@@ -445,6 +571,10 @@
       "options": {
         "user": "The member to kick",
         "reason": "Reason (sent to the member via DM)"
+      },
+      "replies": {
+        "dm": "👢 **You were kicked from {guild}**\n\nReason: {reason}\nBy: {by}\n\nYou can rejoin using the server's invite link.",
+        "done": "👢 **{user} kicked.**\n\n📝 Reason: {reason}\n👤 By: {by}"
       }
     },
     "ban": {
@@ -453,6 +583,14 @@
         "user": "The member to ban",
         "delete_days": "Delete the member's messages from the last N days (0-7, default 0)",
         "reason": "Reason (sent to the member via DM)"
+      },
+      "replies": {
+        "delete_days_cap": "❌ Message deletion is capped at {max} days (Discord limit).",
+        "deleted_days": "last {days} days",
+        "deleted_none": "none",
+        "dm": "🔨 **You were BANNED from {guild}**\n\nReason: {reason}\nBy: {by}",
+        "dm_deleted": "\nYour messages from the last {days} days were also deleted.",
+        "done": "🔨 **{user} banned.**\n\n📝 Reason: {reason}\n🗑️ Messages deleted: {deleted}\n👤 By: {by}"
       }
     },
     "unban": {
@@ -460,6 +598,11 @@
       "options": {
         "user_id": "User ID, 17-20 digits (Developer Mode → Copy User ID)",
         "reason": "Reason for the unban"
+      },
+      "replies": {
+        "done": "♻️ **Ban on `{id}`{name} revoked.**\n\n📝 Reason: {reason}\n👤 By: {by}",
+        "invalid_id": "❌ Invalid user ID — the format is 17–20 digits (User Settings → Advanced → Developer Mode → right-click user → Copy User ID).",
+        "not_banned": "ℹ️ User `{id}` is not on this server's ban list."
       }
     },
     "stats": {

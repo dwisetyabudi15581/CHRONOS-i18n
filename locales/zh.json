@@ -32,7 +32,46 @@
     "error_discord_api": "Discord API 错误，请稍后重试。",
     "missing_permissions": "我缺少执行此操作所需的权限。请检查我的身份组位置和权限。",
     "language_changed": "语言已切换为 {language}。",
-    "level_and_boosts": "等级 {level}（{count} 次加速）"
+    "level_and_boosts": "等级 {level}（{count} 次加速）",
+    "dm_failed": "⚠️ 私信无法送达（对方私信已关闭）。",
+    "dm_failed_chat": "⚠️ 私信无法送达（对方私信已关闭）——请在聊天中告知对方。",
+    "errors": {
+      "bot_member_unresolved": "❌ 机器人无法解析自身的服务器成员信息（Discord 缓存未命中）——请稍后重试。",
+      "bot_missing_perm": "❌ 机器人缺少 **{perm}** 权限。",
+      "channel_not_found": "❌ 未找到频道。",
+      "description_too_long": "❌ 描述过长（{length} 字符，上限 {max}）。",
+      "image_url_invalid": "❌ 图片 URL 不是有效的 `http://` 或 `https://` 链接。",
+      "image_url_too_long": "❌ 图片 URL 过长（{length} 字符，上限 {max}）。",
+      "invalid_color": "❌ 颜色无效：`{value}`。请使用 6 位十六进制格式，例如 `#FF0000` 或 `FF0000`。",
+      "text_channel_only": "❌ 频道必须是普通文字频道（不能是分类/论坛/语音频道）。",
+      "thumbnail_url_invalid": "❌ 缩略图 URL 不是有效的 `http://` 或 `https://` 链接。",
+      "thumbnail_url_too_long": "❌ 缩略图 URL 过长（{length} 字符，上限 {max}）。",
+      "title_too_long": "❌ 标题过长（{length} 字符，上限 {max}）。"
+    },
+    "guard": {
+      "bot_hierarchy": "❌ 机器人角色低于目标——无法执行此操作。请在服务器设置 → 角色中提升机器人角色。",
+      "bot_self": "❌ 你不能对机器人本身执行此操作。",
+      "hierarchy": "❌ 你不能对拥有与你相同或更高角色的成员执行此操作。",
+      "not_in_guild": "❌ 该用户不在此服务器中。",
+      "rejected": "❌ 操作被拒绝（{code}）。",
+      "self": "❌ 你不能对自己执行此操作。",
+      "target_bot": "❌ 你不能对机器人执行此操作。（与 /warn 一致——机器人不是管理对象。）"
+    },
+    "mod_history_count": "📊 用户管理记录：**{count}** 条",
+    "mod_log_type": {
+      "ban": "🔨 封禁",
+      "kick": "👢 踢出",
+      "timeout": "🔇 禁言（超时）",
+      "unban": "♻️ 解除封禁",
+      "untimeout": "🔊 解除禁言"
+    },
+    "no_reason_given": "（未提供原因）",
+    "perms": {
+      "ban_members": "封禁成员",
+      "kick_members": "踢出成员",
+      "manage_messages": "管理消息",
+      "timeout_members": "超时成员"
+    }
   },
   "bot_commands": {
     "help": {
@@ -311,6 +350,12 @@
         "image": "大图 URL（可选）",
         "thumbnail": "角落小缩略图 URL（可选）",
         "mention": "提及：@everyone、@here 或 <@&role_id>"
+      },
+      "replies": {
+        "announced_by": "发布者：{by}",
+        "mention_invalid": "❌ 提及格式无效：`{mention}`\n\n支持的格式：\n• `@everyone` 或 `everyone`\n• `@here` 或 `here`\n• `<@&ROLE_ID>`（提及角色）\n• `<@USER_ID>`（提及用户）\n\n提示：要提及角色，请在 Discord 中输入 `@角色名`，然后复制结果。",
+        "send_failed": "❌ 发送到 {channel} 失败：{error}",
+        "sent": "✅ 公告已发送到 {channel}！\n\n📋 **预览：**"
       }
     },
     "embed-builder": {
@@ -358,15 +403,36 @@
         "thumbnail": "小缩略图 URL（可选）",
         "mention": "提及：@everyone、@here 或 <@&role_id>",
         "recurring": "重复（可选）"
+      },
+      "replies": {
+        "done": "✅ **公告已排定！**\n\n📍 频道：{channel}\n⏰ 发送时间：{at}（{rel}）\n{recurring}📝 标题：{title}\n🆔 ID：`{id}`\n\n💡 用 `/announce-list` 查看，用 `/announce-cancel id:{id}` 取消",
+        "recurring_line": "🔄 重复：**{value}**\n",
+        "time_invalid": "❌ 时间格式无效。\n\n支持的格式：\n• 相对时间：`30m`、`2h`、`1d`\n• 绝对时间：`2026-01-15 20:00`（机器人时区——默认 WITA/UTC+8，可通过环境变量 TZ_OFFSET_HOURS 修改；格式 YYYY-MM-DD HH:MM）",
+        "time_past": "❌ 你输入的时间已过去。请使用未来的时间。",
+        "mention_invalid_short": "❌ 提及格式无效：`{mention}`\n\n支持的格式：`@everyone`、`@here`、`<@&ROLE_ID>`、`<@USER_ID>`。"
       }
     },
     "announce-list": {
-      "description": "查看所有待发送的定时公告"
+      "description": "查看所有待发送的定时公告",
+      "replies": {
+        "empty": "📭 没有待发送的定时公告。使用 `/announce-schedule` 创建一个。",
+        "entry": "• 📝 **{title}**\n  🆔 `{id}`\n  📍 <#{channel}> | ⏰ {at}（{rel}）\n  {recurring}👤 操作人：{by}",
+        "entry_recurring": "🔄 重复：{value}\n  ",
+        "more": "\n\n……还有 {count} 条公告",
+        "title": "⏰ 定时公告",
+        "total": "共 **{count}** 条待发送公告。\n\n"
+      }
     },
     "announce-cancel": {
       "description": "按 ID 取消定时公告",
       "options": {
         "id": "公告 ID（见 /announce-list）"
+      },
+      "replies": {
+        "already_sent": "❌ 该公告已发送，无法取消。",
+        "done": "✅ 已取消公告 `{id}`（{title}）。",
+        "not_found": "❌ 未找到公告 ID `{id}`。",
+        "wrong_guild": "❌ 该公告不属于本服务器。"
       }
     },
     "warn": {
@@ -374,12 +440,43 @@
       "options": {
         "user": "要警告的成员",
         "reason": "警告原因（支持 \\n 换行）"
+      },
+      "replies": {
+        "auto_failed": "\n⚠️ 自动操作失败：{error}",
+        "auto_kick": "\n👢 **自动操作：**已踢出（{count} 次警告）",
+        "auto_not_repeated": "\nℹ️ 未重复执行自动操作（该用户此前已受过相同操作）。",
+        "auto_timeout": "\n🔇 **自动操作：**禁言 {duration}（{count} 次警告）",
+        "bot_hierarchy_warning": "\n\n⚠️ **注意：**机器人角色（`{bot_role}`）低于目标最高角色（`{target_role}`）。达到阈值后机器人将无法执行自动操作（禁言/踢出）。请在服务器设置 → 角色中将机器人角色移到目标角色之上，否则自动操作无法生效。",
+        "dm": "⚠️ **你在 {guild} 收到一条警告**\n\n原因：{reason}\n警告总数：{count}\n{action}",
+        "dm_action": "处罚：{action}",
+        "dm_no_action": "暂无自动处罚（阈值：3 次＝禁言 1 小时，5 次＝禁言 1 天，7 次＝踢出）",
+        "done": "⚠️ **{user} 已被警告。**\n\n📝 原因：{reason}\n📊 警告总数：**{count}**\n👤 操作人：{by}",
+        "duration_1d": "1 天",
+        "duration_1h": "1 小时",
+        "hierarchy": "❌ 你不能警告拥有与你相同或更高角色的成员。",
+        "not_in_guild": "❌ 用户 {user} 不在此服务器中。",
+        "self": "❌ 你不能警告自己。",
+        "target_bot": "❌ 你不能警告机器人。"
       }
     },
     "warn-list": {
       "description": "查看用户的所有警告记录",
       "options": {
         "user": "要查询的用户"
+      },
+      "replies": {
+        "clean": "✅ {user} 没有警告或管理记录。",
+        "desc_header": "共 **{count}** 条警告。",
+        "desc_mod": " 管理记录：**{count}** 条。",
+        "entry": "`{index}.` 🆔 `{id}`\n   📝 {reason}\n   👤 操作人：{by} | ⏰ {time}{action}",
+        "entry_action": " | ⚡ {action}",
+        "footer": "用户 ID：{id}",
+        "mod_entry": "`{id}` {type}{duration}\n   📝 {reason}\n   👤 操作人：{by} | ⏰ {time}",
+        "mod_entry_duration": "（{duration}）",
+        "mod_more": "\n\n还有 {count} 条操作（见 data/modlogs.json）",
+        "mod_title": "## ⚡ 管理记录（{count}）",
+        "thresholds": "\n\n**阈值：**\n• {mute1h} 次警告 → 禁言 1 小时\n• {mute1d} 次警告 → 禁言 1 天\n• {kick} 次警告 → 踢出",
+        "title": "⚠️ 用户记录 — {tag}"
       }
     },
     "warn-remove": {
@@ -387,12 +484,20 @@
       "options": {
         "user": "警告所属用户",
         "warn_id": "警告 ID（见 /warn-list）"
+      },
+      "replies": {
+        "done": "✅ 已移除 {user} 的警告 `{id}`。\n📊 剩余警告：**{count}**",
+        "not_found": "❌ 未在本服务器找到用户 {user} 的警告 ID `{id}`。"
       }
     },
     "warn-clear": {
       "description": "删除用户的全部警告",
       "options": {
         "user": "要清除警告的用户"
+      },
+      "replies": {
+        "done": "✅ 已从 {user} 移除 **{count}** 条警告。",
+        "none": "ℹ️ {user} 本来就没有警告记录。"
       }
     },
     "timeout": {
@@ -401,6 +506,12 @@
         "user": "要禁言的成员",
         "duration": "时长（分钟）（如 60 = 1 小时，1440 = 1 天，最长 40320 = 28 天）",
         "reason": "原因（通过私信发送给成员）"
+      },
+      "replies": {
+        "dm": "🔇 **你已在 {guild} 被禁言**\n\n时长：{duration}\n原因：{reason}\n操作人：{by}\n\n禁言期间你无法发送消息或加入语音频道。",
+        "done": "🔇 **{user} 已被禁言 {duration}。**\n\n📝 原因：{reason}\n👤 操作人：{by}",
+        "too_long": "❌ 禁言时长最长为 **28 天**（{max} 分钟）。",
+        "too_short": "❌ 时长至少为 1 分钟。"
       }
     },
     "untimeout": {
@@ -408,6 +519,11 @@
       "options": {
         "user": "要解除禁言的成员",
         "reason": "解除原因"
+      },
+      "replies": {
+        "dm": "🔊 **你在 {guild} 的禁言已被解除。**\n\n原因：{reason}\n操作人：{by}",
+        "done": "🔊 **{user} 的禁言已解除。**\n\n📝 原因：{reason}\n👤 操作人：{by}",
+        "not_timed_out": "ℹ️ {user} 目前没有被禁言。"
       }
     },
     "purge": {
@@ -415,6 +531,16 @@
       "options": {
         "amount": "要删除的消息数量（1-100）",
         "user": "留空 = 所有消息；填写 = 仅该用户的消息"
+      },
+      "replies": {
+        "done": "🧹 已从 #{channel}{filter} 删除 **{count} 条消息**。",
+        "filter_user": "（仅 {user} 的消息）",
+        "none": "ℹ️ 未找到可删除的消息（超过 14 天的消息无法批量删除）。",
+        "none_user": "ℹ️ 未找到可删除的 {user} 的消息（最近 100 条内）。",
+        "skipped_old": "\n⚠️ {count} 条超过 14 天的消息被跳过（Discord 批量删除限制——请手动删除）。",
+        "text_only": "❌ 清理功能仅适用于文字频道。",
+        "too_large": "❌ 每次清理最多 100 条消息（Discord 限制）。",
+        "too_small": "❌ 至少 1 条消息。"
       }
     },
     "kick": {
@@ -422,6 +548,10 @@
       "options": {
         "user": "要踢出的成员",
         "reason": "原因（通过私信发送给成员）"
+      },
+      "replies": {
+        "dm": "👢 **你已被 {guild} 踢出**\n\n原因：{reason}\n操作人：{by}\n\n你可以通过服务器邀请链接重新加入。",
+        "done": "👢 **{user} 已被踢出。**\n\n📝 原因：{reason}\n👤 操作人：{by}"
       }
     },
     "ban": {
@@ -430,6 +560,14 @@
         "user": "要封禁的成员",
         "delete_days": "删除该成员最近 N 天的消息（0-7，默认 0）",
         "reason": "原因（通过私信发送给成员）"
+      },
+      "replies": {
+        "delete_days_cap": "❌ 消息删除最多追溯 {max} 天（Discord 限制）。",
+        "deleted_days": "最近 {days} 天",
+        "deleted_none": "无",
+        "dm": "🔨 **你已被 {guild} 封禁**\n\n原因：{reason}\n操作人：{by}",
+        "dm_deleted": "\n你最近 {days} 天的消息也已被删除。",
+        "done": "🔨 **{user} 已被封禁。**\n\n📝 原因：{reason}\n🗑️ 删除消息：{deleted}\n👤 操作人：{by}"
       }
     },
     "unban": {
@@ -437,6 +575,11 @@
       "options": {
         "user_id": "User ID，17-20 位数字（开发者模式 → 复制用户 ID）",
         "reason": "解封原因"
+      },
+      "replies": {
+        "done": "♻️ **已解除对 `{id}`{name} 的封禁。**\n\n📝 原因：{reason}\n👤 操作人：{by}",
+        "invalid_id": "❌ 用户 ID 无效——格式为 17–20 位数字（用户设置 → 高级 → 开发者模式 → 右键点击用户 → 复制用户 ID）。",
+        "not_banned": "ℹ️ 用户 `{id}` 不在本服务器的封禁列表中。"
       }
     },
     "stats": {

@@ -32,7 +32,46 @@
     "error_discord_api": "Discord-API-Fehler. Bitte versuche es in einem Moment erneut.",
     "missing_permissions": "Mir fehlen die erforderlichen Berechtigungen für diese Aktion. Prüfe meine Rollenposition und Berechtigungen.",
     "language_changed": "Sprache zu {language} geändert.",
-    "level_and_boosts": "Level {level} ({count} Boosts)"
+    "level_and_boosts": "Level {level} ({count} Boosts)",
+    "dm_failed": "⚠️ DM konnte nicht zugestellt werden (DMs geschlossen).",
+    "dm_failed_chat": "⚠️ DM konnte nicht zugestellt werden (DMs geschlossen) — informiere ihn im Chat.",
+    "errors": {
+      "bot_member_unresolved": "❌ Der Bot konnte sein eigenes Server-Mitglied nicht auflösen (Discord-Cache-Fehler) — bitte in einem Moment erneut versuchen.",
+      "bot_missing_perm": "❌ Dem Bot fehlt die Berechtigung **{perm}**.",
+      "channel_not_found": "❌ Kanal nicht gefunden.",
+      "description_too_long": "❌ Die Beschreibung ist zu lang ({length} Zeichen, max. {max}).",
+      "image_url_invalid": "❌ Die Bild-URL ist keine gültige `http://`- oder `https://`-URL.",
+      "image_url_too_long": "❌ Die Bild-URL ist zu lang ({length} Zeichen, max. {max}).",
+      "invalid_color": "❌ Ungültige Farbe: `{value}`. Verwende das 6-stellige Hex-Format, z. B. `#FF0000` oder `FF0000`.",
+      "text_channel_only": "❌ Der Kanal muss ein normaler Textkanal sein (keine Kategorie/Forum/Sprachkanal).",
+      "thumbnail_url_invalid": "❌ Die Thumbnail-URL ist keine gültige `http://`- oder `https://`-URL.",
+      "thumbnail_url_too_long": "❌ Die Thumbnail-URL ist zu lang ({length} Zeichen, max. {max}).",
+      "title_too_long": "❌ Der Titel ist zu lang ({length} Zeichen, max. {max})."
+    },
+    "guard": {
+      "bot_hierarchy": "❌ Die Bot-Rolle ist niedriger als die des Ziels — der Bot kann diese Aktion nicht ausführen. Erhöhe die Bot-Rolle unter Servereinstellungen → Rollen.",
+      "bot_self": "❌ Du kannst keine Maßnahme gegen den Bot selbst ergreifen.",
+      "hierarchy": "❌ Du kannst keine Maßnahme gegen ein Mitglied mit einer Rolle gleich oder höher als deiner ergreifen.",
+      "not_in_guild": "❌ Dieser Nutzer ist nicht auf diesem Server.",
+      "rejected": "❌ Aktion abgelehnt ({code}).",
+      "self": "❌ Du kannst keine Maßnahme gegen dich selbst ergreifen.",
+      "target_bot": "❌ Du kannst keine Maßnahme gegen Bots ergreifen. (Konsistent mit /warn — Bots sind keine Moderationsziele.)"
+    },
+    "mod_history_count": "📊 Moderationsverlauf des Nutzers: **{count}** Aktionen",
+    "mod_log_type": {
+      "ban": "🔨 Ban",
+      "kick": "👢 Kick",
+      "timeout": "🔇 Timeout",
+      "unban": "♻️ Unban",
+      "untimeout": "🔊 Timeout aufgehoben"
+    },
+    "no_reason_given": "(kein Grund angegeben)",
+    "perms": {
+      "ban_members": "Mitglieder bannen",
+      "kick_members": "Mitglieder kicken",
+      "manage_messages": "Nachrichten verwalten",
+      "timeout_members": "Mitglieder auszeitsetzen"
+    }
   },
   "bot_commands": {
     "help": {
@@ -311,6 +350,12 @@
         "image": "Große Bild-URL (optional)",
         "thumbnail": "Kleine Eck-Thumbnail-URL (optional)",
         "mention": "Erwähnung: @everyone, @here oder <@&role_id>"
+      },
+      "replies": {
+        "announced_by": "Angekündigt von {by}",
+        "mention_invalid": "❌ Ungültiges Erwähnungsformat: `{mention}`\n\nUnterstützte Formate:\n• `@everyone` oder `everyone`\n• `@here` oder `here`\n• `<@&ROLE_ID>` (Rollenerwähnung)\n• `<@USER_ID>` (Nutzererwähnung)\n\nTipp: Um eine Rolle zu erwähnen, gib `@rollenname` in Discord ein und kopiere das Ergebnis.",
+        "send_failed": "❌ Senden an {channel} fehlgeschlagen: {error}",
+        "sent": "✅ Ankündigung an {channel} gesendet!\n\n📋 **Vorschau:**"
       }
     },
     "embed-builder": {
@@ -358,15 +403,36 @@
         "thumbnail": "Kleine Thumbnail-URL (optional)",
         "mention": "Erwähnung: @everyone, @here oder <@&role_id>",
         "recurring": "Wiederholen (optional)"
+      },
+      "replies": {
+        "done": "✅ **Ankündigung geplant!**\n\n📍 Kanal: {channel}\n⏰ Senden um: {at} ({rel})\n{recurring}📝 Titel: {title}\n🆔 ID: `{id}`\n\n💡 Prüfe mit `/announce-list`, brich ab mit `/announce-cancel id:{id}`",
+        "recurring_line": "🔄 Wiederkehrend: **{value}**\n",
+        "time_invalid": "❌ Ungültiges Zeitformat.\n\nUnterstützte Formate:\n• Relativ: `30m`, `2h`, `1d`\n• Absolut: `2026-01-15 20:00` (Bot-Zeitzone — standardmäßig WITA/UTC+8, über die Umgebungsvariable TZ_OFFSET_HOURS änderbar; Format YYYY-MM-DD HH:MM)",
+        "time_past": "❌ Die eingegebene Zeit liegt in der Vergangenheit. Verwende eine Zeit in der Zukunft.",
+        "mention_invalid_short": "❌ Ungültiges Erwähnungsformat: `{mention}`\n\nUnterstützte Formate: `@everyone`, `@here`, `<@&ROLE_ID>`, `<@USER_ID>`."
       }
     },
     "announce-list": {
-      "description": "Alle ausstehenden geplanten Ankündigungen anzeigen"
+      "description": "Alle ausstehenden geplanten Ankündigungen anzeigen",
+      "replies": {
+        "empty": "📭 Keine ausstehenden geplanten Ankündigungen. Erstelle eine mit `/announce-schedule`.",
+        "entry": "• 📝 **{title}**\n  🆔 `{id}`\n  📍 <#{channel}> | ⏰ {at} ({rel})\n  {recurring}👤 Von: {by}",
+        "entry_recurring": "🔄 Wiederkehrend: {value}\n  ",
+        "more": "\n\n… +{count} weitere Ankündigungen",
+        "title": "⏰ GEPLANTE ANKÜNDIGUNGEN",
+        "total": "Insgesamt **{count}** ausstehende Ankündigungen.\n\n"
+      }
     },
     "announce-cancel": {
       "description": "Eine geplante Ankündigung per ID abbrechen",
       "options": {
         "id": "Ankündigungs-ID (siehe /announce-list)"
+      },
+      "replies": {
+        "already_sent": "❌ Diese Ankündigung wurde bereits gesendet und kann nicht abgebrochen werden.",
+        "done": "✅ Ankündigung `{id}` ({title}) abgebrochen.",
+        "not_found": "❌ Ankündigungs-ID `{id}` nicht gefunden.",
+        "wrong_guild": "❌ Diese Ankündigung gehört nicht zu diesem Server."
       }
     },
     "warn": {
@@ -374,12 +440,43 @@
       "options": {
         "user": "Das zu verwarnende Mitglied",
         "reason": "Grund der Verwarnung (unterstützt \\n Zeilenumbruch)"
+      },
+      "replies": {
+        "auto_failed": "\n⚠️ Automatische Aktion fehlgeschlagen: {error}",
+        "auto_kick": "\n👢 **Automatische Aktion:** Gekickt ({count} Verwarnungen)",
+        "auto_not_repeated": "\nℹ️ Automatische Aktion nicht wiederholt (der Nutzer hat dieselbe Aktion bereits zuvor erhalten).",
+        "auto_timeout": "\n🔇 **Automatische Aktion:** Timeout {duration} ({count} Verwarnungen)",
+        "bot_hierarchy_warning": "\n\n⚠️ **Achtung:** Die Bot-Rolle (`{bot_role}`) ist niedriger als die höchste Rolle des Ziels (`{target_role}`). Der Bot kann die automatische Aktion (Timeout/Kick) nicht ausführen, wenn ein Schwellenwert erreicht ist. Verschiebe die Bot-Rolle in den Servereinstellungen → Rollen über die Rolle des Ziels, damit die automatische Aktion funktioniert.",
+        "dm": "⚠️ **Du hast eine Verwarnung in {guild} erhalten**\n\nGrund: {reason}\nVerwarnungen insgesamt: {count}\n{action}",
+        "dm_action": "Aktion: {action}",
+        "dm_no_action": "Noch keine automatische Aktion (Schwellenwerte: 3=Timeout 1h, 5=Timeout 1d, 7=Kick)",
+        "done": "⚠️ **{user} wurde verwarnt.**\n\n📝 Grund: {reason}\n📊 Verwarnungen insgesamt: **{count}**\n👤 Von: {by}",
+        "duration_1d": "1 Tag",
+        "duration_1h": "1 Stunde",
+        "hierarchy": "❌ Du kannst kein Mitglied mit einer Rolle gleich oder höher als deiner verwarnen.",
+        "not_in_guild": "❌ Der Nutzer {user} ist nicht auf diesem Server.",
+        "self": "❌ Du kannst dich nicht selbst verwarnen.",
+        "target_bot": "❌ Du kannst keinen Bot verwarnen."
       }
     },
     "warn-list": {
       "description": "Alle Verwarnungen eines Benutzers anzeigen",
       "options": {
         "user": "Der zu prüfende Benutzer"
+      },
+      "replies": {
+        "clean": "✅ {user} hat keine Verwarnungen oder Moderationsverlauf.",
+        "desc_header": "Insgesamt **{count}** Verwarnung(en).",
+        "desc_mod": " Moderationsverlauf: **{count}** Aktion(en).",
+        "entry": "`{index}.` 🆔 `{id}`\n   📝 {reason}\n   👤 Von: {by} | ⏰ {time}{action}",
+        "entry_action": " | ⚡ {action}",
+        "footer": "Nutzer-ID: {id}",
+        "mod_entry": "`{id}` {type}{duration}\n   📝 {reason}\n   👤 Von: {by} | ⏰ {time}",
+        "mod_entry_duration": " ({duration})",
+        "mod_more": "\n\n+{count} weitere Aktionen (siehe data/modlogs.json)",
+        "mod_title": "## ⚡ Moderationsverlauf ({count})",
+        "thresholds": "\n\n**Schwellenwerte:**\n• {mute1h} Verwarnungen → 1 Stunde Timeout\n• {mute1d} Verwarnungen → 1 Tag Timeout\n• {kick} Verwarnungen → Kick",
+        "title": "⚠️ NUTZERVERLAUF — {tag}"
       }
     },
     "warn-remove": {
@@ -387,12 +484,20 @@
       "options": {
         "user": "Der Besitzer der Verwarnung",
         "warn_id": "Verwarnungs-ID (siehe /warn-list)"
+      },
+      "replies": {
+        "done": "✅ Verwarnung `{id}` von {user} entfernt.\n📊 Verbleibende Verwarnungen: **{count}**",
+        "not_found": "❌ Verwarnungs-ID `{id}` für den Nutzer {user} auf diesem Server nicht gefunden."
       }
     },
     "warn-clear": {
       "description": "ALLE Verwarnungen eines Benutzers löschen",
       "options": {
         "user": "Der Benutzer, dessen Verwarnungen gelöscht werden"
+      },
+      "replies": {
+        "done": "✅ **{count}** Verwarnung(en) von {user} auf diesem Server entfernt.",
+        "none": "ℹ️ {user} hat ohnehin keine Verwarnungen auf diesem Server."
       }
     },
     "timeout": {
@@ -401,6 +506,12 @@
         "user": "Das stummzuschaltende Mitglied",
         "duration": "Dauer in MINUTEN (z. B. 60 = 1 Stunde, 1440 = 1 Tag, max. 40320 = 28 Tage)",
         "reason": "Grund (wird dem Mitglied per DM gesendet)"
+      },
+      "replies": {
+        "dm": "🔇 **Du wurdest in {guild} in den Timeout versetzt**\n\nDauer: {duration}\nGrund: {reason}\nVon: {by}\n\nSolange der Timeout aktiv ist, kannst du keine Nachrichten senden und keinen Sprachkanälen beitreten.",
+        "done": "🔇 **{user} wurde für {duration} in den Timeout versetzt.**\n\n📝 Grund: {reason}\n👤 Von: {by}",
+        "too_long": "❌ Die maximale Timeout-Dauer beträgt **28 Tage** ({max} Minuten).",
+        "too_short": "❌ Die Mindestdauer beträgt 1 Minute."
       }
     },
     "untimeout": {
@@ -408,6 +519,11 @@
       "options": {
         "user": "Das Mitglied, dessen Timeout aufgehoben wird",
         "reason": "Grund für die Aufhebung"
+      },
+      "replies": {
+        "dm": "🔊 **Dein Timeout in {guild} wurde aufgehoben.**\n\nGrund: {reason}\nVon: {by}",
+        "done": "🔊 **Timeout für {user} aufgehoben.**\n\n📝 Grund: {reason}\n👤 Von: {by}",
+        "not_timed_out": "ℹ️ {user} ist derzeit nicht im Timeout."
       }
     },
     "purge": {
@@ -415,6 +531,16 @@
       "options": {
         "amount": "Anzahl der zu löschenden Nachrichten (1-100)",
         "user": "Leer = alle Nachrichten; gesetzt = nur die Nachrichten dieses Benutzers"
+      },
+      "replies": {
+        "done": "🧹 **{count} Nachrichten gelöscht** aus #{channel}{filter}.",
+        "filter_user": " (nur Nachrichten von {user})",
+        "none": "ℹ️ Keine löschbaren Nachrichten gefunden (Nachrichten älter als 14 Tage können nicht massenweise gelöscht werden).",
+        "none_user": "❌ Keine löschbaren Nachrichten von {user} gefunden (innerhalb der letzten 100 Nachrichten).",
+        "skipped_old": "\n⚠️ {count} Nachrichten älter als 14 Tage wurden übersprungen (Discord-Massenlösch-Limit — lösche diese manuell).",
+        "text_only": "❌ Die Bereinigung funktioniert nur in Textkanälen.",
+        "too_large": "❌ Maximal 100 Nachrichten pro Bereinigung (Discord-Limit).",
+        "too_small": "❌ Mindestens 1 Nachricht."
       }
     },
     "kick": {
@@ -422,6 +548,10 @@
       "options": {
         "user": "Das zu kickende Mitglied",
         "reason": "Grund (wird dem Mitglied per DM gesendet)"
+      },
+      "replies": {
+        "dm": "👢 **Du wurdest aus {guild} gekickt**\n\nGrund: {reason}\nVon: {by}\n\nDu kannst über den Einladungslink des Servers erneut beitreten.",
+        "done": "👢 **{user} wurde gekickt.**\n\n📝 Grund: {reason}\n👤 Von: {by}"
       }
     },
     "ban": {
@@ -430,6 +560,14 @@
         "user": "Das zu bannende Mitglied",
         "delete_days": "Die Nachrichten des Mitglieds der letzten N Tage löschen (0-7, Standard 0)",
         "reason": "Grund (wird dem Mitglied per DM gesendet)"
+      },
+      "replies": {
+        "delete_days_cap": "❌ Das Löschen von Nachrichten ist auf {max} Tage begrenzt (Discord-Limit).",
+        "deleted_days": "letzte {days} Tage",
+        "deleted_none": "keine",
+        "dm": "🔨 **Du wurdest aus {guild} GEBANNT**\n\nGrund: {reason}\nVon: {by}",
+        "dm_deleted": "\nDeine Nachrichten der letzten {days} Tage wurden ebenfalls gelöscht.",
+        "done": "🔨 **{user} wurde gebannt.**\n\n📝 Grund: {reason}\n🗑️ Gelöschte Nachrichten: {deleted}\n👤 Von: {by}"
       }
     },
     "unban": {
@@ -437,6 +575,11 @@
       "options": {
         "user_id": "Benutzer-ID, 17-20 Ziffern (Entwicklermodus → Benutzer-ID kopieren)",
         "reason": "Grund für den Unban"
+      },
+      "replies": {
+        "done": "♻️ **Bann von `{id}`{name} aufgehoben.**\n\n📝 Grund: {reason}\n👤 Von: {by}",
+        "invalid_id": "❌ Ungültige Nutzer-ID — das Format ist 17–20 Ziffern (Nutzereinstellungen → Erweitert → Entwicklermodus → Rechtsklick auf den Nutzer → Nutzer-ID kopieren).",
+        "not_banned": "ℹ️ Der Nutzer `{id}` steht nicht auf der Bannliste dieses Servers."
       }
     },
     "stats": {

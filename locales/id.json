@@ -32,7 +32,46 @@
     "error_discord_api": "Error API Discord. Silakan coba lagi sebentar lagi.",
     "missing_permissions": "Saya tidak punya izin yang dibutuhkan untuk aksi ini. Cek posisi role dan izin saya.",
     "language_changed": "Bahasa diubah ke {language}.",
-    "level_and_boosts": "Level {level} ({count} boost)"
+    "level_and_boosts": "Level {level} ({count} boost)",
+    "dm_failed": "⚠️ DM tidak terkirim (DM pengguna ditutup).",
+    "dm_failed_chat": "⚠️ DM tidak terkirim (DM pengguna ditutup) — beri tahu lewat chat.",
+    "errors": {
+      "bot_member_unresolved": "❌ Bot tidak bisa mengurai member-nya sendiri (cache Discord hilang) — coba lagi sebentar lagi.",
+      "bot_missing_perm": "❌ Bot tidak memiliki izin **{perm}**.",
+      "channel_not_found": "❌ Channel tidak ditemukan.",
+      "description_too_long": "❌ Deskripsi terlalu panjang ({length} karakter, maks {max}).",
+      "image_url_invalid": "❌ URL gambar bukan URL `http://` atau `https://` yang valid.",
+      "image_url_too_long": "❌ URL gambar terlalu panjang ({length} karakter, maks {max}).",
+      "invalid_color": "❌ Warna tidak valid: `{value}`. Gunakan format heksadesimal 6 digit, mis. `#FF0000` atau `FF0000`.",
+      "text_channel_only": "❌ Channel harus berupa channel teks biasa (bukan kategori/forum/voice).",
+      "thumbnail_url_invalid": "❌ URL thumbnail bukan URL `http://` atau `https://` yang valid.",
+      "thumbnail_url_too_long": "❌ URL thumbnail terlalu panjang ({length} karakter, maks {max}).",
+      "title_too_long": "❌ Judul terlalu panjang ({length} karakter, maks {max})."
+    },
+    "guard": {
+      "bot_hierarchy": "❌ Role bot lebih rendah dari target — bot tidak bisa menjalankan tindakan ini. Naikkan role bot di Pengaturan Server → Roles.",
+      "bot_self": "❌ Anda tidak bisa mengambil tindakan terhadap bot ini sendiri.",
+      "hierarchy": "❌ Anda tidak bisa mengambil tindakan terhadap member dengan role setara atau lebih tinggi dari Anda.",
+      "not_in_guild": "❌ User tersebut tidak ada di server ini.",
+      "rejected": "❌ Tindakan ditolak ({code}).",
+      "self": "❌ Anda tidak bisa mengambil tindakan terhadap diri sendiri.",
+      "target_bot": "❌ Anda tidak bisa mengambil tindakan terhadap bot. (Konsisten dengan /warn — bot bukan target moderasi.)"
+    },
+    "mod_history_count": "📊 Riwayat moderasi pengguna: **{count}** tindakan",
+    "mod_log_type": {
+      "ban": "🔨 Ban",
+      "kick": "👢 Kick",
+      "timeout": "🔇 Timeout",
+      "unban": "♻️ Unban",
+      "untimeout": "🔊 Timeout Dihapus"
+    },
+    "no_reason_given": "(tanpa alasan)",
+    "perms": {
+      "ban_members": "Ban Members",
+      "kick_members": "Kick Members",
+      "manage_messages": "Kelola Pesan",
+      "timeout_members": "Timeout Members"
+    }
   },
   "bot_commands": {
     "help": {
@@ -311,6 +350,12 @@
         "image": "URL gambar besar (opsional)",
         "thumbnail": "URL thumbnail kecil di pojok (opsional)",
         "mention": "Mention: @everyone, @here, atau <@&role_id>"
+      },
+      "replies": {
+        "announced_by": "Diumumkan oleh {by}",
+        "mention_invalid": "❌ Format mention tidak valid: `{mention}`\n\nFormat yang didukung:\n• `@everyone` atau `everyone`\n• `@here` atau `here`\n• `<@&ROLE_ID>` (mention role)\n• `<@USER_ID>` (mention user)\n\nTip: untuk mention role, ketik `@namarole` di Discord lalu salin hasilnya.",
+        "send_failed": "❌ Gagal mengirim ke {channel}: {error}",
+        "sent": "✅ Announce terkirim ke {channel}!\n\n📋 **Pratinjau:**"
       }
     },
     "embed-builder": {
@@ -358,15 +403,36 @@
         "thumbnail": "URL thumbnail kecil (opsional)",
         "mention": "Mention: @everyone, @here, atau <@&role_id>",
         "recurring": "Ulangi (opsional)"
+      },
+      "replies": {
+        "done": "✅ **Announce dijadwalkan!**\n\n📍 Channel: {channel}\n⏰ Kirim pada: {at} ({rel})\n{recurring}📝 Judul: {title}\n🆔 ID: `{id}`\n\n💡 Cek dengan `/announce-list`, batalkan dengan `/announce-cancel id:{id}`",
+        "recurring_line": "🔄 Berulang: **{value}**\n",
+        "time_invalid": "❌ Format waktu tidak valid.\n\nFormat yang didukung:\n• Relatif: `30m`, `2h`, `1d`\n• Absolut: `2026-01-15 20:00` (zona waktu bot — default WITA/UTC+8, bisa diubah via env TZ_OFFSET_HOURS; format YYYY-MM-DD HH:MM)",
+        "time_past": "❌ Waktu yang Anda masukkan sudah lewat. Gunakan waktu di masa depan.",
+        "mention_invalid_short": "❌ Format mention tidak valid: `{mention}`\n\nFormat yang didukung: `@everyone`, `@here`, `<@&ROLE_ID>`, `<@USER_ID>`."
       }
     },
     "announce-list": {
-      "description": "Lihat semua pengumuman terjadwal yang menunggu"
+      "description": "Lihat semua pengumuman terjadwal yang menunggu",
+      "replies": {
+        "empty": "📭 Tidak ada announce terjadwal yang tertunda. Gunakan `/announce-schedule` untuk membuat.",
+        "entry": "• 📝 **{title}**\n  🆔 `{id}`\n  📍 <#{channel}> | ⏰ {at} ({rel})\n  {recurring}👤 Oleh: {by}",
+        "entry_recurring": "🔄 Berulang: {value}\n  ",
+        "more": "\n\n… +{count} pengumuman lagi",
+        "title": "⏰ ANNOUNCE TERJADWAL",
+        "total": "Total **{count}** pengumuman tertunda.\n\n"
+      }
     },
     "announce-cancel": {
       "description": "Batalkan pengumuman terjadwal berdasarkan ID",
       "options": {
         "id": "ID pengumuman (lihat /announce-list)"
+      },
+      "replies": {
+        "already_sent": "❌ Announce ini sudah terkirim dan tidak bisa dibatalkan.",
+        "done": "✅ Announce `{id}` ({title}) dibatalkan.",
+        "not_found": "❌ ID announce `{id}` tidak ditemukan.",
+        "wrong_guild": "❌ Announce ini bukan milik server ini."
       }
     },
     "warn": {
@@ -374,12 +440,43 @@
       "options": {
         "user": "Member yang di-warn",
         "reason": "Alasan peringatan (mendukung \\n baris baru)"
+      },
+      "replies": {
+        "auto_failed": "\n⚠️ Auto-action gagal: {error}",
+        "auto_kick": "\n👢 **Auto-action:** Dikeluarkan ({count} peringatan)",
+        "auto_not_repeated": "\nℹ️ Auto-action tidak diulang (user sudah menerima tindakan yang sama sebelumnya).",
+        "auto_timeout": "\n🔇 **Auto-action:** Timeout {duration} ({count} peringatan)",
+        "bot_hierarchy_warning": "\n\n⚠️ **Perhatian:** Role bot (`{bot_role}`) lebih rendah dari role tertinggi target (`{target_role}`). Bot tidak akan bisa menjalankan auto-action (timeout/kick) jika ambang batas tercapai. Pindahkan role bot ke atas role target di Pengaturan Server → Roles agar auto-action berfungsi.",
+        "dm": "⚠️ **Anda menerima peringatan di {guild}**\n\nAlasan: {reason}\nTotal peringatan: {count}\n{action}",
+        "dm_action": "Tindakan: {action}",
+        "dm_no_action": "Belum ada auto-action (ambang batas: 3=timeout 1 jam, 5=timeout 1 hari, 7=kick)",
+        "done": "⚠️ **{user} telah diberi peringatan.**\n\n📝 Alasan: {reason}\n📊 Total peringatan: **{count}**\n👤 Oleh: {by}",
+        "duration_1d": "1 hari",
+        "duration_1h": "1 jam",
+        "hierarchy": "❌ Anda tidak bisa memberi peringatan pada member dengan role setara atau lebih tinggi dari Anda.",
+        "not_in_guild": "❌ User {user} tidak ada di server ini.",
+        "self": "❌ Anda tidak bisa memberi peringatan pada diri sendiri.",
+        "target_bot": "❌ Anda tidak bisa memberi peringatan pada bot."
       }
     },
     "warn-list": {
       "description": "Lihat semua peringatan milik seorang user",
       "options": {
         "user": "User yang mau dicek"
+      },
+      "replies": {
+        "clean": "✅ {user} tidak memiliki peringatan maupun riwayat moderasi.",
+        "desc_header": "Total **{count}** peringatan.",
+        "desc_mod": " Riwayat moderasi: **{count}** tindakan.",
+        "entry": "`{index}.` 🆔 `{id}`\n   📝 {reason}\n   👤 Oleh: {by} | ⏰ {time}{action}",
+        "entry_action": " | ⚡ {action}",
+        "footer": "ID User: {id}",
+        "mod_entry": "`{id}` {type}{duration}\n   📝 {reason}\n   👤 Oleh: {by} | ⏰ {time}",
+        "mod_entry_duration": " ({duration})",
+        "mod_more": "\n\n+{count} tindakan lagi (lihat data/modlogs.json)",
+        "mod_title": "## ⚡ Riwayat Moderasi ({count})",
+        "thresholds": "\n\n**Ambang batas:**\n• {mute1h} peringatan → timeout 1 jam\n• {mute1d} peringatan → timeout 1 hari\n• {kick} peringatan → kick",
+        "title": "⚠️ RIWAYAT USER — {tag}"
       }
     },
     "warn-remove": {
@@ -387,12 +484,20 @@
       "options": {
         "user": "User pemilik peringatan",
         "warn_id": "ID warn (lihat /warn-list)"
+      },
+      "replies": {
+        "done": "✅ Peringatan `{id}` dihapus dari {user}.\n📊 Sisa peringatan: **{count}**",
+        "not_found": "❌ ID peringatan `{id}` tidak ditemukan untuk user {user} di server ini."
       }
     },
     "warn-clear": {
       "description": "Hapus SEMUA peringatan milik seorang user",
       "options": {
         "user": "User yang peringatannya akan dihapus"
+      },
+      "replies": {
+        "done": "✅ **{count}** peringatan dihapus dari {user} di server ini.",
+        "none": "ℹ️ {user} memang tidak memiliki peringatan di server ini."
       }
     },
     "timeout": {
@@ -401,6 +506,12 @@
         "user": "Member yang akan di-mute",
         "duration": "Durasi dalam MENIT (mis. 60 = 1 jam, 1440 = 1 hari, maks 40320 = 28 hari)",
         "reason": "Alasan (dikirim ke member via DM)"
+      },
+      "replies": {
+        "dm": "🔇 **Anda diberi timeout di {guild}**\n\nDurasi: {duration}\nAlasan: {reason}\nOleh: {by}\n\nSelama timeout aktif, Anda tidak bisa mengirim pesan atau masuk voice.",
+        "done": "🔇 **{user} diberi timeout selama {duration}.**\n\n📝 Alasan: {reason}\n👤 Oleh: {by}",
+        "too_long": "❌ Durasi timeout maksimum adalah **28 hari** ({max} menit).",
+        "too_short": "❌ Durasi minimum adalah 1 menit."
       }
     },
     "untimeout": {
@@ -408,6 +519,11 @@
       "options": {
         "user": "Member yang timeout-nya diangkat",
         "reason": "Alasan pengangkatan"
+      },
+      "replies": {
+        "dm": "🔊 **Timeout Anda di {guild} telah dicabut.**\n\nAlasan: {reason}\nOleh: {by}",
+        "done": "🔊 **Timeout untuk {user} dicabut.**\n\n📝 Alasan: {reason}\n👤 Oleh: {by}",
+        "not_timed_out": "ℹ️ {user} sedang tidak dalam timeout."
       }
     },
     "purge": {
@@ -415,6 +531,16 @@
       "options": {
         "amount": "Jumlah pesan yang akan dihapus (1-100)",
         "user": "Kosong = semua pesan; isi = hanya pesan user ini"
+      },
+      "replies": {
+        "done": "🧹 **{count} pesan dihapus** dari #{channel}{filter}.",
+        "filter_user": " (hanya pesan {user})",
+        "none": "ℹ️ Tidak ada pesan yang bisa dihapus (pesan yang lebih tua dari 14 hari tidak bisa dihapus massal).",
+        "none_user": "ℹ️ Tidak ada pesan {user} yang bisa dihapus (dalam 100 pesan terakhir).",
+        "skipped_old": "\n⚠️ {count} pesan yang lebih tua dari 14 hari dilewati (batas hapus massal Discord — hapus manual).",
+        "text_only": "❌ Purge hanya bekerja di channel teks.",
+        "too_large": "❌ Maksimum 100 pesan per purge (batas Discord).",
+        "too_small": "❌ Minimal 1 pesan."
       }
     },
     "kick": {
@@ -422,6 +548,10 @@
       "options": {
         "user": "Member yang akan di-kick",
         "reason": "Alasan (dikirim ke member via DM)"
+      },
+      "replies": {
+        "dm": "👢 **Anda dikeluarkan (kick) dari {guild}**\n\nAlasan: {reason}\nOleh: {by}\n\nAnda bisa bergabung kembali menggunakan link invite server.",
+        "done": "👢 **{user} dikeluarkan (kick).**\n\n📝 Alasan: {reason}\n👤 Oleh: {by}"
       }
     },
     "ban": {
@@ -430,6 +560,14 @@
         "user": "Member yang akan di-ban",
         "delete_days": "Hapus pesan member dari N hari terakhir (0-7, default 0)",
         "reason": "Alasan (dikirim ke member via DM)"
+      },
+      "replies": {
+        "delete_days_cap": "❌ Penghapusan pesan dibatasi {max} hari (batas Discord).",
+        "deleted_days": "{days} hari terakhir",
+        "deleted_none": "tidak ada",
+        "dm": "🔨 **Anda di-BAN dari {guild}**\n\nAlasan: {reason}\nOleh: {by}",
+        "dm_deleted": "\nPesan Anda dari {days} hari terakhir juga ikut dihapus.",
+        "done": "🔨 **{user} di-ban.**\n\n📝 Alasan: {reason}\n🗑️ Pesan dihapus: {deleted}\n👤 Oleh: {by}"
       }
     },
     "unban": {
@@ -437,6 +575,11 @@
       "options": {
         "user_id": "User ID, 17-20 digit (Developer Mode → Copy User ID)",
         "reason": "Alasan unban"
+      },
+      "replies": {
+        "done": "♻️ **Ban untuk `{id}`{name} dicabut.**\n\n📝 Alasan: {reason}\n👤 Oleh: {by}",
+        "invalid_id": "❌ ID user tidak valid — formatnya 17–20 digit (Pengaturan Pengguna → Advanced → Developer Mode → klik kanan user → Copy User ID).",
+        "not_banned": "ℹ️ User `{id}` tidak ada dalam daftar ban server ini."
       }
     },
     "stats": {
