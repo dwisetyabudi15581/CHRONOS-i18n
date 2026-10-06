@@ -1630,8 +1630,11 @@
     },
     "set-language": {
       "description": "Atur bahasa balasan bot untuk server ini (default: auto — mengikuti bahasa Discord tiap user)",
+      "option_names": {
+        "language": "bahasa"
+      },
       "options": {
-        "bahasa": "Pilih bahasa (Auto = ikuti bahasa aplikasi Discord tiap user)"
+        "language": "Pilih bahasa (Auto = ikuti bahasa aplikasi Discord tiap user)"
       },
       "replies": {
         "set_auto": "🌍 **Bahasa tersimpan: Auto.**\n\nSekarang tiap member mendapat balasan sesuai bahasa aplikasi Discord-nya (English untuk bahasa yang belum dikuasai bot).",

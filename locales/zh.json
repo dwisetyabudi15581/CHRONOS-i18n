@@ -1630,8 +1630,11 @@
     },
     "set-language": {
       "description": "设置本服务器的机器人回复语言（默认：auto — 跟随每位用户的 Discord 语言）",
+      "option_names": {
+        "language": "语言"
+      },
       "options": {
-        "bahasa": "选择语言（Auto = 跟随每位用户的 Discord 应用语言）"
+        "language": "选择语言（Auto = 跟随每位用户的 Discord 应用语言）"
       },
       "replies": {
         "set_auto": "🌍 **语言已保存：Auto。**\n\n现在每位成员都会收到与其 Discord 应用语言一致的回复（机器人尚未支持的语言将显示英文）。",

@@ -1630,8 +1630,11 @@
     },
     "set-language": {
       "description": "Idioma de respuesta del bot en este servidor (auto = el idioma de Discord de cada usuario)",
+      "option_names": {
+        "language": "idioma"
+      },
       "options": {
-        "bahasa": "Elige el idioma (Auto = seguir el idioma de la app de Discord de cada usuario)"
+        "language": "Elige el idioma (Auto = seguir el idioma de la app de Discord de cada usuario)"
       },
       "replies": {
         "set_auto": "🌍 **Idioma guardado: Auto.**\n\nAhora cada miembro recibe respuestas en su propio idioma de la app de Discord (inglés para los idiomas que el bot aún no domina).",

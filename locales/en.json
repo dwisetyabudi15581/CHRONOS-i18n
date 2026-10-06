@@ -1674,8 +1674,11 @@
     },
     "set-language": {
       "description": "Set the bot's reply language for this server (default: auto — follows each user's Discord language)",
+      "option_names": {
+        "language": "language"
+      },
       "options": {
-        "bahasa": "Choose the language (Auto = follow each user's Discord app language)"
+        "language": "Choose the language (Auto = follow each user's Discord app language)"
       },
       "replies": {
         "set_auto": "🌍 **Language saved: Auto.**\n\nEach member now gets replies in their own Discord app language (English for languages the bot does not speak yet).",
