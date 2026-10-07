@@ -64,9 +64,31 @@ test('normalizeLocale() coerces anything', () => {
 test('all six locales have identical flat key sets (parity)', () => {
     const base = getFlatKeys('en');
     assert.ok(base.length > 300, 'dictionary is substantial');
+    // v1.16.0: the `store` namespace (Thor Market webstore) is en+id only —
+    // other locales omit it and fall back to English at runtime.
+    const required = (key) => !key.startsWith('store.');
+    const baseRequired = base.filter(required);
     for (const lang of SUPPORTED_LOCALES) {
-        assert.deepStrictEqual(getFlatKeys(lang), base, `${lang} key parity`);
+        if (lang === 'en' || lang === 'id') {
+            assert.deepStrictEqual(getFlatKeys(lang), base, `${lang} key parity`);
+        } else {
+            assert.deepStrictEqual(
+                getFlatKeys(lang).filter(required),
+                baseRequired,
+                `${lang} key parity (store namespace optional)`
+            );
+        }
     }
+});
+
+test('store namespace ships in en + id and falls back to en elsewhere', () => {
+    for (const key of ['store.nav.home', 'store.brand.buy_now', 'store.checkout.pay_now']) {
+        assert.ok(has(key, 'en'), `${key} exists in en`);
+        assert.ok(has(key, 'id'), `${key} exists in id`);
+        // hard-en fallback serves non-store locales without crashing
+        assert.strictEqual(t(key, 'es'), t(key, 'en'), `${key} falls back to en`);
+    }
+    assert.ok(t('store.cart.title', 'id', { count: 3 }).includes('3'), 'placeholders interpolate');
 });
 
 test('every command description exists in every locale', () => {

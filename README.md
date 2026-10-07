@@ -67,7 +67,7 @@ import { t, resolveLocale, isRTL, htmlDir } from '@chronos/i18n';
 
 ## Dictionary format (`locales/*.json`)
 
-Three modules — `common` (shared strings), `bot_commands` (per-command descriptions, options, replies), `dashboard` (web UI). Every locale carries **exactly the same flat key set** (321 keys in v1.0.0: all 92 command descriptions + 179 option descriptions + shared strings), enforced by `npm run check`.
+Four modules — `common` (shared strings), `bot_commands` (per-command descriptions, options, replies), `dashboard` (web UI), and `store` (**Thor Market** webstore UI — nav, catalog, product, cart, checkout, footer). Every locale carries **exactly the same flat key set**, enforced by `npm run check` — with one documented exception: the `store` namespace is shipped in **`en` + `id`** only (205 keys in v1.16.0); es/zh/ar/de omit it and the runtime's hard-en fallback serves English for store surfaces until those translations land.
 
 ## Language detection model
 
