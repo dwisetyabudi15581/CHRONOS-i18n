@@ -3253,6 +3253,14 @@
       "toast_small_qris_desc": "Pembayaran QRIS otomatis minimal Rp 1.000. Tambah item atau pilih metode lain.",
       "toast_fail_title": "Pesanan gagal dibuat",
       "toast_fail_desc": "Terjadi kesalahan, coba lagi.",
+      "voucher_label": "Kode Voucher",
+      "voucher_placeholder": "Punya kode diskon?",
+      "voucher_apply": "Terapkan",
+      "voucher_invalid_title": "Voucher tidak valid",
+      "voucher_applied_title": "Voucher diterapkan",
+      "voucher_applied_desc": "Diskon {amount} dengan kode {code}.",
+      "voucher_remove": "Hapus voucher",
+      "total_after": "Total Bayar",
       "referral_label": "Kode Referral",
       "referral_placeholder": "Kode referral teman? (opsional)",
       "referral_hint": "Tidak mengubah harga kamu — pemilik kode dapat komisi.",
@@ -3383,7 +3391,8 @@
       "btn_pay_qris": "Lanjutkan Pembayaran QRIS ({amount})",
       "qris_note": "Buka halaman QRIS kapan saja — link ini bisa kamu simpan / bookmark. QR berlaku 24 jam sejak pesanan dibuat dan status diperbarui otomatis setelah kamu membayar.",
       "btn_confirm_wa": "Konfirmasi Pembayaran via WhatsApp",
-      "wa_confirm": "Halo Admin {store}! Saya mau konfirmasi pembayaran untuk pesanan {code} sebesar {amount}."
+      "wa_confirm": "Halo Admin {store}! Saya mau konfirmasi pembayaran untuk pesanan {code} sebesar {amount}.",
+      "btn_reorder": "Beli Lagi"
     },
     "shell": {
       "back": "Kembali ke Toko",
@@ -3417,7 +3426,7 @@
       "btn_start": "Mulai Belanja",
       "card_code": "Kode Pesanan",
       "card_total": "Total Bayar",
-      "card_unique": "termasuk kode unik Rp {amount}",
+      "card_unique": "termasuk biaya admin Rp {amount}",
       "btn_invoice": "Lihat Invoice",
       "btn_pay": "Bayar Sekarang",
       "btn_resume": "Lanjutkan Bayar",
@@ -3427,7 +3436,8 @@
       "filter_empty_title": "Tidak ada pesanan di kategori ini",
       "filter_empty_desc": "Coba pilih kategori lain di atas.",
       "footer_note": "Riwayat pesanan 90 hari terakhir ditampilkan. Invoice bisa kamu cetak atau simpan sebagai PDF dari halaman invoice masing-masing pesanan.",
-      "wa_confirm": "Halo Admin {store}! Saya mau konfirmasi pembayaran pesanan {code} sebesar {amount}."
+      "wa_confirm": "Halo Admin {store}! Saya mau konfirmasi pembayaran pesanan {code} sebesar {amount}.",
+      "btn_reorder": "Beli Lagi"
     },
     "success": {
       "notfound_title": "Pesanan tidak ditemukan",
@@ -3486,7 +3496,7 @@
       "code_label": "Kode Pesanan",
       "total_label": "Total yang harus dibayar",
       "btn_copy": "Salin",
-      "unique_note": "Total belanja {base} + kode unik Rp {unique} — diperlukan agar nominal pesananmu tidak bentrok dengan pesanan lain.",
+      "unique_note": "Total belanja {base} + biaya admin Rp {unique}.",
       "valid_until": "Berlaku sampai {time} ({countdown})",
       "how_title": "Cara Pembayaran",
       "how_1": "Buka aplikasi apa pun yang mendukung QRIS — DANA, GoPay, OVO, ShopeePay, atau m-banking.",
@@ -3497,7 +3507,8 @@
       "btn_help": "Butuh Bantuan?",
       "wa_help": "Halo Admin {store}! Saya butuh bantuan pembayaran pesanan {code}.",
       "tutorial_title": "Tutorial Pemasangan",
-      "tutorial_desc": "Ikuti langkah-langkah berikut untuk memasang key yang baru kamu terima."
+      "tutorial_desc": "Ikuti langkah-langkah berikut untuk memasang key yang baru kamu terima.",
+      "discount_note": "Diskon voucher {code} −{amount}."
     },
     "review": {
       "title": "Ceritakan Pengalamanmu",
@@ -3563,10 +3574,10 @@
       "th_price": "Harga Satuan",
       "th_subtotal": "Subtotal",
       "subtotal": "Subtotal",
-      "unique_code": "Kode Unik",
+      "unique_code": "Biaya Admin",
       "total_pay": "Total Bayar",
       "pay_guide_title": "Petunjuk pembayaran {method}:",
-      "pay_guide_qris": "Buka halaman pesanan {code}, scan QRIS, dan bayar tepat {amount} (sudah termasuk kode unik Rp {unique}). Konfirmasi berjalan otomatis — key dikirim seketika setelah pembayaran terdeteksi.",
+      "pay_guide_qris": "Buka halaman pesanan {code}, scan QRIS, dan bayar tepat {amount} (sudah termasuk biaya admin Rp {unique}). Konfirmasi berjalan otomatis — key dikirim seketika setelah pembayaran terdeteksi.",
       "pay_guide_manual": "Selesaikan pembayaran sebesar {amount}, lalu konfirmasi ke admin via WhatsApp dengan menyertakan kode pesanan {code}.",
       "key_heading": "Produk Digital — Key Aktivasi",
       "key_note": "Simpan key di atas baik-baik. Key yang sama juga dikirim ke WhatsApp kamu dan bisa dilihat kapan saja di halaman pesanan {code}.",
@@ -3579,7 +3590,8 @@
       "toast_copied_title": "Key disalin!",
       "toast_copied_desc": "Key pesanan {code} tersalin ke clipboard.",
       "toast_fail_title": "Gagal menyalin",
-      "toast_fail_desc": "Salin manual dari kotak key di invoice."
+      "toast_fail_desc": "Salin manual dari kotak key di invoice.",
+      "discount": "Diskon voucher ({code})"
     },
     "referral": {
       "title": "Program Referral",
@@ -3613,6 +3625,15 @@
       "wa_message": "Halo admin, saya mau minta pencairan komisi referral. Kode saya {code}, saldo {balance}. Terima kasih!",
       "error_claim": "Gagal membuat kode referral",
       "error_refresh": "Gagal memuat statistik"
+    },
+    "reorder": {
+      "toast_added_title": "{n} item masuk keranjang",
+      "toast_added_desc": "Periksa keranjangmu lalu lanjutkan pembayaran — harga selalu yang terbaru.",
+      "toast_partial_title": "{n} item masuk keranjang, {m} tidak tersedia",
+      "toast_partial_desc": "Tidak bisa dibeli: {names}.",
+      "toast_none_title": "Tidak ada item yang bisa dibeli lagi",
+      "toast_none_desc": "Produk dalam pesanan ini sudah dihapus atau stoknya sedang habis.",
+      "toast_fail_title": "Gagal memuat ulang pesanan"
     }
   }
 }

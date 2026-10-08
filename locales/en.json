@@ -3281,6 +3281,14 @@
       "toast_small_qris_desc": "Automatic QRIS payments require a minimum of Rp 1.000. Add items or choose another method.",
       "toast_fail_title": "Order failed to create",
       "toast_fail_desc": "Something went wrong, please try again.",
+      "voucher_label": "Voucher Code",
+      "voucher_placeholder": "Have a discount code?",
+      "voucher_apply": "Apply",
+      "voucher_invalid_title": "Invalid voucher",
+      "voucher_applied_title": "Voucher applied",
+      "voucher_applied_desc": "Discount {amount} with code {code}.",
+      "voucher_remove": "Remove voucher",
+      "total_after": "Total to Pay",
       "referral_label": "Referral Code",
       "referral_placeholder": "Friend's referral code? (optional)",
       "referral_hint": "Doesn't change your price — the code owner earns a commission.",
@@ -3411,7 +3419,8 @@
       "btn_pay_qris": "Continue QRIS Payment ({amount})",
       "qris_note": "Open the QRIS page anytime — you can save / bookmark this link. The QR is valid for 24 hours after the order was created, and the status updates automatically once you pay.",
       "btn_confirm_wa": "Confirm Payment via WhatsApp",
-      "wa_confirm": "Hello Admin {store}! I would like to confirm my payment for order {code} of {amount}."
+      "wa_confirm": "Hello Admin {store}! I would like to confirm my payment for order {code} of {amount}.",
+      "btn_reorder": "Buy Again"
     },
     "shell": {
       "back": "Back to Store",
@@ -3445,7 +3454,7 @@
       "btn_start": "Start Shopping",
       "card_code": "Order Code",
       "card_total": "Total to Pay",
-      "card_unique": "includes unique code Rp {amount}",
+      "card_unique": "includes admin fee Rp {amount}",
       "btn_invoice": "View Invoice",
       "btn_pay": "Pay Now",
       "btn_resume": "Continue Payment",
@@ -3455,7 +3464,8 @@
       "filter_empty_title": "No orders in this category",
       "filter_empty_desc": "Try choosing another category above.",
       "footer_note": "Orders from the last 90 days are shown. Invoices can be printed or saved as a PDF from each order's invoice page.",
-      "wa_confirm": "Hello Admin {store}! I would like to confirm my payment for order {code} of {amount}."
+      "wa_confirm": "Hello Admin {store}! I would like to confirm my payment for order {code} of {amount}.",
+      "btn_reorder": "Buy Again"
     },
     "success": {
       "notfound_title": "Order not found",
@@ -3514,7 +3524,7 @@
       "code_label": "Order Code",
       "total_label": "Total amount to pay",
       "btn_copy": "Copy",
-      "unique_note": "Cart total {base} + unique code Rp {unique} — required so your payment amount doesn't clash with another order.",
+      "unique_note": "Cart total {base} + admin fee Rp {unique}.",
       "valid_until": "Valid until {time} ({countdown})",
       "how_title": "How to Pay",
       "how_1": "Open any app that supports QRIS — DANA, GoPay, OVO, ShopeePay, or mobile banking.",
@@ -3525,7 +3535,8 @@
       "btn_help": "Need Help?",
       "wa_help": "Hello Admin {store}! I need help with the payment for order {code}.",
       "tutorial_title": "Installation Tutorial",
-      "tutorial_desc": "Follow these steps to apply the key you just received."
+      "tutorial_desc": "Follow these steps to apply the key you just received.",
+      "discount_note": "Voucher discount {code} −{amount}."
     },
     "review": {
       "title": "Share Your Experience",
@@ -3591,10 +3602,10 @@
       "th_price": "Unit Price",
       "th_subtotal": "Subtotal",
       "subtotal": "Subtotal",
-      "unique_code": "Unique Code",
+      "unique_code": "Admin Fee",
       "total_pay": "Total to Pay",
       "pay_guide_title": "{method} payment instructions:",
-      "pay_guide_qris": "Open order page {code}, scan the QRIS, and pay exactly {amount} (unique code Rp {unique} already included). Confirmation runs automatically — the key is sent as soon as the payment is detected.",
+      "pay_guide_qris": "Open order page {code}, scan the QRIS, and pay exactly {amount} (admin fee Rp {unique} already included). Confirmation runs automatically — the key is sent as soon as the payment is detected.",
       "pay_guide_manual": "Complete the payment of {amount}, then confirm to admin via WhatsApp including order code {code}.",
       "key_heading": "Digital Product — Activation Key",
       "key_note": "Keep the key above safe. The same key is also sent to your WhatsApp and can be viewed anytime on order page {code}.",
@@ -3607,7 +3618,8 @@
       "toast_copied_title": "Key copied!",
       "toast_copied_desc": "The key for order {code} was copied to the clipboard.",
       "toast_fail_title": "Copy failed",
-      "toast_fail_desc": "Copy it manually from the key box in the invoice."
+      "toast_fail_desc": "Copy it manually from the key box in the invoice.",
+      "discount": "Voucher discount ({code})"
     },
     "referral": {
       "title": "Referral Program",
@@ -3641,6 +3653,15 @@
       "wa_message": "Hello admin, I would like to request a referral commission payout. My code is {code}, balance {balance}. Thank you!",
       "error_claim": "Failed to create referral code",
       "error_refresh": "Failed to load statistics"
+    },
+    "reorder": {
+      "toast_added_title": "{n} item added to cart",
+      "toast_added_desc": "Review your cart then continue to checkout — prices are always up to date.",
+      "toast_partial_title": "{n} item added, {m} unavailable",
+      "toast_partial_desc": "Couldn't add: {names}.",
+      "toast_none_title": "No items available to buy again",
+      "toast_none_desc": "Products in this order were removed or are currently out of stock.",
+      "toast_fail_title": "Failed to load the order"
     }
   }
 }
