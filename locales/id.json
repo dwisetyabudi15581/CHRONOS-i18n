@@ -3054,7 +3054,8 @@
       "menu_title": "Menu navigasi",
       "main_nav": "Navigasi utama",
       "mobile_nav": "Navigasi mobile",
-      "home_aria": "Ke beranda {name}"
+      "home_aria": "Ke beranda {name}",
+      "referral": "Referral"
     },
     "language": {
       "label": "Bahasa",
@@ -3251,7 +3252,11 @@
       "toast_small_qris_title": "Nominal terlalu kecil",
       "toast_small_qris_desc": "Pembayaran QRIS otomatis minimal Rp 1.000. Tambah item atau pilih metode lain.",
       "toast_fail_title": "Pesanan gagal dibuat",
-      "toast_fail_desc": "Terjadi kesalahan, coba lagi."
+      "toast_fail_desc": "Terjadi kesalahan, coba lagi.",
+      "referral_label": "Kode Referral",
+      "referral_placeholder": "Kode referral teman? (opsional)",
+      "referral_hint": "Tidak mengubah harga kamu — pemilik kode dapat komisi.",
+      "referral_clear": "Hapus kode referral"
     },
     "footer": {
       "contact_wa_aria": "Hubungi kami via WhatsApp",
@@ -3271,7 +3276,8 @@
       "order_wa": "Order via WhatsApp",
       "copyright": "© {year} {name}. Hak cipta dilindungi.",
       "terms": "Syarat Layanan",
-      "privacy": "Kebijakan Privasi"
+      "privacy": "Kebijakan Privasi",
+      "referral": "Referral"
     },
     "status": {
       "pending": "Menunggu Pembayaran",
@@ -3574,6 +3580,39 @@
       "toast_copied_desc": "Key pesanan {code} tersalin ke clipboard.",
       "toast_fail_title": "Gagal menyalin",
       "toast_fail_desc": "Salin manual dari kotak key di invoice."
+    },
+    "referral": {
+      "title": "Program Referral",
+      "subtitle": "Ajak teman belanja — kamu dapat komisi {percent}% dari setiap pesanannya.",
+      "claim_title": "Ambil Kode Referral Kamu",
+      "claim_desc": "Cukup isi nama dan nomor WhatsApp — kode langsung jadi, tanpa daftar akun.",
+      "name": "Nama",
+      "wa": "Nomor WhatsApp",
+      "claim_btn": "Buat Kode Saya",
+      "claiming": "Memproses...",
+      "claim_note": "Sudah pernah klaim? Isi nomor WA yang sama — kode lamamu tetap dipakai.",
+      "claimed_title": "Kode referral siap dibagikan!",
+      "your_code": "Kode Referral Kamu",
+      "copy": "Salin",
+      "copy_link": "Link",
+      "copied": "Tersalin!",
+      "share_note": "Bagikan kode atau link ini — kode otomatis terisi saat teman checkout.",
+      "stats_title": "Komisi Kamu",
+      "stat_orders": "Pesanan Berhasil",
+      "stat_pending": "Menunggu Bayar",
+      "stat_earned": "Komisi Terkumpul",
+      "stat_paid": "Sudah Dicairkan",
+      "stat_balance": "Saldo Bisa Dicairkan",
+      "payout_cta": "Minta Pencairan",
+      "payout_desc": "Komisi dicairkan manual oleh admin lewat WhatsApp / e-wallet (DANA, OVO, GoPay). Klik tombol di samping untuk kirim permintaan siap pakai.",
+      "how_title": "Cara Kerja",
+      "step1": "Bagikan kode atau link referral kamu ke teman.",
+      "step2": "Teman memakai kode itu saat checkout (otomatis terisi dari link).",
+      "step3": "Komisi {percent}% dari pesanannya langsung tercatat begitu pembayaran lunas.",
+      "refresh": "Muat ulang",
+      "wa_message": "Halo admin, saya mau minta pencairan komisi referral. Kode saya {code}, saldo {balance}. Terima kasih!",
+      "error_claim": "Gagal membuat kode referral",
+      "error_refresh": "Gagal memuat statistik"
     }
   }
 }

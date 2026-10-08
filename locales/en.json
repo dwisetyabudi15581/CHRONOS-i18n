@@ -3082,7 +3082,8 @@
       "menu_title": "Navigation menu",
       "main_nav": "Main navigation",
       "mobile_nav": "Mobile navigation",
-      "home_aria": "Go to {name} home"
+      "home_aria": "Go to {name} home",
+      "referral": "Referral"
     },
     "language": {
       "label": "Language",
@@ -3279,7 +3280,11 @@
       "toast_small_qris_title": "Amount too small",
       "toast_small_qris_desc": "Automatic QRIS payments require a minimum of Rp 1.000. Add items or choose another method.",
       "toast_fail_title": "Order failed to create",
-      "toast_fail_desc": "Something went wrong, please try again."
+      "toast_fail_desc": "Something went wrong, please try again.",
+      "referral_label": "Referral Code",
+      "referral_placeholder": "Friend's referral code? (optional)",
+      "referral_hint": "Doesn't change your price — the code owner earns a commission.",
+      "referral_clear": "Clear referral code"
     },
     "footer": {
       "contact_wa_aria": "Contact us via WhatsApp",
@@ -3299,7 +3304,8 @@
       "order_wa": "Order via WhatsApp",
       "copyright": "© {year} {name}. All rights reserved.",
       "terms": "Terms of Service",
-      "privacy": "Privacy Policy"
+      "privacy": "Privacy Policy",
+      "referral": "Referral"
     },
     "status": {
       "pending": "Awaiting Payment",
@@ -3602,6 +3608,39 @@
       "toast_copied_desc": "The key for order {code} was copied to the clipboard.",
       "toast_fail_title": "Copy failed",
       "toast_fail_desc": "Copy it manually from the key box in the invoice."
+    },
+    "referral": {
+      "title": "Referral Program",
+      "subtitle": "Invite friends to shop — earn {percent}% commission from every order they make.",
+      "claim_title": "Get Your Referral Code",
+      "claim_desc": "Just fill in your name and WhatsApp number — your code is ready instantly, no account needed.",
+      "name": "Name",
+      "wa": "WhatsApp Number",
+      "claim_btn": "Create My Code",
+      "claiming": "Processing...",
+      "claim_note": "Claimed before? Use the same WhatsApp number — your existing code will be returned.",
+      "claimed_title": "Your referral code is ready to share!",
+      "your_code": "Your Referral Code",
+      "copy": "Copy",
+      "copy_link": "Link",
+      "copied": "Copied!",
+      "share_note": "Share this code or link — it fills in automatically when your friend checks out.",
+      "stats_title": "Your Commission",
+      "stat_orders": "Successful Orders",
+      "stat_pending": "Awaiting Payment",
+      "stat_earned": "Commission Earned",
+      "stat_paid": "Already Paid Out",
+      "stat_balance": "Available Balance",
+      "payout_cta": "Request Payout",
+      "payout_desc": "Commissions are paid out manually by the admin via WhatsApp / e-wallet (DANA, OVO, GoPay). Click the button to send a ready-made request.",
+      "how_title": "How It Works",
+      "step1": "Share your referral code or link with friends.",
+      "step2": "Your friend uses the code at checkout (auto-filled from the link).",
+      "step3": "Your {percent}% commission is recorded as soon as their payment is settled.",
+      "refresh": "Refresh",
+      "wa_message": "Hello admin, I would like to request a referral commission payout. My code is {code}, balance {balance}. Thank you!",
+      "error_claim": "Failed to create referral code",
+      "error_refresh": "Failed to load statistics"
     }
   }
 }
