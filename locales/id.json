@@ -3138,7 +3138,8 @@
       "from": "Mulai dari",
       "view_detail": "Lihat Detail",
       "sold_out_short": "Habis",
-      "view_aria": "Lihat detail {name}"
+      "view_aria": "Lihat detail {name}",
+      "video_aria": "Putar video {name}"
     },
     "brand": {
       "breadcrumb_home": "Beranda",
@@ -3184,7 +3185,8 @@
       "overview_title": "Overview Produk",
       "tutorial_title": "Tutorial Pemasangan",
       "tutorial_desc": "Ikuti langkah-langkah berikut untuk memasang dan menggunakan key-mu dengan benar.",
-      "tutorial_step": "Langkah {n}"
+      "tutorial_step": "Langkah {n}",
+      "video_overview_title": "Video Produk"
     },
     "cart": {
       "title": "Keranjang ({count})",

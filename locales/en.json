@@ -3166,7 +3166,8 @@
       "from": "From",
       "view_detail": "View Details",
       "sold_out_short": "Sold out",
-      "view_aria": "View details for {name}"
+      "view_aria": "View details for {name}",
+      "video_aria": "Play video for {name}"
     },
     "brand": {
       "breadcrumb_home": "Home",
@@ -3212,7 +3213,8 @@
       "overview_title": "Product Overview",
       "tutorial_title": "Installation Tutorial",
       "tutorial_desc": "Follow these steps to install and use your key correctly.",
-      "tutorial_step": "Step {n}"
+      "tutorial_step": "Step {n}",
+      "video_overview_title": "Product Video"
     },
     "cart": {
       "title": "Cart ({count})",
