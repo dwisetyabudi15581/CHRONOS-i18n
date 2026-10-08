@@ -3180,7 +3180,11 @@
       "toast_sold_out_title": "Stok habis",
       "toast_sold_out_desc": "Pilih durasi lain yang tersedia.",
       "toast_terms_title": "Syarat belum disetujui",
-      "toast_terms_desc": "Centang kotak persetujuan Syarat Layanan terlebih dahulu."
+      "toast_terms_desc": "Centang kotak persetujuan Syarat Layanan terlebih dahulu.",
+      "overview_title": "Overview Produk",
+      "tutorial_title": "Tutorial Pemasangan",
+      "tutorial_desc": "Ikuti langkah-langkah berikut untuk memasang dan menggunakan key-mu dengan benar.",
+      "tutorial_step": "Langkah {n}"
     },
     "cart": {
       "title": "Keranjang ({count})",
@@ -3483,7 +3487,9 @@
       "how_4": "Halaman ini memeriksa status otomatis setiap 5 detik — cukup tunggu, tidak perlu chat admin.",
       "btn_check": "Sudah Bayar — Cek Sekarang",
       "btn_help": "Butuh Bantuan?",
-      "wa_help": "Halo Admin {store}! Saya butuh bantuan pembayaran pesanan {code}."
+      "wa_help": "Halo Admin {store}! Saya butuh bantuan pembayaran pesanan {code}.",
+      "tutorial_title": "Tutorial Pemasangan",
+      "tutorial_desc": "Ikuti langkah-langkah berikut untuk memasang key yang baru kamu terima."
     },
     "review": {
       "title": "Ceritakan Pengalamanmu",

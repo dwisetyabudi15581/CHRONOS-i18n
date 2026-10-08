@@ -3208,7 +3208,11 @@
       "toast_sold_out_title": "Out of stock",
       "toast_sold_out_desc": "Pick another available duration.",
       "toast_terms_title": "Terms not accepted",
-      "toast_terms_desc": "Please tick the Terms of Service agreement box first."
+      "toast_terms_desc": "Please tick the Terms of Service agreement box first.",
+      "overview_title": "Product Overview",
+      "tutorial_title": "Installation Tutorial",
+      "tutorial_desc": "Follow these steps to install and use your key correctly.",
+      "tutorial_step": "Step {n}"
     },
     "cart": {
       "title": "Cart ({count})",
@@ -3511,7 +3515,9 @@
       "how_4": "This page checks the status automatically every 5 seconds — just wait, no need to chat admin.",
       "btn_check": "Already Paid — Check Now",
       "btn_help": "Need Help?",
-      "wa_help": "Hello Admin {store}! I need help with the payment for order {code}."
+      "wa_help": "Hello Admin {store}! I need help with the payment for order {code}.",
+      "tutorial_title": "Installation Tutorial",
+      "tutorial_desc": "Follow these steps to apply the key you just received."
     },
     "review": {
       "title": "Share Your Experience",
